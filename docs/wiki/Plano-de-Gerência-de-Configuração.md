@@ -70,13 +70,13 @@ Para que se dê a criação de uma baseline, é necessário que o gerente de con
 As ferramentas utilizadas são:
 
 * Editores: Google Docs;
-* Controle de Versão:	Bitbucket, Wiki; 
-* Modelagem: Draw.io, Astah Professional, Astah Comumunity, Corel Draw;
+* Controle de Versão:	GitHub, Wiki; 
+* Modelagem: Draw.io, Astah Professional, Astah Community, Corel Draw;
 * Construção: InteliJ, Atom, Npm, Bower;
 * Teste: Cucumber, Protactor, Sublime;
 * Comunicação:	Hangouts, Whatsapp;	
 
-O versionamento da configuração ficará a cargo da ferramenta de controle de versão Bitbucket (Git), tanto para artefatos de desenvolvimento (código fonte, diagramas, etc), quanto para documentos de Gerência (planos, planilhas, matrizes, etc), ou seja, todos os artefatos da EAP. 
+O versionamento da configuração ficará a cargo da ferramenta de controle de versão GitHub (Git), tanto para artefatos de desenvolvimento (código fonte, diagramas, etc), quanto para documentos de Gerência (planos, planilhas, matrizes, etc), ou seja, todos os artefatos da EAP. 
 
 Todavia, a infraestrutura do repositório foi criada de modo a separar documentos de cunho gerencial, dos artefatos de mais baixo nível como código-fonte, contendo em cada caso, uma separação entre áreas para facilitar a localização dos artefatos.
 
