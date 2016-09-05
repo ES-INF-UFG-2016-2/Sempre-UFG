@@ -39,12 +39,12 @@ São considerados itens de configuração todos os itens que apresentam relevân
 Os responsáveis pela execução das atividades de Gerenciamento da Configuração estão descritos a seguir:
 
 * Diretamente:
-    * Gerente de Projeto: Julianny Alves;
-    * Gerencia: Breno Fernandes e Gleibson Silva.
+    * Gerente de Projeto: ;
+    * Gerencia: .
 
 * Indiretamente:
-    * Gerente de Verificação e Validação: Yuri Dias;
-    * Gerente de Desenvolvimento: Leonardo Freitas.
+    * Gerente de Verificação e Validação: ;
+    * Gerente de Desenvolvimento: .
 
 A gerência de configuração faz um papel fundamental para que o desenvolvimento não seja prejudicado por informações inconsistentes, assim o gerente de configuração é responsável por controlar todas as mudanças e disponibilizar a todos os envolvidos as versões e os itens de configuração corretos e íntegros (artefatos de software) para que falhas do tipo não atrapalhem a evolução do desenvolvimento (auditoria das configurações).
 
@@ -80,55 +80,22 @@ O versionamento da configuração ficará a cargo da ferramenta de controle de v
 
 Todavia, a infraestrutura do repositório foi criada de modo a separar documentos de cunho gerencial, dos artefatos de mais baixo nível como código-fonte, contendo em cada caso, uma separação entre áreas para facilitar a localização dos artefatos.
 
-A ferramenta de controle de versão conta com uma estrutura que possibilita de divisão dos artefatos contidos na EAP:
+O repositório será dividido em **cinco branches**:
 
-***Gerência do Projeto***
+**master:** branch que contém a versão com todos os artefatos do projeto validados pelos grupos.
 
- * **Gerência de Projeto (GPR)**
-     * [Plano de Gerência do Projeto](Plano de Gerência do Projeto)
-     * [Plano de Gerência de Configuração](Plano de Gerência de Configuração)
-     * [Plano de Monitoramento e Controle](Plano de Monitoramento e Controle)
-     * [Plano de Gerenciamento de Impacto](Plano de Gerenciamento de Impacto)
- * **Verificação, Validação e Qualidade (VV&Q)**
-     * [Plano de Verificação, Validação e Qualidade](Plano de Verificação, Validação e Qualidade)
-     * ***Documentos de Rotinas***
-         * [Documento de Rotinas - Gerência de Projeto](Documento de Rotinas - Gerência de Projeto)
-         * [Documento de Rotinas - Requisitos](Documento de Rotinas - Requisitos)
-         * [Documento de Rotinas - Arquitetura](Documento de Rotinas - Arquitetura)
-         * [Documento de Rotinas - Código](Documento de Rotinas - Código)
+**homolog:** tem o objetivo de integrar as branches de todos os grupos. Nesta branch será feita uma avaliação e refatoração(caso necessário) dos artefatos antes que sejam colocados na branch master.
+
+**grupo1:** branch de desenvolvimento do grupo 1.
+
+**grupo2:** branch de desenvolvimento do grupo 1.
+
+**grupo2:** branch de desenvolvimento do grupo 1.
+
+
 
 ### Execução
 
- * **Pacote 1**
-    * **Gerência de Projeto (GPR)**
-        * [Relatório de Avaliação - Pacote 1](Relatório de Avaliação - Pacote 1)
-    * Requisitos
-        * [Documento de Modelos de negócio](Documento de Modelos de negócio)
-        * [Documento de Especificação de Requisitos - Pacote 1](Documento de Especificação de Requisitos - Pacote 1)
-    * Arquitetura de Software (ARQ)
-        * [Documento de Arquitetura de Software - Pacote 1](Documento de Arquitetura de Software - Pacote 1)
-    * **Verificação, Validação e Qualidade (VV&Q)**
-        * [Relatório final de VV&Q - Pacote 1](Relatório final de VV&Q - Pacote 1)
-
- * **Pacote 2**
-    * **Gerência de Projeto (GPR)**
-        * [Relatório de Avaliação - Pacote 2](Relatório de Avaliação - Pacote 2)
-    * Requisitos
-        * [Documento de Especificação de Requisitos - Pacote 2](Documento de Especificação de Requisitos - Pacote 2)
-    * Arquitetura de Software (ARQ)
-        * [Documento de Arquitetura de Software - Pacote 2](Documento de Arquitetura de Software - Pacote 2)
-    * **Verificação, Validação e Qualidade (VV&Q)**
-        * [Relatório final de VV&Q - Pacote 2](Relatório final de VV&Q - Pacote 2)
-
- * **Pacote 3**
-    * **Gerência de Projeto (GPR)**
-        * [Relatório de Avaliação - Pacote 3](Relatório de Avaliação - Pacote 3)
-    * Requisitos
-        * [Documento de Especificação de Requisitos - Pacote 3](Documento de Especificação de Requisitos - Pacote 3)
-    * Arquitetura de Software (ARQ)
-        * [Documento de Arquitetura de Software - Pacote 3](Documento de Arquitetura de Software - Pacote 3)
-    * **Verificação, Validação e Qualidade (VV&Q)**
-        * [Relatório final de VV&Q - Pacote 3](Relatório final de VV&Q - Pacote 3)
 
 ### Definições, Acrônimos e Abreviações
  * [Glossário do SysRadoc](Glossário do SysRadoc)
