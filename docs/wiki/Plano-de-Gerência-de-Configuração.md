@@ -64,7 +64,6 @@ As atividades da Gerência de Configuração estão definidas no MPS.BR nível F
 |Editor de Imagens                    |[GIMP](http://www.gimp.org/)                       |2.8        |
 |Editor de Desenho Vetorial           |[Inkscape](https://inkscape.org)                   |0.48.4     |
 |Controle de mudanças                 |[GitHub Issues](http://github.com)                 |           |
-|Comunicação                          |[Grupo no FB](https://www.facebook.com/groups/SempreUFG)           |           ||
 
 3. O Programa de Gerenciamento de Configuração
 ----------------------------------------------
