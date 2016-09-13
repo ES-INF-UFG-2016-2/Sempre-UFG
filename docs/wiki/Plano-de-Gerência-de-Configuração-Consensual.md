@@ -10,6 +10,7 @@ Sumário
 - [2. A Gerência de Configuração](#2-a-gerncia-de-configurao)
 	- [2.1. Organização, Responsabilidades, e Interfaces](#21-organizao-responsabilidades-e-interfaces)
 	- [2.2 Artefatos da Gerência de Configuração](#22-artefatos-da-gerncia-de-configurao)
+	- [2.3. Ferramentas e Tecnologias](#23-ferramentas-e-tecnologias)
 
 <!-- /TOC -->
 
@@ -34,3 +35,10 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 * [Repositório Wiki](./)
 * [Baselines](../releases)
 * [Banco de dados de Requisições de Mudança (Issues)](../issues)
+
+### 2.3. Ferramentas e Tecnologias
+
+| Tipo | Ferramenta | Versão |
+|------|------------|--------|
+| Linguagem de programação | Java | 1.8 |
+| IDE | NetBeans | 8.1 |
