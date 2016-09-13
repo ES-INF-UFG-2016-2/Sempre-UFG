@@ -26,4 +26,11 @@ Gerentes de Configuração (GCOs):
 > * Nome 2
 > * Nome 3
 
+Os gerentes de configuração devem ser remanejados a cada 15 dias.
+
 ### 2.2 Artefatos da Gerência de Configuração
+
+* [Código fonte](../)
+* [Repositório Wiki](./)
+* [Baselines](../releases)
+* [Banco de dados de Requisições de Mudança (Issues)](../issues)
