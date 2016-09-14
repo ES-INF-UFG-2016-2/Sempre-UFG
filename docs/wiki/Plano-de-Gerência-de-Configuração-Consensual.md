@@ -52,13 +52,14 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 | Tipo | Ferramenta | Versão |
 |------|------------|--------|
 | Controle de versão | [Git](http://git-scm.com) | 2.4.2 ou superior |
-| Cliente Git (GUI) | [SmartGit]() | 7.1.4 ou superior |
+| Cliente Git (GUI) | [SmartGit](http://www.syntevo.com/smartgit) | 7.1.4 ou superior |
 | Repositório de código-fonte | [GitHub](../) |   |
-| Plataforma de programação | [Java (JDK)]() | 1.8 |
+| Plataforma de programação | [Java (JDK)](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html) | 1.8 |
 | Ambiente de Desenvolvimento (IDE) | [IntelliJ IDEA Community](https://www.jetbrains.com/idea) | 2016 ou superior |
-| Repositório de documentação | [GitHub](./) |   |
+| Repositório de documentação | [GitHub Wiki](./) |   |
 | Editor de texto *Markdown* | [Atom](http://atom.io) | 1.8.0 ou superior |
 | Editor de diagramas | [Astah Community]() | 6.9.0 ou superior |
 | Editor de Imagens |[GIMP](http://www.gimp.org/) | 2.8.0 ou superior |
-| Editor de Desenho Vetorial |[Inkscape](https://inkscape.org) | 0.48 ou superior|
-| Controle de mudanças | [GitHub](../issues) |   |
+| Editor de Desenho Vetorial |[Inkscape](https://inkscape.org) | 0.48.0 ou superior |
+| Controle de mudanças | [GitHub Issues](../issues) |   |
+| Gerência de projeto | [GitHub Projects](../projects) |   |
