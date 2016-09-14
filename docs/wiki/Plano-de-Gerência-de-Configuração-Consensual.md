@@ -55,7 +55,7 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 | Cliente Git (GUI) | [SmartGit]() | 7.1.4 ou superior |
 | Repositório de código-fonte | [GitHub](../) |   |
 | Plataforma de programação | [Java (JDK)]() | 1.8 |
-| Ambiente de Desenvolvimento (IDE) | [NetBeans](http://netbeans.org) | 8.0 ou superior |
+| Ambiente de Desenvolvimento (IDE) | [IntelliJ IDEA Community](https://www.jetbrains.com/idea) | 2016 ou superior |
 | Repositório de documentação | [GitHub](./) |   |
 | Editor de texto *Markdown* | [Atom](http://atom.io) | 1.8.0 ou superior |
 | Editor de diagramas | [Astah Community]() | 6.9.0 ou superior |
