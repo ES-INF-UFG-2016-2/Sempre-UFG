@@ -51,5 +51,14 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 
 | Tipo | Ferramenta | Versão |
 |------|------------|--------|
-| Linguagem de programação | Java | 1.8 |
-| IDE | NetBeans | 8.1 |
+| Controle de versão | [Git](http://git-scm.com) | 2.4.2 ou superior |
+| Cliente Git (GUI) | [SmartGit]() | 7.1.4 ou superior |
+| Repositório de código-fonte | [GitHub](../) |   |
+| Plataforma de programação | [Java (JDK)]() | 1.8 |
+| Ambiente de Desenvolvimento (IDE) | [NetBeans](http://netbeans.org) | 8.0 ou superior |
+| Repositório de documentação | [GitHub](./) |   |
+| Editor de texto *Markdown* | [Atom](http://atom.io) | 1.8.0 ou superior |
+| Editor de diagramas | [Astah Community]() | 6.9.0 ou superior |
+| Editor de Imagens |[GIMP](http://www.gimp.org/) | 2.8.0 ou superior |
+| Editor de Desenho Vetorial |[Inkscape](https://inkscape.org) | 0.48 ou superior|
+| Controle de mudanças | [GitHub](../issues) |   |
