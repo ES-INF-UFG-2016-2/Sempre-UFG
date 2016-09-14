@@ -15,11 +15,22 @@ Sumário
 <!-- /TOC -->
 
 ## 1. Introdução
-O Plano de Gerência de Configuração apresenta todas as tarefas do Gerenciamento de Configuração e mudanças no projeto, para garantir a sua integridade e o mantendo o domínio das mudanças ocorridas durante o desenvolvimento. Nesse documento detalha-se toda a infra-estrutura utilizada nesse projeto.
+O Plano de Gerência de Configuração apresenta todas as tarefas do
+Gerenciamento de Configuração e mudanças no projeto, para garantir a sua
+integridade e o mantendo o domínio das mudanças ocorridas durante o
+desenvolvimento. Nesse documento detalha-se toda a infra-estrutura
+utilizada nesse projeto.
 
 ## 2. A Gerência de Configuração
 ### 2.1. Organização, Responsabilidades, e Interfaces
-A gerência de configuração faz um papel fundamental para que o desenvolvimento não seja prejudicado por informações inconsistentes. Dessa forma, o gerente de configuração é responsável por controlar todas as mudanças e disponibilizar a todos os envolvidos as versões e os itens de configuração corretos e íntegros (artefatos de software) para que inconsistências não atrapalhem a evolução do desenvolvimento (auditoria das configurações) e permita uma melhor comunicação entre os membros da equipe.
+A gerência de configuração faz um papel fundamental para que o
+desenvolvimento não seja prejudicado por informações inconsistentes.
+Dessa forma, o gerente de configuração é responsável por controlar todas
+as mudanças e disponibilizar a todos os envolvidos as versões e os itens
+de configuração corretos e íntegros (artefatos de software) para que
+inconsistências não atrapalhem a evolução do desenvolvimento (auditoria
+das configurações) e permita uma melhor comunicação entre os membros da
+equipe.
 
 Gerentes de Configuração (GCOs):
 
