@@ -8,20 +8,19 @@ Sumário
 
 - [1. Introdução](#1-introduo)
 	- [2. Organização, Responsabilidades, e Interfaces](#2-organizao-responsabilidades-e-interfaces)
-		- [2.1.1. Responsabilidades dos GCOs](#211-responsabilidades-dos-gcos)
-		- [2.1.2. Responsabilidades da equipe de desenvolvimento no GCOs](#212-responsabilidades-da-equipe-de-desenvolvimento-no-gcos)
-	- [2.2 Artefatos da Gerência de Configuração](#22-artefatos-da-gerncia-de-configurao)
-	- [2.3. Ferramentas e Tecnologias](#23-ferramentas-e-tecnologias)
-	- [2.4. Commits](#24-commits)
-		- [2.4.1. Padrão de mensagem de commit](#241-padro-de-mensagem-de-commit)
-		- [2.4.2. Frequência de commit](#242-frequncia-de-commit)
-	- [2.5. Branches](#25-branches)
-	- [2.6. Estrutura dos Repositórios](#26-estrutura-dos-repositrios)
-		- [2.6.1. Repositório principal](#261-repositrio-principal)
-		- [2.6.2. Repositório Wiki](#262-repositrio-wiki)
-	- [2.7. Controle de mudanças](#27-controle-de-mudanas)
-	- [2.7. Identificação da Configuração](#27-identificao-da-configurao)
-	- [2.8. Baselines](#28-baselines)
+		- [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)
+		- [2.2. Responsabilidades da equipe de desenvolvimento no GCOs](#22-responsabilidades-da-equipe-de-desenvolvimento-no-gcos)
+	- [3. A Gerência de Configuração](#3-a-gerncia-de-configurao)
+		- [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerncia-de-configurao)
+		- [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)
+	- [3.3. Identificação da Configuração](#33-identificao-da-configurao)
+	- [3.4. Commits](#34-commits)
+	- [3.5. Branches](#35-branches)
+	- [3.6. Estrutura dos Repositórios](#36-estrutura-dos-repositrios)
+		- [3.6.1. Repositório principal](#361-repositrio-principal)
+		- [3.6.2. Repositório Wiki](#362-repositrio-wiki)
+	- [3.7. Controle de mudanças](#37-controle-de-mudanas)
+	- [3.8. Baselines](#38-baselines)
 
 <!-- /TOC -->
 
@@ -50,14 +49,14 @@ Gerentes de Configuração (GCOs):
 
 Os gerentes de configuração devem ser remanejados a cada 15 dias.
 
-#### 2.1.1. Responsabilidades dos GCOs
+#### 2.1. Responsabilidades dos GCOs
 
 * Supervisionar andamento das branches;
 * Fazer e controlar as issues (pacotes de trabalho);
 * Aprovar solicitações de merges (Pull Requests) sem "commits quebrados" – commits com código-fonte com erros de compilação / nos testes;
 * Manter o padrão de diretórios dos repositórios (organização);
 
-#### 2.1.2. Responsabilidades da equipe de desenvolvimento no GCOs
+#### 2.2. Responsabilidades da equipe de desenvolvimento no GCOs
 
 * Usar as ferramentas sugeridas (seção [2.3](#23-ferramentas-e-tecnologias));
 * Seguir os padrões de commit, da estrutura de repositórios e branches;
@@ -65,14 +64,20 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 * Fazer milestones para registrar os marcos do projeto;
 * Fazer a baseline no final de cada iteração.
 
-### 2.2 Artefatos da Gerência de Configuração
+### 3. A Gerência de Configuração
+
+#### 3.1. Artefatos da Gerência de Configuração
+
+A Gerência de Configuração trabalhará em alto nível sob os seguintes conjuntos de artefatos:
 
 * [Código fonte](../)
 * [Repositório Wiki](./)
 * [Baselines](../releases)
 * [Banco de dados de Requisições de Mudança (Issues)](../issues)
 
-### 2.3. Ferramentas e Tecnologias
+#### 3.2. Ferramentas e Tecnologias
+
+##### Ferramentas
 
 | Tipo | Ferramenta | Versão |
 |------|------------|--------|
@@ -90,9 +95,27 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 | Controle de mudanças | [GitHub Issues](../issues) |   |
 | Gerência de projeto | [GitHub Projects](../projects) |   |
 
-### 2.4. Commits
+##### Tecnologias
 
-#### 2.4.1. Padrão de mensagem de commit
+> TO-DO
+
+### 3.3. Identificação da Configuração
+
+Todos os artefatos gerados no projeto – com exceção do código fonte no *repositório principal* – terão o seguinte método de identificação:
+
+`<Tipo_do_artefato>_<Identificador>.<ext>`
+
+| Identificador | Descrição |
+|---------------|-----------|
+| `<Tipo_do_artefato>` | Tipo do artefato. Ex.: *"Processo de...", "Diagrama de Classes", "Protótipo"*, etc.
+| `<Identificador>` | Algum número, data ou frase que identifique unicamente o arquivo. Ex.: *"121", "18-02-2016", "Avaliação de Provas"*, etc.
+| `<ext>` | A extensão do arquivo. Ex.: *png, ep, asta, bpm*, etc.
+
+O código-fonte no *repositório principal* deve seguir os [convenções de código do Java](http://javascript.crockford.com/javacodeconventions.pdf) e os padrões da [Fábrica de Software do INF/UFG](http://fabrica.inf.ufg.br).
+
+### 3.4. Commits
+
+##### Padrão de mensagem de commit
 
 * Mensagem **sucinta** e **objetiva** sobre o conteúdo do commit
 * Tamanho: de 15 a 50 caracteres
@@ -103,11 +126,11 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 		* `Otimiza funcionalidade "Enviar email"`
 		* `Conserta bug #13`
 
-#### 2.4.2. Frequência de commit
+##### Frequência de commit
 
 * Pelo menos **1x por semana** por funcionalidade delegada ao membro da equipe.
 
-### 2.5. Branches
+### 3.5. Branches
 
 | Branch | Descrição |
 |--------|-----------|
@@ -128,13 +151,13 @@ Os grupos são livres para criar **branches temporárias** da branch relacionada
 - **G3-develop**: branch criada para desenvolvimento de um método num código qualquer.
 - **G1-#12**: branch criada para resolver uma possível issue **#12** para o grupo 1.
 
-### 2.6. Estrutura dos Repositórios
+### 3.6. Estrutura dos Repositórios
 
-#### 2.6.1. Repositório principal
+#### 3.6.1. Repositório principal
 
 > TO-DO estrutura de diretórios (depende da tecnologia)
 
-#### 2.6.2. Repositório Wiki
+#### 3.6.2. Repositório Wiki
 
 O repositório será acessado através do site e por repositório Git, no qual este deve seguir a seguinte estrutura:
 
@@ -163,7 +186,7 @@ O repositório será acessado através do site e por repositório Git, no qual e
 
 > TO-DO pegar lista de artefatos de software (tipo "EAP")
 
-### 2.7. Controle de mudanças
+### 3.7. Controle de mudanças
 
 * Gerenciamento de issues (também chamados de "**pacotes de trabalho**")
 	* 4 principais tipos:
@@ -187,21 +210,7 @@ O repositório será acessado através do site e por repositório Git, no qual e
 	* Analisadas pelos GCO e ferramenta de Integração Contínua (CI).
 		* GCOs usarão "Code Review" para relatar a análise
 
-### 2.7. Identificação da Configuração
-
-Todos os artefatos gerados no projeto – com exceção do código fonte no *repositório principal* – terão o seguinte método de identificação:
-
-`<Tipo_do_artefato>_<Identificador>.<ext>`
-
-| Identificador | Descrição |
-|---------------|-----------|
-| `<Tipo_do_artefato>` | Tipo do artefato. Ex.: *"Processo de...", "Diagrama de Classes", "Protótipo"*, etc.
-| `<Identificador>` | Algum número, data ou frase que identifique unicamente o arquivo. Ex.: *"121", "18-02-2016", "Avaliação de Provas"*, etc.
-| `<ext>` | A extensão do arquivo. Ex.: *png, ep, asta, bpm*, etc.
-
-O código-fonte no *repositório principal* deve seguir os [convenções de código do Java](http://javascript.crockford.com/javacodeconventions.pdf) e os padrões da [Fábrica de Software do INF/UFG](http://fabrica.inf.ufg.br).
-
-### 2.8. Baselines
+### 3.8. Baselines
 
 Para que se dê a criação de uma baseline, é necessário que os GCOs tenham feito a análise das tarefas feitas na iteração do projeto, e as ferramentas de testes automatizados, análises estáticas de código e integração contínua (CI) tenham aprovado todo o código-fonte até aquele ponto do projeto previamente.
 
