@@ -58,7 +58,7 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 
 #### 2.2. Responsabilidades da equipe de desenvolvimento no GCOs
 
-* Usar as ferramentas sugeridas (seção [2.3](#23-ferramentas-e-tecnologias));
+* Usar as ferramentas sugeridas (seção [3.2](#32-ferramentas-e-tecnologias));
 * Seguir os padrões de commit, da estrutura de repositórios e branches;
 * Usar as issues para gerência de atividades, e comunicação e rastreabilidade entre requisitos e código-fonte.
 * Fazer milestones para registrar os marcos do projeto;
