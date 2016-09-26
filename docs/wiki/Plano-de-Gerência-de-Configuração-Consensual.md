@@ -56,7 +56,7 @@ Os gerentes de configuração devem ser remanejados a cada 15 dias.
 * Aprovar solicitações de merges (Pull Requests) sem "commits quebrados" – commits com código-fonte com erros de compilação / nos testes;
 * Manter o padrão de diretórios dos repositórios (organização);
 
-#### 2.2. Responsabilidades da equipe de desenvolvimento no GCOs
+#### 2.2. Responsabilidades da equipe de desenvolvimento no GCO
 
 * Usar as ferramentas sugeridas (seção [3.2](#32-ferramentas-e-tecnologias));
 * Seguir os padrões de commit, da estrutura de repositórios e branches;
