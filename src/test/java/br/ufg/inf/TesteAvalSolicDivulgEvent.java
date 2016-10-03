@@ -3,10 +3,8 @@ package br.ufg.inf;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.inf.ufg.Evento;
-import br.inf.ufg.SolicitacaoDivulgacao;
-import br.inf.ufg.enuns.MotivosReprovacaoEvento;
-import br.inf.ufg.enuns.UsuariosSistema;
+import br.ufg.inf.enuns.MotivosReprovacaoEvento;
+import br.ufg.inf.enuns.UsuariosSistema;
 import junit.framework.Assert;
 
 @SuppressWarnings("deprecation")
@@ -104,7 +102,7 @@ public class TesteAvalSolicDivulgEvent {
 	public void encaminharSolicitacaoNaoAprovadaParaDivulgacao(){
 		solicitacaoDivulgacao.reprovarEvento(MotivosReprovacaoEvento.NAO_RELEVANTE_A_ORGANIZACAO);
 		String resposta = solicitacaoDivulgacao.encaminhaSolicitacaoParaDivulgacao();
-		Assert.assertEquals("Solicitação com status de reprovada não pode ser divulgada", resposta);
+		Assert.assertEquals("Solicitaï¿½ï¿½o com status de reprovada nï¿½o pode ser divulgada", resposta);
 	}
 	
 	@Test
@@ -117,7 +115,7 @@ public class TesteAvalSolicDivulgEvent {
 		
 		String resposta = solicitacaoDivulgacao.encaminhaSolicitacaoParaDivulgacao();
 		
-		Assert.assertEquals("Solicitação em processo de divulgacao", resposta);
+		Assert.assertEquals("Solicitaï¿½ï¿½o em processo de divulgacao", resposta);
 		
 	}
 }
