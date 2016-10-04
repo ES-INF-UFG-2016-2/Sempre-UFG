@@ -3,5 +3,4 @@ jdk:
        - oraclejdk8
 addons:
     mariadb: '5.5'
-script: echo "Empty Build"
-#script: mvn -X -e -B clean package test
+script: mvn -X -e -B clean package
