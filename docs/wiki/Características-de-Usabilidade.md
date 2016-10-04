@@ -17,14 +17,14 @@ O template SB Admin 2 pode ser encontrado por meio da URL: https://startbootstra
   * Todos os itens do menu e itens de sub menu devem possuir um ícone seguido de texto
   * Alinhados a esquerda
   * Barra de navegação no topo da página
-* Todos os itens da barra de navegação deve ser do tipo dropdown e posuirem icones.
+* Todos os itens da barra de navegação deve ser do tipo dropdown e possuirem ícones.
 * Os item deve ser alinhados a direita, ou seja no final da barra.
 * Título da página no canto superior após o sidebar e navbar
 Linha de separação entre o título da página e o restante do conteúdo.
 * Todo o conteúdo da página deverá ser exibido no centro
 
 ## Mensagens
-Todas as mensagens de alerta e confirmação deverão utilizar um popup do tipo modal conforme a imagem a baixo:
+Todas as mensagens de alerta e confirmação deverão utilizar um popup do tipo modal, conforme a imagem a baixo:
 
 ![Modal Boostrap](./anexos/REQ/Caracteristicas-de-Usabilidade/modal.png)
 
@@ -44,7 +44,7 @@ Warning - Botões de ações vinculadas a algum alerta, onde o resultado seja al
 Danger: Botões de ações críticas como: Excluir e Cancelar
 
 ## Ícones
-Os íncones das páginas deverão ser retirados da seguinte URL:
+Os ícones das páginas deverão ser retirados da seguinte URL:
 https://blackrockdigital.github.io/startbootstrap-sb-admin-2/pages/icons.html
 
 ## Tabelas
