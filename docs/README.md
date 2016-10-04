@@ -16,3 +16,7 @@ Aqui estão organizados todos os e *Planos* e artefatos de documentação para o
 ### Engenharia de Requisitos
 
 * [Requisitos de Software](./wiki/extras/documentos-do-professor-juliano/requisitos-de-software-para-sempre-ufg-2016.pdf) **(PDF)**
+
+### Arquitetura
+
+* [Características de Usabilidade](./wiki/Características-de-Usabilidade.md)
