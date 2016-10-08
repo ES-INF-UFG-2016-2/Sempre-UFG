@@ -1,8 +1,6 @@
-package br.ufg.inf;
+package java.br.ufg.inf;
 
-import static org.junit.Assert.*;
-
-public class AprovDivulgEventTest {
+public class AtualEgresTest {
 
 
 }
