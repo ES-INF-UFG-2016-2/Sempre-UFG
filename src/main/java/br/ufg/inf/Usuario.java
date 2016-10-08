@@ -1,5 +1,7 @@
 package br.ufg.inf;
 
+import br.ufg.inf.enuns.TiposDivulgacao;
+
 import java.util.BitSet;
 import java.util.Date;
 
@@ -11,19 +13,23 @@ public class Usuario {
 	private String nome;
 	private String cpf;
 	private BitSet foto = new BitSet();
-	private enum Tipos_Divulg {
-		CADA_EVENTO, DIARIA, SEMANAL, MENSAL, NAO_RECEBE 
-	};
-	private Tipos_Divulg tipo;
+	private TiposDivulgacao tipoDivulgacao;
 	private Date ts_cadastramento;
 	private Date ts_ult_update;
 	private Date ts_exclusao;
 
-	public String getMail() {
+    public TiposDivulgacao getTipoDivulgacao() {
+        return tipoDivulgacao;
+    }
+
+    public void setTipoDivulgacao(TiposDivulgacao tipoDivulgacao) {
+        this.tipoDivulgacao = tipoDivulgacao;
+    }
+
+    public String getMail() {
 		return mail;
 	}
 
-	
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
@@ -35,7 +41,7 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 
 	public String getNome() {
 		return nome;
