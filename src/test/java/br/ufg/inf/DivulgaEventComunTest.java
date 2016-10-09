@@ -2,6 +2,8 @@ package br.ufg.inf;
 
 import br.ufg.inf.enuns.TiposDivulgacao;
 import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
+import br.ufg.inf.modelo.Evento;
+import br.ufg.inf.modelo.Usuario;
 import br.ufg.inf.servico.AprovadorEventosService;
 import br.ufg.inf.servico.DivulgadorEventosService;
 import org.junit.Before;

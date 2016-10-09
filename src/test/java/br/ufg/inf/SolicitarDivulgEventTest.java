@@ -1,5 +1,8 @@
 package br.ufg.inf;
 
+import br.ufg.inf.modelo.Email;
+import br.ufg.inf.modelo.EventoSolicitado;
+import br.ufg.inf.modelo.SolicitarDivulgEvent;
 import org.apache.commons.mail.EmailException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,9 +17,9 @@ public class SolicitarDivulgEventTest {
     @Test
     public void testEnviarSolicitacao() throws EmailException {
         String email = "mtesedd@gmail.com";
-        String descricao = "Descrição";
-        String publicoAlvo = "Público Alvo";
-        String areasRelacionadas = "Áreas Relacionadas";
+        String descricao = "Descriï¿½ï¿½o";
+        String publicoAlvo = "Pï¿½blico Alvo";
+        String areasRelacionadas = "ï¿½reas Relacionadas";
         String instanciasInteressadas = "Instancias Interessadas";
         EventoSolicitado evento = new EventoSolicitado(email, descricao,
                 publicoAlvo, areasRelacionadas, instanciasInteressadas);
@@ -24,10 +27,10 @@ public class SolicitarDivulgEventTest {
         instance.enviarSolicitacao(evento);
         Assert.assertNotEquals("Email com valor Null",
                 instance.getEvento().getEmail(), "");
-        Assert.assertTrue("Email Inválido", instance.emailValido());
-        Assert.assertNotEquals("Descrição com valor Null",
+        Assert.assertTrue("Email Invï¿½lido", instance.emailValido());
+        Assert.assertNotEquals("Descriï¿½ï¿½o com valor Null",
                 instance.getEvento().getDescricao(), "");
-        Assert.assertNotEquals("Público Alvo com valor Null",
+        Assert.assertNotEquals("Pï¿½blico Alvo com valor Null",
                 instance.getEvento().getPublicoAlvo(), "");
         Assert.assertNotEquals("Areas Relacionadas com valor Null",
                 instance.getEvento().getAreasRelacionadas(), "");
