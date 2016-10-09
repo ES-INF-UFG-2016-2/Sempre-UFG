@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
 
 import java.util.Date;
 
@@ -60,7 +60,7 @@ public class Evento {
 				break;
 			}
 		}
-		
+
 		System.out.println("Evento criado.");
 
 	}

@@ -1,7 +1,7 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
 
 public class EventoSolicitado {
-    
+
     private String email;
     private String descricao;
     private String publicoAlvo;

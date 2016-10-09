@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
 
 import br.ufg.inf.enuns.TiposDivulgacao;
 

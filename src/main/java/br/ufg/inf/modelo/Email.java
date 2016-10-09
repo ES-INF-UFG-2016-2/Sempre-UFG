@@ -1,9 +1,23 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Email {
+
+    private static final String EMAIL_PADRAO =
+        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    private static final Pattern padrao = Pattern.compile(EMAIL_PADRAO, Pattern.CASE_INSENSITIVE);
+
+    public static boolean validarEmail(String email){
+        Matcher matcher = padrao.matcher(email);
+        return matcher.matches();
+    }
 
     public static void enviarEmail(String emailSolicitante) throws EmailException {
         SimpleEmail email = new SimpleEmail();
@@ -13,26 +27,27 @@ public class Email {
         email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail
         email.addTo(emailSolicitante, "Solicitante"); //destinatÃ¡rio
         email.setFrom("sempreufg2@gmail.com", "SempreUFG"); // remetente
-        email.setSubject("Email de confirmação"); // assunto do e-mail
-        email.setMsg("Este é o e-mail confirmando que sua solicitação foi bem "
+        email.setSubject("Email de confirmaï¿½ï¿½o"); // assunto do e-mail
+        email.setMsg("Este ï¿½ o e-mail confirmando que sua solicitaï¿½ï¿½o foi bem "
                 + "e que aguarda um parecer."); //conteudo do e-mail
         email.setSSL(true);
         email.setTLS(true);
         email.send();
-        
-        //Enviando email para o responsável por aprovar a solicitação
-        
+
+        //Enviando email para o responsï¿½vel por aprovar a solicitaï¿½ï¿½o
+
         email2.setSslSmtpPort("465");
         email2.setAuthentication("sempreufg2", "sempreufg2016");
         email2.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail
         email2.addTo("matheus_estudante@hotmail.com", " Gestor do Sistema"); //destinatÃ¡rio
         email2.setFrom("sempreufg2@gmail.com", "SempreUFG"); // remetente
-        email2.setSubject("Email para aprovação"); // assunto do e-mail
-        email2.setMsg("Este é o e-mail que informa que existe uma solicitação "
+        email2.setSubject("Email para aprovaï¿½ï¿½o"); // assunto do e-mail
+        email2.setMsg("Este ï¿½ o e-mail que informa que existe uma solicitaï¿½ï¿½o "
                 + "aguardando parecer."); //conteudo do e-mail
         email2.setSSL(true);
         email2.setTLS(true);
         email2.send();
     }
+
 
 }

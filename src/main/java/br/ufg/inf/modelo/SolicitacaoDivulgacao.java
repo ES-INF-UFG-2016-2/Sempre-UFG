@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
 
 import br.ufg.inf.enuns.MotivosReprovacaoEvento;
 import br.ufg.inf.enuns.UsuariosSistema;
@@ -9,25 +9,25 @@ public class SolicitacaoDivulgacao {
 	private boolean mensagensEnviadas;
 	private boolean mensagensPublicadas;
 	private UsuariosSistema escopoEvento;
-	
+
 	private Evento eventoDivulgacao;
 
 	public SolicitacaoDivulgacao(Evento criarEventoDivulgacao) {
-		
+
 	}
 
-	
+
 	public void aprovarEvento(UsuariosSistema egressos) {
 		setAprovado(true);
 		setEscopoEvento(egressos);
 	}
-	
+
 	public void reprovarEvento(MotivosReprovacaoEvento motivoReprovacao) {
 		setAprovado(false);
 	}
 
 	public void enviarParaProcessoEncerramento() {
-		
+
 	}
 
 	public void registrarFormaDivulgacaoPorMensagem(String mensagemDivulgacao) {
@@ -56,7 +56,7 @@ public class SolicitacaoDivulgacao {
 		}else{
 			return "Solicita��o com status de reprovada n�o pode ser divulgada";
 		}
-		
+
 	}
 
 

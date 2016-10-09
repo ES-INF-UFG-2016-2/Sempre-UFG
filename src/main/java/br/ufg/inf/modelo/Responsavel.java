@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,23 +30,23 @@ public class Responsavel extends Usuario {
 		int length = 50;
 
 		if (id_evento < 0) {
-			throw new IllegalArgumentException("id_evento não pode ser menor que 0.");
+			throw new IllegalArgumentException("id_evento nï¿½o pode ser menor que 0.");
 		} else if (id_evento > length - 1) {
 
-			throw new IllegalArgumentException("id_evento não pode ser maior que lista.length().");
+			throw new IllegalArgumentException("id_evento nï¿½o pode ser maior que lista.length().");
 		} else if (!(id_evento instanceof Integer)) {
 
 			throw new IllegalArgumentException("Tipo de id_evento deve ser Integer.");
 		} else if (id_evento == null) {
 
-			throw new IllegalArgumentException("id_evento não pode ser null.");
+			throw new IllegalArgumentException("id_evento nï¿½o pode ser null.");
 		}
 
-		// BD retorna objeto Evento após consulta com id_evento
+		// BD retorna objeto Evento apï¿½s consulta com id_evento
 
 		Evento evento = new Evento(0, null, null, null, 0, null, "palestra", "Ambos", "fora_DE_Escopo");
 
-		// A divulgação é aprovada ou rejeitada
+		// A divulgaï¿½ï¿½o ï¿½ aprovada ou rejeitada
 		boolean div_aprovada = div_aprov;
 
 		String parecer = "abc";
@@ -67,7 +67,7 @@ public class Responsavel extends Usuario {
 
 	public String encaminhaAvaliacao(String parecer, int id_solicitante) {
 
-		return "Parecer encaminhado às partes interessadas.";
+		return "Parecer encaminhado ï¿½s partes interessadas.";
 
 	}
 

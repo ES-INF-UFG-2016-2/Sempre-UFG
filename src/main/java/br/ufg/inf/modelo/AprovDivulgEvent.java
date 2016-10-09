@@ -1,20 +1,21 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
+
+import br.ufg.inf.interfaces.AprovDivulgEventInterface;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
 	private static List lista = new ArrayList();
 	private static Responsavel r = new Responsavel(lista);
 	private static int instancia = 0;
-	
+
 	public AprovDivulgEvent() {
-		
+
 		System.out.println(instancia);
 		instancia++;
-			
+
 	}
 
 	public String aprovDivulgEvent(int id, boolean div_aprov) {
@@ -34,9 +35,9 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 	public static void main(String args[]) {
 
 	}
-	
+
 	private String testeAA(){
-	
+
 		return "AAAA";
 	}
 

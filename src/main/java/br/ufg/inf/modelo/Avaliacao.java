@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.modelo;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ public class Avaliacao {
 		this.parecer = parecer;
 		this.data = data;
 		this.evento = evento;
-		
+
 		System.out.println("Avaliacao criada.");
 
 	}
