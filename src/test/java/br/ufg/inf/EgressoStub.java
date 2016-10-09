@@ -45,7 +45,6 @@ public class EgressoStub {
 
 		EgressoStub that = (EgressoStub) o;
 
-		if (id != null ? !id.equals(that.id) : that.id != null) return false;
 		if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
 		if (nomeMae != null ? !nomeMae.equals(that.nomeMae) : that.nomeMae != null) return false;
 		if (dataNascimento != null ? !dataNascimento.equals(that.dataNascimento) : that.dataNascimento != null)
