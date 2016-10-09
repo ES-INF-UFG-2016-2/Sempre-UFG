@@ -21,3 +21,4 @@ Aqui estão organizados todos os e *Planos* e artefatos de documentação para o
 
 * [Características de Usabilidade](./wiki/Características-de-Usabilidade.md)
 * [Documento de Especificação de Interface](./wiki/Documento-de-Especificação-de-Interface.md)
+* [Diagramas de Arquitetura](./wiki/Diagramas-de-Arquitetura.md)
