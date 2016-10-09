@@ -1,8 +1,5 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.Evento;
-import br.ufg.inf.Usuario;
-
 import java.util.Date;
 
 public class AprovacaoDivulgacaoEvento {
