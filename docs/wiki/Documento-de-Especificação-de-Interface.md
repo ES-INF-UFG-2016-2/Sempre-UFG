@@ -1,18 +1,18 @@
-Documento de Especificação de Interface SempreUFG
+Documento de Especificação de Interface
 =====================================================
 
 ## 1. RF-AtualEgres
 
-Após fazer login e clicar na opção "Minha conta" o usuário irá se deparar com a seguinte tela
+### Pré-requisitos
+O usuário deve fazer login e clicar na opção "Minha Conta".
+Na imagem abaixo, o usuário tem acesso as suas informações de acordo com a opção clicada.
+Em qualquer sessão, **caso o usuário queira atualizar algo dado, basta clicar no botão "Atualizar"**      
 
-![Tela Minha Conta](./anexos/./anexos/ARQ/Caracteristicas-de-Usabilidade/RF-AtualEgres/minhaConta.png)
-
-Conforme a imagem acima, é possível verificar que o usuário tem acesso as suas informações de acordo com a opção clicada.
-Em qualquer sessão, **caso o usuário queira atualizar algo dado, basta clicar no botão "Atualizar"**
+![Tela Minha Conta](./anexos/REQ/Prototipos/RF-AtualEgres/dadosPessoaisScroll1.png)
 
 ### 1.1 Dados pessoais
 
-Ao entrar na sessão "Dados pessoais" o usuário verá seus dados conforme a(s) tela(s) abaixo:
+Ao entrar na sessão "Dados pessoais" o usuário verá seus dados conforme a(s) tela(s) abaixo:  
 
 ![Tela Dados pessoais](./anexos/REQ/Prototipos/RF-AtualEgres/dadosPessoaisScroll1.png)
 
