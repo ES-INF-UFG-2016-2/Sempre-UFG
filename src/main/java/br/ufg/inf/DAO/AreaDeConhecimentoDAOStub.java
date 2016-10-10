@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public class AreaDeConhecimentoDAO implements AreaDeConhecimentoDAOInterface{
+public class AreaDeConhecimentoDAOStub implements AreaDeConhecimentoDAOInterface{
     @Override
     public void salvar(AreaDeConhecimento areaDeConhecimento) {
 

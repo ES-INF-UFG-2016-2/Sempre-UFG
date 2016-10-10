@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public class AvaliacaoCursoPeloEgressoDAO implements AvaliacaoCursoPeloEgressoDAOInterface{
+public class AvaliacaoCursoPeloEgressoDAOStub implements AvaliacaoCursoPeloEgressoDAOInterface{
     @Override
     public void salvar(AvaliacaoCursoPeloEgresso valiacaoCursoPeloEgresso) {
 

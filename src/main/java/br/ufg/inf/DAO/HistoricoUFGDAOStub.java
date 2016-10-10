@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public class HistoricoUFGDAO implements HistoricoUFGDAOInterface{
+public class HistoricoUFGDAOStub implements HistoricoUFGDAOInterface{
     @Override
     public void salvar(HistoricoUFG historicoUFG) {
 

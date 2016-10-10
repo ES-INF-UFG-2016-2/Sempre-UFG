@@ -5,7 +5,7 @@ import br.ufg.inf.modelo.RealizacaoProgramaAcademico;
 
 import java.util.List;
 
-public class RealizacaoProgramaAcademicoDAO implements RealizacaoProgramaAcademicoDAOInterface {
+public class RealizacaoProgramaAcademicoDAOStub implements RealizacaoProgramaAcademicoDAOInterface {
     @Override
     public void salvar(RealizacaoProgramaAcademico realizacaoProgramaAcademico) {
 

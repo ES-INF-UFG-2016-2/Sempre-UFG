@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public class CursoUFGDAO implements CursoUFGDAOInterface{
+public class CursoUFGDAOStub implements CursoUFGDAOInterface{
     @Override
     public void salvar(CursoUFG cursoUFG) {
 
