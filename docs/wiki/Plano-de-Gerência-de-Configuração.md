@@ -9,7 +9,7 @@ Sumário
 - [1. Introdução](#1-introduo)
 	- [2. Organização, Responsabilidades, e Interfaces](#2-organizao-responsabilidades-e-interfaces)
 		- [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)
-		- [2.2. Responsabilidades da equipe de desenvolvimento no GCOs](#22-responsabilidades-da-equipe-de-desenvolvimento-no-gcos)
+		- [2.2. Responsabilidades da equipe de desenvolvimento no GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-no-gco)
 	- [3. A Gerência de Configuração](#3-a-gerncia-de-configurao)
 		- [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerncia-de-configurao)
 		- [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)
