@@ -5,7 +5,7 @@ Documento de Especificação de Interface
 
 ### Pré-requisitos
 O usuário deve fazer login e clicar na opção "Minha Conta".
-Na imagem abaixo, o usuário tem acesso as suas informações de acordo com a opção clicada.
+Na imagem abaixo, o usuário tem acesso as suas informações de acordo com as opções do menu esquerdo.
 Em qualquer sessão, **caso o usuário queira atualizar algo dado, basta clicar no botão "Atualizar"**      
 
 ![Tela Minha Conta](./anexos/REQ/Prototipos/RF-AtualEgres/dadosPessoaisScroll1.png)
