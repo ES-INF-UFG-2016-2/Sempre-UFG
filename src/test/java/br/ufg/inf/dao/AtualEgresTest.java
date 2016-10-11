@@ -1,5 +1,8 @@
-package br.ufg.inf;
+package br.ufg.inf.dao;
 
+import br.ufg.inf.stubs.EgressoDAOStub;
+import br.ufg.inf.stubs.EgressoStub;
+import br.ufg.inf.stubs.IdentificadorNaoEncontradoStub;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
