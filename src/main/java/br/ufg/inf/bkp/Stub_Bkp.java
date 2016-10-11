@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.br.ufg.inf.bkp;
+package br.ufg.inf.bkp;
 
 import java.time.Period;
 
