@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.stubs;
 
 /**
  * Created by Leonardo on 09/10/2016.
