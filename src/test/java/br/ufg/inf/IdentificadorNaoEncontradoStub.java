@@ -1,4 +1,4 @@
-package java.br.ufg.inf;
+package br.ufg.inf;
 
 /**
  * Created by Leonardo on 09/10/2016.

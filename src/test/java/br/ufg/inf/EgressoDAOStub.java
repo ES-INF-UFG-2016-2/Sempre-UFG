@@ -1,13 +1,15 @@
-package java.br.ufg.inf;
-
-import java.util.Date;
+package br.ufg.inf;
 
 /**
  * Created by Leonardo on 09/10/2016.
  */
 public class EgressoDAOStub {
 
-	private static EgressoStub egresso = new EgressoStub("Aluno A Sobrenome B", "Mãe do Aluno A Sobrenome B", new Date(), "Masc", "alunoAdiferente@emailalternativo.com", "privado");
+	private static EgressoStub egresso;
+
+	public static void adicionarEgresso(EgressoStub novoEgresso){
+		egresso = novoEgresso;
+	}
 
 	public static EgressoStub recuperarEgresso(String id){
 		if (id.equals(egresso.pegarId())){
@@ -21,6 +23,11 @@ public class EgressoDAOStub {
 	public static void modificaEgresso(String id, EgressoStub novosDados){
 		EgressoStub egressoNoBanco = recuperarEgresso(id);
 		egresso = novosDados;
+        egresso.mudarId(id);
+	}
+
+	public static void removeEgresso(String id){
+		egresso = null;
 	}
 
 
