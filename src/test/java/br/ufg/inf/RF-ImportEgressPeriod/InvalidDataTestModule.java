@@ -1,4 +1,3 @@
-/*
 package test;
 
 import main.InvalidImportDataException;
@@ -56,4 +55,3 @@ public class InvalidDataTestModule {
 
 
 }
-*/

@@ -1,4 +1,3 @@
-/*
 package test;
 
 import org.junit.After;
@@ -132,4 +131,3 @@ public class ValidDataTestModule {
     }
 
 }
-*/
