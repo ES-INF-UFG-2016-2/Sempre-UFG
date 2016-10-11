@@ -1,4 +1,4 @@
-package br.ufg.inf.DAO;
+package br.ufg.inf.dao;
 
 import br.ufg.inf.modelo.HistoricoUFG;
 import br.ufg.inf.interfaces.HistoricoUFGDAOInterface;
