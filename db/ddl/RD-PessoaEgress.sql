@@ -34,6 +34,28 @@ CREATE SEQUENCE localizacao_geografica_id_seq
   COMMENT ON SEQUENCE localizacao_geografica_id_seq
   IS 'Sequence utilizada para geração de id''s da tabela ''localizacao_geografica''.';
 
+-- Table: localizacao_geografica
+
+DROP TABLE IF EXISTS localizacao_geografica CASCADE;
+
+CREATE TABLE localizacao_geografica
+(
+  id integer NOT NULL DEFAULT nextval('localizacao_geografica_id_seq'::regclass),
+  nome_cidade character varying(300) NOT NULL,
+  nome_unidade_federativa character varying(300) NOT NULL,
+  nome_pais character varying(300) NOT NULL,
+  sigla character varying(50) NOT NULL,
+  latitude real,
+  longitude real,
+  
+  CONSTRAINT pk_localizacao PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE localizacao_geografica
+  OWNER TO postgres;
+
 -- Table: egresso
 
 DROP TABLE IF EXISTS egresso CASCADE;
@@ -49,8 +71,6 @@ CREATE TABLE egresso
   visibilidade visibilidade NOT NULL,
   sexo sexo,
   id_localizacao integer NOT NULL,
-  
-  
   
   CONSTRAINT pk PRIMARY KEY (id),
   CONSTRAINT fk_localizacao FOREIGN KEY (id_localizacao)
@@ -72,29 +92,6 @@ CREATE INDEX fk_id_localizacao_idx
   USING btree
   (id_localizacao);
 
--- Table: localizacao_geografica
-
-DROP TABLE IF EXISTS localizacao_geografica CASCADE;
-
-CREATE TABLE localizacao_geografica
-(
-  id integer NOT NULL DEFAULT nextval('localizacao_geografica_id_seq'::regclass),
-  nome_cidade character varying(300) NOT NULL,
-  nome_unidade_federativa character varying(300) NOT NULL,
-  nome_pais character varying(300) NOT NULL,
-  sigla character varying(50) NOT NULL,
-  latitude real,
-  longitude real,
-  
-  
-  CONSTRAINT pk_localizacao PRIMARY KEY (id)
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE localizacao_geografica
-  OWNER TO postgres;
-
 -- Table: residencia
 
 DROP TABLE IF EXISTS residencia CASCADE;
@@ -106,15 +103,14 @@ CREATE TABLE residencia
   endereco character varying(300) NOT NULL,
   id_egresso integer NOT NULL,
   id_localizacao integer NOT NULL,
-  
-  
+   
   CONSTRAINT pk_residencia PRIMARY KEY (data_inicio),
   CONSTRAINT fk_egresso FOREIGN KEY (id_egresso)
       REFERENCES egresso (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
+      ON UPDATE CASCADE ON DELETE RESTRICT,
   CONSTRAINT fk_localizacao FOREIGN KEY (id_localizacao)
       REFERENCES localizacao_geografica (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
+      ON UPDATE CASCADE ON DELETE RESTRICT,
   CONSTRAINT uq_pk_composta_residencia UNIQUE (id_egresso, id_localizacao, data_inicio)
 )
 WITH (
