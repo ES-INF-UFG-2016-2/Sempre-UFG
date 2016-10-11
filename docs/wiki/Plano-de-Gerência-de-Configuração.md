@@ -129,7 +129,7 @@ O código-fonte no *repositório principal* deve seguir os [convenções de cód
 
 * Mensagem **sucinta** e **objetiva** sobre o conteúdo do commit
 * Tamanho: de 15 a 50 caracteres
-* Verbo na 2º pessoa do presente simples + complemento (o que mudou no projeto)
+* Verbo na 3º pessoa do presente simples + complemento (o que mudou no projeto)
 	* Exemplos:
 		* `Adiciona diagrama de classes`
 		* `Refatora função X`
