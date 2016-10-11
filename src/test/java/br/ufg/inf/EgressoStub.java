@@ -1,4 +1,4 @@
-package java.br.ufg.inf;
+package br.ufg.inf;
 
 import java.util.Date;
 
@@ -38,7 +38,11 @@ public class EgressoStub {
 		return id;
 	}
 
-	@Override
+    public void mudarId(String id) {
+        this.id = id;
+    }
+
+    @Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
