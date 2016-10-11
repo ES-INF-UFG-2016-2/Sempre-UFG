@@ -41,13 +41,13 @@ inconsistências não atrapalhem a evolução do desenvolvimento (auditoria
 das configurações) e permita uma melhor comunicação entre os membros da
 equipe.
 
-Gerentes de Configuração (GCOs):
+##### Gerentes de Configuração (GCOs)
 
-> * Nome 1
-> * Nome 2
-> * Nome 3
-
-Os gerentes de configuração devem ser remanejados a cada 15 dias.
+| Grupo   | Gerente  de Configuração                     |
+|---------|----------------------------------------------|
+| Grupo 1 | **Gustavo Moraes dos Santos** @gustavosotnas |
+| Grupo 2 | **Leonardo Freitas dos Santos** @leonardo-freitas-1995 |
+| Grupo 3 |**Yuri Matheus Dias Pereira** @Yuri-M-Dias
 
 #### 2.1. Responsabilidades dos GCOs
 
