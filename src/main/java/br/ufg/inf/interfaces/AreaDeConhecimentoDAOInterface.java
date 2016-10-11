@@ -1,6 +1,6 @@
 package br.ufg.inf.interfaces;
 
-import br.ufg.inf.abstratas.AreaDeConhecimento;
+import br.ufg.inf.modelo.AreaDeConhecimentoStub;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface AreaDeConhecimentoDAOInterface {
 
-    public void salvar(AreaDeConhecimento areaDeConhecimento);
+    static abstract AreaDeConhecimentoStub salvar(AreaDeConhecimentoStub areaDeConhecimentoStub);
 
-    public void alterar(AreaDeConhecimento areaDeConhecimento);
+    public void alterar(AreaDeConhecimentoStub areaDeConhecimentoStub);
 
     public void deletar(int id_areaDeConhecimento);
 
-    public AreaDeConhecimento getById(int id_AreaDeConhecimento);
+    public AreaDeConhecimentoStub getById(int id_AreaDeConhecimento);
 
-    public List<AreaDeConhecimento> getAll();
+    public List<AreaDeConhecimentoStub> getAll();
 
 }

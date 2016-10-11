@@ -3,23 +3,23 @@ package br.ufg.inf.modelo;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class HistoricoUFG {
+public class HistoricoUFGStub {
     private int num_matricula;
     private int mes_inicio;
     private int mes_fim;
     private int ano_inicio;
     private int ano_fim;
-    private CursoUFG cursoUFG;
+    private CursoUFGStub cursoUFGStub;
     private String titulo_trabalho_Final;
 
 
-    public HistoricoUFG(int num_matricula, int mes_inicio, int mes_fim, int ano_inicio, int ano_fim, CursoUFG cursoUFG, String titulo_trabalho_Final) {
+    public HistoricoUFGStub(int num_matricula, int mes_inicio, int mes_fim, int ano_inicio, int ano_fim, CursoUFGStub cursoUFGStub, String titulo_trabalho_Final) {
         this.num_matricula = num_matricula;
         this.mes_inicio = mes_inicio;
         this.mes_fim = mes_fim;
         this.ano_inicio = ano_inicio;
         this.ano_fim = ano_fim;
-        this.cursoUFG = cursoUFG;
+        this.cursoUFGStub = cursoUFGStub;
         this.titulo_trabalho_Final = titulo_trabalho_Final;
     }
 
@@ -63,12 +63,12 @@ public class HistoricoUFG {
         this.ano_fim = ano_fim;
     }
 
-    public CursoUFG getCursoUFG() {
-        return cursoUFG;
+    public CursoUFGStub getCursoUFGStub() {
+        return cursoUFGStub;
     }
 
-    public void setCursoUFG(CursoUFG cursoUFG) {
-        this.cursoUFG = cursoUFG;
+    public void setCursoUFGStub(CursoUFGStub cursoUFGStub) {
+        this.cursoUFGStub = cursoUFGStub;
     }
 
     public String getTitulo_trabalho_Final() {

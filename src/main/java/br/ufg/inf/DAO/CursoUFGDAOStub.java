@@ -1,6 +1,6 @@
 package br.ufg.inf.DAO;
 
-import br.ufg.inf.modelo.CursoUFG;
+import br.ufg.inf.modelo.CursoUFGStub;
 import br.ufg.inf.interfaces.CursoUFGDAOInterface;
 
 import java.util.List;
@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class CursoUFGDAOStub implements CursoUFGDAOInterface{
     @Override
-    public void salvar(CursoUFG cursoUFG) {
+    public void salvar(CursoUFGStub cursoUFGStub) {
 
     }
 
     @Override
-    public void alterar(CursoUFG CursoUFG) {
+    public void alterar(CursoUFGStub CursoUFGStub) {
 
     }
 
@@ -25,12 +25,12 @@ public class CursoUFGDAOStub implements CursoUFGDAOInterface{
     }
 
     @Override
-    public CursoUFG getById(int id_cursoUFG) {
+    public CursoUFGStub getById(int id_cursoUFG) {
         return null;
     }
 
     @Override
-    public List<CursoUFG> getAll() {
+    public List<CursoUFGStub> getAll() {
         return null;
     }
 }

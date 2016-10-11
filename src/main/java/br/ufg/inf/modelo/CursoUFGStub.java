@@ -1,20 +1,19 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.abstratas.AreaDeConhecimento;
 import br.ufg.inf.enuns.NiveisCurso;
 import br.ufg.inf.enuns.TiposResolucao;
 import br.ufg.inf.enuns.Turnos;
 
-public class CursoUFG {
+public class CursoUFGStub {
 
     private NiveisCurso nivel;
     private TiposResolucao tiposResolucao;
     private int num_resolucao;
     private boolean presencial;
     private Turnos turno;
-    private AreaDeConhecimento area_de_conhecimento;
+    private AreaDeConhecimentoStub area_de_conhecimento;
 
-    public CursoUFG(NiveisCurso nivel, TiposResolucao tiposResolucao, int num_resolucao, boolean presencial, Turnos turno, AreaDeConhecimento area_de_conhecimento) {
+    public CursoUFGStub(NiveisCurso nivel, TiposResolucao tiposResolucao, int num_resolucao, boolean presencial, Turnos turno, AreaDeConhecimentoStub area_de_conhecimento) {
         this.nivel = nivel;
         this.tiposResolucao = tiposResolucao;
         this.num_resolucao = num_resolucao;
@@ -63,11 +62,11 @@ public class CursoUFG {
         this.turno = turno;
     }
 
-    public AreaDeConhecimento getArea_de_conhecimento() {
+    public AreaDeConhecimentoStub getArea_de_conhecimento() {
         return area_de_conhecimento;
     }
 
-    public void setArea_de_conhecimento(AreaDeConhecimento area_de_conhecimento) {
+    public void setArea_de_conhecimento(AreaDeConhecimentoStub area_de_conhecimento) {
         this.area_de_conhecimento = area_de_conhecimento;
     }
 }

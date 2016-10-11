@@ -1,6 +1,6 @@
 package br.ufg.inf.interfaces;
 
-import br.ufg.inf.modelo.CursoUFG;
+import br.ufg.inf.modelo.CursoUFGStub;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface CursoUFGDAOInterface {
 
-    public void salvar(CursoUFG cursoUFG);
+    public void salvar(CursoUFGStub cursoUFGStub);
 
-    public void alterar(CursoUFG cursoUFG);
+    public void alterar(CursoUFGStub cursoUFGStub);
 
     public void deletar(int id_cursoUFG);
 
-    public CursoUFG getById(int id_cursoUFG);
+    public CursoUFGStub getById(int id_cursoUFG);
 
-    public List<CursoUFG> getAll();
+    public List<CursoUFGStub> getAll();
 }

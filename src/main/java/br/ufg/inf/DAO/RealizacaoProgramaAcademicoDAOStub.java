@@ -1,18 +1,18 @@
 package br.ufg.inf.DAO;
 
 import br.ufg.inf.interfaces.RealizacaoProgramaAcademicoDAOInterface;
-import br.ufg.inf.modelo.RealizacaoProgramaAcademico;
+import br.ufg.inf.modelo.RealizacaoProgramaAcademicoStub;
 
 import java.util.List;
 
 public class RealizacaoProgramaAcademicoDAOStub implements RealizacaoProgramaAcademicoDAOInterface {
     @Override
-    public void salvar(RealizacaoProgramaAcademico realizacaoProgramaAcademico) {
+    public void salvar(RealizacaoProgramaAcademicoStub realizacaoProgramaAcademicoStub) {
 
     }
 
     @Override
-    public void alterar(RealizacaoProgramaAcademico realizacaoProgramaAcademico) {
+    public void alterar(RealizacaoProgramaAcademicoStub realizacaoProgramaAcademicoStub) {
 
     }
 
@@ -22,12 +22,12 @@ public class RealizacaoProgramaAcademicoDAOStub implements RealizacaoProgramaAca
     }
 
     @Override
-    public RealizacaoProgramaAcademico getById(int id_realizacaoProgramaAcademico) {
+    public RealizacaoProgramaAcademicoStub getById(int id_realizacaoProgramaAcademico) {
         return null;
     }
 
     @Override
-    public List<RealizacaoProgramaAcademico> getAll() {
+    public List<RealizacaoProgramaAcademicoStub> getAll() {
         return null;
     }
 }

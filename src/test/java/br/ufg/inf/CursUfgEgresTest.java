@@ -1,12 +1,14 @@
 package br.ufg.inf;
 
+import br.ufg.inf.interfaces.AreaDeConhecimentoDAOInterface;
+import br.ufg.inf.modelo.AreaDeConhecimentoStub;
 import org.junit.*;
 
 public class CursUfgEgresTest {
 
     @Before
     public void iniciaConexao(){
-
+        //Limpa Banco
 
     }
 
@@ -94,8 +96,46 @@ public class CursUfgEgresTest {
     }
 
     @Test
-    public void testaArmazenaAreaDeConhecimento() {
-        
+    public void testaArmazenaAreaDeConhecimentoQualquer() {
+        String sql= "INSERT INTO AREA_DE_CONHECIMENTO ('EXATAS',01)";
+        AreaDeConhecimentoStub areaDeConhecimentoStub = new AreaDeConhecimentoStub("EXATAS", 01);
+        AreaDeConhecimentoDAOInterface.salvar(areaDeConhecimentoStub);
     }
 
+    @Test
+    public void testaArmazenaAreaDeConhecimentoNomeNulo() {
+        String sql= "INSERT INTO AREA_DE_CONHECIMENTO ('NULL',01)";
+        AreaDeConhecimentoStub areaDeConhecimentoStub = new AreaDeConhecimentoStub("NULL", 01);
+        AreaDeConhecimentoDAOInterface.salvar(areaDeConhecimentoStub);
+    }
+
+    @Test
+    public void testaArmazenaAreaDeConhecimentoNomeVazio() {
+        String sql= "INSERT INTO AREA_DE_CONHECIMENTO ('',01)";
+        AreaDeConhecimentoStub areaDeConhecimentoStub = new AreaDeConhecimentoStub("", 01);
+        AreaDeConhecimentoDAOInterface.salvar(areaDeConhecimentoStub);
+    }
+
+    @Test
+    public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais(){
+        String sql= "INSERT INTO AREA_DE_CONHECIMENTO ('HU¬MA¬NA$*',01)";
+        AreaDeConhecimentoStub areaDeConhecimentoStub = new AreaDeConhecimentoStub("HU¬MA¬NA$'", 01);
+        AreaDeConhecimentoDAOInterface.salvar(areaDeConhecimentoStub);
+    }
+
+    /*
+    @Test
+    public void testaArmazenaAreaDeConhecimentoCodigoVazio() {
+        String sql= "INSERT INTO AREA_DE_CONHECIMENTO (EXATAS,'')";
+        AreaDeConhecimentoStub areaDeConhecimentoStub = new AreaDeConhecimentoStub("EXATAS",);
+        AreaDeConhecimentoDAOStub.salvar(areaDeConhecimentoStub);
+    }
+
+    @Test
+    public void testaArmazenaAreaDeConhecimentoNulo() {
+        String sql= "INSERT INTO AREA_DE_CONHECIMENTO (EXATAS, NULL)";
+        AreaDeConhecimentoStub areaDeConhecimentoStub = new AreaDeConhecimentoStub("EXATAS", null);
+        AreaDeConhecimentoDAOStub.salvar(areaDeConhecimentoStub);
+    }
+*/
 }

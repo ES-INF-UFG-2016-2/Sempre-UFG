@@ -1,13 +1,13 @@
-package br.ufg.inf.abstratas;
+package br.ufg.inf.modelo;
 
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public abstract class AreaDeConhecimento {
+public class AreaDeConhecimentoStub {
     private String nome;
     private int codigo;
 
-    public AreaDeConhecimento(String nome, int codigo) {
+    public AreaDeConhecimentoStub(String nome, int codigo) {
         this.nome = nome;
         this.codigo = codigo;
     }

@@ -1,6 +1,6 @@
 package br.ufg.inf.DAO;
 
-import br.ufg.inf.modelo.HistoricoUFG;
+import br.ufg.inf.modelo.HistoricoUFGStub;
 import br.ufg.inf.interfaces.HistoricoUFGDAOInterface;
 
 import java.util.List;
@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class HistoricoUFGDAOStub implements HistoricoUFGDAOInterface{
     @Override
-    public void salvar(HistoricoUFG historicoUFG) {
+    public void salvar(HistoricoUFGStub historicoUFGStub) {
 
     }
 
     @Override
-    public void alterar(HistoricoUFG historicoUFG) {
+    public void alterar(HistoricoUFGStub historicoUFGStub) {
 
     }
 
@@ -25,12 +25,12 @@ public class HistoricoUFGDAOStub implements HistoricoUFGDAOInterface{
     }
 
     @Override
-    public HistoricoUFG getById(int id_historicoUFG) {
+    public HistoricoUFGStub getById(int id_historicoUFG) {
         return null;
     }
 
     @Override
-    public List<HistoricoUFG> getAll() {
+    public List<HistoricoUFGStub> getAll() {
         return null;
     }
 }

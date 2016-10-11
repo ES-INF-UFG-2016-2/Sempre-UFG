@@ -1,6 +1,6 @@
 package br.ufg.inf.DAO;
 
-import br.ufg.inf.modelo.AvaliacaoCursoPeloEgresso;
+import br.ufg.inf.modelo.AvaliacaoCursoPeloEgressoStub;
 import br.ufg.inf.interfaces.AvaliacaoCursoPeloEgressoDAOInterface;
 
 import java.util.List;
@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class AvaliacaoCursoPeloEgressoDAOStub implements AvaliacaoCursoPeloEgressoDAOInterface{
     @Override
-    public void salvar(AvaliacaoCursoPeloEgresso valiacaoCursoPeloEgresso) {
+    public void salvar(AvaliacaoCursoPeloEgressoStub avaliacaoCursoPeloEgresso) {
 
     }
 
     @Override
-    public void alterar(AvaliacaoCursoPeloEgresso avaliacaoCursoPeloEgresso) {
+    public void alterar(AvaliacaoCursoPeloEgressoStub avaliacaoCursoPeloEgressoStub) {
 
     }
 
@@ -25,12 +25,12 @@ public class AvaliacaoCursoPeloEgressoDAOStub implements AvaliacaoCursoPeloEgres
     }
 
     @Override
-    public AvaliacaoCursoPeloEgresso getById(int id_AvaliacaoCursoPeloEgresso) {
+    public AvaliacaoCursoPeloEgressoStub getById(int id_avaliacaoCursoPeloEgresso) {
         return null;
     }
 
     @Override
-    public List<AvaliacaoCursoPeloEgresso> getAll() {
+    public List<AvaliacaoCursoPeloEgressoStub> getAll() {
         return null;
     }
 }
