@@ -1,13 +1,10 @@
-package test.java.br.ufg.inf.bkp;
+package br.ufg.inf.bkp;
 
 import java.time.Period;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import main.java.br.ufg.inf.bkp.Backup;
-import main.java.br.ufg.inf.bkp.Stub_Bkp;
 
 public class ConfigurarBackupTest {
 
