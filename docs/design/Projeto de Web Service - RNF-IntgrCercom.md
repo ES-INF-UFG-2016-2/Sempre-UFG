@@ -1,4 +1,4 @@
-a o Projeto de Web Service RNF-IntgrCercom
+Projeto de Web Service RNF-IntgrCercom
 ======
 #### (Há integração com sistemas do CERCOMP para importação de dados de egressos)
 **Prioridade**: Alta.
