@@ -3,27 +3,30 @@
                 PRIMARY KEY (idUsuario)
 );*/
 
+CREATE TYPE tipo_parametro AS ENUM ('BACKUP', 'LOG', 'GLOBAL');
 
 CREATE TABLE SempreUFG (
+                idSempreUFG SERIAL,
                 nome_sistema VARCHAR(255) NOT NULL,
                 timestamp_isstalacao DATE NOT NULL,
                 id_Usuario INT NOT NULL,
-                PRIMARY KEY (nome_sistema)
+                PRIMARY KEY (idSempreUFG)
 );
 
 
 CREATE TABLE Parametro (
+                idParametro SERIAL,
                 sigla_parametro VARCHAR(20) NOT NULL,
-                nome_sistema VARCHAR(255) NOT NULL,
-                tipo VARCHAR(6) NOT NULL, size ENUM('Backup', 'Log', 'Global'),
+                idSempreUFG VARCHAR(255) NOT NULL,
+                tipo tipo_parametro NOT NULL,
                 descricao_parametro VARCHAR(255) NOT NULL,
                 valor VARCHAR(100) NOT NULL,
-                PRIMARY KEY (sigla_parametro, nome_sistema)
+                PRIMARY KEY (idParametro, idSempreUFG)
 );
 
 
 CREATE TABLE Backup (
-                idBackup INT AUTO_INCREMENT NOT NULL,
+                idBackup SERIAL,
                 idUsuario INT NOT NULL,
                 timestamp_inicio DATE NOT NULL,
                 timestamp_fim DATE NOT NULL,
@@ -34,7 +37,7 @@ CREATE TABLE Backup (
 
 
 CREATE TABLE Restauracao (
-                idRestauracao INT AUTO_INCREMENT NOT NULL,
+                idRestauracao SERIAL,
                 idBackup INT NOT NULL,
                 idUsuario INT NOT NULL,
                 timestamp_restauracao DATE NOT NULL,
@@ -62,8 +65,8 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE Parametro ADD CONSTRAINT sempreufg_parametro_fk
-FOREIGN KEY (nome_sistema)
-REFERENCES SempreUFG (nome_sistema)
+FOREIGN KEY (idSempreUFG)
+REFERENCES SempreUFG (idSempreUFG)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
