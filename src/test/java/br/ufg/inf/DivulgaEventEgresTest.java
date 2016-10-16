@@ -1,6 +1,6 @@
 package br.ufg.inf;
 
-import br.ufg.inf.enuns.TiposDivulgacao;
+import br.ufg.inf.enuns.PolitRecebMsg;
 import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
 import br.ufg.inf.servico.AprovadorEventosService;
 import br.ufg.inf.servico.CursoService;
