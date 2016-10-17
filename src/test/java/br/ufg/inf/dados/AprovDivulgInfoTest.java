@@ -53,15 +53,21 @@ public class AprovDivulgInfoTest {
 	// conexao
 	static Connection conn = null;
 
-	@BeforeClass
+	@Before
 	public static void abreConexao() throws IOException {
 
 		ManipulaDB db = new ManipulaDB();
 		conn = db.criaConexao();
 	}
+	
+	@After
+	public static void fechaConexao() throws IOException, SQLException {
+		
+		conn.close();
+		
+	}
 
 	@Test
-	@Before
 	public void testTableUsuario() throws SQLException, IOException {
 
 		DatabaseMetaData dbm = conn.getMetaData();
@@ -71,7 +77,6 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	@Before
 	public void testTableAprov() throws SQLException {
 
 		DatabaseMetaData dbm = conn.getMetaData();
@@ -80,7 +85,6 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	@Before
 	public void testTableCursos() throws SQLException {
 
 		DatabaseMetaData dbm = conn.getMetaData();
@@ -89,7 +93,6 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	@Before
 	public void testEnumNivel() throws SQLException {
 
 		DatabaseMetaData dbm = conn.getMetaData();
@@ -102,7 +105,6 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	@Before
 	public void testEnumRecebe_Divulg() throws SQLException {
 
 		DatabaseMetaData dbm = conn.getMetaData();
@@ -115,7 +117,6 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	@Before
 	public void testEnumTipo_de_resolucao() throws SQLException {
 
 		DatabaseMetaData dbm = conn.getMetaData();
@@ -128,7 +129,6 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	@Before
 	public void testEnumTurno() throws SQLException {
 
 		Statement stm = conn.createStatement();
