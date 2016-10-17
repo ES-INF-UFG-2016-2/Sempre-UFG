@@ -1,6 +1,6 @@
 
 -- -----------------------------------------------------
--- Table `mydb`.`Usuario`
+-- Table `Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Usuario (
   idUsuario INT NOT NULL,
@@ -13,17 +13,19 @@ CREATE TABLE IF NOT EXISTS Usuario (
   timestamp_cadastramento DATE NOT NULL,
   timestamp_ultima_atualizacao DATE NULL,
   timestamp_exclusao_logica DATE NULL,
-  PRIMARY KEY (idUsuario));
+  PRIMARY KEY (idUsuario))
+;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Papel`
+-- Table `Papel`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Papel (
   idPapel INT NOT NULL,
   sigla_papel CHAR(3) NOT NULL,
   nome_papel CHAR(20) NOT NULL,
-  PRIMARY KEY (idPapel));
+  PRIMARY KEY (idPapel))
+;
 
 
 -- -----------------------------------------------------
@@ -62,7 +64,7 @@ CREATE INDEX fk_Usuario_has_Papel_Usuario1_idx ON Usuario_has_Papel (Usuario_idU
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Papel_has_Recurso`
+-- Table `Papel_has_Recurso`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Papel_has_Recurso (
   Papel_idPapel INT NOT NULL,
