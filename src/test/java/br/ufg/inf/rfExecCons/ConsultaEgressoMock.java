@@ -9,25 +9,27 @@ import java.util.List;
 public class ConsultaEgressoMock implements IConsultaEgresso {
     private Date ultimaConsulta;
 
-    @Override
-    public LinkedHashMap<String, String> executaConsultaDeEgressosPredefinida(int identificador, List<String> parametros) {
+    public LinkedHashMap<String, String> executaConsultaDeEgressosPredefinida(int identificador, LinkedHashMap<String, String> parametros) {
 
-        LinkedHashMap<String, String> resultado = new LinkedHashMap<>();
+        LinkedHashMap<String, String> resultado = new LinkedHashMap<String, String>();
 
         switch (identificador){
-            case 1: resultadoDesejadoParaConsultaDeEgressoPredefinidaComSucesso(resultado);
-            case 2: resultadoParaConsultaDeEgressoPredefinidaComIdentificadorInexistente(resultado, 2);
-            case 3: resultadoDesejadoParaConsultaDeEgressoPredefinidaComFalha(resultado, 3);
+            case 1: return resultadoDesejadoParaConsultaDeEgressoPredefinidaSemParametrosComSucesso(resultado);
+            case 2: return resultadoParaConsultaDeEgressoPredefinidaComIdentificadorInexistente(resultado, 2);
+            case 3: return resultadoDesejadoParaConsultaDeEgressoPredefinidaComFalha(resultado, 3);
+            case 4: return resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosComSucesso(resultado);
+            case 5: return resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosComSucesso(resultado);
+            case 6: return resultadoParaConsultaDeEgressoPredefinidaComParametrosIncompativeis(resultado);
             default: return null;
         }
     }
 
-    @Override
-    public LinkedHashMap<String, String> executaConsultaDeEgressosAdHoc(List<String> colunasABuscar, List<String> parametros) {
+
+    public LinkedHashMap<String, String> executaConsultaDeEgressosAdHoc(LinkedHashMap<String, String> colunasABuscar, LinkedHashMap<String, String> parametros) {
         return null;
     }
 
-    @Override
+
     public void atualizaDataUltimaConsulta(int identificadorConsulta) {
         ultimaConsulta.setTime(System.currentTimeMillis());
     }
@@ -40,21 +42,33 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
         this.ultimaConsulta = ultimaConsulta;
     }
 
-    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComSucesso(LinkedHashMap<String, String> resultado) {
-        resultado.put("NOME", "MARIA EDUARDA;JOAO PEDRO,HELENA PEREIRA");
+    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaSemParametrosComSucesso(LinkedHashMap<String, String> resultado) {
+        resultado.put("NOME", "MARIA EDUARDA;JOAO PEDRO;HELENA PEREIRA");
         resultado.put("DATANASCIMENTO", "01/01/1996;10/03/1994;05/09/1990");
         resultado.put("CURSO", "MEDICINA;PEDAGOGIA;ENGENHARIA DE PETROLEO");
 
         return resultado;
     }
 
+    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosComSucesso(LinkedHashMap<String, String> resultado) {
+        resultado.put("NOME", "MARIA EDUARDA");
+        resultado.put("DATANASCIMENTO", "01/01/1996");
+
+        return resultado;
+    }
+
     private LinkedHashMap<String, String> resultadoParaConsultaDeEgressoPredefinidaComIdentificadorInexistente(LinkedHashMap<String, String> resultado, int identificador) {
-        resultado.put("ERRO", "NAO EXISTE CONSULTA COM O IDENTIFICADOR: " + identificador);
+        resultado.put("ERRO", "NAO EXISTE CONSULTA COM O IDENTIFICADOR " + identificador);
+        return resultado;
+    }
+
+    private LinkedHashMap<String, String> resultadoParaConsultaDeEgressoPredefinidaComParametrosIncompativeis(LinkedHashMap<String, String> resultado) {
+        resultado.put("ERRO", "PARAMETROS INCOMPATIVEIS.");
         return resultado;
     }
 
     private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComFalha(LinkedHashMap<String, String> resultado, int identificador) {
-        resultado.put("ERRO", "NAO FOI POSSIVEL EXECUTAR A CONSULTA.");
+        resultado.put("ERRO", "NAO FOI POSSIVEL EXECUTAR A CONSULTA " + identificador);
         return resultado;
     }
 }
