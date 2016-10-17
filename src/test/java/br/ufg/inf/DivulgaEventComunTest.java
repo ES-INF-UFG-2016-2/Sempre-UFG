@@ -7,6 +7,7 @@ import br.ufg.inf.modelo.Usuario;
 import br.ufg.inf.servico.AprovadorEventosService;
 import br.ufg.inf.servico.DivulgadorEventosService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.jvnet.mock_javamail.Mailbox;
 
@@ -22,6 +23,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class DivulgaEventComunTest {
 
     private String remetenteEmails = "sempreufg@sempreufg.br";
