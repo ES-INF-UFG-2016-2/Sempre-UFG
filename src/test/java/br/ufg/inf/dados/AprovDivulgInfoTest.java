@@ -27,11 +27,28 @@ import org.postgresql.util.PSQLException;
 
 public class AprovDivulgInfoTest {
 
-	// usuario
+		// usuario
+		private String email = "email";
+		private String senha = "senha";
+		private String nome = "nome";
+		private String cpf = "00000000001";
+		private String recebe_divulgacao = "DIARIA";
+		private Date timestamp_de_cadastramento = new Date(0000, 00, 00);
+		private Date timestamp_de_ultima_atualizacao = new Date(0000, 00, 00);
+		private Date timestamp_de_exclusao_logica = new Date(0000, 00, 00);
 
-	// aprovacao_de_divulgacao
+		// aprovacao_de_divulgacao
+		private int id_aprovacao = 1;
+		private boolean aprovada = false;
+		private String parecer = "parecer sobre divulgacao";
+		private Date data_aprovacao_ou_rejeicao = new Date(0000, 00, 00);
 
-	// curso_da_ufg
+		// curso_da_ufg
+		private String nivel = "MESTRADO";
+		private String tipo_de_resolucao = "CEPEC";
+		private int numero_da_resolucao = 2;
+		private boolean presencial = false;
+		private String turno = "INTEGRAL";
 
 	// conexao
 	static Connection conn = null;
