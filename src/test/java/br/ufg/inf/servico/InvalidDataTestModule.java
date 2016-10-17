@@ -1,10 +1,12 @@
 package br.ufg.inf.servico;
 
 import br.ufg.inf.stubs.InvalidImportDataExceptionStub;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.Date;
 
+@Ignore
 public class InvalidDataTestModule {
 
     private String URLCONEXAO = "jdbc:postgresql://localhost:5432/teste";
