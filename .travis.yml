@@ -3,4 +3,4 @@ jdk:
        - oraclejdk8
 addons:
     mariadb: '5.5'
-script: mvn -X -e -B clean package
+script: mvn -X -e -B validate clean package
