@@ -1,15 +1,16 @@
 package test.java.br.ufg.inf.rfExecCons;
 
-import main.java.br.ufg.inf.consulta.IConsultaEgresso;
 import main.java.br.ufg.inf.Curso;
 import main.java.br.ufg.inf.Egresso;
+import main.java.br.ufg.inf.consulta.IConsultaEgresso;
+import main.java.br.ufg.inf.excecoes.ErroNaConsultaException;
+import main.java.br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
+import main.java.br.ufg.inf.excecoes.ParametrosErradosException;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class RFExecConsTest {
 
@@ -21,14 +22,13 @@ public class RFExecConsTest {
         if (setUpIsDone) {
             return;
         }
-
         criaEgressos();
         setUpIsDone = true;
     }
 
 
     @Test
-    public void TestConsultaPredefinidaSemParametrosComSucesso(){
+    public void TestConsultaPredefinidaSemParametrosComSucesso() throws ErroNaConsultaException {
         int identificador = 1;
         LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
         LinkedHashMap<String, String> resultadoObtido;
@@ -41,7 +41,7 @@ public class RFExecConsTest {
     }
 
     @Test
-    public void TestConsultaPredefinidaComParametroUnicoComSucesso(){
+    public void TestConsultaPredefinidaComParametroUnicoComSucesso() throws ErroNaConsultaException {
         int identificador = 4;
         LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
         LinkedHashMap<String, String> resultadoObtido;
@@ -50,9 +50,9 @@ public class RFExecConsTest {
         LinkedHashMap parametros = new LinkedHashMap();
 
         //supondo uma consulta pré-definida que verifique o nome e a data de nascimento do egresso pelo curso
-        //recebe os comparadores e os parâmetros
+        //recebe o tipo do parâmetro e os valores do parâmetro
 
-        parametros.put("=", "MEDICINA");
+        parametros.put("CURSO", "MEDICINA");
 
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, parametros);
 
@@ -60,7 +60,7 @@ public class RFExecConsTest {
     }
 
     @Test
-    public void TestConsultaPredefinidaComParametrosMultiplosComSucesso(){
+    public void TestConsultaPredefinidaComParametrosMultiplosComSucesso() throws ErroNaConsultaException {
         int identificador = 5;
         LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
         LinkedHashMap<String, String> resultadoObtido;
@@ -71,66 +71,49 @@ public class RFExecConsTest {
         // supondo uma consulta pré-definida que verifique o nome e a data de nascimento do egresso pelo curso,
         // ano de nascimento e sexo
 
-        //recebe os comparadores e os parâmetros
+        //recebe o tipo do parâmetro e os valores do parâmetro
 
-        parametros.put("=", "MEDICINA");
-        parametros.put(">=", "1990");
-        parametros.put("<>", "MASCULINO");
+        parametros.put("CURSO", "MEDICINA");
+        parametros.put("ANO_NASCIMENTO", "1990");
+        parametros.put("SEXO", "MASCULINO");
 
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, parametros);
 
         Assert.assertEquals(resultadoEsperado.toString(), resultadoObtido.toString());
     }
 
-    @Test
-    public void TestConsultaPredefinidaComIdentificadorInexistente(){
+    @Test(expected = IdentificadorInexistenteExepction.class)
+    public void TestConsultaPredefinidaComIdentificadorInexistente() throws ErroNaConsultaException {
         int identificador = 2;
-        LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
-        LinkedHashMap<String, String> resultadoObtido;
-
-        resultadoEsperado.put("ERRO", "NAO EXISTE CONSULTA COM O IDENTIFICADOR " + identificador);
-        resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, null);
-
-        for (Map.Entry<String, String> nomeColuna  : resultadoEsperado.entrySet()) {
-            Assert.assertEquals(resultadoEsperado.get(nomeColuna.getValue()), resultadoObtido.get(nomeColuna.getValue()));
-        }
-
+        consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, null);
     }
 
-    @Test
-    public void TestConsultaPredefinidaComRetornoDeErroNaConsulta(){
+    @Test(expected = ErroNaConsultaException.class)
+    public void TestConsultaPredefinidaComRetornoDeErroNaConsulta() throws ErroNaConsultaException {
         int identificador = 3;
-        LinkedHashMap<String, String> resultadoObtido;
-
-        resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, null);
-        Assert.assertEquals(resultadoObtido.toString(), "{ERRO=NAO FOI POSSIVEL EXECUTAR A CONSULTA 3}");
+        consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, null);
     }
 
-    @Test
-    public void TestConsultaPredefinidaComParametrosErrados(){
+    @Test(expected = ParametrosErradosException.class)
+    public void TestConsultaPredefinidaComParametrosErrados() throws ErroNaConsultaException {
         int identificador = 6;
         LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
-        LinkedHashMap<String, String> resultadoObtido;
 
         preencheDadosEsperadosConsultaDeEgressosPredefinidaComParametros(resultadoEsperado);
         LinkedHashMap parametros = new LinkedHashMap();
 
         // supondo uma consulta pré-definida que verifique o nome e a data de nascimento do egresso pelo curso,
         // ano de nascimento e sexo
+        //recebe o tipo do parâmetro e os valores do parâmetro
+        //supondo que a consulta espere um sexo e seja passado uma ano de nascimento
+        parametros.put("CURSO", "MEDICINA");
+        parametros.put("SEXO", "1990");
 
-        //recebe os comparadores e os parâmetros
-
-        parametros.put("=", "MEDICINA");
-        parametros.put(">=", "1990");
-        parametros.put("<<<<<<>>>>", "FEMININO");
-
-        resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, parametros);
-
-        Assert.assertEquals(resultadoObtido.toString(), "{ERRO=PARAMETROS INCOMPATIVEIS.}");
+        consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, parametros);
     }
 
 
-    private void criaEgressos(){
+    private void criaEgressos() {
         Egresso egressoI = new Egresso();
         egressoI.setNome("MARIA EDUARDA");
         egressoI.setDataNascimento(geraData());
@@ -148,24 +131,24 @@ public class RFExecConsTest {
 
     }
 
-    private Curso criaCurso(String nomeCurso){
+    private Curso criaCurso(String nomeCurso) {
         Curso curso = new Curso();
         curso.setNome(nomeCurso);
         return curso;
     }
 
-    private void preencheDadosEsperadosConsultaDeEgressosPredefinidaSemParametros(LinkedHashMap<String, String> resultadoEsperado){
+    private void preencheDadosEsperadosConsultaDeEgressosPredefinidaSemParametros(LinkedHashMap<String, String> resultadoEsperado) {
         resultadoEsperado.put("NOME", "MARIA EDUARDA;JOAO PEDRO;HELENA PEREIRA");
         resultadoEsperado.put("DATANASCIMENTO", "01/01/1996;10/03/1994;05/09/1990");
         resultadoEsperado.put("CURSO", "MEDICINA;PEDAGOGIA;ENGENHARIA DE PETROLEO");
     }
 
-    private void preencheDadosEsperadosConsultaDeEgressosPredefinidaComParametros(LinkedHashMap<String, String> resultadoEsperado){
+    private void preencheDadosEsperadosConsultaDeEgressosPredefinidaComParametros(LinkedHashMap<String, String> resultadoEsperado) {
         resultadoEsperado.put("NOME", "MARIA EDUARDA");
         resultadoEsperado.put("DATANASCIMENTO", "01/01/1996");
     }
 
-    private Date geraData(){
+    private Date geraData() {
         return new Date();
     }
 

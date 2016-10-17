@@ -1,6 +1,9 @@
 package test.java.br.ufg.inf.rfExecCons;
 
 import main.java.br.ufg.inf.consulta.IConsultaEgresso;
+import main.java.br.ufg.inf.excecoes.ErroNaConsultaException;
+import main.java.br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
+import main.java.br.ufg.inf.excecoes.ParametrosErradosException;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -9,7 +12,7 @@ import java.util.List;
 public class ConsultaEgressoMock implements IConsultaEgresso {
     private Date ultimaConsulta;
 
-    public LinkedHashMap<String, String> executaConsultaDeEgressosPredefinida(int identificador, LinkedHashMap<String, String> parametros) {
+    public LinkedHashMap<String, String> executaConsultaDeEgressosPredefinida(int identificador, LinkedHashMap<String, String> parametros) throws ErroNaConsultaException {
 
         LinkedHashMap<String, String> resultado = new LinkedHashMap<String, String>();
 
@@ -57,18 +60,15 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
         return resultado;
     }
 
-    private LinkedHashMap<String, String> resultadoParaConsultaDeEgressoPredefinidaComIdentificadorInexistente(LinkedHashMap<String, String> resultado, int identificador) {
-        resultado.put("ERRO", "NAO EXISTE CONSULTA COM O IDENTIFICADOR " + identificador);
-        return resultado;
+    private LinkedHashMap<String, String> resultadoParaConsultaDeEgressoPredefinidaComIdentificadorInexistente(LinkedHashMap<String, String> resultado, int identificador) throws IdentificadorInexistenteExepction {
+        throw new IdentificadorInexistenteExepction("IDENTIFICADOR INEXISTENTE: " + identificador);
     }
 
-    private LinkedHashMap<String, String> resultadoParaConsultaDeEgressoPredefinidaComParametrosIncompativeis(LinkedHashMap<String, String> resultado) {
-        resultado.put("ERRO", "PARAMETROS INCOMPATIVEIS.");
-        return resultado;
+    private LinkedHashMap<String, String> resultadoParaConsultaDeEgressoPredefinidaComParametrosIncompativeis(LinkedHashMap<String, String> resultado) throws ParametrosErradosException {
+        throw new ParametrosErradosException("EXISTEM PARÂMETROS INCOMPATÍVEIS NA CONSULTA.");
     }
 
-    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComFalha(LinkedHashMap<String, String> resultado, int identificador) {
-        resultado.put("ERRO", "NAO FOI POSSIVEL EXECUTAR A CONSULTA " + identificador);
-        return resultado;
+    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComFalha(LinkedHashMap<String, String> resultado, int identificador) throws ErroNaConsultaException {
+        throw new ErroNaConsultaException("ERRO AO EXECUTAR A CONSULTA.");
     }
 }
