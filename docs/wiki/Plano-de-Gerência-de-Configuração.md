@@ -147,11 +147,9 @@ O repositório de código fonte deve ter no mínimo 5 branches:
 
 | Branch | Descrição | Responsável (is) |
 |--------|-----------|------------------|
-| **G1**  | branch de desenvolvimento do grupo 1 | [**@gustavosotnas**](https://github.com/gustavosotnas) / [***@ES-INF-UFG-2016-2/grupo1***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo1)
-| **G2**  | branch de desenvolvimento do grupo 2 | [**@leonardo-freitas-1995**](https://github.com/leonardo-freitas-1995) / [***@ES-INF-UFG-2016-2/grupo2***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo2)
-| **G3**  | branch de desenvolvimento do grupo 3 | [**@Yuri-M-Dias**](https://github.com/Yuri-M-Dias) / [***@ES-INF-UFG-2016-2/grupo3***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo3)
-| **homolog** |  tem o objetivo de integrar as branches de todos os grupos. Nesta branch será feita uma avaliação e refatoração (caso necessário) dos artefatos antes que sejam colocados na branch **master**. | [**@julianolopes**](https://github.com/julianolopes) /  [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
-| **master**  | branch que contém a versão com todos os artefatos do projeto validados pela equipe (branch padrão). | [**@julianolopes**](https://github.com/julianolopes)
+| **`develop`** | branch de desenvolvimento de software dos grupos | [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) / [***@ES-INF-UFG-2016-2/grupo1***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo1) / [***@ES-INF-UFG-2016-2/grupo2***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo2) / [***@ES-INF-UFG-2016-2/grupo3***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo3)
+| **`homolog`** |  tem o objetivo de integrar as branches de todos os grupos. Nesta branch será feita uma avaliação e refatoração (caso necessário) dos artefatos antes que sejam colocados na branch **master**. | [**@julianolopes**](https://github.com/julianolopes) /  [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
+| **`master`**  | branch que contém a versão com todos os artefatos do projeto validados pela equipe (branch padrão). | [**@julianolopes**](https://github.com/julianolopes)
 
 ##### Branches dos grupos
 
