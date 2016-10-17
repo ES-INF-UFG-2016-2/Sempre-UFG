@@ -11,27 +11,28 @@ import java.util.List;
 public class AreaDeConhecimentoDAOStub implements AreaDeConhecimentoDAOInterface{
 
     @Override
-    public static AreaDeConhecimentoStub salvar(AreaDeConhecimentoStub areaDeConhecimentoStub) {
+    public AreaDeConhecimentoStub salvar(AreaDeConhecimentoStub areaDeConhecimentoStub) {
         return new AreaDeConhecimentoStub("EXATAS",01);
     }
 
     @Override
-    public static void alterar(AreaDeConhecimentoStub areaDeConhecimentoStub) {
+    public  void alterar(AreaDeConhecimentoStub areaDeConhecimentoStub) {
 
     }
 
     @Override
-    public static void deletar(int id_areaDeConhecimento) {
+    public  void deletar(int id_areaDeConhecimento) {
 
     }
 
     @Override
-    public static AreaDeConhecimentoStub getById(int id_AreaDeConhecimento) {
+    public AreaDeConhecimentoStub getById(int id_AreaDeConhecimento) {
         return null;
     }
 
     @Override
-    public static List<AreaDeConhecimentoStub> getAll() {
+    public  List<AreaDeConhecimentoStub> getAll() {
         return null;
     }
+
 }

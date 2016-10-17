@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface AreaDeConhecimentoDAOInterface {
 
-    static abstract AreaDeConhecimentoStub salvar(AreaDeConhecimentoStub areaDeConhecimentoStub);
+    public AreaDeConhecimentoStub salvar(AreaDeConhecimentoStub areaDeConhecimentoStub);
 
     public void alterar(AreaDeConhecimentoStub areaDeConhecimentoStub);
 
