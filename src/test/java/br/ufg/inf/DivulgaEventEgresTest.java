@@ -1,24 +1,24 @@
 package br.ufg.inf;
 
-import br.ufg.inf.enuns.TiposDivulgacao;
 import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
+import br.ufg.inf.modelo.Evento;
+import br.ufg.inf.modelo.Usuario;
 import br.ufg.inf.servico.AprovadorEventosService;
 import br.ufg.inf.servico.CursoService;
 import br.ufg.inf.servico.DivulgadorEventosService;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.jvnet.mock_javamail.Mailbox;
 
 import javax.mail.Message;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.*;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+@Ignore
 public class DivulgaEventEgresTest {
     private Usuario usuarioTestatoI;
     private Usuario usuarioTestatoII;
