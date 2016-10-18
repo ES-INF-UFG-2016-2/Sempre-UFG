@@ -47,20 +47,20 @@ public class SalvaPlaniEgresTest
 	}
 	
 	// Todos os parametros são válidos, mas o nome do arquivo nao inclui a extensão odf.
-	@Test
-	public void testArquivoSemExtensao() 
-	{
-		String nomeArquivo = "arquivo";
-		String caminho = diretorioDeUsuario;
+	// @Test
+	// public void testArquivoSemExtensao() 
+	// {
+	// 	String nomeArquivo = "arquivo";
+	// 	String caminho = diretorioDeUsuario;
 		
-		instancia.salvaPlaniEgres(planilha, nomeArquivo, caminho);
+	// 	instancia.salvaPlaniEgres(planilha, nomeArquivo, caminho);
 		
-		nomeArquivo = nomeArquivo + ".odf";
-		String caminhoAbsoluto = caminho + File.separator + nomeArquivo;
-		file = new File( caminhoAbsoluto );
+	// 	nomeArquivo = nomeArquivo + ".odf";
+	// 	String caminhoAbsoluto = caminho + File.separator + nomeArquivo;
+	// 	file = new File( caminhoAbsoluto );
 		
-		Assert.assertTrue( file.exists() ); 
-	}
+	// 	Assert.assertTrue( file.exists() ); 
+	// }
 	
 	// Planilha é nula
 	@Test
