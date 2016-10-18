@@ -31,7 +31,7 @@ public class SalvaPlaniEgresTest
 	}
 	
 
-	// Todos os parametros s„o v·lidos
+	// Todos os parametros s√£o v√°lidos
 	@Test
 	public void testValido() 
 	{
@@ -46,7 +46,7 @@ public class SalvaPlaniEgresTest
 		Assert.assertTrue( file.exists() ); 
 	}
 	
-	// Todos os parametros s„o v·lidos, mas o nome do arquivo nao inclui a extens„o odf.
+	// Todos os parametros s√£o v√°lidos, mas o nome do arquivo nao inclui a extens√£o odf.
 	@Test
 	public void testArquivoSemExtensao() 
 	{
@@ -62,7 +62,7 @@ public class SalvaPlaniEgresTest
 		Assert.assertTrue( file.exists() ); 
 	}
 	
-	// Planilha È nula
+	// Planilha √© nula
 	@Test
 	public void testPlanilhaNula() 
 	{
@@ -77,7 +77,7 @@ public class SalvaPlaniEgresTest
 		Assert.assertFalse( "Arquivo criado com planilha nula",  file.exists() ); 
 	}
 	
-	//caminho do arquivo n„o È v·lido
+	//caminho do arquivo n√£o √© v√°lido
 	@Test
 	public void testCaminhoInvalido()
 	{
@@ -121,7 +121,7 @@ public class SalvaPlaniEgresTest
 		Assert.assertFalse( file.exists() );
 	}
 	
-	//Gera um diretÛrio inexistente e testa se programa cria o diretorio e o arquivo.
+	//Gera um diret√≥rio inexistente e testa se programa cria o diretorio e o arquivo.
 	@Test
 	public void testCaminhoInexistente()
 	{
