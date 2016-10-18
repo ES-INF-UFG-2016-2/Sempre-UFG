@@ -1,6 +1,6 @@
 package br.ufg.inf.interfaces;
 
-import br.ufg.inf.modelo.HistoricoUFGStub;
+import br.ufg.inf.modelo.HistoricoUFG;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface HistoricoUFGDAOInterface {
 
-    public void salvar(HistoricoUFGStub historicoUFGStub);
+    public void salvar(HistoricoUFG historicoUFG);
 
-    public void alterar(HistoricoUFGStub historicoUFGStub);
+    public void alterar(HistoricoUFG historicoUFG);
 
     public void deletar(int id_historicoUFG);
 
-    public HistoricoUFGStub getById(int id_historicoUFG);
+    public HistoricoUFG getById(int id_historicoUFG);
 
-    public List<HistoricoUFGStub> getAll();
+    public List<HistoricoUFG> getAll();
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class EgressoStub {
+public class Egresso {
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
@@ -19,9 +19,9 @@ public class EgressoStub {
     private BitSet foto_principal;
     private BitSet fotos_adicionais;
     private VisibilidadeDados visibilidade;
-    private List<HistoricoUFGStub> lista_historicosUFG;
+    private List<HistoricoUFG> lista_historicosUFG;
 
-    public EgressoStub(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFGStub> lista_historicosUFG) {
+    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
         this.nome = nome;
         this.nome_mae = nome_mae;
         this.data_nascimento = data_nascimento;
@@ -97,11 +97,11 @@ public class EgressoStub {
         this.visibilidade = visibilidade;
     }
 
-    public List<HistoricoUFGStub> getLista_historicosUFG() {
+    public List<HistoricoUFG> getLista_historicosUFG() {
         return lista_historicosUFG;
     }
 
-    public void setLista_historicosUFG(List<HistoricoUFGStub> lista_historicosUFG) {
+    public void setLista_historicosUFG(List<HistoricoUFG> lista_historicosUFG) {
         this.lista_historicosUFG = lista_historicosUFG;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public class AvaliacaoCursoPeloEgressoStub {
+public class AvaliacaoCursoPeloEgresso {
     private Date timestamp_avaliacao;
     private Motivacao motivacao_escolha;
     private int satisfacao_curso;
@@ -17,9 +17,9 @@ public class AvaliacaoCursoPeloEgressoStub {
     private int capacidade_etica_responsabilidade;
     private int capacidade_habilidades_area_conhecimento;
     private String comentario;
-    private HistoricoUFGStub historico;
+    private HistoricoUFG historico;
 
-    public AvaliacaoCursoPeloEgressoStub(Date timestamp_avaliacao, Motivacao motivacao_escolha, int satisfacao_curso, int conceito_global, int preparacao_mercado, int melhoria_comunicacao, int capacidade_etica_responsabilidade, int capacidade_habilidades_area_conhecimento, String comentario, HistoricoUFGStub historico) {
+    public AvaliacaoCursoPeloEgresso(Date timestamp_avaliacao, Motivacao motivacao_escolha, int satisfacao_curso, int conceito_global, int preparacao_mercado, int melhoria_comunicacao, int capacidade_etica_responsabilidade, int capacidade_habilidades_area_conhecimento, String comentario, HistoricoUFG historico) {
         this.timestamp_avaliacao = timestamp_avaliacao;
         this.motivacao_escolha = motivacao_escolha;
         this.satisfacao_curso = satisfacao_curso;
@@ -104,11 +104,11 @@ public class AvaliacaoCursoPeloEgressoStub {
         this.comentario = comentario;
     }
 
-    public HistoricoUFGStub getHistorico() {
+    public HistoricoUFG getHistorico() {
         return historico;
     }
 
-    public void setHistorico(HistoricoUFGStub historico) {
+    public void setHistorico(HistoricoUFG historico) {
         this.historico = historico;
     }
 }

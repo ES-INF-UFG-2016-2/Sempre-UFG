@@ -7,27 +7,27 @@ import java.util.Date;
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public class RealizacaoProgramaAcademicoStub {
-    private HistoricoUFGStub historicoUFGStub;
+public class RealizacaoProgramaAcademico {
+    private HistoricoUFG historicoUFG;
     private TiposProgramaAcademico tipoProgramaAcademico;
     private Date data_inicio;
     private Date data_fim;
     private String descricao;
 
-    public RealizacaoProgramaAcademicoStub(HistoricoUFGStub historicoUFGStub, TiposProgramaAcademico tipoProgramaAcademico, Date data_inicio, Date data_fim, String descricao) {
-        this.historicoUFGStub = historicoUFGStub;
+    public RealizacaoProgramaAcademico(HistoricoUFG historicoUFG, TiposProgramaAcademico tipoProgramaAcademico, Date data_inicio, Date data_fim, String descricao) {
+        this.historicoUFG = historicoUFG;
         this.tipoProgramaAcademico = tipoProgramaAcademico;
         this.data_inicio = data_inicio;
         this.data_fim = data_fim;
         this.descricao = descricao;
     }
 
-    public HistoricoUFGStub getHistoricoUFGStub() {
-        return historicoUFGStub;
+    public HistoricoUFG getHistoricoUFG() {
+        return historicoUFG;
     }
 
-    public void setHistoricoUFGStub(HistoricoUFGStub historicoUFGStub) {
-        this.historicoUFGStub = historicoUFGStub;
+    public void setHistoricoUFG(HistoricoUFG historicoUFG) {
+        this.historicoUFG = historicoUFG;
     }
 
     public TiposProgramaAcademico getTipoProgramaAcademico() {

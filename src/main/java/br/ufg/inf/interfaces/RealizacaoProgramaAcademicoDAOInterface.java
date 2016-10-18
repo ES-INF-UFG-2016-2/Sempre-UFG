@@ -1,6 +1,6 @@
 package br.ufg.inf.interfaces;
 
-import br.ufg.inf.modelo.RealizacaoProgramaAcademicoStub;
+import br.ufg.inf.modelo.RealizacaoProgramaAcademico;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ import java.util.List;
  */
 public interface RealizacaoProgramaAcademicoDAOInterface {
 
-    public void salvar(RealizacaoProgramaAcademicoStub realizacaoProgramaAcademicoStub);
+    public void salvar(RealizacaoProgramaAcademico realizacaoProgramaAcademico);
 
-    public void alterar(RealizacaoProgramaAcademicoStub realizacaoProgramaAcademicoStub);
+    public void alterar(RealizacaoProgramaAcademico realizacaoProgramaAcademico);
 
     public void deletar(int id_realizacaoProgramaAcademico);
 
-    public RealizacaoProgramaAcademicoStub getById(int id_realizacaoProgramaAcademico);
+    public RealizacaoProgramaAcademico getById(int id_realizacaoProgramaAcademico);
 
-    public List<RealizacaoProgramaAcademicoStub> getAll();
+    public List<RealizacaoProgramaAcademico> getAll();
 }
 

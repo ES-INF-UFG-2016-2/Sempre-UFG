@@ -8,6 +8,7 @@ import br.ufg.inf.servico.CursoService;
 import br.ufg.inf.servico.DivulgadorEventosService;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.jvnet.mock_javamail.Mailbox;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
 public class DivulgaEventEgresTest {
     private Usuario usuarioTestatoI;
     private Usuario usuarioTestatoII;
