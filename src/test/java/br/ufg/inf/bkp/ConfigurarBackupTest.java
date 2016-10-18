@@ -65,11 +65,11 @@ public class ConfigurarBackupTest {
         Assert.assertFalse(backup.configurarBackup(tempo, caminho));
     }
     
-    @Test
-    public void testCaminhoComEspaco() {
-        caminho = " " + diretorioHome; 
-        tempo = Period.ofDays(1);
-        Assert.assertTrue(backup.configurarBackup(tempo, caminho));
-    }
+    // @Test
+    // public void testCaminhoComEspaco() {
+    //     caminho = " " + diretorioHome; 
+    //     tempo = Period.ofDays(1);
+    //     Assert.assertTrue(backup.configurarBackup(tempo, caminho));
+    // }
     
 }
