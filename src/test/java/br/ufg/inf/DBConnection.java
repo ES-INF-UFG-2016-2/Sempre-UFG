@@ -11,10 +11,10 @@ import static org.junit.Assert.assertEquals;
 
 public class DBConnection {
     String host = "localhost";
-    int porta = 13306;
+    int porta = 3306;
     String nomeBanco = "SempreUFG";
-    String usuario = "";
-    String senha = "";
+    String usuario = "root";
+    String senha = "root";
 
     public Connection getConexao(Properties propriedadesDaConexao) throws SQLException {
         String url = "jdbc:mariadb://" + host + ":" + porta + "/" + nomeBanco;
