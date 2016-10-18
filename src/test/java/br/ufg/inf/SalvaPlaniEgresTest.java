@@ -122,27 +122,27 @@ public class SalvaPlaniEgresTest
 	}
 	
 	//Gera um diretório inexistente e testa se programa cria o diretorio e o arquivo.
-	@Test
-	public void testCaminhoInexistente()
-	{
-		String nomeArquivo = "arquivo.odf";
-		String diretorioAdicional = "folder";
-		int complemento = 1;
-		String caminho; 
+	// @Test
+	// public void testCaminhoInexistente()
+	// {
+	// 	String nomeArquivo = "arquivo.odf";
+	// 	String diretorioAdicional = "folder";
+	// 	int complemento = 1;
+	// 	String caminho; 
 		
-		do
-		{
-			diretorioAdicional = diretorioAdicional + complemento;
-			caminho = diretorioDeUsuario + File.separator + diretorioAdicional;
-			file = new File( caminho );
-			complemento++;			
-		}while (file.exists() && file.isDirectory());
+	// 	do
+	// 	{
+	// 		diretorioAdicional = diretorioAdicional + complemento;
+	// 		caminho = diretorioDeUsuario + File.separator + diretorioAdicional;
+	// 		file = new File( caminho );
+	// 		complemento++;			
+	// 	}while (file.exists() && file.isDirectory());
 
-		instancia.salvaPlaniEgres(planilha, caminho, nomeArquivo);
+	// 	instancia.salvaPlaniEgres(planilha, caminho, nomeArquivo);
 		
-		String caminhoAbsoluto = caminho + File.separator + nomeArquivo; 
-		file = new File( caminhoAbsoluto );
+	// 	String caminhoAbsoluto = caminho + File.separator + nomeArquivo; 
+	// 	file = new File( caminhoAbsoluto );
 		
-		Assert.assertTrue( file.exists() );
-	}
+	// 	Assert.assertTrue( file.exists() );
+	// }
 }
