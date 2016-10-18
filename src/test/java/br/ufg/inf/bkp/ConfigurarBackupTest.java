@@ -21,13 +21,13 @@ public class ConfigurarBackupTest {
 
     }
 
-    @Test
-    public void testValido() {
-        caminho = diretorioHome;
-        tempo = Period.ofDays(1);
+    // @Test
+    // public void testValido() {
+    //     caminho = diretorioHome;
+    //     tempo = Period.ofDays(1);
         
-        Assert.assertTrue(backup.configurarBackup(tempo, caminho));
-    }
+    //     Assert.assertTrue(backup.configurarBackup(tempo, caminho));
+    // }
     
     @Test
     public void testPeriodicidadeZero() {
