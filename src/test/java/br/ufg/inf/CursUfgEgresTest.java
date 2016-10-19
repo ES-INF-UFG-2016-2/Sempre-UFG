@@ -76,14 +76,14 @@ public class CursUfgEgresTest {
         String sql = "CREATE TABLE HISTORICO_NA_UFG" +
             "(NUMERO_MATRICULA_CURSO INTEGER UNSIGNED PRIMARY KEY NOT NULL," +
             "MES_DE_INICIO INTEGER UNSIGNED NOT NULL," +
+            "CHECK (MES_DE_INICIO <= 12)," +
             "ANO_DE_INICIO INTEGER UNSIGNED NOT NULL," +
+            "CHECK (ANO_DE_INICIO >= 1960)," +
             "MES_DE_FIM INTEGER UNSIGNED NOT NULL," +
+            "CHECK (MES_DE_FIM <= 12)," +
             "ANO_DE_FIM INTEGER UNSIGNED NOT NULL, " +
             "TITULO_DO_TRABALHO_FINAL VARCHAR(500)," +
             "CURSO INTEGER UNSIGNED NOT NULL REFERENCES CURSO_DA_UFG (NUMERO_DA_RESOLUCAO)," +
-            "CHECK (HISTORICO_NA_UFG.MES_DE_INICIO < 13)," +
-            "CHECK (HISTORICO_NA_UFG.ANO_DE_INICIO > 1959)," +
-            "CHECK (HISTORICO_NA_UFG.MES_DE_FIM < 13)," +
             "CHECK (HISTORICO_NA_UFG.ANO_DE_FIM > HISTORICO_NA_UFG.ANO_DE_INICIO));";
 
         try {
@@ -96,7 +96,7 @@ public class CursUfgEgresTest {
     public static void createAvaliacaoCursoPeloEgresso() {
         String sql = "CREATE TABLE AVALIACAO_DO_CURSO_PELO_EGRESSO" +
             "(HISTORICO INTEGER UNSIGNED NOT NULL REFERENCES HISTORICO_NA_UFG (NUMERO_MATRICULA_CURSO)," +
-            "DATA_AVALIACAO DATE NOT NULL," +
+            "DATA_AVALIACAO DATE PRIMARY KEY NOT NULL," +
             "MOTIVACAO_ESCOLHA ENUM('Qualidade/Reputacao do Curso', 'Qualidade/Reputacao da IES', 'Gratuidade', 'Outra') NOT NULL," +
             "SATISFACAO_CURSO INTEGER UNSIGNED NOT NULL," +
             "CHECK (AVALIACAO_DO_CURSO_PELO_EGRESSO.SATISFACAO_CURSO <=10)," +
@@ -165,14 +165,11 @@ public class CursUfgEgresTest {
     }
 
     @Test
-    public void testaArmazenaAreaDeConhecimentoQualquer() {
+    public void testaArmazenaAreaDeConhecimentoQualquer() throws SQLException {
         String sql = "INSERT INTO AREA_DE_CONHECIMENTO VALUES ('EXATAS',01,01);";
 
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        stmt.executeUpdate(sql);
+
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -192,20 +189,10 @@ public class CursUfgEgresTest {
 
     }
 
-///////////////////////////////////// CURSO_DA_UFG /////////////////////////////////////////////////////
-
-    /**
-     * Verificar este teste
-     */
     @Test
-    public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais() {
+    public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais() throws SQLException {
         String sql = "INSERT INTO AREA_DE_CONHECIMENTO VALUES ('HU¬MA¬NA$*',01,01);";
-
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        stmt.executeUpdate(sql);
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -215,9 +202,22 @@ public class CursUfgEgresTest {
 
     }
 
-    /**
-     * Rever teste
-     */
+    @Test
+    public void testaArmazenaCursoDaUFGQualquer() throws SQLException {
+        String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', 02);";
+        stmt.executeUpdate(sql);
+
+    }
+
+    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    public void testaArmazenaCursoDaUFGChaveDuplicada() throws SQLException {
+        String sql1 = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', 02);";
+        String sql2 = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', 01);";
+
+        stmt.executeUpdate(sql1);
+        stmt.executeUpdate(sql2);
+    }
+
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
     public void testaArmazenaCursoDaUFGAreaDeConhecimentoNula() throws SQLException {
         String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', NULL);";
@@ -225,31 +225,18 @@ public class CursUfgEgresTest {
 
     }
 
-    /**
-     * Rever teste
-     */
-    @Test
-    public void testaArmazenaCursoDaUFGAreaDeConhecimentoCodigoString() {
-        String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, FALSE, 'Matutino','SAMAMBAIA', '01');";
 
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    @Test(expected = java.sql.SQLDataException.class)
+    public void testaArmazenaCursoDaUFGAreaDeConhecimentoCodigoString() throws SQLException {
+        String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, FALSE, 'Matutino','SAMAMBAIA', 'CODIGO STRING');";
+        stmt.executeUpdate(sql);
     }
 
-////////////////////////////////////////// HISTORICO_NA_UFG ///////////////////////////////////////////////////////
 
-    @Test
-    public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() {
+    @Test(expected = java.sql.SQLDataException.class)
+    public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() throws SQLException {
         String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Aperfeicoamento', 'CONSUNI', -1, FALSE, 'Vespertino','SAMAMBAIA', 12);";
-
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        stmt.executeUpdate(sql);
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -263,6 +250,14 @@ public class CursUfgEgresTest {
     public void testaArmazenaHistoricoUfgQualquer() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (201301571, 01, 2013, 12, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
+    }
+
+    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    public void testaArmazenaHistoricoUfgChaveDuplicada() throws SQLException {
+        String sql1 = "INSERT INTO HISTORICO_NA_UFG VALUES (201302155, 01, 2013, 12, 2016, 'TRABALHO FINAL', 01);";
+        String sql2 = "INSERT INTO HISTORICO_NA_UFG VALUES (201302155, 01, 2013, 12, 2016, 'TRABALHO FINAL', 02);";
+        stmt.executeUpdate(sql1);
+        stmt.executeUpdate(sql2);
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -320,12 +315,7 @@ public class CursUfgEgresTest {
 
     }
 
-    /**
-     * Rever teste
-     *
-     * @throws SQLException
-     */
-    @Test
+    @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaHistoricoUfgAnoInicioAbaixoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (222201000, 09, 1959, 12, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
@@ -391,7 +381,6 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    ///////////////////////////////////////// AVALIACAO_DO_CURSO_PELO_EGRESSO //////////////////////////////////////////////
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
     public void testaArmazenaHistoricoUfgCursoNulo() throws SQLException {
@@ -409,6 +398,14 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoQualquer() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (01, '2016-02-02', 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+    }
+
+    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    public void testaArmazenaAvaliacaoDoCursoPeloEgressoChaveDuplicada() throws SQLException {
+        String sql1 = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (01, '2016-02-02', 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
+        String sql2 = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (02, '2016-02-02', 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
+        stmt.executeUpdate(sql1);
+        stmt.executeUpdate(sql2);
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -447,7 +444,7 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (15 , '2016-01-02', 'Outra', 0, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
@@ -585,11 +582,7 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    /**
-     * Verificar esse teste
-     *
-     * @throws SQLException
-     */
+
     @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeAcimaLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (40 , '1995-01-02', 'Outra', 8, 8, 8, 8, 15, 8, 'COMENTARIO');";
@@ -621,13 +614,6 @@ public class CursUfgEgresTest {
     }
 
 
-    //////////////////////////////////////// REALIZACAO_DE_PROGRAMA_ACADEMICO //////////////////////////////////////////////
-
-    /**
-     * Verificar esse teste
-     *
-     * @throws SQLException
-     */
     @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoAcimaLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (40 , '1995-01-02', 'Outra', 8, 8, 8, 8, 8, 15, 'COMENTARIO');";
@@ -664,7 +650,6 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
     public void testaArmazenaRealizacaoDeProgramaAcademicoDataFimNula() throws SQLException {
