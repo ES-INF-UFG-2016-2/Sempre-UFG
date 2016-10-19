@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.br.ufg.inf;
+package main.java.br.ufg.inf.backup;
 
 
 
 import java.time.Period;
 
-import static test.java.br.ufg.inf.StubBackupTest.*;
-
+import static main.java.br.ufg.inf.utils.StubBackupUtils.*;
 
 public class StubBackup implements Backup {
 

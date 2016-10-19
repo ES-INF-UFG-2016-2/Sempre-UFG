@@ -1,25 +1,16 @@
-package test.java.br.ufg.inf;
-
-import java.time.Period;
+package test.java.br.ufg.inf.backup;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.br.ufg.inf.Backup;
-import main.java.br.ufg.inf.StubBackup;
+import main.java.br.ufg.inf.backup.Backup;
+import main.java.br.ufg.inf.backup.StubBackup;
+
+import static main.java.br.ufg.inf.utils.StubBackupUtils.*;
 
 public class StubBackupTest {
 
-    public static final String CAMINHO_TEST_VALIDO = System.getProperty("user.home");//user.home sempre um caminho "Local" válido.
-    public static final Period TEMPO_TEST_PERIODICIDADE_ZERO = Period.ofDays(0);
-    public static final Period TEMPO_TEST_PERIODICIDADE_NEGATIVA = Period.ofDays(-1);
-    public static final Period TEMPO_TEST_PERIODICIDADE_NULO = null;
-    public static final String CAMINHO_TEST_CAMINHO = "&6@#$|//\\?";
-    public static final String CAMINHO_TEST_CAMINHO_NULO = null;
-    public static final String CAMINHO_TEST_CAMINHO_COM_ESPACO = " " + CAMINHO_TEST_VALIDO;
-
-    public static final Period TEMPO_VALIDO = Period.ofDays(1);
 
     private Backup backup;
 
