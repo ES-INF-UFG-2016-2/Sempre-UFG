@@ -1,6 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enuns.PolitRecebMsg;
+import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
 import java.util.BitSet;
 import java.util.Date;
 
@@ -12,16 +12,16 @@ public class Usuario {
 	private String nome;
 	private String cpf;
 	private BitSet foto = new BitSet();
-	private PolitRecebMsg PolitRecebMsg;
+	private PoliticaRecebimentoMensagens PolitRecebMsg;
 	private Date ts_cadastramento;
 	private Date ts_ult_update;
 	private Date ts_exclusao;
 
-    public PolitRecebMsg getPolitRecebMsg() {
+    public PoliticaRecebimentoMensagens getPolitRecebMsg() {
         return PolitRecebMsg;
     }
 
-    public void setPolitRecebMsg(PolitRecebMsg PolitRecebMsg) {
+    public void setPolitRecebMsg(PoliticaRecebimentoMensagens PolitRecebMsg) {
         this.PolitRecebMsg = PolitRecebMsg;
     }
 

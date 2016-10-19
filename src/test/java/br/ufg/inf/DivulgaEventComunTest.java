@@ -1,6 +1,6 @@
 package br.ufg.inf;
 
-import br.ufg.inf.enuns.PolitRecebMsg;
+import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
 import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
 import br.ufg.inf.modelo.Evento;
 import br.ufg.inf.modelo.Usuario;
@@ -102,7 +102,7 @@ public class DivulgaEventComunTest {
         Date hoje = new Date();
         Date emUmMes = adicionarUmaUnidadeDataAtual(hoje, 1L, ChronoUnit.MONTHS);
         Usuario outroUsuario = new Usuario();
-        outroUsuario.setTipoDivulgacao(PolitRecebMsg.MENSAL);
+        outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.MENSAL);
         outroUsuario.setMail(outroDestinatarioEmails);
         AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
@@ -124,7 +124,7 @@ public class DivulgaEventComunTest {
         Date hoje = new Date();
         Date emUmaSemana = adicionarUmaUnidadeDataAtual(hoje, 1L, ChronoUnit.WEEKS);
         Usuario outroUsuario = new Usuario();
-        outroUsuario.setTipoDivulgacao(PolitRecebMsg.SEMANAL);
+        outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.SEMANAL);
         outroUsuario.setMail(outroDestinatarioEmails);
         AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
@@ -146,7 +146,7 @@ public class DivulgaEventComunTest {
         Date hoje = new Date();
         Date amanha = adicionarUmaUnidadeDataAtual(hoje, 1L, ChronoUnit.DAYS);
         Usuario outroUsuario = new Usuario();
-        outroUsuario.setTipoDivulgacao(PolitRecebMsg.DIARIA);
+        outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.DIARIA);
         outroUsuario.setMail(outroDestinatarioEmails);
         AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());

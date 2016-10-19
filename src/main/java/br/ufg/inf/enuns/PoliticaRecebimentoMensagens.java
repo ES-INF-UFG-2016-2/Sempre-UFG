@@ -1,5 +1,5 @@
 package br.ufg.inf.enuns;
 
-public enum PolitRecebMsg {
+public enum PoliticaRecebimentoMensagens {
     CADA_EVENTO, DIARIA, SEMANAL, MENSAL, NAO_RECEBE
 }
