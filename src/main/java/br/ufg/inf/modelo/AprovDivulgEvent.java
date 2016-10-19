@@ -20,7 +20,6 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
 	public String aprovDivulgEvent(int id, boolean div_aprov) {
 
-	
 
 		try {
 			return r.avaliaSolicitacao(id, div_aprov);
@@ -36,7 +35,7 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
 	}
 
-	
+
 
 	public static List getLista() {
 		return lista;
