@@ -3,14 +3,14 @@ import static org.junit.Assert.assertEquals;
 
 public class AtuProfisEgresTest {
 
-    @Test
+   @Test
     public void testInserirDataInicioCorreta() {
 
         int data = 20122012;
         boolean inserido = true;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirDataInicio(data));
+        assertEquals(inserido, atuProfisEgres.inserirDataInicio(data, inserido));
     }
 
     @Test
@@ -20,7 +20,7 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirDataInicio(data));
+        assertEquals(inserido, atuProfisEgres.inserirDataInicio(data, inserido));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirDataInicio(data));
+        assertEquals(inserido, atuProfisEgres.inserirDataInicio(data, inserido));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class AtuProfisEgresTest {
         boolean inserido = true;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirDataFim(data));
+        assertEquals(inserido, atuProfisEgres.inserirDataFim(data, inserido));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirDataFim(data));
+        assertEquals(inserido, atuProfisEgres.inserirDataFim(data, inserido));
     }
 
     @Test
@@ -60,7 +60,7 @@ public class AtuProfisEgresTest {
         boolean inserido = true;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirFormaIngresso(forma));
+        assertEquals(inserido, atuProfisEgres.inserirFormaIngresso(forma, inserido));
     }
 
     @Test
@@ -70,7 +70,7 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirFormaIngresso(forma));
+        assertEquals(inserido, atuProfisEgres.inserirFormaIngresso(forma, inserido));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class AtuProfisEgresTest {
         boolean inserido = true;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirRendaMensaMedia(renda));
+        assertEquals(inserido, atuProfisEgres.inserirRendaMensaMedia(renda, inserido));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirRendaMensaMedia(renda));
+        assertEquals(inserido, atuProfisEgres.inserirRendaMensaMedia(renda, inserido));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class AtuProfisEgresTest {
         boolean inserido = true;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirSatisfacaoComRenda(satisfacao));
+        assertEquals(inserido, atuProfisEgres.inserirSatisfacaoComRenda(satisfacao, inserido));
     }
 
     @Test
@@ -110,7 +110,7 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirSatisfacaoComRenda(satisfacao));
+        assertEquals(inserido, atuProfisEgres.inserirSatisfacaoComRenda(satisfacao, inserido));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class AtuProfisEgresTest {
         boolean inserido = true;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirPerspectivaFuturo(perspectiva));
+        assertEquals(inserido, atuProfisEgres.inserirPerspectivaFuturo(perspectiva, inserido));
     }
 
     @Test
@@ -130,7 +130,7 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirPerspectivaFuturo(perspectiva));
+        assertEquals(inserido, atuProfisEgres.inserirPerspectivaFuturo(perspectiva, inserido));
     }
 
     @Test
@@ -140,7 +140,7 @@ public class AtuProfisEgresTest {
         boolean inserido = true;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirComentario(comentario));
+        assertEquals(inserido, atuProfisEgres.inserirComentario(comentario, inserido));
     }
 
     @Test
@@ -150,6 +150,6 @@ public class AtuProfisEgresTest {
         boolean inserido = false;
 
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirComentario(comentario));
+        assertEquals(inserido, atuProfisEgres.inserirComentario(comentario, inserido));
     }
 }
