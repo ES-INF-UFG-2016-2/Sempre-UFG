@@ -1,13 +1,10 @@
-package test.java.br.ufg.inf.backup;
+package br.ufg.inf.backup;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.br.ufg.inf.backup.Backup;
-import main.java.br.ufg.inf.backup.StubBackup;
-
-import static main.java.br.ufg.inf.utils.StubBackupUtils.*;
+import static br.ufg.inf.utils.StubBackupUtils.*;
 
 public class StubBackupTest {
 

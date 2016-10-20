@@ -1,4 +1,4 @@
-package main.java.br.ufg.inf.utils;
+package br.ufg.inf.utils;
 
 import java.time.Period;
 
