@@ -1,31 +1,31 @@
 public class AtuProfisEgres {
 
 
-    public Boolean inserirDataInicio(int data) {
-        return true;
+   public Boolean inserirDataInicio(int data, boolean resultado) {
+        return resultado;
     }
 
-    public boolean inserirDataFim(int data) {
-        return true;
+    public boolean inserirDataFim(int data, boolean resultado) {
+        return resultado;
     }
 
-    public boolean inserirFormaIngresso(String forma) {
-        return true;
+    public boolean inserirFormaIngresso(String forma, boolean resultado) {
+        return resultado;
     }
 
-    public boolean inserirRendaMensaMedia(float renda) {
-        return true;
+    public boolean inserirRendaMensaMedia(float renda, boolean resultado) {
+        return resultado;
     }
 
-    public boolean inserirSatisfacaoComRenda(int satisfacao) {
-        return true;
+    public boolean inserirSatisfacaoComRenda(int satisfacao, boolean resultado) {
+        return resultado;
     }
 
-    public boolean inserirPerspectivaFuturo(int perspectiva) {
-        return true;
+    public boolean inserirPerspectivaFuturo(int perspectiva, boolean resultado) {
+        return resultado;
     }
 
-    public boolean inserirComentario(String comentario) {
-        return true;
+    public boolean inserirComentario(String comentario, boolean resultado) {
+        return resultado;
     }
 }
