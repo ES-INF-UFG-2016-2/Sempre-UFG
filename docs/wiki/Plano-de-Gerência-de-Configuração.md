@@ -13,14 +13,14 @@ Sumário
 	- [3. A Gerência de Configuração](#3-a-gerncia-de-configurao)
 		- [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerncia-de-configurao)
 		- [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)
-	- [3.3. Identificação da Configuração](#33-identificao-da-configurao)
-	- [3.4. Commits](#34-commits)
-	- [3.5. Branches](#35-branches)
-	- [3.6. Estrutura dos Repositórios](#36-estrutura-dos-repositrios)
-		- [3.6.1. Repositório principal](#361-repositrio-principal)
-		- [3.6.2. Repositório Wiki](#362-repositrio-wiki)
-	- [3.7. Controle de mudanças](#37-controle-de-mudanas)
-	- [3.8. Baselines](#38-baselines)
+		- [3.3. Identificação da Configuração](#33-identificao-da-configurao)
+		- [3.4. Commits](#34-commits)
+		- [3.5. Branches](#35-branches)
+		- [3.6. Estrutura dos Repositórios](#36-estrutura-dos-repositrios)
+			- [3.6.1. Repositório principal](#361-repositório-principal)
+			- [3.6.2. Repositório Wiki](#362-repositório-wiki)
+		- [3.7. Controle de mudanças](#37-controle-de-mudanças)
+		- [3.8. Baselines](#38-baselines)
 
 <!-- /TOC -->
 
@@ -109,7 +109,7 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 | Framework de Estilo | [Twitter Bootstrap](http://getbootstrap.com/) | 3.0 ou superior |
 | Framework de Conteúdo Dinâmico (Front-end)| [JQuery](https://jquery.com/) | 3.0 ou superior |
 
-### 3.3. Identificação da Configuração
+#### 3.3. Identificação da Configuração
 
 Todos os artefatos gerados no projeto – com exceção do código fonte no *repositório principal* – terão o seguinte método de identificação:
 
@@ -123,7 +123,7 @@ Todos os artefatos gerados no projeto – com exceção do código fonte no *rep
 
 O código-fonte no *repositório principal* deve seguir os [convenções de código do Java](http://javascript.crockford.com/javacodeconventions.pdf) e os padrões da [Fábrica de Software do INF/UFG](http://fabrica.inf.ufg.br).
 
-### 3.4. Commits
+#### 3.4. Commits
 
 ##### Padrão de mensagem de commit
 
@@ -141,7 +141,7 @@ O código-fonte no *repositório principal* deve seguir os [convenções de cód
 * Pelo menos **1x por semana** por funcionalidade delegada ao membro da equipe.
 * Os commits devem ser enviados ("pushados") ao repositório principal semanalmente. **Não devem ser feitos commits apenas localmente** na máquina do desenvolvedor, mesmo que eles tenham sido feitos na frequência estipulada acima.
 
-### 3.5. Branches
+#### 3.5. Branches
 
 O repositório de código fonte deve ter no mínimo 5 branches:
 
@@ -176,13 +176,64 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 
 ![Politica-de-GCO](./wiki/anexos/GCO/politica-de-branches/Politica-de-GCO.png)
 
-### 3.6. Estrutura dos Repositórios
+#### 3.6. Estrutura dos Repositórios
 
-#### 3.6.1. Repositório principal
+##### 3.6.1. Repositório principal
 
-> TO-DO estrutura de diretórios (depende da tecnologia)
+##### Estrutura de pastas (Git)
 
-#### 3.6.2. Repositório Wiki
+> * ***anexos***
+>    - ***Arquitetura***
+>		+ *Arquivos de anexo para arquitetura (diagramas, planos)*
+>    - ***Teste***
+>		+ *Arquivos de anexo para testes*
+> * ***db***
+>    - ***ddl***
+>		+ *Arquivos .sql de DDL*
+>    - ***dml***
+>		+ *Arquivos .sql de DML*
+> * ***src***
+>    - ***main***
+>		+ ***resources***
+>			* Recursos
+>		+ ***java/br/ufg/inf/***
+>			* ***abstratas***
+>				* Classes abstratas
+>			* ***config***
+>				* Classes configurações
+>			* ***dao***
+>				* Classes de Data Access Object ou conexão ao banco
+>			* ***enums***
+>				* Classes de enum
+>			* ***interfaces***
+>				* Interfaces java
+>			* ***modelo***
+>				* Classes de entidade
+>			* ***servico***
+>				* Classes de serviço com regras de negócio
+>			* ***servlet***
+>				* Classes de comunicação HTTP
+>			* ***utils***
+>				* Classes utilitárias / ferramentas
+>    - ***test***
+>		+ ***resources***
+>			* Recursos para testes
+>		+ ***java/br/ufg/inf/***
+>			* ***config***
+>				* Classes que testam configurações configurações
+>			* ***dao***
+>				* Classes que testam persistência no banco
+>			* ***modelo***
+>				* Classes que testam entidades / requisitos de dados
+>			* ***servico***
+>				* Classes que testam regras de negócio
+>			* ***servlet***
+>				* Classes que testam comunicação HTTP
+>			* ***utils***
+>				* Demais testes
+
+
+##### 3.6.2. Repositório Wiki
 
 O repositório será acessado através do site e por repositório Git, no qual este deve seguir a seguinte estrutura:
 
@@ -211,7 +262,7 @@ O repositório será acessado através do site e por repositório Git, no qual e
 
 > TO-DO pegar lista de artefatos de software (tipo "EAP")
 
-### 3.7. Controle de mudanças
+#### 3.7. Controle de mudanças
 
 * Gerenciamento de issues (também chamados de "**pacotes de trabalho**")
 	* 4 principais tipos:
@@ -235,7 +286,7 @@ O repositório será acessado através do site e por repositório Git, no qual e
 	* Analisadas pelos GCO e ferramenta de Integração Contínua (CI).
 		* GCOs usarão "Code Review" para relatar a análise
 
-### 3.8. Baselines
+#### 3.8. Baselines
 
 Para que se dê a criação de uma baseline, é necessário que os GCOs tenham feito a análise das tarefas feitas na iteração do projeto, e as ferramentas de testes automatizados, análises estáticas de código e integração contínua (CI) tenham aprovado todo o código-fonte até aquele ponto do projeto previamente.
 
