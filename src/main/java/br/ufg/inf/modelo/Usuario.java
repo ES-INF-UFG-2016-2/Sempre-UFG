@@ -6,11 +6,11 @@ package br.ufg.inf.modelo;
  *
  * @author cleber
  */
-public class AutenticacaoUsuario {
+public class Usuario {
     private String login;
     private String senha;
 
-    public AutenticacaoUsuario() {
+    public Usuario() {
         login = "";
         senha = "";
     }
@@ -30,6 +30,5 @@ public class AutenticacaoUsuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
     
 }

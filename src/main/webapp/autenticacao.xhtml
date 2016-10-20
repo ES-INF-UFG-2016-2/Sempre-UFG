@@ -8,9 +8,11 @@
     <h:body>
         <h:form>
             <h3>Autenticação</h3>
-            <div id="mensagem-login"></div>
-            Login: <h:inputText id="login" value="#{autenticaoView.autenticacaoUsuario.login}"/> <br/>
-            Senha: <h:inputSecret id="senha" value="#{autenticaoView.autenticacaoUsuario.senha}"/> <br/>
+            <div id="mensagem-erro">
+                <h:outputText value="#{autenticaoView.mensagemErro}"></h:outputText>
+            </div>
+            Login: <h:inputText id="login" value="#{autenticaoView.login}"/> <br/>
+            Senha: <h:inputSecret id="senha" value="#{autenticaoView.senha}"/> <br/>
             <a href="primeiroAcesso.xhtml">Primeiro Acesso </a> <h:commandButton value="Login" type="submit" action="#{autenticaoView.autenticar()}"/>
         </h:form>
         
