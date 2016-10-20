@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-public class TestAtuProfisEgres {
+public class AtuProfisEgresTest {
 
     @Test
     public void testInserirDataInicioCorreta() {
