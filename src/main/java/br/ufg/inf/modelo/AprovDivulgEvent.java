@@ -9,12 +9,9 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
 	private static List lista = new ArrayList();
 	private static Responsavel r = new Responsavel(lista);
-	private static int instancia = 0;
 
 	public AprovDivulgEvent() {
 
-		System.out.println(instancia);
-		instancia++;
 
 	}
 
@@ -25,7 +22,6 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 		try {
 			return r.avaliaSolicitacao(id, div_aprov);
 		} catch (Exception e) {
-			System.out.println("ERRO!");
 
 			return e.getMessage();
 		}
