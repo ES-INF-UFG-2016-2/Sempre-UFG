@@ -1,6 +1,7 @@
 package br.ufg.inf.dados;
 
 import ch.unibe.jexample.Given;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,9 +19,16 @@ public class GestaoSistemaTest {
             conexaoBD = DriverManager.getConnection("jdbc:mariadb://localhost:3306/sempreufg", "root", "admin");
         } catch (ClassNotFoundException e) {
             System.out.println("Classe do Maria DB não encontrada.");
-            e.printStackTrace();
         } catch (SQLException e) {
             System.out.println("A conexão com o banco de dados falhou.");
+        }
+    }
+
+    @After
+    public void limpaTabelas() {
+        try {
+            executaSqlComStatement("TRUNCATE TABLE SempreUFG");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -58,6 +66,34 @@ public class GestaoSistemaTest {
         Assert.assertTrue(tabelaExiste);
     }
 
+    @Test
+    public void testaInsercaoNaTabelaSempreUFGSemParametrosObrigatoriosLancaExcecao() {
+        String queryInserirSempreUFG = "INSERT INTO SempreUFG (nome_sistema) VALUES(?);";
+        boolean lancouExcecao = false;
+        try {
+            PreparedStatement preparedStatement = conexaoBD.prepareStatement(queryInserirSempreUFG);
+            preparedStatement.setString(1, "Nome do sistema teste");
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+        Assert.assertTrue(lancouExcecao);
+    }
+
+    @Test
+    public void testaInsercaoNaTabelaSempreUfgComUsuarioInexistenteLancaExcecao() {
+        String queryInserirSempreUFG = "INSERT INTO SempreUFG (nome_sistema, timestamp_isstalacao, id_Usuario) " +
+            "VALUES('Sempre UFG', now(), 123);";
+
+        boolean lancouExcecao = false;
+        try {
+            executaSqlComStatement(queryInserirSempreUFG);
+        } catch (SQLException e) {
+            lancouExcecao = true;
+            e.printStackTrace();
+        }
+        Assert.assertTrue(lancouExcecao);
+    }
 
     private static boolean verificaSeTabelaExiste(String nomeTabela) {
         boolean tabelaExiste = false;
@@ -74,6 +110,11 @@ public class GestaoSistemaTest {
             e.printStackTrace();
         }
         return tabelaExiste;
+    }
+
+    private static void executaSqlComStatement(String sql) throws SQLException {
+        Statement statement = conexaoBD.createStatement();
+        statement.executeQuery(sql);
     }
 
 }
