@@ -91,6 +91,6 @@ public class Usuario {
     }
 
     public boolean validarUsuario(String email, String senha) {
-        return true;
+        return senha.equals("senha");
     }
 }
