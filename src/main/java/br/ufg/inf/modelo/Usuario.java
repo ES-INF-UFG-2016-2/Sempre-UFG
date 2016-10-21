@@ -90,7 +90,7 @@ public class Usuario {
         this.ts_exclusao = ts_exclusao;
     }
 
-    public boolean validarUsuario() {
+    public boolean validarUsuario(String email, String senha) {
         return true;
     }
 }
