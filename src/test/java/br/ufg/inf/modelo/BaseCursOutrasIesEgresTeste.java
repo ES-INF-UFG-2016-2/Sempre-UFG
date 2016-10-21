@@ -1,4 +1,4 @@
-package br.ufg.inf.modelo;
+﻿package br.ufg.inf.modelo;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -7,7 +7,7 @@ import java.sql.Types;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.ufg.inf.ConexaoBanco;
+import br.ufg.inf.dao.ConexaoBanco;
 import br.ufg.inf.modelo.CursoOutrasIES;
 import br.ufg.inf.modelo.HistoricoOutrasIES;
 import br.ufg.inf.modelo.LocalizacaoGeografica;
