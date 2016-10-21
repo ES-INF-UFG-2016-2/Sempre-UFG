@@ -1,17 +1,20 @@
 package br.ufg.inf.modelo;
 
+import br.ufg.inf.enums.Nivel;
+import br.ufg.inf.enums.TipoInstituicao;
+
 public class CursoOutrasIES {
 
 	private String nomeDoCurso;
-	
+
 	private String unidadeAcademia;
-	
+
 	private String iesDoCurso;
-	
+
 	private String urlInstitucional;
-	
+
 	private Nivel nivel;
-	
+
 	private TipoInstituicao tipoInstituicao;
 
 	public String getNomeDoCurso() {
@@ -61,6 +64,6 @@ public class CursoOutrasIES {
 	public void setTipoInstituicao(TipoInstituicao tipoInstituicao) {
 		this.tipoInstituicao = tipoInstituicao;
 	}
-	
-	
+
+
 }
