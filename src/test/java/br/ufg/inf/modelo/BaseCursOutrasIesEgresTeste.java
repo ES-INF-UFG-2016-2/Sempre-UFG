@@ -1,4 +1,4 @@
-﻿package br.ufg.inf.modelo;
+package br.ufg.inf.modelo;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
