@@ -1,3 +1,5 @@
+package br.ufg.inf.modelo;
+
 public class AtuProfisEgres {
 
 
