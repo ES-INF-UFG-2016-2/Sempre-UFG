@@ -61,7 +61,6 @@ public class Evento {
 			}
 		}
 
-		System.out.println("Evento criado.");
 
 	}
 

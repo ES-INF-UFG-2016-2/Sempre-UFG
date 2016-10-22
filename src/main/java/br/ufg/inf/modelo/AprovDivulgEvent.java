@@ -9,23 +9,19 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
 	private static List lista = new ArrayList();
 	private static Responsavel r = new Responsavel(lista);
-	private static int instancia = 0;
 
 	public AprovDivulgEvent() {
 
-		System.out.println(instancia);
-		instancia++;
 
 	}
 
 	public String aprovDivulgEvent(int id, boolean div_aprov) {
 
-		// Scanner sc = new Scanner(System.in);
+	
 
 		try {
 			return r.avaliaSolicitacao(id, div_aprov);
 		} catch (Exception e) {
-			System.out.println("ERRO!");
 
 			return e.getMessage();
 		}
@@ -36,10 +32,7 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
 	}
 
-	private String testeAA(){
-
-		return "AAAA";
-	}
+	
 
 	public static List getLista() {
 		return lista;
