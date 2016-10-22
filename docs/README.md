@@ -22,3 +22,4 @@ Aqui estão organizados todos os e *Planos* e artefatos de documentação para o
 ### Arquitetura
 
 * [Diagramas de Arquitetura](./wiki/Diagramas-de-Arquitetura.md)
+* [Projeto de Web Service](./wiki/Projeto-de-Web-Service.md)
