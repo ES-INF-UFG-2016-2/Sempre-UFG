@@ -1,6 +1,12 @@
 language: java
 jdk:
-       - oraclejdk8
+  - oraclejdk8
+services:
+  - postgresql
 addons:
-    mariadb: '5.5'
-script: mvn -X -e -B clean package
+  mariadb: '5.5'
+  postgresql: '9.3'
+before_script:
+  - psql -c 'create database sempreufg;' -U postgres
+script:
+  - mvn -X -e -B clean package
