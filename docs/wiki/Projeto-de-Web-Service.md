@@ -11,9 +11,9 @@ Proposta de Integração
 ------
 Para viabilizar esta integração segundo os requerimentos do requisito, um Web Service implementado sobre o framework Axis da Apache rodando em um contexto do Glassfish para oferecer uma interface SOAP/WSDL.
 
-#### Interface do Web Service
+### Interface do Web Service
 
-- Exemplo de Definição XSD
+#### Exemplo de Definição XSD
 
 Duas estruturas de dados se fazem necessárias para a integração, uma para a requisição e outra para a resposta. A requisição tem 6 dados simples, 2 do tipo data (todos obrigatórios) e 4 do tipo string (todos opcionais) conforme definição do requisito ImportEgressPeriod. A resposta por sua vez tem 3 dados compostos, cada dado composto representando uma tabela do domínio da entidade "egresso" do software SempreUFG.
 O webservice deve retornar uma resposta exatamente com essas informações para que a inclusão de egresso possa ocorrer de forma consistente.
@@ -83,7 +83,7 @@ O webservice deve retornar uma resposta exatamente com essas informações para 
 	</xs:schema>
 ```
 
-- Exemplo de Definição WSDL
+#### Exemplo de Definição WSDL
 
 Agora para o webservice em si, a chamada ao serviço se dará por uma chamada remota ao método (RPC) de modo que o parâmetro pra esse método é do tipo RecuperarEgressoRequestType e a resposta é do tipo RecuperarEgressoResponseType.
 
