@@ -1,5 +1,5 @@
-CREATE TYPE DIVULGACAO AS ENUM( 'cada_evento', 'diaria', 'semanal', 'mensal', 'nao_recebe');
-CREATE TYPE ORDENACAO AS ENUM( 'ascendente', 'descendente', 'nenhum');
+CREATE TYPE DIVULGACAO AS ENUM('cada_evento', 'diaria', 'semanal', 'mensal', 'nao_recebe');
+CREATE TYPE ORDENACAO AS ENUM('ascendente', 'descendente', 'nenhum');
 
 CREATE TABLE IF NOT EXISTS Usuario
 (
