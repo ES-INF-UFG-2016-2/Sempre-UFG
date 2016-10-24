@@ -102,9 +102,9 @@ public class GestaoSistemaTest {
         try {
             inserirTabelaSempreUFG(nomeSistema, idUsuario);
             inserirTabelaSempreUFG(nomeSistema, idUsuario);
-            lancouExcecao = true;
-        } catch (SQLException e) {
             lancouExcecao = false;
+        } catch (SQLException e) {
+            lancouExcecao = true;
         }
         Assert.assertTrue(lancouExcecao);
     }
