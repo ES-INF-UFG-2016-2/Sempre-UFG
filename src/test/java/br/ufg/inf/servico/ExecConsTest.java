@@ -8,7 +8,7 @@ import br.ufg.inf.excecoes.ColunaInexistenteException;
 import br.ufg.inf.excecoes.ErroNaConsultaException;
 import br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
 import br.ufg.inf.excecoes.ParametrosErradosException;
-import br.ufg.inf.interfaces.IConsultaEgresso;
+import br.ufg.inf.interfaces.ConsultaEgressoInterface;
 import br.ufg.inf.modelo.CursoUFG;
 import br.ufg.inf.modelo.Egresso;
 import br.ufg.inf.modelo.HistoricoUFG;
@@ -25,7 +25,7 @@ import java.util.List;
 
 public class ExecConsTest {
 
-    private IConsultaEgresso consultaEgresso = new ConsultaEgressoMock();
+    private ConsultaEgressoInterface consultaEgresso = new ConsultaEgressoMock();
 
     private static boolean setUpIsDone = false;
 

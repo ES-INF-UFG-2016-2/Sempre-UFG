@@ -4,13 +4,13 @@ import br.ufg.inf.excecoes.ColunaInexistenteException;
 import br.ufg.inf.excecoes.ErroNaConsultaException;
 import br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
 import br.ufg.inf.excecoes.ParametrosErradosException;
-import br.ufg.inf.interfaces.IConsultaEgresso;
+import br.ufg.inf.interfaces.ConsultaEgressoInterface;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class ConsultaEgressoMock implements IConsultaEgresso {
+public class ConsultaEgressoMock implements ConsultaEgressoInterface {
     private Date ultimaConsulta;
 
     public LinkedHashMap<String, String> executaConsultaDeEgressosPredefinida(int identificador, LinkedHashMap<String, String> parametros) throws ErroNaConsultaException {
