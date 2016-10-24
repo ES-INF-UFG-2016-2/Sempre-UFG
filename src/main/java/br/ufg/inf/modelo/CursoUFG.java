@@ -1,9 +1,9 @@
 package br.ufg.inf.modelo;
 
 import br.ufg.inf.abstratas.AreaDeConhecimento;
-import br.ufg.inf.enuns.NiveisCurso;
-import br.ufg.inf.enuns.TiposResolucao;
-import br.ufg.inf.enuns.Turnos;
+import br.ufg.inf.enums.NiveisCurso;
+import br.ufg.inf.enums.TiposResolucao;
+import br.ufg.inf.enums.Turnos;
 
 public class CursoUFG {
 

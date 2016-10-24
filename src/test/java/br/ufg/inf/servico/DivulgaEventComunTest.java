@@ -1,6 +1,6 @@
-package br.ufg.inf;
+package br.ufg.inf.servico;
 
-import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
+import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
 import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
 import br.ufg.inf.modelo.Evento;
 import br.ufg.inf.modelo.Usuario;

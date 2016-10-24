@@ -1,4 +1,4 @@
-package br.ufg.inf.enuns;
+package br.ufg.inf.enums;
 
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
