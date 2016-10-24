@@ -18,6 +18,6 @@ public class StubRestauraBDUtils {
     public static final String DATA_NULO = null;
     public static final String DATA_SUPERIOR_ATUAL = "30/01/2017";
     public static final String DATA_INEXISTENTE = "30/02/2016";
-    public static final String DATA_VALIDA = "15/10/2016";
-    public static final String DATA_VINCULADA_AO_BACKUP = DATA_VALIDA;
+    public static final String DATA_VALIDA_NAO_VINCULADA = "15/10/2016";
+    public static final String DATA_VALIDA_VINCULADA = "12/10/2016";
 }
