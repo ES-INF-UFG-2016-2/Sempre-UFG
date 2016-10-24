@@ -2,27 +2,25 @@ Plano de Gerência de Configuração
 =================================
 
 Sumário
--------
+=======
 
-<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- MDTOC maxdepth:3 firsth1:0 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
 
-- [1. Introdução](#1-introduo)
-	- [2. Organização, Responsabilidades, e Interfaces](#2-organizao-responsabilidades-e-interfaces)
-		- [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)
-		- [2.2. Responsabilidades da equipe de desenvolvimento no GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-no-gco)
-	- [3. A Gerência de Configuração](#3-a-gerncia-de-configurao)
-		- [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerncia-de-configurao)
-		- [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)
-		- [3.3. Identificação da Configuração](#33-identificao-da-configurao)
-		- [3.4. Commits](#34-commits)
-		- [3.5. Branches](#35-branches)
-		- [3.6. Estrutura dos Repositórios](#36-estrutura-dos-repositrios)
-			- [3.6.1. Repositório principal](#361-repositório-principal)
-			- [3.6.2. Repositório Wiki](#362-repositório-wiki)
-		- [3.7. Controle de mudanças](#37-controle-de-mudanças)
-		- [3.8. Baselines](#38-baselines)
+- [1. Introdução](#1-introdução)   
+   - [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)   
+      - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)   
+      - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)   
+   - [3. A Gerência de Configuração](#3-a-gerência-de-configuração)   
+      - [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerência-de-configuração)   
+      - [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)   
+      - [3.3. Identificação da Configuração](#33-identificação-da-configuração)   
+      - [3.4. Commits](#34-commits)   
+      - [3.5. Branches](#35-branches)   
+      - [3.6. Estrutura do Repositório](#36-estrutura-do-repositório)   
+      - [3.7. Controle de mudanças](#37-controle-de-mudanças)   
+      - [3.8. Baselines](#38-baselines)   
 
-<!-- /TOC -->
+<!-- /MDTOC -->
 
 ## 1. Introdução
 O Plano de Gerência de Configuração apresenta todas as tarefas do
