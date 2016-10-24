@@ -68,10 +68,11 @@ equipe.
 
 A Gerência de Configuração trabalhará em alto nível sob os seguintes conjuntos de artefatos:
 
-* [Código fonte](../)
-* [Repositório Wiki](./)
-* [Baselines](../releases)
-* [Banco de dados de Requisições de Mudança (Issues)](../issues)
+* [Código fonte](../../../../)
+* [Documentação](../)
+* [Quadro de atividades do projeto](https://trello.com/b/CH0jPQVT)
+* [Requisições de Mudança (*Pull Requests*)](../../../../pulls)
+* [Baselines](../../../../releases)
 
 #### 3.2. Ferramentas e Tecnologias
 
