@@ -201,8 +201,10 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 >				* Classes abstratas
 >			* ***config***
 >				* Classes configurações
+>			* ***db***
+>				* Classes de conexão ao banco
 >			* ***dao***
->				* Classes de Data Access Object ou conexão ao banco
+>				* Classes de Data Access Object
 >			* ***enums***
 >				* Classes de enum
 >			* ***interfaces***
@@ -221,10 +223,12 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 >		+ ***java/br/ufg/inf/***
 >			* ***config***
 >				* Classes que testam configurações configurações
+>			* ***db***
+>				* Classes que testam conexão ao banco / scrips sql
 >			* ***dao***
 >				* Classes que testam persistência no banco
 >			* ***modelo***
->				* Classes que testam entidades / requisitos de dados
+>				* Classes que testam entidades
 >			* ***servico***
 >				* Classes que testam regras de negócio
 >			* ***servlet***
