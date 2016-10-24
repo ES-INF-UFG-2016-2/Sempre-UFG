@@ -32,6 +32,7 @@ public class GestaoSistemaTest {
             executaSqlComStatement("TRUNCATE TABLE USUARIO;");
             executaSqlComStatement("TRUNCATE TABLE PARAMETRO;");
             executaSqlComStatement("TRUNCATE TABLE BACKUP;");
+            executaSqlComStatement("TRUNCATE TABLE RESTAURACAO;");
             executaSqlComStatement("SET FOREIGN_KEY_CHECKS=1;");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,6 +48,13 @@ public class GestaoSistemaTest {
     @Test
     public void testaSeTabelaSempreUFGExiste() {
         boolean tabelaExiste = verificaSeTabelaExiste("SEMPREUFG");
+        Assert.assertTrue(tabelaExiste);
+    }
+
+    @Given("testaConexaoComBancoDeDados")
+    @Test
+    public void testaSeTabelaUsuarioExiste() {
+        boolean tabelaExiste = verificaSeTabelaExiste("USUARIO");
         Assert.assertTrue(tabelaExiste);
     }
 
@@ -310,6 +318,68 @@ public class GestaoSistemaTest {
         Assert.assertTrue(lancouExcecao);
     }
 
+    @Test
+    public void testRestaurarBackupComSucesso() {
+        int idBackup = 123;
+        int idUsuario = 321;
+        boolean usuarioCriado = inserirUsuarioTeste(idUsuario);
+        boolean backupCriado = inserirBackupTeste(idBackup, idUsuario);
+
+        int idRestauracao = 42;
+        boolean inseriuComSucesso;
+        try {
+            inserirRestauracao(idRestauracao, idBackup, idUsuario, "Motivo para Backup");
+            inseriuComSucesso = true;
+        } catch (SQLException e) {
+            inseriuComSucesso = false;
+        }
+
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCriado);
+        Assert.assertTrue("Erro ao inserir backup para teste.", backupCriado);
+        Assert.assertTrue(inseriuComSucesso);
+    }
+
+    @Test
+    public void testRestaurarBackupComIdDeBackupInexistente() {
+        int idBackup = 404;
+        int idUsuario = 123;
+        boolean usuarioCriado = inserirUsuarioTeste(idUsuario);
+
+        int idRestauracao = 42;
+        boolean lancouExcecao;
+        try {
+            inserirRestauracao(idRestauracao, idBackup, idUsuario, "Motivo para Backup");
+            lancouExcecao = false;
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCriado);
+        Assert.assertTrue(lancouExcecao);
+    }
+
+    @Test
+    public void testRestaurarBackupComIdUsuarioInexistente() {
+        int idBackup = 123;
+        int idUsuario = 321;
+        int idUsuarioNaoCriado = 404;
+        boolean usuarioCriado = inserirUsuarioTeste(idUsuario);
+        boolean backupCriado = inserirBackupTeste(idBackup, idUsuario);
+
+        int idRestauracao = 42;
+        boolean lancouExcecao;
+        try {
+            inserirRestauracao(idRestauracao, idBackup, idUsuarioNaoCriado, "Motivo para Backup");
+            lancouExcecao = false;
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+
+        Assert.assertTrue("Erro ao inserir backup para teste.", backupCriado);
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCriado);
+        Assert.assertTrue(lancouExcecao);
+    }
+
     private static boolean verificaSeTabelaExiste(String nomeTabela) {
         boolean tabelaExiste = false;
         try {
@@ -395,6 +465,29 @@ public class GestaoSistemaTest {
         preparedStatement.setDate(3, new Date(1));
         preparedStatement.setDate(4, new Date(200));
         preparedStatement.setString(5, "Local de Armazenamento");
+        preparedStatement.execute();
+    }
+
+    private static boolean inserirBackupTeste(int idBackup, int idUsuario) {
+        boolean resultado;
+        try {
+            inserirBackup(idBackup, idUsuario);
+            resultado = true;
+        } catch (SQLException e) {
+            resultado = false;
+        }
+        return resultado;
+    }
+
+    private static void inserirRestauracao(int idRestauracao, int idBackup, int idUsuario, String motivo) throws SQLException {
+        String inserirRestauracao = "INSERT INTO RESTAURACAO (idRestauracao, idBackup, idUsuario, timestamp_restauracao," +
+            " motivo) VALUES (?,?,?,?,?);";
+        PreparedStatement preparedStatement = conexaoBD.prepareStatement(inserirRestauracao);
+        preparedStatement.setInt(1, idRestauracao);
+        preparedStatement.setInt(2, idBackup);
+        preparedStatement.setInt(3, idUsuario);
+        preparedStatement.setDate(4, new Date(200));
+        preparedStatement.setString(5, motivo);
         preparedStatement.execute();
     }
 
