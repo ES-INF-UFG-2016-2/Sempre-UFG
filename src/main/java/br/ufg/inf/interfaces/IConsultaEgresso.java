@@ -1,6 +1,6 @@
-package main.java.br.ufg.inf.consulta;
+package br.ufg.inf.interfaces;
 
-import main.java.br.ufg.inf.excecoes.ErroNaConsultaException;
+import br.ufg.inf.excecoes.ErroNaConsultaException;
 
 import java.util.LinkedHashMap;
 import java.util.List;

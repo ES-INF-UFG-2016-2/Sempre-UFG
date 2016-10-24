@@ -1,22 +1,29 @@
-package test.java.br.ufg.inf.rfExecCons;
+package br.ufg.inf.servico;
 
-import main.java.br.ufg.inf.Curso;
-import main.java.br.ufg.inf.Egresso;
-import main.java.br.ufg.inf.consulta.IConsultaEgresso;
-import main.java.br.ufg.inf.excecoes.ColunaInexistenteException;
-import main.java.br.ufg.inf.excecoes.ErroNaConsultaException;
-import main.java.br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
-import main.java.br.ufg.inf.excecoes.ParametrosErradosException;
+
+import br.ufg.inf.enums.Sexo;
+import br.ufg.inf.enums.Turnos;
+import br.ufg.inf.enums.VisibilidadeDados;
+import br.ufg.inf.excecoes.ColunaInexistenteException;
+import br.ufg.inf.excecoes.ErroNaConsultaException;
+import br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
+import br.ufg.inf.excecoes.ParametrosErradosException;
+import br.ufg.inf.interfaces.IConsultaEgresso;
+import br.ufg.inf.modelo.CursoUFG;
+import br.ufg.inf.modelo.Egresso;
+import br.ufg.inf.modelo.HistoricoUFG;
+import br.ufg.inf.stubs.ConsultaEgressoMock;
 import org.junit.Assert;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
 
-public class RFExecConsTest {
+public class ExecConsTest {
 
     private IConsultaEgresso consultaEgresso = new ConsultaEgressoMock();
 
@@ -41,7 +48,7 @@ public class RFExecConsTest {
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, null);
 
         Assert.assertEquals(resultadoEsperado.toString(), resultadoObtido.toString());
-        Assert.assertEquals(((ConsultaEgressoMock)consultaEgresso).getUltimaConsulta(), new Date());
+        Assert.assertEquals(((ConsultaEgressoMock) consultaEgresso).getUltimaConsulta(), new Date());
 
     }
 
@@ -65,7 +72,7 @@ public class RFExecConsTest {
 
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, parametros);
         Assert.assertEquals(resultadoEsperado.toString(), resultadoObtido.toString());
-        Assert.assertEquals(((ConsultaEgressoMock)consultaEgresso).getUltimaConsulta(), new Date());
+        Assert.assertEquals(((ConsultaEgressoMock) consultaEgresso).getUltimaConsulta(), new Date());
     }
 
     @Test(expected = IdentificadorInexistenteExepction.class)
@@ -120,7 +127,7 @@ public class RFExecConsTest {
         preencheColunasABuscarDaConsultaHadHoc(colunasABuscar);
 
         LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
-        preencheDadosEsperadosConsultaDeEgressosPredefinidaComParametros(resultadoEsperado);
+        preencheDadosEsperadosConsultaDeEgressosAdHocComParametros(resultadoEsperado);
 
         // supondo uma consulta ad hoc que retorne o nome, a data de nascimento e o curso,
         // dos egressos do sexo feminino
@@ -150,7 +157,7 @@ public class RFExecConsTest {
         preencheColunasABuscarDaConsultaHadHoc(colunasABuscar);
 
         LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
-        preencheDadosEsperadosConsultaDeEgressosPredefinidaComParametros(resultadoEsperado);
+        preencheDadosEsperadosConsultaDeEgressosAdHocComParametros(resultadoEsperado);
 
         // supondo uma consulta adhoc que retorne o nome e a data de nascimento do egresso pelo curso e sexo
         //recebe o tipo do parâmetro e os valores do parâmetro
@@ -164,27 +171,29 @@ public class RFExecConsTest {
 
 
     private void criaEgressos() throws ParseException {
-        Egresso egressoI = new Egresso();
-        egressoI.setNome("MARIA EDUARDA");
-        egressoI.setDataNascimento(geraData("dd/mm/aaa","01/01/1996"));
-        egressoI.setCurso(criaCurso("MEDICINA"));
 
-        Egresso egressoII = new Egresso();
-        egressoII.setNome("JOAO PEDRO");
-        egressoII.setDataNascimento(geraData("dd/mm/aaa","10/03/1994"));
-        egressoII.setCurso(criaCurso("PEDAGOGIA"));
+        Egresso egressoI = new Egresso("MARIA EDUARDA", "MARIA MATILDA", geraData("dd/mm/aaa", "01/01/1996"), Sexo.FEMININO,
+            "mariaeduarda@gmail.com", null, null, VisibilidadeDados.PUBLICO, criaListaHistoricoUfg("MEDICINA"));
 
-        Egresso egressoIII = new Egresso();
-        egressoIII.setNome("HELEN PEREIRA");
-        egressoIII.setDataNascimento(geraData("dd/mm/aaa","05/09/1990"));
-        egressoIII.setCurso(criaCurso("ENGENHARIA DE PETROLEO"));
+        Egresso egressoII = new Egresso("JOAO PEDRO", "JOANA PEDRA", geraData("dd/mm/aaa", "10/03/1994"), Sexo.MASCULINO,
+            "joao_pedrinho2008@hotmail.com", null, null, VisibilidadeDados.PRIVADO, criaListaHistoricoUfg("PEDAGOGIA"));
+
+        Egresso egressoIII = new Egresso("HELENA PEREIRA", "MARIANA PEREIRA", geraData("dd/mm/aaa", "05/09/1990"), Sexo.MASCULINO,
+            "heleninha123@gmail.com", null, null, VisibilidadeDados.SO_EGRESSOS, criaListaHistoricoUfg("ENGENHARIA DE PETROLEO"));
 
     }
 
-    private Curso criaCurso(String nomeCurso) {
-        Curso curso = new Curso();
-        curso.setNome(nomeCurso);
-        return curso;
+    private List<HistoricoUFG> criaListaHistoricoUfg(String nomeCurso) {
+        HistoricoUFG graduacaoI = new HistoricoUFG(123, 3, 3, 2010, 2016, criaCurso("MEDICINA"), null);
+        List<HistoricoUFG> listaHistoricoUfg = new ArrayList<>();
+        listaHistoricoUfg.add(graduacaoI);
+        return listaHistoricoUfg;
+    }
+
+    private CursoUFG criaCurso(String nomeCurso) {
+        CursoUFG cursoUFG = new CursoUFG(null, null, 1, true, Turnos.INTEGRAL, null);
+        cursoUFG.setNome(nomeCurso);
+        return cursoUFG;
     }
 
     private void preencheDadosEsperadosConsultaDeEgressosPredefinidaSemParametros(LinkedHashMap<String, String> resultadoEsperado) {

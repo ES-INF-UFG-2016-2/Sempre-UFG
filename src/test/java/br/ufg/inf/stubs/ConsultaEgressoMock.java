@@ -1,10 +1,10 @@
-package test.java.br.ufg.inf.rfExecCons;
+package br.ufg.inf.stubs;
 
-import main.java.br.ufg.inf.consulta.IConsultaEgresso;
-import main.java.br.ufg.inf.excecoes.ColunaInexistenteException;
-import main.java.br.ufg.inf.excecoes.ErroNaConsultaException;
-import main.java.br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
-import main.java.br.ufg.inf.excecoes.ParametrosErradosException;
+import br.ufg.inf.excecoes.ColunaInexistenteException;
+import br.ufg.inf.excecoes.ErroNaConsultaException;
+import br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
+import br.ufg.inf.excecoes.ParametrosErradosException;
+import br.ufg.inf.interfaces.IConsultaEgresso;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -50,7 +50,7 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
 
 
     public void atualizaDataUltimaConsulta(int identificadorConsulta) {
-        ultimaConsulta.setTime(System.currentTimeMillis());
+        ultimaConsulta = new Date();
     }
 
     public Date getUltimaConsulta() {
@@ -65,7 +65,7 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
         resultado.put("NOME", "MARIA EDUARDA;JOAO PEDRO;HELENA PEREIRA");
         resultado.put("DATANASCIMENTO", "01/01/1996;10/03/1994;05/09/1990");
         resultado.put("CURSO", "MEDICINA;PEDAGOGIA;ENGENHARIA DE PETROLEO");
-        setUltimaConsulta(new Date());
+        atualizaDataUltimaConsulta(1);
         return resultado;
     }
 

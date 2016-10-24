@@ -1,4 +1,4 @@
-package main.java.br.ufg.inf.excecoes;
+package br.ufg.inf.excecoes;
 
 public class ErroNaConsultaException extends Exception {
 
