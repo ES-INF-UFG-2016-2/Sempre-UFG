@@ -283,11 +283,12 @@ E serão construídas com as seguintes orientações:
 
 Ao criar uma nova baseline no projeto no [GitHub](http://github.com), há opção de colocar notas de release e anexar um arquivo executável do projeto em questão. As notas de release deverão ser feitas em texto na linguagem *Markdown* no seguinte esqueleto:
 
-> ### Histórico de mudanças
->
-> * Novo: (...)
-> * Correção: (...)
-> * Melhoria: (...)
-> * Menor: (...)
+```markdown
+### Histórico de mudanças
+* Novo: (...)
+* Correção: (...)
+* Melhoria: (...)
+* Menor: (...)
+```
 
 O repositório será versionado com versão `1.0` quando o software for lançado.
