@@ -12,10 +12,9 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RFExecConsTest {
@@ -24,7 +23,7 @@ public class RFExecConsTest {
 
     private static boolean setUpIsDone = false;
 
-    public void setUp() {
+    public void setUp() throws ParseException {
         if (setUpIsDone) {
             return;
         }
@@ -43,6 +42,7 @@ public class RFExecConsTest {
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, null);
 
         Assert.assertEquals(resultadoEsperado.toString(), resultadoObtido.toString());
+        Assert.assertEquals(((ConsultaEgressoMock)consultaEgresso).getUltimaConsulta(), new Date());
 
     }
 
@@ -65,8 +65,8 @@ public class RFExecConsTest {
         parametros.put("SEXO", "MASCULINO");
 
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, parametros);
-
         Assert.assertEquals(resultadoEsperado.toString(), resultadoObtido.toString());
+        Assert.assertEquals(((ConsultaEgressoMock)consultaEgresso).getUltimaConsulta(), new Date());
     }
 
     @Test(expected = IdentificadorInexistenteExepction.class)
@@ -166,20 +166,20 @@ public class RFExecConsTest {
     }
 
 
-    private void criaEgressos() {
+    private void criaEgressos() throws ParseException {
         Egresso egressoI = new Egresso();
         egressoI.setNome("MARIA EDUARDA");
-        egressoI.setDataNascimento(geraData());
+        egressoI.setDataNascimento(geraData("dd/mm/aaa","01/01/1996"));
         egressoI.setCurso(criaCurso("MEDICINA"));
 
         Egresso egressoII = new Egresso();
         egressoII.setNome("JOAO PEDRO");
-        egressoII.setDataNascimento(geraData());
+        egressoII.setDataNascimento(geraData("dd/mm/aaa","10/03/1994"));
         egressoII.setCurso(criaCurso("PEDAGOGIA"));
 
         Egresso egressoIII = new Egresso();
         egressoIII.setNome("HELEN PEREIRA");
-        egressoIII.setDataNascimento(geraData());
+        egressoIII.setDataNascimento(geraData("dd/mm/aaa","05/09/1990"));
         egressoIII.setCurso(criaCurso("ENGENHARIA DE PETROLEO"));
 
     }
@@ -201,8 +201,9 @@ public class RFExecConsTest {
         resultadoEsperado.put("DATANASCIMENTO", "01/01/1996");
     }
 
-    private Date geraData() {
-        return new Date();
+    private Date geraData(String formato, String data) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formato);
+        return simpleDateFormat.parse(data);
     }
 
     private void preencheDadosEsperadosConsultaDeEgressosAdHocSemParametros(LinkedHashMap<String, String> resultadoEsperado) {

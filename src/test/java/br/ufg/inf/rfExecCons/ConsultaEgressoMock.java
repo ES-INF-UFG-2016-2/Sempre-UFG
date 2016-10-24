@@ -17,6 +17,7 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
 
         LinkedHashMap<String, String> resultado = new LinkedHashMap<String, String>();
 
+
         switch (identificador) {
             case 1:
                 return resultadoDesejadoParaConsultaDeEgressoPredefinidaSemParametrosComSucesso(resultado);
@@ -45,7 +46,6 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
         } else
             return resultadoDesejadoParaConsultaDeEgressoAdHocComParametrosComSucesso();
 
-
     }
 
 
@@ -65,12 +65,14 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
         resultado.put("NOME", "MARIA EDUARDA;JOAO PEDRO;HELENA PEREIRA");
         resultado.put("DATANASCIMENTO", "01/01/1996;10/03/1994;05/09/1990");
         resultado.put("CURSO", "MEDICINA;PEDAGOGIA;ENGENHARIA DE PETROLEO");
+        setUltimaConsulta(new Date());
         return resultado;
     }
 
     private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosMultiplosComSucesso(LinkedHashMap<String, String> resultado) {
         resultado.put("NOME", "MARIA EDUARDA");
         resultado.put("DATANASCIMENTO", "01/01/1996");
+        setUltimaConsulta(new Date());
         return resultado;
     }
 
