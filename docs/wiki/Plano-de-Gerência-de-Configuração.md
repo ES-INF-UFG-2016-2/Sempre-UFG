@@ -56,7 +56,7 @@ equipe.
 * Aprovar solicitações de merges (Pull Requests) sem "commits quebrados" – commits com código-fonte com erros de compilação / nos testes;
 * Manter o padrão de diretórios dos repositórios (organização);
 
-#### 2.2. Responsabilidades da equipe de desenvolvimento no GCO
+#### 2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO
 
 * Usar as ferramentas sugeridas (seção [3.2](#32-ferramentas-e-tecnologias));
 * Seguir os padrões de commit, da estrutura de repositórios e branches;
@@ -138,8 +138,8 @@ O código-fonte no *repositório principal* deve seguir os [convenções de cód
 
 ##### Frequência de commit
 
-* Pelo menos **1x por semana** por funcionalidade delegada ao membro da equipe.
-* Os commits devem ser enviados ("pushados") ao repositório principal semanalmente. **Não devem ser feitos commits apenas localmente** na máquina do desenvolvedor, mesmo que eles tenham sido feitos na frequência estipulada acima.
+* Pelo menos **1x por dia** por tarefa delegada ao membro da equipe ou assim que uma parte signficativa da tarefa foi realizada e será continuada posteriormente (*commit* como um "[***checkpoint***](https://en.wikipedia.org/wiki/Application_checkpointing)", ponto "estável" que pode ser retornado – [*respawning*](https://en.wikipedia.org/wiki/Spawning_(video_gaming) –  em caso de falhas posteriores / erro humano / perda de dados).
+* Os commits devem ser enviados ("*push*") ao repositório principal ***semanalmente***. **Não devem ser feitos commits apenas localmente** na máquina do integrante do grupo, mesmo que eles tenham sido feitos na frequência estipulada acima.
 
 #### 3.5. Branches
 
@@ -176,11 +176,7 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 
 ![Politica-de-GCO](./wiki/anexos/GCO/politica-de-branches/Politica-de-GCO.png)
 
-#### 3.6. Estrutura dos Repositórios
-
-##### 3.6.1. Repositório principal
-
-##### Estrutura de pastas (Git)
+#### 3.6. Estrutura do Repositório
 
 > * ***anexos***
 >    - ***Arquitetura***
@@ -239,36 +235,7 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 >			* ***stubs***
 >				* Stubs para testes
 
-Qualquer alteração na estrutura de pastas (Como uma a necessidade de um novo pacote devido a uma classe não se encaixar a nenhum pacote da estrutura atual) deve ser discutido diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no Pull Request.
-
-##### 3.6.2. Repositório Wiki
-
-O repositório será acessado através do site e por repositório Git, no qual este deve seguir a seguinte estrutura:
-
-##### Menu lateral (arquivo `_Sidebar.md`)
-
->### Gerência de Configuração
->* [Plano de Gerência de Configuração](Plano de Gerência de Configuração)
->
->### Engenharia de Requisitos
->* [Documento de Especificação de Objetivos e Requisitos (EOR)](Documento de Especificação de Objetivos e Requisitos (EOR))
->	* *Documento em PDF do professor Juliano*
->
->### Arquitetura
->* [Documento de Arquitetura de Software (DAS)](Documento de Arquitetura de Software (DAS))
->	* *Inclui imagens dos diagramas e esquemas de arquitetura*
-
-##### Estrutura de pastas (Git)
-
-> * ***Projeto***
->    - **Anexos**
->		+ *REQ*
->			* Projeto de interface
->    - **Extras**
->		+ *Identidade visual*
->		+ *Diversos*
-
-> TO-DO pegar lista de artefatos de software (tipo "EAP")
+Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade de um novo pacote devido a uma classe não se encaixar a nenhuma categoria de pacote na estrutura atual) deve ser discutida diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no Pull Request da alteração desejada.
 
 #### 3.7. Controle de mudanças
 
@@ -316,7 +283,7 @@ E serão construídas com as seguintes orientações:
 
 Ao criar uma nova baseline no projeto no [GitHub](http://github.com), há opção de colocar notas de release e anexar um arquivo executável do projeto em questão. As notas de release deverão ser feitas em texto na linguagem *Markdown* no seguinte esqueleto:
 
->### Histórico de mudanças
+> ### Histórico de mudanças
 >
 > * Novo: (...)
 > * Correção: (...)
