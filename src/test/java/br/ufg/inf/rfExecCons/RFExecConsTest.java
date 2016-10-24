@@ -16,7 +16,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RFExecConsTest {
 
     private IConsultaEgresso consultaEgresso = new ConsultaEgressoMock();
