@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.servico;
 
 import br.ufg.inf.modelo.Email;
 import br.ufg.inf.modelo.EventoSolicitado;
