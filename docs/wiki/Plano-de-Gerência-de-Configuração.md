@@ -1,12 +1,12 @@
 Plano de Gerência de Configuração
 =================================
 
-Sumário
-=======
+<small>Sumário</small>
+======================
 
 <!-- MDTOC maxdepth:3 firsth1:0 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
 
-- [1. Introdução](#1-introdução)   
+   - [1. Introdução](#1-introdução)   
    - [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)   
       - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)   
       - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)   
@@ -22,7 +22,7 @@ Sumário
 
 <!-- /MDTOC -->
 
-## 1. Introdução
+### 1. Introdução
 O Plano de Gerência de Configuração apresenta todas as tarefas do
 Gerenciamento de Configuração e mudanças no projeto, para garantir a sua
 integridade e o mantendo o domínio das mudanças ocorridas durante o
