@@ -1,6 +1,7 @@
 package test.java.br.ufg.inf.rfExecCons;
 
 import main.java.br.ufg.inf.consulta.IConsultaEgresso;
+import main.java.br.ufg.inf.excecoes.ColunaInexistenteException;
 import main.java.br.ufg.inf.excecoes.ErroNaConsultaException;
 import main.java.br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
 import main.java.br.ufg.inf.excecoes.ParametrosErradosException;
@@ -16,20 +17,35 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
 
         LinkedHashMap<String, String> resultado = new LinkedHashMap<String, String>();
 
-        switch (identificador){
-            case 1: return resultadoDesejadoParaConsultaDeEgressoPredefinidaSemParametrosComSucesso(resultado);
-            case 2: return resultadoParaConsultaDeEgressoPredefinidaComIdentificadorInexistente(resultado, 2);
-            case 3: return resultadoDesejadoParaConsultaDeEgressoPredefinidaComFalha(resultado, 3);
-            case 4: return resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosComSucesso(resultado);
-            case 5: return resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosComSucesso(resultado);
-            case 6: return resultadoParaConsultaDeEgressoPredefinidaComParametrosIncompativeis(resultado);
-            default: return null;
+        switch (identificador) {
+            case 1:
+                return resultadoDesejadoParaConsultaDeEgressoPredefinidaSemParametrosComSucesso(resultado);
+            case 2:
+                return resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosMultiplosComSucesso(resultado);
+            case 3:
+                return resultadoParaConsultaDeEgressoPredefinidaComIdentificadorInexistente(resultado, 2);
+            case 4:
+                return resultadoDesejadoParaConsultaDeEgressoPredefinidaComErroNaConsulta(resultado, 3);
+            case 5:
+                return resultadoParaConsultaDeEgressoPredefinidaComParametrosIncompativeis(resultado);
+            default:
+                return null;
         }
     }
 
+    @Override
+    public LinkedHashMap<String, String> executaConsultaDeEgressosAdHoc(List<String> colunasABuscar, LinkedHashMap<String, String> parametros) throws ErroNaConsultaException {
 
-    public LinkedHashMap<String, String> executaConsultaDeEgressosAdHoc(LinkedHashMap<String, String> colunasABuscar, LinkedHashMap<String, String> parametros) {
-        return null;
+        if (colunasABuscar.contains("TESTE")) {
+            throw new ColunaInexistenteException("COLUNA INEXISTENTE NO BANCO");
+        } else if (parametros == null) {
+            return resultadoDesejadoParaConsultaDeEgressoAdHocSemParametrosComSucesso();
+        } else if (parametros.containsKey("SEXO") && parametros.get("SEXO").equals("1990")) {
+            throw new ParametrosErradosException("EXISTEM PARÂMETROS INCOMPATÍVEIS NA CONSULTA");
+        } else
+            return resultadoDesejadoParaConsultaDeEgressoAdHocComParametrosComSucesso();
+
+
     }
 
 
@@ -49,14 +65,12 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
         resultado.put("NOME", "MARIA EDUARDA;JOAO PEDRO;HELENA PEREIRA");
         resultado.put("DATANASCIMENTO", "01/01/1996;10/03/1994;05/09/1990");
         resultado.put("CURSO", "MEDICINA;PEDAGOGIA;ENGENHARIA DE PETROLEO");
-
         return resultado;
     }
 
-    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosComSucesso(LinkedHashMap<String, String> resultado) {
+    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComParametrosMultiplosComSucesso(LinkedHashMap<String, String> resultado) {
         resultado.put("NOME", "MARIA EDUARDA");
         resultado.put("DATANASCIMENTO", "01/01/1996");
-
         return resultado;
     }
 
@@ -68,7 +82,23 @@ public class ConsultaEgressoMock implements IConsultaEgresso {
         throw new ParametrosErradosException("EXISTEM PARÂMETROS INCOMPATÍVEIS NA CONSULTA.");
     }
 
-    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComFalha(LinkedHashMap<String, String> resultado, int identificador) throws ErroNaConsultaException {
+    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoPredefinidaComErroNaConsulta(LinkedHashMap<String, String> resultado, int identificador) throws ErroNaConsultaException {
         throw new ErroNaConsultaException("ERRO AO EXECUTAR A CONSULTA.");
     }
+
+    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoAdHocSemParametrosComSucesso() {
+        LinkedHashMap<String, String> resultado = new LinkedHashMap<String, String>();
+        resultado.put("NOME", "MARIA EDUARDA;JOAO PEDRO;HELENA PEREIRA");
+        resultado.put("DATANASCIMENTO", "01/01/1996;10/03/1994;05/09/1990");
+        resultado.put("CURSO", "MEDICINA;PEDAGOGIA;ENGENHARIA DE PETROLEO");
+        return resultado;
+    }
+
+    private LinkedHashMap<String, String> resultadoDesejadoParaConsultaDeEgressoAdHocComParametrosComSucesso() {
+        LinkedHashMap<String, String> resultado = new LinkedHashMap<String, String>();
+        resultado.put("NOME", "MARIA EDUARDA");
+        resultado.put("DATANASCIMENTO", "01/01/1996");
+        return resultado;
+    }
+
 }
