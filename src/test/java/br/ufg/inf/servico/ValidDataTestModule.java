@@ -2,10 +2,12 @@ package br.ufg.inf.servico;
 
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.*;
 
+@Ignore
 public class ValidDataTestModule {
 
     String URLCONEXAO = "jdbc:postgresql://localhost:5432/teste";

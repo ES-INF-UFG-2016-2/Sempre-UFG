@@ -3,6 +3,7 @@ package br.ufg.inf.servico;
 import br.ufg.inf.stubs.InvalidImportDataExceptionStub;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -11,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Date;
 
+@Ignore
 public class ReportTestModule {
 
     private Object sut = new Object();
