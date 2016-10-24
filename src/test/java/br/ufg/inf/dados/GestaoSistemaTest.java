@@ -30,6 +30,7 @@ public class GestaoSistemaTest {
             executaSqlComStatement("SET FOREIGN_KEY_CHECKS=0;");
             executaSqlComStatement("TRUNCATE TABLE SEMPREUFG;");
             executaSqlComStatement("TRUNCATE TABLE USUARIO;");
+            executaSqlComStatement("TRUNCATE TABLE PARAMETRO;");
             executaSqlComStatement("SET FOREIGN_KEY_CHECKS=1;");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,7 +71,37 @@ public class GestaoSistemaTest {
     }
 
     @Test
-    public void testaInsercaoNaTabelaSempreUFGSemParametrosObrigatoriosLancaExcecao() {
+    public void testInserirNaTabelaSempreUfgComSucesso() {
+        int idUsuario = 123;
+        inserirUsuarioTeste(idUsuario);
+        boolean inseriuComSucesso;
+        try {
+            inserirTabelaSempreUFG("Sempre UFG", idUsuario);
+            inseriuComSucesso = true;
+        } catch (SQLException e) {
+            inseriuComSucesso = false;
+        }
+        Assert.assertTrue(inseriuComSucesso);
+    }
+
+    @Test
+    public void testInserirNaTabelaSempreUfgComMesmoNomeDeveLancarExcecao() {
+        int idUsuario = 123;
+        inserirUsuarioTeste(idUsuario);
+        boolean lancouExcecao;
+        String nomeSistema = "Mesmo nome";
+        try {
+            inserirTabelaSempreUFG(nomeSistema, idUsuario);
+            inserirTabelaSempreUFG(nomeSistema, idUsuario);
+            lancouExcecao = true;
+        } catch (SQLException e) {
+            lancouExcecao = false;
+        }
+        Assert.assertTrue(lancouExcecao);
+    }
+
+    @Test
+    public void testInsercaoNaTabelaSempreUFGSemParametrosObrigatoriosLancaExcecao() {
         String queryInserirSempreUFG = "INSERT INTO SempreUFG (nome_sistema) VALUES(?);";
         boolean lancouExcecao = false;
         try {
@@ -84,7 +115,7 @@ public class GestaoSistemaTest {
     }
 
     @Test
-    public void testaInsercaoNaTabelaSempreUfgComUsuarioInexistenteLancaExcecao() {
+    public void testInsercaoNaTabelaSempreUfgComUsuarioInexistenteLancaExcecao() {
         String queryInserirSempreUFG = "INSERT INTO SEMPREUFG (nome_sistema, timestamp_isstalacao, id_Usuario) " +
             "VALUES('Sempre UFG', now(), 123);";
 
@@ -100,7 +131,7 @@ public class GestaoSistemaTest {
 
     @Given("testaSeTabelaSempreUFGExiste")
     @Test
-    public void testaInserirNaTabelaSempreUfgComUsuarioNaoExistenteDeveLancarExcecao() {
+    public void testInserirNaTabelaSempreUfgComUsuarioNaoExistenteDeveLancarExcecao() {
         boolean lancouExcecao = false;
         try {
             inserirTabelaSempreUFG("Sempre UFG", 12345);
@@ -113,7 +144,7 @@ public class GestaoSistemaTest {
 
     @Given("testaSeTabelaSempreUFGExiste")
     @Test
-    public void testaInserirDoisRegistrosNaTabelaSempreUFGLancaExcecao() {
+    public void testInserirDoisRegistrosNaTabelaSempreUFGLancaExcecao() {
         int idUsuario = 1234567;
         boolean usuarioCadastradoComSucesso;
         try {
@@ -133,6 +164,84 @@ public class GestaoSistemaTest {
         }
         Assert.assertTrue("Erro ao cadastrar usuário", usuarioCadastradoComSucesso);
         Assert.assertTrue(lancouExcecao);
+    }
+
+    @Test
+    public void testInserirParametroSemRegistroNaTabelaSempreUFG() {
+        String sigla = "sigla";
+        String nomeSistema = "Sistema não existente";
+        String tipo = "Backup";
+        String descricao = "Descrição do parâmetro";
+        String valor = "Valor do parâmetro";
+
+        boolean lancouExcecao = false;
+        try {
+            inserirNaTabelaParametro(sigla, nomeSistema, tipo, descricao, valor);
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+        Assert.assertTrue(lancouExcecao);
+    }
+
+    @Test
+    public void testInserirMultiplosParametrosComSucesso() {
+        String nomeSistema = "sistema";
+        int idUsuario = 123;
+        boolean usuarioCadastrado = inserirUsuarioTeste(idUsuario);
+        boolean tabelaSempreUfgCriada = inserirTabelaSempreUfgTeste(nomeSistema, idUsuario);
+
+        boolean inseriuParametroComSucesso;
+        try {
+            inserirNaTabelaParametro("sigla", nomeSistema, "Backup", "Descrição do parâmetro", "Valor do parâmetro");
+            inserirNaTabelaParametro("segundo", nomeSistema, "Log", "Descrição do parâmetro", "Valor do parâmetro");
+            inseriuParametroComSucesso = true;
+        } catch (SQLException e) {
+            inseriuParametroComSucesso = false;
+        }
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCadastrado);
+        Assert.assertTrue("Erro ao inserir na tabela Sempre UFG para teste.", tabelaSempreUfgCriada);
+        Assert.assertTrue(inseriuParametroComSucesso);
+    }
+
+    @Test
+    public void testInserirParametroComTipoInvalidoDeveLancarExcecao() {
+        String nomeSistema = "sistema";
+        int idUsuario = 123;
+        boolean usuarioCadastrado = inserirUsuarioTeste(idUsuario);
+        boolean tabelaSempreUfgCriada = inserirTabelaSempreUfgTeste(nomeSistema, idUsuario);
+
+        boolean lancouExcecao;
+        String tipoInvalido = "teste";
+        try {
+            inserirNaTabelaParametro("sigla", nomeSistema, tipoInvalido, "Descrição", "Valor");
+            lancouExcecao = false;
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCadastrado);
+        Assert.assertTrue("Erro ao inserir na tabela Sempre UFG para teste.", tabelaSempreUfgCriada);
+        Assert.assertTrue("Erro ao inserir parâmetro com tipo inválido.", lancouExcecao);
+    }
+
+    @Test
+    public void testInserirParametroComIdentificadorJaExistente() {
+        String nomeSistema = "sistema";
+        int idUsuario = 123;
+        boolean usuarioCadastrado = inserirUsuarioTeste(idUsuario);
+        boolean tabelaSempreUfgCriada = inserirTabelaSempreUfgTeste(nomeSistema, idUsuario);
+
+        boolean lancouExcecao;
+        String sigla = "sigla";
+        try {
+            inserirNaTabelaParametro(sigla, nomeSistema, "Backup", "Descrição", "Valor");
+            inserirNaTabelaParametro(sigla, nomeSistema, "Log", "Outra descrição", "Outro valor");
+            lancouExcecao = false;
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCadastrado);
+        Assert.assertTrue("Erro ao inserir na tabela Sempre UFG para teste.", tabelaSempreUfgCriada);
+        Assert.assertTrue("Erro ao inserir parâmetro com tipo inválido.", lancouExcecao);
     }
 
     private static boolean verificaSeTabelaExiste(String nomeTabela) {
@@ -162,6 +271,17 @@ public class GestaoSistemaTest {
         preparedStatement.execute();
     }
 
+    private static boolean inserirTabelaSempreUfgTeste(String nomeSistema, int idUsuario) {
+        boolean resultado = false;
+        try {
+            inserirTabelaSempreUFG(nomeSistema, idUsuario);
+            resultado = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
     private static void inserirUsuario(int idUsuario, String email, String senha, String nomeSocial, int CPF) throws SQLException {
         String inserirUsuarioSQL = "insert into USUARIO (idUsuario, email_principal,  senha,  nome_social,  CPF," +
             "  recebe_divulgacao, timestamp_cadastramento) VALUES (?,?,?,?,?,?,?)";
@@ -174,7 +294,30 @@ public class GestaoSistemaTest {
         preparedStatement.setString(6, "mensal");
         preparedStatement.setDate(7, new Date(1));
         preparedStatement.execute();
+    }
 
+    private static void inserirNaTabelaParametro(String sigla, String nomeSistema, String tipo, String descricao,
+                                                 String valor) throws SQLException {
+        String inserirParametroSQL = "INSERT INTO PARAMETRO (sigla_parametro, nome_sistema, tipo, descricao_parametro," +
+            " valor ) VALUES (?,?,?,?,?);";
+        PreparedStatement preparedStatement = conexaoBD.prepareStatement(inserirParametroSQL);
+        preparedStatement.setString(1, sigla);
+        preparedStatement.setString(2, nomeSistema);
+        preparedStatement.setString(3, tipo);
+        preparedStatement.setString(4, descricao);
+        preparedStatement.setString(5, valor);
+        preparedStatement.execute();
+    }
+
+    private static boolean inserirUsuarioTeste(int idUsuario) {
+        boolean resultado;
+        try {
+            inserirUsuario(idUsuario, "teste@teste.com", "123", "Usuário de teste", 123456789);
+            resultado = true;
+        } catch (SQLException e) {
+            resultado = false;
+        }
+        return resultado;
     }
 
     private static void executaSqlComStatement(String sql) throws SQLException {
