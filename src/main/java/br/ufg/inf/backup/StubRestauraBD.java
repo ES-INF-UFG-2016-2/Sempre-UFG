@@ -8,7 +8,7 @@ public class StubRestauraBD implements RestauraBD {
 
     @Override
     public boolean restaurarBD(Period periodicidade, String caminho, String dataBackup) {
-        return isPeriodicidadeValida(periodicidade) && isCaminhoValido(caminho) && isDataBackupValida(dataBackup) && isDataBackup(dataBackup);
+        return isPeriodicidadeValida(periodicidade) && isCaminhoValido(caminho) && isDataBackupValida(dataBackup);
     }
 
     //Verifica se existe o arquivo
