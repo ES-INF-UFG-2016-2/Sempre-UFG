@@ -47,15 +47,10 @@ public class StubRestauraBD implements RestauraBD {
             return false;
         } else if (dataBackup == DATA_INEXISTENTE) {
             return false;
-        } else if (dataBackup == DATA_VALIDA) {
-            return true;
-        }
-        return false;
-    }
-    
-    //Verifica se a data está vinculada ao backup
-    private boolean isDataBackup(String dataBackup) {
-        if (dataBackup == DATA_VINCULADA_AO_BACKUP) {
+        } else if (dataBackup == DATA_VALIDA_NAO_VINCULADA) {
+            return false;
+        } else if (dataBackup == DATA_VALIDA_VINCULADA) {
+            //Verifica se a data está vinculada ao backup
             return true;
         }
         return false;
