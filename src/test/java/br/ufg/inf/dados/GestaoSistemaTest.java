@@ -31,6 +31,7 @@ public class GestaoSistemaTest {
             executaSqlComStatement("TRUNCATE TABLE SEMPREUFG;");
             executaSqlComStatement("TRUNCATE TABLE USUARIO;");
             executaSqlComStatement("TRUNCATE TABLE PARAMETRO;");
+            executaSqlComStatement("TRUNCATE TABLE BACKUP;");
             executaSqlComStatement("SET FOREIGN_KEY_CHECKS=1;");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -244,6 +245,71 @@ public class GestaoSistemaTest {
         Assert.assertTrue("Erro ao inserir parâmetro com tipo inválido.", lancouExcecao);
     }
 
+    @Test
+    public void testInserirNaTabelaBackupComSucesso() {
+        int idBackup = 123;
+        int idUsuario = 321;
+        boolean usuarioCriado = inserirUsuarioTeste(idUsuario);
+        boolean backupInseridoComSucesso;
+        try {
+            inserirBackup(idBackup, idUsuario);
+            backupInseridoComSucesso = true;
+        } catch (SQLException e) {
+            backupInseridoComSucesso = false;
+        }
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCriado);
+        Assert.assertTrue(backupInseridoComSucesso);
+    }
+
+    @Test
+    public void testInserirNaTabelaBackupComUsuarioInexistenteDeveLancarExcecao() {
+        int idBackup = 123;
+        int idUsuarioInexistente = 404;
+        boolean lancouExcecao;
+        try {
+            inserirBackup(idBackup, idUsuarioInexistente);
+            lancouExcecao = false;
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+        Assert.assertTrue(lancouExcecao);
+    }
+
+    @Test
+    public void testInserirMultiplosRegistrosNaTabelaBackupComMesmoUsuario() {
+        int idBackup = 123;
+        int idSegundoBackup = 456;
+        int idUsuario = 321;
+        boolean usuarioCriado = inserirUsuarioTeste(idUsuario);
+        boolean backupInseridoComSucesso;
+        try {
+            inserirBackup(idBackup, idUsuario);
+            inserirBackup(idSegundoBackup, idUsuario);
+            backupInseridoComSucesso = true;
+        } catch (SQLException e) {
+            backupInseridoComSucesso = false;
+        }
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCriado);
+        Assert.assertTrue(backupInseridoComSucesso);
+    }
+
+    @Test
+    public void testInseriNaTabelaBackupComMesmoIdentificadorDeveLancarExcecao() {
+        int idBackup = 123;
+        int idUsuario = 321;
+        boolean usuarioCriado = inserirUsuarioTeste(idUsuario);
+        boolean lancouExcecao;
+        try {
+            inserirBackup(idBackup, idUsuario);
+            inserirBackup(idBackup, idUsuario);
+            lancouExcecao = false;
+        } catch (SQLException e) {
+            lancouExcecao = true;
+        }
+        Assert.assertTrue("Erro ao inserir usuário para teste.", usuarioCriado);
+        Assert.assertTrue(lancouExcecao);
+    }
+
     private static boolean verificaSeTabelaExiste(String nomeTabela) {
         boolean tabelaExiste = false;
         try {
@@ -318,6 +384,18 @@ public class GestaoSistemaTest {
             resultado = false;
         }
         return resultado;
+    }
+
+    private static void inserirBackup(int idBackup, int idUsuario) throws SQLException {
+        String insertBackup = "INSERT INTO BACKUP (idBackup, idUsuario, timestamp_inicio, timestamp_fim," +
+            "local_de_armazenamento) VALUES (?,?,?,?,?);";
+        PreparedStatement preparedStatement = conexaoBD.prepareStatement(insertBackup);
+        preparedStatement.setInt(1, idBackup);
+        preparedStatement.setInt(2, idUsuario);
+        preparedStatement.setDate(3, new Date(1));
+        preparedStatement.setDate(4, new Date(200));
+        preparedStatement.setString(5, "Local de Armazenamento");
+        preparedStatement.execute();
     }
 
     private static void executaSqlComStatement(String sql) throws SQLException {
