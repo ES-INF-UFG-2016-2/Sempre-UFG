@@ -123,14 +123,12 @@ public class RFExecConsTest {
         LinkedHashMap<String, String> resultadoEsperado = new LinkedHashMap<String, String>();
         preencheDadosEsperadosConsultaDeEgressosPredefinidaComParametros(resultadoEsperado);
 
-        // supondo uma consulta pré-definida que verifique o nome e a data de nascimento do egresso pelo curso,
-        // ano de nascimento e sexo
+        // supondo uma consulta ad hoc que retorne o nome, a data de nascimento e o curso,
+        // dos egressos do sexo feminino
         // recebe o tipo do parâmetro e os valores do parâmetro
 
         LinkedHashMap parametros = new LinkedHashMap();
-        parametros.put("CURSO", "MEDICINA");
-        parametros.put("ANO_NASCIMENTO", "1990");
-        parametros.put("SEXO", "MASCULINO");
+        parametros.put("SEXO", "FEMININO");
 
         LinkedHashMap<String, String> resultadoObtido;
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosAdHoc(colunasABuscar, parametros);

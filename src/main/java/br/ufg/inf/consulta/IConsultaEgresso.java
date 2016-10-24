@@ -1,9 +1,6 @@
 package main.java.br.ufg.inf.consulta;
 
-import main.java.br.ufg.inf.excecoes.ColunaInexistenteException;
 import main.java.br.ufg.inf.excecoes.ErroNaConsultaException;
-import main.java.br.ufg.inf.excecoes.IdentificadorInexistenteExepction;
-import main.java.br.ufg.inf.excecoes.ParametrosErradosException;
 
 import java.util.LinkedHashMap;
 import java.util.List;
