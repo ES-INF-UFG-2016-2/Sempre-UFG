@@ -4,32 +4,32 @@ Plano de Gerência de Configuração
 <small>Sumário</small>
 ======================
 
-<!-- MDTOC maxdepth:3 firsth1:0 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
+<!-- MDTOC maxdepth:2 firsth1:0 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
 
-   - [1. Introdução](#1-introdução)   
-   - [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)   
-      - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)   
-      - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)   
-   - [3. A Gerência de Configuração](#3-a-gerência-de-configuração)   
-      - [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerência-de-configuração)   
-      - [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)   
-      - [3.3. Identificação da Configuração](#33-identificação-da-configuração)   
-      - [3.4. Commits](#34-commits)   
-      - [3.5. Branches](#35-branches)   
-      - [3.6. Estrutura do Repositório](#36-estrutura-do-repositório)   
-      - [3.7. Controle de mudanças](#37-controle-de-mudanças)   
-      - [3.8. Baselines](#38-baselines)   
+- [1. Introdução](#1-introdução)   
+- [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)   
+   - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)   
+   - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)   
+- [3. A Gerência de Configuração](#3-a-gerência-de-configuração)   
+   - [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerência-de-configuração)   
+   - [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)   
+   - [3.3. Identificação da Configuração](#33-identificação-da-configuração)   
+   - [3.4. Commits](#34-commits)   
+   - [3.5. Branches](#35-branches)   
+   - [3.6. Estrutura do Repositório](#36-estrutura-do-repositório)   
+   - [3.7. Controle de mudanças](#37-controle-de-mudanças)   
+   - [3.8. Baselines](#38-baselines)   
 
 <!-- /MDTOC -->
 
-### 1. Introdução
+## 1. Introdução
 O Plano de Gerência de Configuração apresenta todas as tarefas do
 Gerenciamento de Configuração e mudanças no projeto, para garantir a sua
 integridade e o mantendo o domínio das mudanças ocorridas durante o
 desenvolvimento. Nesse documento detalha-se toda a infra-estrutura
 utilizada nesse projeto.
 
-### 2. Organização, Responsabilidades, e Interfaces
+## 2. Organização, Responsabilidades, e Interfaces
 A gerência de configuração faz um papel fundamental para que o
 desenvolvimento não seja prejudicado por informações inconsistentes.
 Dessa forma, o gerente de configuração é responsável por controlar todas
@@ -39,7 +39,7 @@ inconsistências não atrapalhem a evolução do desenvolvimento (auditoria
 das configurações) e permita uma melhor comunicação entre os membros da
 equipe.
 
-##### Gerentes de Configuração (GCOs)
+#### Gerentes de Configuração (GCOs)
 
 | Grupo   | Gerente  de Configuração                     |
 |---------|----------------------------------------------|
@@ -47,14 +47,14 @@ equipe.
 | Grupo 2 | **Leonardo Freitas dos Santos** @leonardo-freitas-1995 |
 | Grupo 3 |**Yuri Matheus Dias Pereira** @Yuri-M-Dias
 
-#### 2.1. Responsabilidades dos GCOs
+### 2.1. Responsabilidades dos GCOs
 
 * Supervisionar andamento das branches;
 * Fazer e controlar as issues (pacotes de trabalho);
 * Aprovar solicitações de merges (Pull Requests) sem "commits quebrados" – commits com código-fonte com erros de compilação / nos testes;
 * Manter o padrão de diretórios dos repositórios (organização);
 
-#### 2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO
+### 2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO
 
 * Usar as ferramentas sugeridas (seção [3.2](#32-ferramentas-e-tecnologias));
 * Seguir os padrões de commit, da estrutura de repositórios e branches;
@@ -62,9 +62,9 @@ equipe.
 * Fazer milestones para registrar os marcos do projeto;
 * Fazer a baseline no final de cada iteração.
 
-### 3. A Gerência de Configuração
+## 3. A Gerência de Configuração
 
-#### 3.1. Artefatos da Gerência de Configuração
+### 3.1. Artefatos da Gerência de Configuração
 
 A Gerência de Configuração trabalhará em alto nível sob os seguintes conjuntos de artefatos:
 
@@ -74,9 +74,9 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 * [Requisições de Mudança (*Pull Requests*)](../../../../pulls)
 * [Baselines](../../../../releases)
 
-#### 3.2. Ferramentas e Tecnologias
+### 3.2. Ferramentas e Tecnologias
 
-##### Ferramentas
+#### Ferramentas
 
 | Tipo | Ferramenta | Versão |
 |------|------------|--------|
@@ -95,7 +95,7 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 | Controle de mudanças | [GitHub Issues](../issues) |   |
 | Gerência de projeto | [GitHub Projects](../projects) |   |
 
-##### Tecnologias
+#### Tecnologias
 
 | Tipo | Tecnologia | Versão |
 |------|------------|--------|
@@ -108,7 +108,7 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 | Framework de Estilo | [Twitter Bootstrap](http://getbootstrap.com/) | 3.0 ou superior |
 | Framework de Conteúdo Dinâmico (Front-end)| [JQuery](https://jquery.com/) | 3.0 ou superior |
 
-#### 3.3. Identificação da Configuração
+### 3.3. Identificação da Configuração
 
 Todos os artefatos gerados no projeto – com exceção do código fonte no *repositório principal* – terão o seguinte método de identificação:
 
@@ -122,9 +122,9 @@ Todos os artefatos gerados no projeto – com exceção do código fonte no *rep
 
 O código-fonte no *repositório principal* deve seguir os [convenções de código do Java](http://javascript.crockford.com/javacodeconventions.pdf) e os padrões da [Fábrica de Software do INF/UFG](http://fabrica.inf.ufg.br).
 
-#### 3.4. Commits
+### 3.4. Commits
 
-##### Padrão de mensagem de commit
+#### Padrão de mensagem de commit
 
 * Mensagem **sucinta** e **objetiva** sobre o conteúdo do commit
 * Tamanho: de 15 a 50 caracteres
@@ -135,12 +135,12 @@ O código-fonte no *repositório principal* deve seguir os [convenções de cód
 		* `Otimiza funcionalidade "Enviar email"`
 		* `Conserta bug #13`
 
-##### Frequência de commit
+#### Frequência de commit
 
 * Pelo menos **1x por dia** por tarefa delegada ao membro da equipe ou assim que uma parte signficativa da tarefa foi realizada e será continuada posteriormente (*commit* como um "[***checkpoint***](https://en.wikipedia.org/wiki/Application_checkpointing)", ponto "estável" que pode ser retornado – [*respawning*](https://en.wikipedia.org/wiki/Spawning_(video_gaming) –  em caso de falhas posteriores / erro humano / perda de dados).
 * Os commits devem ser enviados ("*push*") ao repositório principal ***semanalmente***. **Não devem ser feitos commits apenas localmente** na máquina do integrante do grupo, mesmo que eles tenham sido feitos na frequência estipulada acima.
 
-#### 3.5. Branches
+### 3.5. Branches
 
 O repositório de código fonte deve ter no mínimo 5 branches:
 
@@ -150,7 +150,7 @@ O repositório de código fonte deve ter no mínimo 5 branches:
 | **`homolog`** |  tem o objetivo de integrar as branches de todos os grupos. Nesta branch será feita uma avaliação e refatoração (caso necessário) dos artefatos antes que sejam colocados na branch **master**. | [**@julianolopes**](https://github.com/julianolopes) /  [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
 | **`master`**  | branch que contém a versão com todos os artefatos do projeto validados pela equipe (branch padrão). | [**@julianolopes**](https://github.com/julianolopes)
 
-##### Branches dos grupos
+#### Branches dos grupos
 
 As branches `G1`, `G2` e `G3` são bloqueadas para fazer *push*. Para enviar commits para essas branches é necessário fazer o seguinte procedimento:
 
@@ -164,7 +164,7 @@ As branches `G1`, `G2` e `G3` são bloqueadas para fazer *push*. Para enviar com
 	* Se o *PR* é **aprovado**, commits do integrante vão para a branch do grupo;
 	* Se ***reprovado***, *PR* é rejeitado e integrante deve corrigir (fazendo novos commits no *PR*).
 
-##### Branch `master`
+#### Branch `master`
 
 O **master** terá as seguintes regras para controle de commits:
 
@@ -175,7 +175,7 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 
 ![Politica-de-GCO](./wiki/anexos/GCO/politica-de-branches/Politica-de-GCO.png)
 
-#### 3.6. Estrutura do Repositório
+### 3.6. Estrutura do Repositório
 
 > * ***anexos***
 >    - ***Arquitetura***
@@ -236,7 +236,7 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 
 Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade de um novo pacote devido a uma classe não se encaixar a nenhuma categoria de pacote na estrutura atual) deve ser discutida diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no Pull Request da alteração desejada.
 
-#### 3.7. Controle de mudanças
+### 3.7. Controle de mudanças
 
 * Gerenciamento de issues (também chamados de "**pacotes de trabalho**")
 	* 4 principais tipos:
@@ -260,11 +260,11 @@ Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade d
 	* Analisadas pelos GCO e ferramenta de Integração Contínua (CI).
 		* GCOs usarão "Code Review" para relatar a análise
 
-#### 3.8. Baselines
+### 3.8. Baselines
 
 Para que se dê a criação de uma baseline, é necessário que os GCOs tenham feito a análise das tarefas feitas na iteração do projeto, e as ferramentas de testes automatizados, análises estáticas de código e integração contínua (CI) tenham aprovado todo o código-fonte até aquele ponto do projeto previamente.
 
-##### Tag
+#### Tag
 
 As baselines serão "etiquetadas" com o seguinte formato, a partir do número 0 (zero):
 
@@ -278,7 +278,7 @@ E serão construídas com as seguintes orientações:
 
 *Semântica de versionamento baseada no "Semantic Versioning 2.0.0". Para mais informações, visite o site do* ***semver*** *na Internet [[iii]](#iii-semantic-versioning-v20-semver-disponivel-em-httpsemverorg-acesso-em-28-mar-2015).*
 
-##### Notas de release
+#### Notas de release
 
 Ao criar uma nova baseline no projeto no [GitHub](http://github.com), há opção de colocar notas de release e anexar um arquivo executável do projeto em questão. As notas de release deverão ser feitas em texto na linguagem *Markdown* no seguinte esqueleto:
 
