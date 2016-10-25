@@ -57,12 +57,19 @@ public class AtuProfisEgresTest {
 
     @Test
     public void testInserirFormaIngressoCorreta() {
+        List<String> formaIngresso = new ArrayList<>();
+        formaIngresso.add("Concurso Público");
+        formaIngresso.add("Seleção Interna");
+        formaIngresso.add("Indicação");
+        formaIngresso.add("Voluntário");
+        formaIngresso.add("Outra");
 
-        String forma = "Concurso";
         boolean inserido = true;
-
         AtuProfisEgres atuProfisEgres = new AtuProfisEgres();
-        assertEquals(inserido, atuProfisEgres.inserirFormaIngresso(forma));
+
+        for (String forma : formaIngresso) {
+            assertEquals(inserido, atuProfisEgres.inserirFormaIngresso(forma));
+        }
     }
 
     @Test
