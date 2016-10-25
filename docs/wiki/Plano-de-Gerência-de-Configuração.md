@@ -8,6 +8,7 @@ Plano de Gerência de Configuração
 
 - [1. Introdução](#1-introdução)   
    - [1.1. Definições, Acrônimos e Abreviações](#11-definições-acrônimos-e-abreviações)   
+   - [1.2. Referências](#12-referências)   
 - [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)   
    - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)   
    - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)   
@@ -46,6 +47,16 @@ utilizada neste projeto e como contribuir no mesmo.
 | [**PR**](https://en.wikipedia.org/wiki/Distributed_version_control#Pull_requests) | *Pull Request*, **solicitação de mudança** que é feita para administradores de um repositório decidirem se uma contribuição pode fazer parte do código-fonte do mesmo. |
 | [**Push**](https://en.wikipedia.org/wiki/Version_control#Common_vocabulary) | Comando em alguns VCS para **enviar mudanças** (*commits*) para um repositório remoto. |
 | [**VCS**](https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es) | **Sistema de Controle de Versões** (do inglês *Version Control System*), software usado para fazer Gerência de Configuração. |
+
+### 1.2. Referências
+
+###### i. SANTOS, Gustavo Moraes dos et al. Template de Plano de Gerenciamento de Configuração. Disponível em: <http://github.com/gabrielaimeeg/DroidMetronome/wiki/TEMPLATE-Plano-de-Gerenciamento-de-Configuração>. Acesso em: 28 mar. 2015.
+
+###### ii. OLIVEIRA, J. L. Diretrizes para Membros da Equipe. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/diretrizes-para-membros-da-equipe.pdf>. Acesso em: 2 out. 2016.
+
+###### iii. OLIVEIRA, J. L. Requisitos de Software - SempreUFG. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/requisitos-de-software-para-sempre-ufg-2016.pdf>. Acesso em: 2 out. 2016.
+
+###### iv. WERNER, Tom Preston. Semantic versioning 2.0.0. Disponível em: <http://semver.org>. Acesso em: 28 mar. 2015.
 
 ## 2. Organização, Responsabilidades, e Interfaces
 A gerência de configuração faz um papel fundamental para que o
