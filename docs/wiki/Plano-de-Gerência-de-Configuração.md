@@ -223,7 +223,7 @@ Exemplos:
 
 * Mensagem **sucinta** e **objetiva** sobre o conteúdo do commit
 * Tamanho: de 15 a 50 caracteres
-* Verbo na 3º pessoa do presente simples + complemento (o que mudou no projeto)
+* **Verbo** ***na 3º pessoa do presente simples*** **+ complemento** (o que mudou no projeto)
 	* Exemplos:
 		* `Adiciona diagrama de classes`
 		* `Refatora função X`
@@ -232,8 +232,8 @@ Exemplos:
 
 #### Frequência de commit
 
-* Pelo menos **1x por dia** por tarefa delegada ao membro da equipe ou assim que uma parte signficativa da tarefa foi realizada e será continuada posteriormente (*commit* como um "[***checkpoint***](https://en.wikipedia.org/wiki/Application_checkpointing)", ponto "estável" que pode ser retornado – [*respawning*](https://en.wikipedia.org/wiki/Spawning_(video_gaming) –  em caso de falhas posteriores / erro humano / perda de dados).
-* Os commits devem ser enviados ("*push*") ao repositório principal ***semanalmente***. **Não devem ser feitos commits apenas localmente** na máquina do integrante do grupo, mesmo que eles tenham sido feitos na frequência estipulada acima.
+* Pelo menos **1x no dia** que um integrante da equipe trabalhar numa tarefa delegada a ele, ou assim que uma parte signficativa da tarefa foi realizada e será continuada posteriormente (*commit* como um "[***checkpoint***](https://en.wikipedia.org/wiki/Application_checkpointing)", ponto "estável" que pode ser retornado – [*respawning*](https://en.wikipedia.org/wiki/Spawning_(video_gaming) –  em caso de falhas posteriores / erro humano / perda de dados).
+* Os commits feitos localmente devem ser enviados ("*push*") ao repositório principal pelo menos assim que o integrante terminar de trabalhar no projeto no dia. **Não devem ser deixados commits apenas localmente** ***ou*** **artefatos fora do controle de versão** na máquina do integrante do grupo, mesmo que eles tenham sido feitos na frequência estipulada acima.
 
 ### 3.5. Branches
 
