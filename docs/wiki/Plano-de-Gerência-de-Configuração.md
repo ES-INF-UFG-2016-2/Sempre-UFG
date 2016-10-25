@@ -144,17 +144,78 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 
 ### 3.3. Identificação da Configuração
 
-Todos os artefatos gerados no projeto – com exceção do código fonte no *repositório principal* – terão o seguinte método de identificação:
+#### Código-fonte em Java
 
-`<Tipo_do_artefato>_<Identificador>.<ext>`
+O código-fonte no *repositório principal* deve seguir as [convenções de código do Java](http://javascript.crockford.com/javacodeconventions.pdf) e os padrões da [Fábrica de Software do INF/UFG](http://fabrica.inf.ufg.br), em suma:
+
+* **Pacotes: `br.ufg.inf.sempreufg.<nome_do_pacote>`**
+	* Letras *minúsculas*, espaçamento com *underline* ("\_"), sem acentos, **substantivo(s)** que determinem categorias de código-fonte signficativas, dentro dos padrões de estrutura do repositório na seção [3.6](#36-estrutura-do-repositório). <br> Exemplos:
+		* `br.ufg.inf.sempreufg.modelo` (caminho `src/main/java/br/ufg/inf/sempreufg/modelo`)
+		* `br.ufg.inf.sempreufg.servico` (caminho `src/main/java/br/ufg/inf/sempreufg/servico`)
+		* `br.ufg.inf.sempreufg.excecoes` (caminho `src/main/java/br/ufg/inf/sempreufg/excecoes`)
+* **Classes: `<NomeTipoObjeto>.java`**
+	* Letras em *CamelCase*, sem acentos, **substantivo(s)** que descrevem o que a classe é, com simplicidade de entendimento e são descritivos. <br> Exemplos:
+		* `Egresso.java`
+		* `AreaDeConhecimento.java`
+	* **Interfaces: `<NomeTipoObjetoInterface>.java`**
+		* Assim como nas ***Classes***, nomes de interface devem incluir o nome **`Interface`** no seu final. <br> Exemplos:
+			* `ConsultaEgressoInterface.java`
+			* `AprovDivulgEventInterface.java`
+	* **DAOs: `<NomeTipoObjetoDAO>.java`**
+		* Devem incluir o nome **`DAO`** no seu final. <br> Exemplos:
+			* `AreaDeConhecimentoDAO.java`
+			* `CursoUFGDAO.java`
+	* **Serviços: `<NomeTipoObjetoService>.java`**
+		* Devem incluir o nome **`Service`** no seu final. <br> Exemplos:
+			* `DivulgadorEventosService.java`
+	* **Casos de teste: `<NomeTipoObjetoTest>.java`**
+		* Devem estar no caminho `src/test/java/br/ufg/inf/sempreufg/...`;
+		* Devem incluir o nome `Test` no seu final. <br> Exemplos:
+			* `AtualEgresTest.java`
+			* `AtuProfisEgresTest.java`
+
+#### Código-fonte em SQL
+
+Todos os DDLs e DMLs na pasta `db/` terão o seguinte método de identificação:
+
+**`RD-<NomeDoRD>.sql`**
 
 | Identificador | Descrição |
 |---------------|-----------|
-| `<Tipo_do_artefato>` | Tipo do artefato. Ex.: *"Processo de...", "Diagrama de Classes", "Protótipo"*, etc.
-| `<Identificador>` | Algum número, data ou frase que identifique unicamente o arquivo. Ex.: *"121", "18-02-2016", "Avaliação de Provas"*, etc.
-| `<ext>` | A extensão do arquivo. Ex.: *png, ep, asta, bpm*, etc.
+| `RD` | Requisito de Dados. Categoria de requisito definida pelo [**@julianolopes**](https://github.com/julianolopes) em seu documento de **Requisitos de Software do Sempre UFG**⁽[**ⁱⁱⁱ**](#iii-oliveira-j-l-requisitos-de-software-sempreufg-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianorequisitos-de-software-para-sempre-ufg-2016pdf-acesso-em-2-out-2016)⁾ |
+| `-` | Separador. Um *hífen* ("-"). |
+| `<NomeDoRD>` | Nome do requisito de dados tal como no documento de **Requisitos de Software do Sempre UFG**⁽[**ⁱⁱⁱ**](#iii-oliveira-j-l-requisitos-de-software-sempreufg-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianorequisitos-de-software-para-sempre-ufg-2016pdf-acesso-em-2-out-2016)⁾ (nome que identifica unicamente o arquivo). Ex.: *"PessoaEgres", "CursSup", "DivulgInfo"*, etc. |
 
-O código-fonte no *repositório principal* deve seguir os [convenções de código do Java](http://javascript.crockford.com/javacodeconventions.pdf) e os padrões da [Fábrica de Software do INF/UFG](http://fabrica.inf.ufg.br).
+#### Documentos em Markdown
+
+Todos os documentos de texto em *Markdown* na pasta `docs/wiki/` terão o seguinte método de identificação:
+
+**`<Título-do-documento>.md`**
+
+| Identificador | Descrição |
+|---------------|-----------|
+| `<Título-do-documento>` | Um nome único e completo para o documento, com primeira letra *maiúscula*, com acentos e espaçamento com *hífen* ("-"). O mesmo nome deve ser o nome do título do documento dentro deste, mas com espaçamento com *espaços* (" "). Ex.: *"Plano-de-Gerência-de-Configuração", "Documento-de-Especificação-de-Interface"*, etc. |
+
+**Obs.:** Todo novo documento de texto incluído no repositório deve ser referenciado no [**`README.md`**](../README.md) na seção (área da Engenharia de Software) a qual ele pertence.
+
+#### Outros artefatos
+
+Todos os outros artefatos gerados no projeto – como diagramas e protótipos de interface – terão o seguinte método de identificação:
+
+**`<tipo-do-artefato>_<identificador>.<ext>`**
+
+| Identificador | Descrição |
+|---------------|-----------|
+| `<tipo-do-artefato>` | Tipo do artefato. Um nome completo com letras *minúsculas*, sem acentos e espaçamento com *hífen* ("-"). Ex.: *"diagrama-de-classes", "politica-de-branches"*, etc. |
+| `_` | Separador. Um *underline* ("\_"). |
+| `<identificador>` | Identificador único, mas opcional, dependendo do tipo do artefato (número, data ou frase), também com letras *minúsculas*, sem acentos e espaçamento com *hífen* ("-"). Ex.: *"121", "18-02-2016", "avaliacao-de-provas"*, etc. |
+| `<ext>` | A extensão do arquivo. Ex.: *"png", "ep", "asta", "bpm"*, etc. |
+
+Exemplos:
+ * `diagrama-de-sequencia_rf-atualegres.png`
+ * `politica-de-gco.png`
+
+**Obs.:** O nome desses artefatos deve ser obrigatoriamente em *minúsculas*, sem acentos e espaçamento com *hífen* ("-") porque existem servidores Web e frameworks de aplicação que rodam em *Linux* e podem causar problemas de não encontrarem arquivos e/ou emitir erros ao executar o software com arquivos com esse tipo de nome.
 
 ### 3.4. Commits
 
