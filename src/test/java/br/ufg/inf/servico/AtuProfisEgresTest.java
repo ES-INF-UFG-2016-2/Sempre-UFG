@@ -1,3 +1,5 @@
+package br.ufg.inf.servico;
+
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
