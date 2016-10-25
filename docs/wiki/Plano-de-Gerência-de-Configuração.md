@@ -178,36 +178,29 @@ O código-fonte no *repositório principal* deve seguir os [convenções de cód
 
 ### 3.5. Branches
 
-O repositório de código fonte deve ter no mínimo 5 branches:
+O repositório de código fonte deve ter no mínimo **três** branches:
 
 | Branch | Descrição | Responsável (is) |
 |--------|-----------|------------------|
-| **`develop`** | branch de desenvolvimento de software dos grupos | [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) / [***@ES-INF-UFG-2016-2/grupo1***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo1) / [***@ES-INF-UFG-2016-2/grupo2***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo2) / [***@ES-INF-UFG-2016-2/grupo3***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo3)
-| **`homolog`** |  tem o objetivo de integrar as branches de todos os grupos. Nesta branch será feita uma avaliação e refatoração (caso necessário) dos artefatos antes que sejam colocados na branch **master**. | [**@julianolopes**](https://github.com/julianolopes) /  [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
-| **`master`**  | branch que contém a versão com todos os artefatos do projeto validados pela equipe (branch padrão). | [**@julianolopes**](https://github.com/julianolopes)
+| **`develop`** | branch de *desenvolvimento* de software dos grupos | [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) / [***@ES-INF-UFG-2016-2/grupo1***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo1) / [***@ES-INF-UFG-2016-2/grupo2***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo2) / [***@ES-INF-UFG-2016-2/grupo3***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo3)
+| **`homolog`** | branch de *homologação* / V&V dos artefatos antes de serem colocados na branch **master**. | [**@julianolopes**](https://github.com/julianolopes) /  [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
+| **`master`**  | branch que contém a *versão estável* de todos os artefatos do projeto (branch padrão). | [**@julianolopes**](https://github.com/julianolopes)
 
-#### Branches dos grupos
+#### Branches para os grupos
 
-As branches `G1`, `G2` e `G3` são bloqueadas para fazer *push*. Para enviar commits para essas branches é necessário fazer o seguinte procedimento:
+As branches `develop`, `homolog` e `master` são bloqueadas para a maioria dos integrantes fazerem *push*. Para enviar *commits* para essas branches é necessário fazer o seguinte procedimento:
 
-1. O integrante que está em determinado grupo cria uma "**branch temporária**" para seu uso próprio a partir da branch de seu grupo. <br> A branch deve ter como nome:
-	* *O prefixo de* ***nome da branch do grupo*** *+ o nome da tarefa / requisito / funcionalidade que será feita nela.*  
+1. O integrante que está em determinado grupo cria uma ***branch*** **temporária** para seu uso próprio a partir da branch **`develop`**; <br> A branch deve ter como nome:
+	* *O prefixo de* ***nome do grupo +*** *o nome da tarefa / requisito / funcionalidade que será feito nela.*  
 	Exemplos:
 		* `G1-RF-ExecCons`
 		* `G3-RD-AprovDivulgInfo`
-2. Na nova branch, o integrante trabalha no projeto (faz commits na sua branch)
-3. Quando termina, integrante faz **solicitação de mudança** para a branch do seu grupo – "**Pull Request**" ***(PR)*** – e aguarda os [**GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) fazerem auditoria de configuração:
-	* Se o *PR* é **aprovado**, commits do integrante vão para a branch do grupo;
-	* Se ***reprovado***, *PR* é rejeitado e integrante deve corrigir (fazendo novos commits no *PR*).
+2. Na nova branch, o integrante trabalha no projeto (faz *commits* na sua branch);
+3. Quando terminar, o integrante faz um ***PR*** para a branch **`develop`** e aguarda os [**GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) fazerem auditoria de configuração (*review*):
+	* Se o *PR* é **aprovado**, *commits* do integrante nessa branch vão para a branch `develop`;
+	* Se ***reprovado***, o integrante deve corrigir (fazendo novos *commits* na branch do *PR*).
 
-#### Branch `master`
-
-O **master** terá as seguintes regras para controle de commits:
-
-* Apenas os GCOs poderão enviar commits para o **homolog**, e, após avaliação, para o **master**.
-* Apenas os integrantes de sua respectiva equipe poderão enviar commits para a branch de seu grupo.
-
-O fluxo de desenvolvimento de software com as cinco branches no repositório do **Sempre UFG** está ilustrado abaixo:
+O fluxo de desenvolvimento de software na visão da GCS – com o esquema das três principais branches no repositório do **Sempre UFG** – está ilustrado abaixo:
 
 ![Politica-de-GCO](./anexos/GCO/politica-de-branches/Politica-de-GCO.png)
 
