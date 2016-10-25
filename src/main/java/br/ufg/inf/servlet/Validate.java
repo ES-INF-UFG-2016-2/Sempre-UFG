@@ -14,7 +14,7 @@ import java.sql.*;
 public class Validate
  {
      public static boolean checkUser(String email,String pass) {
-         boolean st = false;
+         boolean st = true;
      
          return st;                 
      }   

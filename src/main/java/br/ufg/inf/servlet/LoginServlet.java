@@ -21,23 +21,25 @@ public class LoginServlet extends HttpServlet{
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        
+        response.setContentType("text/html"); 
         PrintWriter out = response.getWriter();
         
         String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
-       
+        String pass = request.getParameter("password");
+
         if(Validate.checkUser(email, pass))
         {
             out.print("Welcome");  
-            HttpSession session=request.getSession();
-            session.setAttribute(email, email); 
+            HttpSession session = request.getSession();
+              
+            session.setAttribute("email", email); 
+           
         }
         else
         {
            out.print("Sorry, username or password error!");  
-           request.getRequestDispatcher("login.html").include(request, response);  
         }
-        out.close();  
+       out.close();  
     }  
 }
