@@ -107,35 +107,42 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 
 #### Ferramentas
 
-| Tipo | Ferramenta | Versão |
-|------|------------|--------|
-| Controle de versão | [Git](http://git-scm.com) | 2.4.2 ou superior |
-| Cliente Git (GUI) | [SmartGit](http://www.syntevo.com/smartgit) | 7.1.4 ou superior |
-| Repositório de código-fonte | [GitHub](../) |   |
+| Tipo | Ferramenta | Versão* |
+|-----:|:-----------|:-------:|
+| VCS | [Git](http://git-scm.com) | 2.4.2 ou superior |
+| Cliente em GUI para VCS | [SmartGit](http://www.syntevo.com/smartgit) | 7.1.4 ou superior |
+| Sistema de Repositório | [GitHub](https://github.com) | – |
 | Plataforma de programação | [Java (JDK)](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html) | 1.8 |
-| Ambiente de Desenvolvimento (IDE) | [IntelliJ IDEA Community](https://www.jetbrains.com/idea) | 2016 ou superior |
-| Integração contínua | [Travis CI](https://travis-ci.org) |    |
-| Análise Estática de Qualidade de Código | [SonarQube]() |    |
-| Repositório de documentação | [GitHub Wiki](./) |   |
+| IDE | [IntelliJ IDEA Community](https://www.jetbrains.com/idea) | 2016 ou superior |
+| IDE | [NetBeans IDE](https://netbeans.org) | 8.0 ou superior |
+| CI | [Travis CI](https://travis-ci.org) | – |
+| Análise estática de código | [SonarQube](http://www.sonarqube.org) | 6.1 ou superior |
 | Editor de texto *Markdown* | [Atom](http://atom.io) | 1.8.0 ou superior |
 | Editor de diagramas | [Astah Community]() | 6.9.0 ou superior |
-| Editor de Imagens |[GIMP](http://www.gimp.org/) | 2.8.0 ou superior |
+| Editor de protótipos | [prikhi Pencil](https://github.com/prikhi/pencil) <br> com *stencil collection* [*Bootstrap*](https://github.com/nathanielw/Bootstrap-Pencil-Stencils) | 2.0.18 ou superior |
+| Editor de Imagens |[GIMP](http://www.gimp.org) | 2.8.0 ou superior |
 | Editor de Desenho Vetorial |[Inkscape](https://inkscape.org) | 0.48.0 ou superior |
-| Controle de mudanças | [GitHub Issues](../issues) |   |
-| Gerência de projeto | [GitHub Projects](../projects) |   |
+| Gerência de projeto | [Trello](https://trello.com) | – |
+| Controle de mudanças | [GitHub Pull Requests](../../../../pulls) | – |
+| *Bug Tracker* | [GitHub Issues](../../../../issues) | – |
+
+\* "**–**" – *sistema Web, sempre será última versão.*
 
 #### Tecnologias
 
 | Tipo | Tecnologia | Versão |
-|------|------------|--------|
-| Container de Desenvolvimento| [Apache Tomcat](http://tomcat.apache.org) | 7.33 ou superior |
+|-----:|:-----------|:------:|
 | Linguagem de Programação | [Java](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html) | 8 Update 91 |
+| Gerenciamento / automação de *build* | [Apache Maven](https://maven.apache.org) | 3.0.4 ou superior |
+| Contêiner de Desenvolvimento | [Apache Tomcat](http://tomcat.apache.org) | 7.33 ou superior |
 | Framework Web | [Java Servlet](https://jcp.org/en/jsr/detail?id=315) | 3.0 ou superior  |
-| Banco de Dados | [MariaDB](https://mariadb.org/) | 5.5 |
-| Framework de Apresentação | [Java ServerFaces](https://javaserverfaces.java.net/) | 2.3.0 ou superior |
-| Linguagem de Apresentação Dinâmica (Front-end) | [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) | EcmaScript3 ou superior |
-| Framework de Estilo | [Twitter Bootstrap](http://getbootstrap.com/) | 3.0 ou superior |
-| Framework de Conteúdo Dinâmico (Front-end)| [JQuery](https://jquery.com/) | 3.0 ou superior |
+| Banco de Dados | [MariaDB](https://mariadb.org) | 5.5 ou superior |
+| Banco de Dados | [PostgreSQL](https://www.postgresql.org) | 9.5 ou superior |
+| Framework de persistência (ORM) | [Hibernate](http://hibernate.org) | 2.1 |
+| Framework de Apresentação (Front-end) | [Java ServerFaces](https://javaserverfaces.java.net) | 2.3.0 ou superior |
+| Linguagem de script para cliente Web (Front-end) | [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) | ECMAScript3 |
+| Framework de Estilo (Front-end) | [Twitter Bootstrap](http://getbootstrap.com) | 3.3 ou superior |
+| Framework de JavaScript (Front-end)| [JQuery](https://jquery.com) | 3.0 ou superior |
 
 ### 3.3. Identificação da Configuração
 
