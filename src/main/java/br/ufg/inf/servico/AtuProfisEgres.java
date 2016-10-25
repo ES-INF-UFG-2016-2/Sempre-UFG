@@ -22,8 +22,8 @@ public class AtuProfisEgres {
     }
 
     public boolean inserirFormaIngresso(String forma) {
-        String entrada = "Concurso";
-        if (forma == entrada){
+        if (forma == "Concurso Público" || forma == "Seleção Interna" || forma == "Indicação" ||
+                forma == "Voluntário" || forma == "Outra") {
             return true;
         } else {
             return false;
