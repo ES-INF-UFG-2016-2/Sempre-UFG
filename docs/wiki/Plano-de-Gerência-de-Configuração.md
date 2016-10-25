@@ -209,7 +209,7 @@ O **master** terá as seguintes regras para controle de commits:
 
 O fluxo de desenvolvimento de software com as cinco branches no repositório do **Sempre UFG** está ilustrado abaixo:
 
-![Politica-de-GCO](./wiki/anexos/GCO/politica-de-branches/Politica-de-GCO.png)
+![Politica-de-GCO](./anexos/GCO/politica-de-branches/Politica-de-GCO.png)
 
 ### 3.6. Estrutura do Repositório
 
