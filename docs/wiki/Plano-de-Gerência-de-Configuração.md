@@ -70,26 +70,24 @@ equipe.
 
 #### Gerentes de Configuração (GCOs)
 
-| Grupo   | Gerente  de Configuração                     |
-|---------|----------------------------------------------|
-| Grupo 1 | **Gustavo Moraes dos Santos** @gustavosotnas |
-| Grupo 2 | **Leonardo Freitas dos Santos** @leonardo-freitas-1995 |
-| Grupo 3 |**Yuri Matheus Dias Pereira** @Yuri-M-Dias
+A lista dos Gerentes de Configuração (GCOs) encontra-se nesta página:
+
+[**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
 
 ### 2.1. Responsabilidades dos GCOs
 
-* Supervisionar andamento das branches;
-* Fazer e controlar as issues (pacotes de trabalho);
-* Aprovar solicitações de merges (Pull Requests) sem "commits quebrados" – commits com código-fonte com erros de compilação / nos testes;
-* Manter o padrão de diretórios dos repositórios (organização);
+* Manter padronizada a estrutura de diretórios do repositório (organização);
+* Supervisionar as *Issues* (pacotes de trabalho);
+* Supervisionar o fluxo de criação, andamento e exclusão das branches pelos integrantes dos grupos;
+* Aprovar solicitações de mudanças (Pull Requests) sem "commits quebrados" – commits com não conformidades à GCO / código-fonte com erros de compilação / nos testes;
+* Entregar pacotes relativamente estáveis de código-fonte para o *Gerente de Projeto / V&V* [**@julianolopes**](https://github.com/julianolopes) regularmente.
 
 ### 2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO
 
 * Usar as ferramentas sugeridas (seção [3.2](#32-ferramentas-e-tecnologias));
-* Seguir os padrões de commit, da estrutura de repositórios e branches;
-* Usar as issues para gerência de atividades, e comunicação e rastreabilidade entre requisitos e código-fonte.
-* Fazer milestones para registrar os marcos do projeto;
-* Fazer a baseline no final de cada iteração.
+* Seguir os padrões de criação e uso de branches (seção [3.5](#35-branches)), da estrutura de diretórios do repositório (seção [3.6](#36-estrutura-do-repositório)), da identificação da configuração / nome dos arquivos (seção [3.3](#33-identificação-da-configuração)) e de mensagem de *commit* e *Pull Request* (seção [3.4](#34-commits));
+* Usar as *Issues* / *cards* para gerência de atividades, devendo usá-las para comunicação (tal como no processo definido no documento de **Diretrizes para Membros da Equipe**⁽[**ⁱⁱ**](#ii-oliveira-j-l-diretrizes-para-membros-da-equipe-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianodiretrizes-para-membros-da-equipepdf-acesso-em-2-out-2016)⁾;
+* Fazer rastreabilidade entre os *Pull Requests* e as *Issues* / *cards* (anexando o(s) *Pull Request*(s) a ele(s).
 
 ## 3. A Gerência de Configuração
 
