@@ -7,6 +7,7 @@ Plano de Gerência de Configuração
 <!-- MDTOC maxdepth:2 firsth1:0 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
 
 - [1. Introdução](#1-introdução)   
+   - [1.1. Definições, Acrônimos e Abreviações](#11-definições-acrônimos-e-abreviações)   
 - [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)   
    - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)   
    - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)   
@@ -23,11 +24,28 @@ Plano de Gerência de Configuração
 <!-- /MDTOC -->
 
 ## 1. Introdução
-O Plano de Gerência de Configuração apresenta todas as tarefas do
-Gerenciamento de Configuração e mudanças no projeto, para garantir a sua
-integridade e o mantendo o domínio das mudanças ocorridas durante o
-desenvolvimento. Nesse documento detalha-se toda a infra-estrutura
-utilizada nesse projeto.
+Este **Plano de Gerência de Configuração** apresenta todas as tarefas do
+Gerenciamento de Configuração e Mudanças neste projeto. Nesse documento detalha-se toda a infraestrutura
+utilizada neste projeto e como contribuir no mesmo.
+
+### 1.1. Definições, Acrônimos e Abreviações
+
+| Termo | Significado |
+|------:|-------------|
+| [**Baseline/Tag**](https://en.wikipedia.org/wiki/Baseline_%28configuration_management%29) | **Linha de referência** / "etiqueta" marcando ponto no desenvolvimento de software em que seus artefatos estão supostamente estáveis. |
+| [**Branch**](https://en.wikipedia.org/wiki/Branching_%28version_control%29) | **Ramificação** / contexto de trabalho paralelo no desenvolvimento de software. |
+| [**CamelCase**](https://pt.wikipedia.org/wiki/CamelCase) | forma de representação **escrita** de palavras compostas ou frases iniciadas por maiúsculas e unidas sem espaços. |
+| [**CI**](https://en.wikipedia.org/wiki/Continuous_integration) | **Integração Contínua** (do inglês *Continuous Integration*), prática de fundir e verificar funcionamento de partes de software, várias vezes ao dia. |
+| [**Commit**](https://en.wikipedia.org/wiki/Commit_%28version_control%29) | **Revisão**, de (todo ou parte de) um código-fonte num VCS. |
+| [**GCO / GCS**](https://pt.wikipedia.org/wiki/Ger%C3%AAncia_de_configura%C3%A7%C3%A3o_de_software) | **Gerência de Configuração de Software**, área da Engenharia de Software que fornece apoio para o desenvolvimento de software. |
+| [**IDE**](https://pt.wikipedia.org/wiki/Ambiente_de_desenvolvimento_integrado) | **Ambiente de Desenvolvimento Integrado** (do inglês *Integrated Development Environment*), software que reúne ferramentas para auxiliar e agilizar o desenvolvimento de software. |
+| [**Issue**](https://en.wikipedia.org/wiki/Project_management_software) | **Incidente** / *card* / atividade ou pacote de trabalho dentro de um Sistema de Gerenciamento de Projetos. |
+| [**Markdown**](https://en.wikipedia.org/wiki/Markdown) | Linguagem de Marcação Leve ([LML](https://en.wikipedia.org/wiki/Lightweight_markup_language)) para **documentos**. |
+| [**Merge**](https://pt.wikipedia.org/wiki/Fus%C3%A3o_%28controle_de_vers%C3%A3o%29) | Operação em VCS que funde / **mescla** várias revisões em uma só. |
+| [**Milestone**](https://en.wikipedia.org/wiki/Milestone_%28project_management%29) | **Marco do projeto**, reúne *Issues* / *PR*s para futura entrega de um software (ou parte dele) para um cliente. |
+| [**PR**](https://en.wikipedia.org/wiki/Distributed_version_control#Pull_requests) | *Pull Request*, **solicitação de mudança** que é feita para administradores de um repositório decidirem se uma contribuição pode fazer parte do código-fonte do mesmo. |
+| [**Push**](https://en.wikipedia.org/wiki/Version_control#Common_vocabulary) | Comando em alguns VCS para **enviar mudanças** (*commits*) para um repositório remoto. |
+| [**VCS**](https://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%B5es) | **Sistema de Controle de Versões** (do inglês *Version Control System*), software usado para fazer Gerência de Configuração. |
 
 ## 2. Organização, Responsabilidades, e Interfaces
 A gerência de configuração faz um papel fundamental para que o
