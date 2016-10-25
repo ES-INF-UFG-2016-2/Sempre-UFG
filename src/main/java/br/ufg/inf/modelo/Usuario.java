@@ -1,6 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
+import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
 
 import java.util.BitSet;
 import java.util.Date;
