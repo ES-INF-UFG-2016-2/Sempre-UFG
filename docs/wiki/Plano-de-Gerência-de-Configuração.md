@@ -265,64 +265,69 @@ O fluxo de desenvolvimento de software na visão da GCS – com o esquema das tr
 
 ### 3.6. Estrutura do Repositório
 
-> * ***anexos***
->    - ***Arquitetura***
->		+ *Arquivos de anexo para arquitetura (diagramas, planos)*
->    - ***Teste***
->		+ *Arquivos de anexo para testes*
-> * ***db***
->    - ***ddl***
->		+ *Arquivos .sql de DDL*
->    - ***dml***
->		+ *Arquivos .sql de DML*
-> * ***docs***
->    - ***wiki***
->		+ *Arquivos da wiki do repositório*
-> * ***src***
->    - ***main***
->		+ ***resources***
->			* Recursos
->		+ ***java/br/ufg/inf/***
->			* ***abstratas***
->				* Classes abstratas
->			* ***config***
->				* Classes configurações
->			* ***dao***
->				* Classes de Data Access Object
->			* ***db***
->				* Classes de conexão ao banco
->			* ***enums***
->				* Classes de enum
->			* ***interfaces***
->				* Interfaces java
->			* ***modelo***
->				* Classes de entidade
->			* ***servico***
->				* Classes de serviço com regras de negócio
->			* ***servlet***
->				* Classes de comunicação HTTP
->			* ***utils***
->				* Classes utilitárias / ferramentas
->    - ***test***
->		+ ***resources***
->			* Recursos para testes
->		+ ***java/br/ufg/inf/***
->			* ***config***
->				* Classes que testam configurações configurações
->			* ***dao***
->				* Classes que testam persistência no banco
->			* ***db***
->				* Classes que testam conexão ao banco / scrips sql
->			* ***modelo***
->				* Classes que testam entidades
->			* ***servico***
->				* Classes que testam regras de negócio
->			* ***servlet***
->				* Classes que testam comunicação HTTP
->			* ***stubs***
->				* Stubs para testes
+> * `db`
+> 	- *`ddl`*
+> 		+ *Arquivos SQL de DDL*
+> 	- *`dml`*
+> 		+ *Arquivos SQL de DML*
+> * `docs`
+> 	- *Documentação do sistema*
+> 	- *`wiki`*
+> 		+ *Documentos da Wiki do repositório*
+> 		+ **`anexos`**
+> 			* ***`arq`***
+> 				- *Arquivos de anexo relacionados à Arquitetura do software (diagramas, processos, etc.)*
+> 			* ***`gco`***
+> 				- *Arquivos de anexo para o Plano de Gerência de Configuração*
+> 			* ***`req`***
+> 				- *Arquivos de anexo para apoio da Engenharia de Requisitos (protótipos, etc.)*
+> 			* ***`v&v`***
+> 				- *Arquivos de apoio para o processo de Verificação e Validação*
+> 		- **`extras`**
+> 			+ *Arquivos de terceiros ou que não tem relação direta com apenas uma área de conhecimento dentro do projeto (identidade visual, material de apoio, etc.)*
+> * `src`
+> 	- *`main`*
+> 		+ **`resources`**
+> 			* *Recursos para uso da aplicação*
+> 		+ **`java/br/ufg/inf/sempreufg`**
+> 			* ***`abstratas`***
+> 				- *Classes abstratas*
+> 			* ***`dao`***
+> 				- *Classes de Data Access Object*
+> 			* ***`db`***
+> 				- *Classes de conexão ao banco*
+> 			* ***`enums`***
+> 				- *Classes de enum*
+> 			* ***`excecoes`***
+> 				- *Exceptions personalizadas para o projeto*
+> 			* ***`interfaces`***
+> 				- *Interfaces Java*
+> 			* ***`modelo`***
+> 				- *Classes de entidade*
+> 			* ***`servico`***
+> 				- *Classes de serviço com regras de negócio*
+> 			* ***`servlet`***
+> 				- *Classes de comunicação com cliente via HTTP*
+> 			* ***`utils`***
+> 				- *Classes utilitárias / ferramentas*
+> 	- *`test`*
+> 		+ **`resources`**
+> 			* *Recursos para testes da aplicação*
+> 		+ **`java/br/ufg/inf/sempreufg`**
+> 			* ***`dao`***
+> 				- *Classes que testam persistência no banco*
+> 			* ***`db`***
+> 				- *Classes que testam conexão ao banco / scripts SQL*
+> 			* ***`modelo`***
+> 				- *Classes que testam entidades*
+> 			* ***`servico`***
+> 				- *Classes que testam regras de negócio*
+> 			* ***`servlet`***
+> 				- *Classes que testam comunicação HTTP com cliente*
+> 			* ***`stubs`***
+> 				- *Stubs para testes*
 
-Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade de um novo pacote devido a uma classe não se encaixar a nenhuma categoria de pacote na estrutura atual) deve ser discutida diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no Pull Request da alteração desejada.
+Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade de um novo pacote devido a uma classe não se encaixar a nenhuma categoria de pacote na estrutura atual) deve ser discutida diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no *Pull Request* da alteração desejada.
 
 ### 3.7. Controle de mudanças
 
