@@ -1,45 +1,54 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
 import br.ufg.inf.modelo.Evento;
 import br.ufg.inf.modelo.Usuario;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.Properties;
+
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.mail.Folder;
+import javax.mail.Session;
+import javax.mail.Store;
 
 public class DivulgaEventEgresTest {
     private Usuario usuarioTestatoI;
     private Usuario usuarioTestatoII;
     private Usuario usuarioTestatoIII;
+    private List<Usuario> usuarioCurso;
     private Evento evento;
 
-    private DivulgadorEventosServiceMock divulgadorEventosService;
-    private AprovadorEventosServiceMock aprovadorEventosService;
-    private CursoServiceMock cursoService;
+    private DivulgadorEventosServiceInterface divulgadorEventosServiceInterface;
+    private AprovadorEventosServiceInterface aprovadorEventosServiceInterface;
+    private CursoServiceInterface cursoServiceInterface;
 
     @Before
     public void setUp() {
-        aprovadorEventosService = new AprovadorEventosServiceMock();
-        cursoService = new CursoServiceMock();
-        divulgadorEventosService = new DivulgadorEventosServiceMock();
+        usuarioCurso = new ArrayList<>();
+        aprovadorEventosServiceInterface = new AprovadorEventosService();
+        cursoServiceInterface = new CursoService();
+        divulgadorEventosServiceInterface = new DivulgadorEventosService();
         usuarioTestatoI = new Usuario();
         usuarioTestatoI.setNome("NomeUsuarioTesteI");
         usuarioTestatoI.setCpf("99999999999");
-        usuarioTestatoI.setMail("usuarioTestado@gmail.com");
+        usuarioTestatoI.setMail("usuarioTestado");
 
         usuarioTestatoII = new Usuario();
         usuarioTestatoII.setNome("NomeUsuarioTesteII");
         usuarioTestatoII.setCpf("99999999998");
-        usuarioTestatoII.setMail("usuarioTestadoIII@gmail.com");
+        usuarioTestatoII.setMail("usuarioTestadoIII");
 
         usuarioTestatoIII = new Usuario();
         usuarioTestatoIII.setNome("NomeUsuarioTesteIII");
         usuarioTestatoIII.setCpf("99999999998");
-        usuarioTestatoIII.setMail("usuarioTestadoIII@gmail.com");
+        usuarioTestatoIII.setMail("usuarioTestadoIII");
+
+        usuarioCurso.add(usuarioTestatoI);
+        usuarioCurso.add(usuarioTestatoII);
+        usuarioCurso.add(usuarioTestatoIII);
 
         evento = new Evento();
         evento.setAssunto("Evento");
@@ -49,69 +58,29 @@ public class DivulgaEventEgresTest {
 
     @Test
     public void testEnviaEventoPraUsuariosDeUmCurso() throws Exception {
-        Integer indentificadorCurso = 22500;
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
-        assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
+        Boolean aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.isEventoAprovado(evento);
+        Session session = Session.getDefaultInstance(new Properties());
+        Store storeUsuario1 = session.getStore("pop3");
+        Store storeUsuario2 = session.getStore("pop3");
+        Store storeUsuario3 = session.getStore("pop3");
 
-        List<Usuario> usuariosDoCurso = cursoService.obtenhaUsuariosDoCurso(indentificadorCurso);
-        boolean resultado = divulgadorEventosService.divulgarEventoParaListaDeUsuarios(evento, usuariosDoCurso);
+        storeUsuario1.connect("gmail.com", usuarioTestatoI.getNome(), "password");
+        storeUsuario2.connect("gmail.com", usuarioTestatoII.getNome(), "password");
+        storeUsuario3.connect("gmail.com", usuarioTestatoIII.getNome(), "password");
+
+        Folder folderUsuario1 = storeUsuario1.getFolder("inbox");
+        Folder folderUsuario2 = storeUsuario2.getFolder("inbox");
+        Folder folderUsuario3 = storeUsuario3.getFolder("inbox");
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaListaDeUsuarios(evento, usuarioCurso);
+
+        folderUsuario1.open(Folder.READ_ONLY);
+        folderUsuario2.open(Folder.READ_ONLY);
+        folderUsuario3.open(Folder.READ_ONLY);
+
+        assertTrue(aprovacaoDivulgacaoEvento);
         assertTrue(resultado);
-        List<String> inboxI = MailBoxMock.getMessages(usuarioTestatoI.getMail());
-        assertTrue(inboxI.size() == 1);
-        List<String> inboxII = MailBoxMock.getMessages(usuarioTestatoII.getMail());
-        assertTrue(inboxII.size() == 1);
-        List<String> inboxIII = MailBoxMock.getMessages(usuarioTestatoIII.getMail());
-        assertTrue(inboxIII.size() == 1);
+        assertTrue(folderUsuario1.getMessages().length == 1);
+        assertTrue(folderUsuario2.getMessages().length == 1);
+        assertTrue(folderUsuario3.getMessages().length == 1);
     }
-
-    private class DivulgadorEventosServiceMock implements DivulgadorEventosService {
-
-        @Override
-        public boolean divulgarEventoParaListaDeUsuarios(Evento evento, List<Usuario> usuarios) {
-            return true;
-        }
-
-        @Override
-        public boolean divulgarEventoParaTodosUsuarios(Evento evento) {
-            return false;
-        }
-
-        @Override
-        public Map<Date, Map<Usuario, Evento>> obtenhaEventosQueNaoForamEnviadosAinda() {
-            return null;
-        }
-    }
-
-    private class AprovadorEventosServiceMock implements AprovadorEventosService {
-        @Override
-        public AprovacaoDivulgacaoEvento buscaEventoAprovado(Evento evento) {
-            AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = new AprovacaoDivulgacaoEvento();
-            aprovacaoDivulgacaoEvento.setDivulgacaoAprovada(true);
-            return aprovacaoDivulgacaoEvento;
-        }
-    }
-
-    private class CursoServiceMock implements CursoService {
-        @Override
-        public List<Usuario> obtenhaUsuariosDoCurso(Integer idCurso) {
-            List<Usuario> listaUsuarios = new ArrayList<>();
-
-            listaUsuarios.add(usuarioTestatoI);
-            listaUsuarios.add(usuarioTestatoII);
-            listaUsuarios.add(usuarioTestatoIII);
-
-            return listaUsuarios;
-        }
-    }
-
-    private static class MailBoxMock{
-
-        private static List<String> getMessages(String email){
-            ArrayList<String> mensagens = new ArrayList<>();
-            mensagens.add("teste");
-            return mensagens;
-        }
-
-    }
-
 }
