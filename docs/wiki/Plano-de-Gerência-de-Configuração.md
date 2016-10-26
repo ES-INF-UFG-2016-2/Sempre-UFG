@@ -356,11 +356,11 @@ Como apresentado sucintamente na seção [3.5](#35-branches):
 
 ### 3.8. Baselines
 
-Para que se dê a criação de uma baseline, é necessário que os GCOs tenham feito a análise das tarefas feitas na iteração do projeto, e as ferramentas de testes automatizados, análises estáticas de código e integração contínua (CI) tenham aprovado todo o código-fonte até aquele ponto do projeto previamente.
+Para que se dê a criação de uma baseline, é necessário que os GCOs tenham feito todas as auditorias de configuração nas atividades feitas pela equipe de desenvolvimento do *Sempre UFG* na iteração do projeto (definida pelo *Gerente de Projeto / V&V* [**@julianolopes**](https://github.com/julianolopes)), com as ferramentas de testes automatizados, análises estáticas de código e integração contínua (CI) terem **aprovado** todo o código-fonte até aquele ponto do projeto, além desses artefatos terem sido passados para a branch `homolog` e o [**@julianolopes**](https://github.com/julianolopes) tê-los *validado* e estarem na branch **`master`**.
 
 #### Tag
 
-As baselines serão "etiquetadas" com o seguinte formato, a partir do número 0 (zero):
+As baselines serão "etiquetadas" com o seguinte formato, começando a partir de **`v0.1.0`**⁽[**ⁱⁱⁱⁱ**](#iv-werner-tom-preston-semantic-versioning-200-disponível-em-httpsemverorg-acesso-em-28-mar-2015)⁾:
 
 `<major>.<minor>.<patch>`
 
@@ -370,11 +370,9 @@ E serão construídas com as seguintes orientações:
 * Adição de novas funcionalidades sem quebrar compatibilidade com versões anteriores, avança o `<minor>`.
 * Correção de bugs e outras alterações, avança `<patch>`.
 
-*Semântica de versionamento baseada no "Semantic Versioning 2.0.0". Para mais informações, visite o site do* ***semver*** *na Internet [[iii]](#iii-semantic-versioning-v20-semver-disponivel-em-httpsemverorg-acesso-em-28-mar-2015).*
-
 #### Notas de release
 
-Ao criar uma nova baseline no projeto no [GitHub](http://github.com), há opção de colocar notas de release e anexar um arquivo executável do projeto em questão. As notas de release deverão ser feitas em texto na linguagem *Markdown* no seguinte esqueleto:
+Ao criar uma nova baseline no projeto no [GitHub](http://github.com), há opção de colocar notas de release e anexar um arquivo executável do projeto em questão. As notas de release deverão ser feitas em texto na linguagem *Markdown* no seguinte *template*:
 
 ```markdown
 ### Histórico de mudanças
@@ -384,4 +382,4 @@ Ao criar uma nova baseline no projeto no [GitHub](http://github.com), há opçã
 * Menor: (...)
 ```
 
-O repositório será versionado com versão `1.0` quando o software for lançado.
+O repositório será versionado com tag **`v1.0.0`** quando o software for lançado.
