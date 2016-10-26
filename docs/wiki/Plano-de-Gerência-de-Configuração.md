@@ -331,27 +331,28 @@ Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade d
 
 ### 3.7. Controle de mudanças
 
-* Gerenciamento de issues (também chamados de "**pacotes de trabalho**")
-	* 4 principais tipos:
-		* **Bug**
-			* Tarefas para solicitar correção de defeitos no sistema detectados durante sua execução.
-		* **Melhoria**
-			* Tarefas que propõem uma manutenção de qualquer natureza no sistema.
-		* **Nova funcionalidade**
-			* Tarefas para implementar incrementos no escopo do sistema.
-		* **Questionamento**
-			* Issues para discutir questões relevantes sobre o negócio ou o projeto do sistema.
-	* 4 situações:
-		* Backlog (a fazer)
-		* Em execução
-			* Pode-se abrir questionamento (adiciona label e referencia usuário(s)).
-		* Em homologação
-			* Esperando análise de Pull Request.
-		* Close
-			* Implementada, validada e aprovada.
-* Merges (Pull Requests)
-	* Analisadas pelos GCO e ferramenta de Integração Contínua (CI).
-		* GCOs usarão "Code Review" para relatar a análise
+O **processo de Controle de Mudanças** do *Sempre UFG* gira em torno dos ***Pull Requests***, recurso do [GitHub](https://github.com) para solicitar mudanças no repositório de projeto. Eles podem ter origem em⁽[**ⁱⁱ**](#ii-oliveira-j-l-diretrizes-para-membros-da-equipe-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianodiretrizes-para-membros-da-equipepdf-acesso-em-2-out-2016)⁾:
+* *Cards* do [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), questões de natureza *administrativa*;
+* *Issues* no [**GitHub** do projeto](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/issues), questões de natureza *técnica*.
+
+Como apresentado sucintamente na seção [3.5](#35-branches):
+
+1. Um membro de algum dos grupos de desenvolvimento do software abre um *PR* para submeter seu trabalho da sua branch temporária para a `develop`;
+2. O GCO do grupo a qual esse integrante pertence recebe um email notificando-o do novo *PR* e/ou visualiza o novo *PR* no seu [GitHub](https://github.com).
+3. Visualizado o novo *PR*, o GCO do grupo inicia uma **análise de impacto da mudança**:  
+    3.1. Abre o repositório na *branch* do membro, observando – de acordo com o tipo de cada artefato adicionado ou modificado (seção [3.1](#31-artefatos-da-gerência-de-configuração)):
+    * 3.1.1. Se ele cumpriu os padrões:  
+        * 3.1.1. Do ***nome da branch*** (seção [3.5](#35-branches));
+        * 3.1.2. Da ***estrutura do repositório*** (colocou os artefatos no diretório correto – seção [3.6](#36-estrutura-do-repositório));
+        * 3.1.3. Do ***nome do(s) novo(s) arquivo(s)*** no repositório (seção [3.3](#33-identificação-da-configuração));
+        * 3.1.3. De ***construção*** do artefato de software (seção [3.3](#33-identificação-da-configuração)):
+            - Nomes de classes, variáveis, métodos, boas práticas de programação – *análise estática*, via manual (leitura de software) e via [SonarQube](http://www.sonarqube.org)
+            - Erros de sintaxe, de lógica e/ou de compilação – *análise dinâmica*, via manual (compilando o projeto) e via [Travis CI](https://travis-ci.org/ES-INF-UFG-2016-2/Sempre-UFG)
+        * 3.1.4. Da(s) ***mensagem(ns) de commit e do Pull Request*** (seção [3.4](#34-commits))  
+    * 3.1.2. O GCO usará o "*Code Review*" do *Pull Request* para relatar a análise, se **aprova** ou **desaprova** a solicitação de mudança.
+4. O membro referencia o seu *PR* no *card* ou *issue* de origem da solicitação de mudança, para se ter a rastreabilidade do seu trabalho no projeto.  
+    4.1. Se for um *card* no [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), usar o recurso "**Power-Ups**" > ![GitHub_favicon](http://www.nunocorreia.com/favicons/github.png) **GitHub** > **Attach Pull Request...** > <**#número Nome do PR**>  
+    4.2. Se for uma *issue* no [**GitHub** do projeto](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/issues), escrever em comentário o número do *PR* seguido de *cerquilha* ("**#**").
 
 ### 3.8. Baselines
 
