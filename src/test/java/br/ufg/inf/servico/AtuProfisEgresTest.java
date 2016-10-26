@@ -2,6 +2,8 @@ package br.ufg.inf.servico;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import java.util.List;
+import java.util.ArrayList;
 
 public class AtuProfisEgresTest {
 
