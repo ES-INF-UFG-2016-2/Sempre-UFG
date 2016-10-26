@@ -1,6 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enuns.TiposProgramaAcademico;
+import br.ufg.inf.enums.TiposProgramaAcademico;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package br.ufg.inf.dao;
+package br.ufg.inf.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,15 +7,15 @@ import java.sql.SQLException;
 public class ConexaoBanco {
 
 	public static Connection conn = null;
-	
+
 	public static Connection getConnection(){
 		if(conn != null) return conn;
-		
+
 		return getConnection("postgres");
-		
+
 	}
-	
-	
+
+
 	public static Connection getConnection(String username){
 		try {
 			Class.forName("org.postgresql.Driver");

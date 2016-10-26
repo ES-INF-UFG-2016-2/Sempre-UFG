@@ -192,6 +192,9 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 >		+ *Arquivos .sql de DDL*
 >    - ***dml***
 >		+ *Arquivos .sql de DML*
+> * ***docs***
+>    - ***wiki***
+>		+ *Arquivos da wiki do repositório*
 > * ***src***
 >    - ***main***
 >		+ ***resources***
@@ -202,7 +205,9 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 >			* ***config***
 >				* Classes configurações
 >			* ***dao***
->				* Classes de Data Access Object ou conexão ao banco
+>				* Classes de Data Access Object
+>			* ***db***
+>				* Classes de conexão ao banco
 >			* ***enums***
 >				* Classes de enum
 >			* ***interfaces***
@@ -223,15 +228,18 @@ O fluxo de desenvolvimento de software com as cinco branches no repositório do 
 >				* Classes que testam configurações configurações
 >			* ***dao***
 >				* Classes que testam persistência no banco
+>			* ***db***
+>				* Classes que testam conexão ao banco / scrips sql
 >			* ***modelo***
->				* Classes que testam entidades / requisitos de dados
+>				* Classes que testam entidades
 >			* ***servico***
 >				* Classes que testam regras de negócio
 >			* ***servlet***
 >				* Classes que testam comunicação HTTP
->			* ***utils***
->				* Demais testes
+>			* ***stubs***
+>				* Stubs para testes
 
+Qualquer alteração na estrutura de pastas (Como uma a necessidade de um novo pacote devido a uma classe não se encaixar a nenhum pacote da estrutura atual) deve ser discutido diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no Pull Request.
 
 ##### 3.6.2. Repositório Wiki
 
