@@ -50,13 +50,17 @@ utilizada neste projeto e como contribuir no mesmo.
 
 ### 1.2. Referências
 
-###### i. SANTOS, Gustavo Moraes dos et al. Template de Plano de Gerenciamento de Configuração. Disponível em: <http://github.com/gabrielaimeeg/DroidMetronome/wiki/TEMPLATE-Plano-de-Gerenciamento-de-Configuração>. Acesso em: 28 mar. 2015.
+<h6 id="cite-ref-1"/>
+###### 1. SANTOS, Gustavo Moraes dos et al. Template de Plano de Gerenciamento de Configuração. Disponível em: <http://github.com/gabrielaimeeg/DroidMetronome/wiki/TEMPLATE-Plano-de-Gerenciamento-de-Configuração>. Acesso em: 28 mar. 2015.
 
-###### ii. OLIVEIRA, J. L. Diretrizes para Membros da Equipe. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/diretrizes-para-membros-da-equipe.pdf>. Acesso em: 2 out. 2016.
+<h6 id="cite-ref-2"/>
+###### 2. OLIVEIRA, J. L. Diretrizes para Membros da Equipe. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/diretrizes-para-membros-da-equipe.pdf>. Acesso em: 2 out. 2016.
 
-###### iii. OLIVEIRA, J. L. Requisitos de Software - SempreUFG. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/requisitos-de-software-para-sempre-ufg-2016.pdf>. Acesso em: 2 out. 2016.
+<h6 id="cite-ref-3"/>
+###### 3. OLIVEIRA, J. L. Requisitos de Software - SempreUFG. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/requisitos-de-software-para-sempre-ufg-2016.pdf>. Acesso em: 2 out. 2016.
 
-###### iv. WERNER, Tom Preston. Semantic versioning 2.0.0. Disponível em: <http://semver.org>. Acesso em: 28 mar. 2015.
+<h6 id="cite-ref-4"/>
+###### 4. WERNER, Tom Preston. Semantic versioning 2.0.0. Disponível em: <http://semver.org>. Acesso em: 28 mar. 2015.
 
 ## 2. Organização, Responsabilidades, e Interfaces
 A gerência de configuração faz um papel fundamental para que o
@@ -86,7 +90,7 @@ A lista dos Gerentes de Configuração (GCOs) encontra-se nesta página:
 
 * Usar as ferramentas sugeridas (seção [3.2](#32-ferramentas-e-tecnologias));
 * Seguir os padrões de criação e uso de branches (seção [3.5](#35-branches)), da estrutura de diretórios do repositório (seção [3.6](#36-estrutura-do-repositório)), da identificação da configuração / nome dos arquivos (seção [3.3](#33-identificação-da-configuração)) e de mensagem de *commit* e *Pull Request* (seção [3.4](#34-commits));
-* Usar as *Issues* / *cards* para gerência de atividades, devendo usá-las para comunicação (tal como no processo definido no documento de **Diretrizes para Membros da Equipe**⁽[**ⁱⁱ**](#ii-oliveira-j-l-diretrizes-para-membros-da-equipe-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianodiretrizes-para-membros-da-equipepdf-acesso-em-2-out-2016)⁾;
+* Usar as *Issues* / *cards* para gerência de atividades, devendo usá-las para comunicação (tal como no processo definido no documento de **Diretrizes para Membros da Equipe**⁽[**²**](#cite-ref-2)⁾;
 * Fazer rastreabilidade entre os *Pull Requests* e as *Issues* / *cards* (anexando o(s) *Pull Request*(s) a ele(s).
 
 ## 3. A Gerência de Configuração
@@ -182,9 +186,9 @@ Todos os DDLs e DMLs na pasta `db/` terão o seguinte método de identificação
 
 | Identificador | Descrição |
 |---------------|-----------|
-| `RD` | Requisito de Dados. Categoria de requisito definida pelo [**@julianolopes**](https://github.com/julianolopes) em seu documento de **Requisitos de Software do Sempre UFG**⁽[**ⁱⁱⁱ**](#iii-oliveira-j-l-requisitos-de-software-sempreufg-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianorequisitos-de-software-para-sempre-ufg-2016pdf-acesso-em-2-out-2016)⁾ |
+| `RD` | Requisito de Dados. Categoria de requisito definida pelo [**@julianolopes**](https://github.com/julianolopes) em seu documento de **Requisitos de Software do Sempre UFG**⁽[**³**](#cite-ref-3)⁾ |
 | `-` | Separador. Um *hífen* ("-"). |
-| `<NomeDoRD>` | Nome do requisito de dados tal como no documento de **Requisitos de Software do Sempre UFG**⁽[**ⁱⁱⁱ**](#iii-oliveira-j-l-requisitos-de-software-sempreufg-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianorequisitos-de-software-para-sempre-ufg-2016pdf-acesso-em-2-out-2016)⁾ (nome que identifica unicamente o arquivo). Ex.: *"PessoaEgres", "CursSup", "DivulgInfo"*, etc. |
+| `<NomeDoRD>` | Nome do requisito de dados tal como no documento de **Requisitos de Software do Sempre UFG**⁽[**³**](#cite-ref-3)⁾ (nome que identifica unicamente o arquivo). Ex.: *"PessoaEgres", "CursSup", "DivulgInfo"*, etc. |
 
 #### Documentos em Markdown
 
@@ -331,7 +335,7 @@ Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade d
 
 ### 3.7. Controle de mudanças
 
-O **processo de Controle de Mudanças** do *Sempre UFG* gira em torno dos ***Pull Requests***, recurso do [GitHub](https://github.com) para solicitar mudanças no repositório de projeto. Eles podem ter origem em⁽[**ⁱⁱ**](#ii-oliveira-j-l-diretrizes-para-membros-da-equipe-disponível-em-httpsgithubcomes-inf-ufg-2016-2sempre-ufgblobdevelopdocswikiextrasdocumentos-do-professor-julianodiretrizes-para-membros-da-equipepdf-acesso-em-2-out-2016)⁾:
+O **processo de Controle de Mudanças** do *Sempre UFG* gira em torno dos ***Pull Requests***, recurso do [GitHub](https://github.com) para solicitar mudanças no repositório de projeto. Eles podem ter origem em⁽[**²**](#cite-ref-2)⁾:
 * *Cards* do [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), questões de natureza *administrativa*;
 * *Issues* no [**GitHub** do projeto](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/issues), questões de natureza *técnica*.
 
@@ -360,7 +364,7 @@ Para que se dê a criação de uma baseline, é necessário que os GCOs tenham f
 
 #### Tag
 
-As baselines serão "etiquetadas" com o seguinte formato, começando a partir de **`v0.1.0`**⁽[**ⁱⁱⁱⁱ**](#iv-werner-tom-preston-semantic-versioning-200-disponível-em-httpsemverorg-acesso-em-28-mar-2015)⁾:
+As baselines serão "etiquetadas" com o seguinte formato, começando a partir de **`v0.1.0`**⁽[**⁴**](#cite-ref-4)⁾:
 
 `<major>.<minor>.<patch>`
 
