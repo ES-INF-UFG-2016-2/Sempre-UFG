@@ -15,10 +15,10 @@ Plano de Gerência de Configuração
 - [3. A Gerência de Configuração](#3-a-gerência-de-configuração)   
    - [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerência-de-configuração)   
    - [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)   
-   - [3.3. Identificação da Configuração](#33-identificação-da-configuração)   
-   - [3.4. Commits](#34-commits)   
-   - [3.5. Branches](#35-branches)   
-   - [3.6. Estrutura do Repositório](#36-estrutura-do-repositório)   
+   - [3.3. Branches](#33-branches)   
+   - [3.4. Estrutura do Repositório](#34-estrutura-do-repositório)   
+   - [3.5. Identificação da Configuração](#35-identificação-da-configuração)   
+   - [3.6. Commits](#36-commits)   
    - [3.7. Controle de mudanças](#37-controle-de-mudanças)   
    - [3.8. Baselines](#38-baselines)   
 
@@ -146,7 +146,101 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 | Framework de Estilo (Front-end) | [Twitter Bootstrap](http://getbootstrap.com) | 3.3 ou superior |
 | Framework de JavaScript (Front-end)| [JQuery](https://jquery.com) | 3.0 ou superior |
 
-### 3.3. Identificação da Configuração
+### 3.3. Branches
+
+O repositório de código fonte deve ter no mínimo **três** branches:
+
+| Branch | Descrição | Responsável (is) |
+|--------|-----------|------------------|
+| **`develop`** | branch de *desenvolvimento* de software dos grupos | [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) / [***@ES-INF-UFG-2016-2/grupo1***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo1) / [***@ES-INF-UFG-2016-2/grupo2***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo2) / [***@ES-INF-UFG-2016-2/grupo3***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo3)
+| **`homolog`** | branch de *homologação* / V&V dos artefatos antes de serem colocados na branch **master**. | [**@julianolopes**](https://github.com/julianolopes) /  [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
+| **`master`**  | branch que contém a *versão estável* de todos os artefatos do projeto (branch padrão). | [**@julianolopes**](https://github.com/julianolopes)
+
+#### Branches para os grupos
+
+As branches `develop`, `homolog` e `master` são bloqueadas para a maioria dos integrantes fazerem *push*. Para enviar *commits* para essas branches é necessário fazer o seguinte procedimento:
+
+1. O integrante que está em determinado grupo cria uma ***branch*** **temporária** para seu uso próprio a partir da branch **`develop`**; <br> A branch deve ter como nome:
+	* *O prefixo de* ***nome do grupo +*** *o nome da tarefa / requisito / funcionalidade que será feito nela.*  
+	Exemplos:
+		* `G1-RF-ExecCons`
+		* `G3-RD-AprovDivulgInfo`
+2. Na nova branch, o integrante trabalha no projeto (faz *commits* na sua branch);
+3. Quando terminar, o integrante faz um ***PR*** para a branch **`develop`** e aguarda os [**GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) fazerem auditoria de configuração (*review*):
+	* Se o *PR* é **aprovado**, *commits* do integrante nessa branch vão para a branch `develop`;
+	* Se ***reprovado***, o integrante deve corrigir (fazendo novos *commits* na branch do *PR*).
+
+O fluxo de desenvolvimento de software na visão da GCS – com o esquema das três principais branches no repositório do **Sempre UFG** – está ilustrado abaixo:
+
+![Politica-de-GCO](./anexos/GCO/politica-de-branches/Politica-de-GCO.png)
+
+### 3.4. Estrutura do Repositório
+
+> * `db`
+> 	- *`ddl`*
+> 		+ *Arquivos SQL de DDL*
+> 	- *`dml`*
+> 		+ *Arquivos SQL de DML*
+> * `docs`
+> 	- *Documentação do sistema*
+> 	- *`wiki`*
+> 		+ *Documentos da Wiki do repositório*
+> 		+ **`anexos`**
+> 			* ***`arq`***
+> 				- *Arquivos de anexo relacionados à Arquitetura do software (diagramas, processos, etc.)*
+> 			* ***`gco`***
+> 				- *Arquivos de anexo para o Plano de Gerência de Configuração*
+> 			* ***`req`***
+> 				- *Arquivos de anexo para apoio da Engenharia de Requisitos (protótipos, etc.)*
+> 			* ***`v&v`***
+> 				- *Arquivos de apoio para o processo de Verificação e Validação*
+> 		- **`extras`**
+> 			+ *Arquivos de terceiros ou que não tem relação direta com apenas uma área de conhecimento dentro do projeto (identidade visual, material de apoio, etc.)*
+> * `src`
+> 	- *`main`*
+> 		+ **`resources`**
+> 			* *Recursos para uso da aplicação*
+> 		+ **`java/br/ufg/inf/sempreufg`**
+> 			* ***`abstratas`***
+> 				- *Classes abstratas*
+> 			* ***`dao`***
+> 				- *Classes de Data Access Object*
+> 			* ***`db`***
+> 				- *Classes de conexão ao banco*
+> 			* ***`enums`***
+> 				- *Classes de enum*
+> 			* ***`excecoes`***
+> 				- *Exceptions personalizadas para o projeto*
+> 			* ***`interfaces`***
+> 				- *Interfaces Java*
+> 			* ***`modelo`***
+> 				- *Classes de entidade*
+> 			* ***`servico`***
+> 				- *Classes de serviço com regras de negócio*
+> 			* ***`servlet`***
+> 				- *Classes de comunicação com cliente via HTTP*
+> 			* ***`utils`***
+> 				- *Classes utilitárias / ferramentas*
+> 	- *`test`*
+> 		+ **`resources`**
+> 			* *Recursos para testes da aplicação*
+> 		+ **`java/br/ufg/inf/sempreufg`**
+> 			* ***`dao`***
+> 				- *Classes que testam persistência no banco*
+> 			* ***`db`***
+> 				- *Classes que testam conexão ao banco / scripts SQL*
+> 			* ***`modelo`***
+> 				- *Classes que testam entidades*
+> 			* ***`servico`***
+> 				- *Classes que testam regras de negócio*
+> 			* ***`servlet`***
+> 				- *Classes que testam comunicação HTTP com cliente*
+> 			* ***`stubs`***
+> 				- *Stubs para testes*
+
+Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade de um novo pacote devido a uma classe não se encaixar a nenhuma categoria de pacote na estrutura atual) deve ser discutida diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no *Pull Request* da alteração desejada.
+
+### 3.5. Identificação da Configuração
 
 #### Código-fonte em Java
 
@@ -221,7 +315,7 @@ Exemplos:
 
 **Obs.:** O nome desses artefatos deve ser obrigatoriamente em *minúsculas*, sem acentos e espaçamento com *hífen* ("-") porque existem servidores Web e frameworks de aplicação que rodam em *Linux* e podem causar problemas de não encontrarem arquivos e/ou emitir erros ao executar o software com arquivos com esse tipo de nome.
 
-### 3.4. Commits
+### 3.6. Commits
 
 #### Padrão de mensagem de commit
 
@@ -238,100 +332,6 @@ Exemplos:
 
 * Pelo menos **1x no dia** que um integrante da equipe trabalhar numa tarefa delegada a ele, ou assim que uma parte signficativa da tarefa foi realizada e será continuada posteriormente (*commit* como um "[***checkpoint***](https://en.wikipedia.org/wiki/Application_checkpointing)", ponto "estável" que pode ser retornado – [*respawning*](https://en.wikipedia.org/wiki/Spawning_(video_gaming) –  em caso de falhas posteriores / erro humano / perda de dados).
 * Os commits feitos localmente devem ser enviados ("*push*") ao repositório principal pelo menos assim que o integrante terminar de trabalhar no projeto no dia. **Não devem ser deixados commits apenas localmente** ***ou*** **artefatos fora do controle de versão** na máquina do integrante do grupo, mesmo que eles tenham sido feitos na frequência estipulada acima.
-
-### 3.5. Branches
-
-O repositório de código fonte deve ter no mínimo **três** branches:
-
-| Branch | Descrição | Responsável (is) |
-|--------|-----------|------------------|
-| **`develop`** | branch de *desenvolvimento* de software dos grupos | [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) / [***@ES-INF-UFG-2016-2/grupo1***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo1) / [***@ES-INF-UFG-2016-2/grupo2***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo2) / [***@ES-INF-UFG-2016-2/grupo3***](https://github.com/orgs/ES-INF-UFG-2016-2/teams/grupo3)
-| **`homolog`** | branch de *homologação* / V&V dos artefatos antes de serem colocados na branch **master**. | [**@julianolopes**](https://github.com/julianolopes) /  [**@ES-INF-UFG-2016-2/GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs)
-| **`master`**  | branch que contém a *versão estável* de todos os artefatos do projeto (branch padrão). | [**@julianolopes**](https://github.com/julianolopes)
-
-#### Branches para os grupos
-
-As branches `develop`, `homolog` e `master` são bloqueadas para a maioria dos integrantes fazerem *push*. Para enviar *commits* para essas branches é necessário fazer o seguinte procedimento:
-
-1. O integrante que está em determinado grupo cria uma ***branch*** **temporária** para seu uso próprio a partir da branch **`develop`**; <br> A branch deve ter como nome:
-	* *O prefixo de* ***nome do grupo +*** *o nome da tarefa / requisito / funcionalidade que será feito nela.*  
-	Exemplos:
-		* `G1-RF-ExecCons`
-		* `G3-RD-AprovDivulgInfo`
-2. Na nova branch, o integrante trabalha no projeto (faz *commits* na sua branch);
-3. Quando terminar, o integrante faz um ***PR*** para a branch **`develop`** e aguarda os [**GCOs**](https://github.com/orgs/ES-INF-UFG-2016-2/teams/GCOs) fazerem auditoria de configuração (*review*):
-	* Se o *PR* é **aprovado**, *commits* do integrante nessa branch vão para a branch `develop`;
-	* Se ***reprovado***, o integrante deve corrigir (fazendo novos *commits* na branch do *PR*).
-
-O fluxo de desenvolvimento de software na visão da GCS – com o esquema das três principais branches no repositório do **Sempre UFG** – está ilustrado abaixo:
-
-![Politica-de-GCO](./anexos/GCO/politica-de-branches/Politica-de-GCO.png)
-
-### 3.6. Estrutura do Repositório
-
-> * `db`
-> 	- *`ddl`*
-> 		+ *Arquivos SQL de DDL*
-> 	- *`dml`*
-> 		+ *Arquivos SQL de DML*
-> * `docs`
-> 	- *Documentação do sistema*
-> 	- *`wiki`*
-> 		+ *Documentos da Wiki do repositório*
-> 		+ **`anexos`**
-> 			* ***`arq`***
-> 				- *Arquivos de anexo relacionados à Arquitetura do software (diagramas, processos, etc.)*
-> 			* ***`gco`***
-> 				- *Arquivos de anexo para o Plano de Gerência de Configuração*
-> 			* ***`req`***
-> 				- *Arquivos de anexo para apoio da Engenharia de Requisitos (protótipos, etc.)*
-> 			* ***`v&v`***
-> 				- *Arquivos de apoio para o processo de Verificação e Validação*
-> 		- **`extras`**
-> 			+ *Arquivos de terceiros ou que não tem relação direta com apenas uma área de conhecimento dentro do projeto (identidade visual, material de apoio, etc.)*
-> * `src`
-> 	- *`main`*
-> 		+ **`resources`**
-> 			* *Recursos para uso da aplicação*
-> 		+ **`java/br/ufg/inf/sempreufg`**
-> 			* ***`abstratas`***
-> 				- *Classes abstratas*
-> 			* ***`dao`***
-> 				- *Classes de Data Access Object*
-> 			* ***`db`***
-> 				- *Classes de conexão ao banco*
-> 			* ***`enums`***
-> 				- *Classes de enum*
-> 			* ***`excecoes`***
-> 				- *Exceptions personalizadas para o projeto*
-> 			* ***`interfaces`***
-> 				- *Interfaces Java*
-> 			* ***`modelo`***
-> 				- *Classes de entidade*
-> 			* ***`servico`***
-> 				- *Classes de serviço com regras de negócio*
-> 			* ***`servlet`***
-> 				- *Classes de comunicação com cliente via HTTP*
-> 			* ***`utils`***
-> 				- *Classes utilitárias / ferramentas*
-> 	- *`test`*
-> 		+ **`resources`**
-> 			* *Recursos para testes da aplicação*
-> 		+ **`java/br/ufg/inf/sempreufg`**
-> 			* ***`dao`***
-> 				- *Classes que testam persistência no banco*
-> 			* ***`db`***
-> 				- *Classes que testam conexão ao banco / scripts SQL*
-> 			* ***`modelo`***
-> 				- *Classes que testam entidades*
-> 			* ***`servico`***
-> 				- *Classes que testam regras de negócio*
-> 			* ***`servlet`***
-> 				- *Classes que testam comunicação HTTP com cliente*
-> 			* ***`stubs`***
-> 				- *Stubs para testes*
-
-Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade de um novo pacote devido a uma classe não se encaixar a nenhuma categoria de pacote na estrutura atual) deve ser discutida diretamente com um membro da equipe de GCO. O pedido de alteração na estrutura pode ser feito diretamente por comentário no *Pull Request* da alteração desejada.
 
 ### 3.7. Controle de mudanças
 
