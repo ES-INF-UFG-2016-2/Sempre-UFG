@@ -80,18 +80,18 @@ A lista dos Gerentes de Configuração (GCOs) encontra-se nesta página:
 
 ### 2.1. Responsabilidades dos GCOs
 
-* Manter padronizada a estrutura de diretórios do repositório (organização);
-* Supervisionar as *Issues* (pacotes de trabalho);
-* Supervisionar o fluxo de criação, andamento e exclusão das branches pelos integrantes dos grupos;
-* Aprovar solicitações de mudanças (Pull Requests) sem "commits quebrados" – commits com não conformidades à GCO / código-fonte com erros de compilação / nos testes;
-* Entregar pacotes relativamente estáveis de código-fonte para o *Gerente de Projeto / V&V* [**@julianolopes**](https://github.com/julianolopes) regularmente.
+* Manter padronizada a estrutura de diretórios do repositório (organização ― seções [3.4](#34-estrutura-do-repositório) e [3.5](#35-identificação-da-configuração));
+* Supervisionar as *Issues* (pacotes de trabalho ― seção [3.7](#37-controle-de-mudanças));
+* Supervisionar o fluxo de criação, andamento e exclusão das branches pelos integrantes dos grupos (seções [3.3](#33-branches) e [3.7](#37-controle-de-mudanças));
+* Aprovar solicitações de mudanças (Pull Requests) sem "commits quebrados" – commits com não conformidades à GCO / código-fonte com erros de compilação / nos testes (seção [3.7](#37-controle-de-mudanças));
+* Entregar pacotes relativamente estáveis de código-fonte para o *Gerente de Projeto / V&V* [**@julianolopes**](https://github.com/julianolopes) regularmente (seção [3.8](#38-baselines)).
 
 ### 2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO
 
 * Usar as ferramentas sugeridas (seção [3.2](#32-ferramentas-e-tecnologias));
-* Seguir os padrões de criação e uso de branches (seção [3.5](#35-branches)), da estrutura de diretórios do repositório (seção [3.6](#36-estrutura-do-repositório)), da identificação da configuração / nome dos arquivos (seção [3.3](#33-identificação-da-configuração)) e de mensagem de *commit* e *Pull Request* (seção [3.4](#34-commits));
-* Usar as *Issues* / *cards* para gerência de atividades, devendo usá-las para comunicação (tal como no processo definido no documento de **Diretrizes para Membros da Equipe**⁽[**²**](#cite-ref-2)⁾;
-* Fazer rastreabilidade entre os *Pull Requests* e as *Issues* / *cards* (anexando o(s) *Pull Request*(s) a ele(s).
+* Seguir os padrões de criação e uso de branches (seção [3.3](#33-branches)), da estrutura de diretórios do repositório (seção [3.4](#34-estrutura-do-repositório)), da identificação da configuração / nome dos arquivos (seção [3.5](#35-identificação-da-configuração)) e de mensagem de *commit* e *Pull Request* (seção [3.6](#36-commits));
+* Usar as *Issues* / *cards* para gerência de atividades, devendo usá-las para comunicação (tal como no processo definido no documento de **Diretrizes para Membros da Equipe**⁽[**²**](#cite-ref-2)⁾);
+* Fazer rastreabilidade entre os *Pull Requests* e as *Issues* / *cards* (anexando o(s) *Pull Request*(s) a ele(s) (seção [3.7](#37-controle-de-mudanças)).
 
 ## 3. A Gerência de Configuração
 
@@ -113,14 +113,14 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 |-----:|:-----------|:-------:|
 | VCS | [Git](http://git-scm.com) | 2.4.2 ou superior |
 | Cliente em GUI para VCS | [SmartGit](http://www.syntevo.com/smartgit) | 7.1.4 ou superior |
-| Sistema de Repositório | [GitHub](https://github.com) | – |
+| Sistema de Repositório | [GitHub](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG) | – |
 | Plataforma de programação | [Java (JDK)](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html) | 1.8 |
 | IDE | [IntelliJ IDEA Community](https://www.jetbrains.com/idea) | 2016 ou superior |
 | IDE | [NetBeans IDE](https://netbeans.org) | 8.0 ou superior |
 | CI | [Travis CI](https://travis-ci.org) | – |
 | Análise estática de código | [SonarQube](http://www.sonarqube.org) | 6.1 ou superior |
 | Editor de texto *Markdown* | [Atom](http://atom.io) | 1.8.0 ou superior |
-| Editor de diagramas | [Astah Community]() | 6.9.0 ou superior |
+| Editor de diagramas | [Astah Community](http://astah.net/editions/community) | 6.9.0 ou superior |
 | Editor de protótipos | [prikhi Pencil](https://github.com/prikhi/pencil) <br> com *stencil collection* [*Bootstrap*](https://github.com/nathanielw/Bootstrap-Pencil-Stencils) | 2.0.18 ou superior |
 | Editor de Imagens |[GIMP](http://www.gimp.org) | 2.8.0 ou superior |
 | Editor de Desenho Vetorial |[Inkscape](https://inkscape.org) | 0.48.0 ou superior |
@@ -134,15 +134,15 @@ A Gerência de Configuração trabalhará em alto nível sob os seguintes conjun
 
 | Tipo | Tecnologia | Versão |
 |-----:|:-----------|:------:|
-| Linguagem de Programação | [Java](http://www.oracle.com/technetwork/pt/java/javase/downloads/index.html) | 8 Update 91 |
+| Linguagem de Programação | [Java](https://java.com/pt_BR) | 8 Update 91 ou superior |
 | Gerenciamento / automação de *build* | [Apache Maven](https://maven.apache.org) | 3.0.4 ou superior |
-| Contêiner de Desenvolvimento | [Apache Tomcat](http://tomcat.apache.org) | 7.33 ou superior |
-| Framework Web | [Java Servlet](https://jcp.org/en/jsr/detail?id=315) | 3.0 ou superior  |
+| Contêiner de Desenvolvimento | [Apache Tomcat](https://tomcat.apache.org) | 7.33 ou superior |
+| Framework Web | [Java Servlet](http://www.oracle.com/technetwork/java/index-jsp-135475.html) | 3.0 ou superior  |
 | Banco de Dados | [MariaDB](https://mariadb.org) | 5.5 ou superior |
 | Banco de Dados | [PostgreSQL](https://www.postgresql.org) | 9.5 ou superior |
 | Framework de persistência (ORM) | [Hibernate](http://hibernate.org) | 2.1 |
 | Framework de Apresentação (Front-end) | [Java ServerFaces](https://javaserverfaces.java.net) | 2.3.0 ou superior |
-| Linguagem de script para cliente Web (Front-end) | [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) | ECMAScript3 |
+| Linguagem de script para cliente Web (Front-end) | [JavaScript](https://www.javascript.com) | ECMAScript3 |
 | Framework de Estilo (Front-end) | [Twitter Bootstrap](http://getbootstrap.com) | 3.3 ou superior |
 | Framework de JavaScript (Front-end)| [JQuery](https://jquery.com) | 3.0 ou superior |
 
@@ -158,7 +158,7 @@ O repositório de código fonte deve ter no mínimo **três** branches:
 
 #### Branches para os grupos
 
-As branches `develop`, `homolog` e `master` são bloqueadas para a maioria dos integrantes fazerem *push*. Para enviar *commits* para essas branches é necessário fazer o seguinte procedimento:
+As branches `develop`, `homolog` e `master` são bloqueadas para fazer *push*. Para enviar *commits* para essas branches é necessário fazer o seguinte procedimento:
 
 1. O integrante que está em determinado grupo cria uma ***branch*** **temporária** para seu uso próprio a partir da branch **`develop`**; <br> A branch deve ter como nome:
 	* *O prefixo de* ***nome do grupo +*** *o nome da tarefa / requisito / funcionalidade que será feito nela.*  
@@ -247,7 +247,7 @@ Qualquer alteração na estrutura de pastas (como por exemplo, uma necessidade d
 O código-fonte no *repositório principal* deve seguir as [convenções de código do Java](http://javascript.crockford.com/javacodeconventions.pdf) e os padrões da [Fábrica de Software do INF/UFG](http://fabrica.inf.ufg.br), em suma:
 
 * **Pacotes: `br.ufg.inf.sempreufg.<nome_do_pacote>`**
-	* Letras *minúsculas*, espaçamento com *underline* ("\_"), sem acentos, **substantivo(s)** que determinem categorias de código-fonte signficativas, dentro dos padrões de estrutura do repositório na seção [3.6](#36-estrutura-do-repositório). <br> Exemplos:
+	* Letras *minúsculas*, espaçamento com *underline* ("\_"), sem acentos, **substantivo(s)** que determinem categorias de código-fonte signficativas, dentro dos padrões de estrutura do repositório na seção [3.4](#34-estrutura-do-repositório). <br> Exemplos:
 		* `br.ufg.inf.sempreufg.modelo` (caminho `src/main/java/br/ufg/inf/sempreufg/modelo`)
 		* `br.ufg.inf.sempreufg.servico` (caminho `src/main/java/br/ufg/inf/sempreufg/servico`)
 		* `br.ufg.inf.sempreufg.excecoes` (caminho `src/main/java/br/ufg/inf/sempreufg/excecoes`)
@@ -339,23 +339,23 @@ O **processo de Controle de Mudanças** do *Sempre UFG* gira em torno dos ***Pul
 * *Cards* do [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), questões de natureza *administrativa*;
 * *Issues* no [**GitHub** do projeto](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/issues), questões de natureza *técnica*.
 
-Como apresentado sucintamente na seção [3.5](#35-branches):
+Como apresentado sucintamente na seção [3.3](#33-branches):
 
 1. Um membro de algum dos grupos de desenvolvimento do software abre um *PR* para submeter seu trabalho da sua branch temporária para a `develop`;
-2. O GCO do grupo a qual esse integrante pertence recebe um email notificando-o do novo *PR* e/ou visualiza o novo *PR* no seu [GitHub](https://github.com).
+2. O GCO do grupo a qual esse integrante pertence recebe um email notificando-o do novo *PR* e/ou visualiza o novo *PR* no seu [GitHub](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/pulls).
 3. Visualizado o novo *PR*, o GCO do grupo inicia uma **análise de impacto da mudança**:  
     3.1. Abre o repositório na *branch* do membro, observando – de acordo com o tipo de cada artefato adicionado ou modificado (seção [3.1](#31-artefatos-da-gerência-de-configuração)):
     * 3.1.1. Se ele cumpriu os padrões:  
-        * 3.1.1. Do ***nome da branch*** (seção [3.5](#35-branches));
-        * 3.1.2. Da ***estrutura do repositório*** (colocou os artefatos no diretório correto – seção [3.6](#36-estrutura-do-repositório));
-        * 3.1.3. Do ***nome do(s) novo(s) arquivo(s)*** no repositório (seção [3.3](#33-identificação-da-configuração));
-        * 3.1.3. De ***construção*** do artefato de software (seção [3.3](#33-identificação-da-configuração)):
+        * 3.1.1. Do ***nome da branch*** (seção [3.3](#33-branches));
+        * 3.1.2. Da ***estrutura do repositório*** (colocou os artefatos no diretório correto – seção [3.4](#34-estrutura-do-repositório));
+        * 3.1.3. Do ***nome do(s) novo(s) arquivo(s)*** no repositório (seção [3.5](#35-identificação-da-configuração));
+        * 3.1.4. De ***construção*** do artefato de software (seção [3.5](#35-identificação-da-configuração)):
             - Nomes de classes, variáveis, métodos, boas práticas de programação – *análise estática*, via manual (leitura de software) e via [SonarQube](http://www.sonarqube.org)
-            - Erros de sintaxe, de lógica e/ou de compilação – *análise dinâmica*, via manual (compilando o projeto) e via [Travis CI](https://travis-ci.org/ES-INF-UFG-2016-2/Sempre-UFG)
-        * 3.1.4. Da(s) ***mensagem(ns) de commit e do Pull Request*** (seção [3.4](#34-commits))  
+            - Erros de sintaxe, de lógica e/ou de compilação – *análise dinâmica*, via manual (compilando e executando o código) e via [Travis CI](https://travis-ci.org/ES-INF-UFG-2016-2/Sempre-UFG)
+        * 3.1.5. Da(s) ***mensagem(ns) de commit e do Pull Request*** (seção [3.6](#36-commits))  
     * 3.1.2. O GCO usará o "*Code Review*" do *Pull Request* para relatar a análise, se **aprova** ou **desaprova** a solicitação de mudança.
 4. O membro referencia o seu *PR* no *card* ou *issue* de origem da solicitação de mudança, para se ter a rastreabilidade do seu trabalho no projeto.  
-    4.1. Se for um *card* no [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), usar o recurso "**Power-Ups**" > ![GitHub_favicon](http://www.nunocorreia.com/favicons/github.png) **GitHub** > **Attach Pull Request...** > <**#número Nome do PR**>  
+    4.1. Se for um *card* no [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), usar o recurso "**Power-Ups**" > ![GitHub_favicon](http://imgh.us/github_favicon.svg) **GitHub** > **Attach Pull Request...** > <**#número Nome do PR**>  
     4.2. Se for uma *issue* no [**GitHub** do projeto](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/issues), escrever em comentário o número do *PR* seguido de *cerquilha* ("**#**").
 
 ### 3.8. Baselines
@@ -376,7 +376,7 @@ E serão construídas com as seguintes orientações:
 
 #### Notas de release
 
-Ao criar uma nova baseline no projeto no [GitHub](http://github.com), há opção de colocar notas de release e anexar um arquivo executável do projeto em questão. As notas de release deverão ser feitas em texto na linguagem *Markdown* no seguinte *template*:
+Ao criar uma nova baseline no projeto no [GitHub](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/releases/new), há opção de colocar notas de release e anexar um arquivo executável do projeto em questão. As notas de release deverão ser feitas em texto na linguagem *Markdown* no seguinte *template*:
 
 ```markdown
 ### Histórico de mudanças
