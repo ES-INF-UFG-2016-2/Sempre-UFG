@@ -1,19 +1,11 @@
-CREATE TYPE DIVULGACAO AS ENUM('cada_evento', 'diaria', 'semanal', 'mensal', 'nao_recebe');
-CREATE TYPE ORDENACAO AS ENUM('ascendente', 'descendente', 'nenhum');
-
+﻿/* Como existem multiplas versões da tabela usuário (e elas não estão iguais), optei  apenas utilizar o atributo CPF.
+	A tabela só será criada se a versão definitiva ainda não tiver sido criada.*/
 CREATE TABLE IF NOT EXISTS Usuario
 (
-	cpf				CHAR(11) NOT NULL UNIQUE,
-	nome_social			VARCHAR(100) NOT NULL,	
-	email_principal			VARCHAR(100) NOT NULL,
-	senha				VARCHAR(100) NOT NULL,
-	foto_pessoal			BIT VARYING,
-	tipo_divulgacao			DIVULGACAO NOT NULL,
-	timestamp_cadastramento		DATE NOT NULL,
-	timestamp_ultima_atualizacao	DATE,
-	timestamp_exclusao_logica	DATE,
+	cpf				INTEGER NOT NULL UNIQUE,
 	PRIMARY KEY (cpf)	
 );
+
 
 CREATE TABLE IF NOT EXISTS ConsPredef
 (
@@ -22,7 +14,7 @@ CREATE TABLE IF NOT EXISTS ConsPredef
 	expressao_booleana 		VARCHAR(100) NOT NULL, 		
 	data_ultima_modificao 		DATE, 			
 	data_ultima_execucao 		DATE,			
-	usuario_responsavel 		VARCHAR(40) NOT NULL,		
+	usuario_responsavel 		INTEGER NOT NULL,		
 	PRIMARY KEY (sigla_consulta),
 	FOREIGN KEY (usuario_responsavel) REFERENCES Usuario(cpf)
 );
@@ -58,9 +50,14 @@ CREATE TABLE IF NOT EXISTS Consulta_Mostra_Atributo
 	consulta_ID			VARCHAR(100) NOT NULL,
 	atributo_ID			VARCHAR(100) NOT NULL,
 	posicao				INTEGER,
-	ordem				ORDENACAO,
+	ordem				VARCHAR(12),
 	prioridade_ordenacao		INTEGER,
 	PRIMARY KEY (identificador),
 	FOREIGN KEY (consulta_ID) REFERENCES ConsPredef (sigla_consulta),
 	FOREIGN KEY (atributo_ID) REFERENCES Atributo (nome_atributo)	
 );
+
+ALTER TABLE Usuario ADD COLUMN tipo_divulgacao VARCHAR(12) NOT NULL;
+ALTER TABLE Usuario ADD CONSTRAINT check_divulgacao CHECK(tipo_divulgacao = 'cada_evento' OR  tipo_divulgacao = 'diaria' OR tipo_divulgacao = 'semanal' OR tipo_divulgacao = 'mensal' OR tipo_divulgacao = 'nao_recebe'); 
+
+ALTER TABLE Consulta_Mostra_Atributo ADD CONSTRAINT check_ordenacao CHECK(ordem = 'ascendente' OR  ordem = 'descendente' OR ordem = 'nenhum'); 
