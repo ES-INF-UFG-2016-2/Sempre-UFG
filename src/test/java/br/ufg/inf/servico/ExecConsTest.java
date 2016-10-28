@@ -48,7 +48,7 @@ public class ExecConsTest {
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, null);
 
         Assert.assertEquals(resultadoEsperado.toString(), resultadoObtido.toString());
-        Assert.assertEquals(((ConsultaEgressoMock) consultaEgresso).getUltimaConsulta(), new Date());
+        Assert.assertEquals(((ConsultaEgressoMock) consultaEgresso).getUltimaConsulta().toString(), new Date().toString());
 
     }
 
