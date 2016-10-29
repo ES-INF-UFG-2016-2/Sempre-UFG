@@ -7,4 +7,4 @@ export PGDATABASE='sempreufg'
 export PGUSER='sempreufg'
 export PGPASSWORD='sempreufg'
 
-psql -h localhost -U sempreufg -a -f create-user-and-db.sql
+#psql -h localhost -U sempreufg -a -f create-user-and-db.sql
