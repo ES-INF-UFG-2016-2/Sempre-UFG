@@ -1,6 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enuns.Motivacao;
+import br.ufg.inf.enums.Motivacao;
 
 import java.util.Date;
 
