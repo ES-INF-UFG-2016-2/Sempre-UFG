@@ -17,8 +17,7 @@ public class AutenticacaoService {
     private Usuario usuarioAutenticado;
     private String erro;
 
-    @PostConstruct
-    public void init() {
+    public AutenticacaoService() {
         logout();
     }
     
@@ -42,7 +41,7 @@ public class AutenticacaoService {
         return autenticado;
     }
 
-    public void setAutenticado(boolean autenticado) {
+    protected void setAutenticado(boolean autenticado) {
         this.autenticado = autenticado;
     }
 
@@ -50,7 +49,7 @@ public class AutenticacaoService {
         return usuarioAutenticado;
     }
 
-    public void setUsuarioAutenticado(Usuario usuarioAutenticado) {
+    protected void setUsuarioAutenticado(Usuario usuarioAutenticado) {
         this.usuarioAutenticado = usuarioAutenticado;
     }
 
@@ -58,7 +57,7 @@ public class AutenticacaoService {
         return erro;
     }
 
-    public void setErro(String erro) {
+    protected void setErro(String erro) {
         this.erro = erro;
     }
     
