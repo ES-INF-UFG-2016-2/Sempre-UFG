@@ -7,6 +7,12 @@ addons:
   mariadb: '5.5'
   postgresql: '9.3'
 before_script:
-  - psql -c 'create database sempreufg;' -U postgres
+  - psql --version ;
+  - psql -c "SHOW SERVER_VERSION" -U postgres
+  - psql -c "SHOW SERVER_ENCODING" -U postgres
+  - psql -c "SHOW DateStyle" -U postgres
+  - psql -c 'create database sempreufg;' -U sempreufg
+  - mysql -e "create database sempreufg;" -u sempreufg
 script:
+  - sh postgres.sh
   - mvn -X -e -B clean package
