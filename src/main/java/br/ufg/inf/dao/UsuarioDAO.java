@@ -12,7 +12,7 @@ public class UsuarioDAO {
         Usuario usuario = null;
         if ("cleber@ufg.br".equals(identificador) && "123456".equals(senha)) {
             usuario = new Usuario();
-            usuario.setLogin("cleber@ufg.br");
+            usuario.setMail("cleber@ufg.br");
             usuario.setSenha("123");
         }
         return usuario;

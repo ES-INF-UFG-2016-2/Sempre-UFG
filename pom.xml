@@ -32,7 +32,13 @@
             <groupId>org.jvnet.mock-javamail</groupId>
             <artifactId>mock-javamail</artifactId>
             <version>1.9</version>
-            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>1.5.4</version>
         </dependency>
         
         <dependency>
@@ -78,6 +84,7 @@
                 <version>2.6</version>
                 <executions>
                     <execution>
+                        <id>pom-lint</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>copy</goal>
@@ -94,6 +101,31 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.lewisd</groupId>
+                <artifactId>lint-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <failOnViolation>true</failOnViolation>
+                    <onlyRunRules>
+                        <rule>DotVersionProperty</rule>
+                        <rule>ExecutionId</rule>
+                        <rule>GAVOrder</rule>
+                        <rule>RedundantDepVersion</rule>
+                        <rule>RedundantPluginVersion</rule>
+                        <rule>DuplicateDep</rule>
+                    </onlyRunRules>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pom-lint</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
