@@ -1,7 +1,7 @@
 package br.ufg.inf.servico;
 
+import br.ufg.inf.modelo.Egresso;
 import br.ufg.inf.modelo.Usuario;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -32,7 +32,7 @@ public class AutenticacaoService {
         setErro("");
     }
     
-    public boolean loginPrimeiroAcesso(Usuario usuario) {
+    public boolean loginPrimeiroAcesso(Egresso egresso) {
         //TODO
         return isAutenticado();
     }
