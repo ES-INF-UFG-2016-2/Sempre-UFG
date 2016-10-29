@@ -1,10 +1,17 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.modelo.Evento;
 import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
+import br.ufg.inf.modelo.Evento;
 
-public interface AprovadorEventosService {
+public class AprovadorEventosService implements AprovadorEventosServiceInterface {
 
-    AprovacaoDivulgacaoEvento buscaEventoAprovado(Evento evento);
+    @Override
+    public AprovacaoDivulgacaoEvento buscaEventoAprovado(Evento evento) {
+        return null;
+    }
 
+    @Override
+    public Boolean isEventoAprovado(Evento evento) {
+        return true;
+    }
 }
