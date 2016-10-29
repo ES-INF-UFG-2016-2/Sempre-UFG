@@ -6,18 +6,26 @@ import java.util.List;
 
 public class InstanciaAdm {
 
-	private String sigla;
-	private String nome_instanciaAdm;
+    private String sigla;
+    private String nome_instanciaAdm;
 
-	private enum Tipos {
-		REGIONAL, UNIDADE, CURSO
-	};
+    private enum Tipos {
+        REGIONAL, UNIDADE, CURSO
+    };
 
-	private Tipos tipo;
-	private Date data_criacao = new Date();
-	private Date data_enc = new Date();
-	private String email;
-	private String url_inst;
-	private List instancias = new ArrayList();
+    private Tipos tipo;
+    private Date data_criacao = new Date();
+    private Date data_enc = new Date();
+    private String email;
+    private String url_inst;
+    private List instancias = new ArrayList();
+
+    public String getNome_instanciaAdm() {
+        return nome_instanciaAdm;
+    }
+
+    public void setNome_instanciaAdm(String nome_instanciaAdm) {
+        this.nome_instanciaAdm = nome_instanciaAdm;
+    }
 
 }

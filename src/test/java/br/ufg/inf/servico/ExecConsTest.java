@@ -192,7 +192,7 @@ public class ExecConsTest {
 
     private CursoUFG criaCurso(String nomeCurso) {
         CursoUFG cursoUFG = new CursoUFG(null, null, 1, true, Turnos.INTEGRAL, null);
-        cursoUFG.setNome(nomeCurso);
+        cursoUFG.setNome_instanciaAdm(nomeCurso);
         return cursoUFG;
     }
 
