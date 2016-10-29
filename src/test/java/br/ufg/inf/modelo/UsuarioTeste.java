@@ -1,45 +1,35 @@
+package test.java.br.ufg.inf.modelo;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf;
 
 import br.ufg.inf.modelo.Usuario;
-import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
+import org.junit.*;
 
-import java.util.Date;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.jvnet.mock_javamail.Mailbox;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author hiago
  */
 public class UsuarioTest {
 
-    @Before
-    public void setUp() {
-        Mailbox.clearAll();
-    }
-
     @Test
     public void testeEmailCorreto() throws Exception {
         String email = "teste_email@gmail.com";
         Usuario usuario = new Usuario();
-        usuario.setEmail(email);
-        assertEquals(email, usuario.getEmail());
+        usuario.setMail(email);
+        assertEquals(email, usuario.getMail());
     }
 
     @Test
     public void testeEmailIncorreto() throws Exception {
         String email = "teste_email#gmail.com";
         Usuario usuario = new Usuario();
-        usuario.setEmail(email);
-        assertEquals(nome, usuario.getEmail());
+        usuario.setMail(email);
+        assertEquals(email, usuario.getMail());
     }
 
     @Test
@@ -103,7 +93,7 @@ public class UsuarioTest {
         String email = "usuario123@gmail.com";
         String senha = "testesenha1343";
         Usuario usuario = new Usuario();
-        usuario.setEmail(email);
+        usuario.setMail(email);
         usuario.setSenha(senha);
         assertEquals(true, usuario.validarUsuario());
     }
@@ -113,7 +103,7 @@ public class UsuarioTest {
         String email = "usuario123@gmail.com";
         String senha = "";
         Usuario usuario = new Usuario();
-        usuario.setEmail(email);
+        usuario.setMail(email);
         usuario.setSenha(senha);
         assertEquals(false, usuario.validarUsuario());
     }
@@ -123,8 +113,8 @@ public class UsuarioTest {
         String email = "";
         String senha = "testesenha1343";
         Usuario usuario = new Usuario();
-        usuario.setEmail(email);
+        usuario.setMail(email);
         usuario.setSenha(senha);
-        assertEquals(false, usuario.validarUsuario());
+        assertEquals(false, usuario.validarUsuario(email, senha));
     }
 }
