@@ -1,14 +1,9 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.dao.UsuarioDAO;
-import br.ufg.inf.excecao.AutenticacaoException;
 import br.ufg.inf.modelo.Usuario;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -16,37 +11,31 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
-public class ServicoAutenticacao {
+public class AutenticacaoService {
     
-//    private HttpSession sessao;
     private boolean autenticado;
     private Usuario usuarioAutenticado;
     private String erro;
 
     @PostConstruct
     public void init() {
-//        sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);        
-        autenticado = false;
-        usuarioAutenticado = null;
+        logout();
     }
     
     public boolean login(String login, String senha) {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        setUsuarioAutenticado(usuarioDAO.getUsuarioAutenticacao(login, senha));
-        if(getUsuarioAutenticado() == null){
-            
-            setAutenticado(false);
-            erro = "Usuário e senha incorretos!";
-//            sessao.setAttribute("autenticado", true);
-        } else {
-            setAutenticado(true);
-            erro = "";
-        }
+        //TODO
         return isAutenticado();
     }
     
     public void logout(){
-        
+        setAutenticado(false);
+        setUsuarioAutenticado(null);
+        setErro("");
+    }
+    
+    public boolean loginPrimeiroAcesso(Usuario usuario) {
+        //TODO
+        return isAutenticado();
     }
 
     public boolean isAutenticado() {
@@ -72,6 +61,5 @@ public class ServicoAutenticacao {
     public void setErro(String erro) {
         this.erro = erro;
     }
-    
     
 }
