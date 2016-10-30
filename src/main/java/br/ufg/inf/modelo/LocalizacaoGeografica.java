@@ -1,6 +1,8 @@
 package br.ufg.inf.modelo;
 
 public class LocalizacaoGeografica {
+    
+    private String id;
 	
 	private String nomeDaCidade;
 	
@@ -51,6 +53,13 @@ public class LocalizacaoGeografica {
 		this.longitude = longitude;
 	}
 	
+        public void setId(String id){
+            this.id = id;
+        }
+        
+        public String getId(){
+            return id;
+        }
 	
 	
 }

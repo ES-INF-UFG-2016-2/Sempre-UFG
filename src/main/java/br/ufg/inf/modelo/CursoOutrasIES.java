@@ -5,65 +5,97 @@ import br.ufg.inf.enums.TipoInstituicao;
 
 public class CursoOutrasIES {
 
-	private String nomeDoCurso;
+    private String id;
 
-	private String unidadeAcademia;
+    private String nomeDoCurso;
 
-	private String iesDoCurso;
+    private String unidadeAcademia;
 
-	private String urlInstitucional;
+    private String iesDoCurso;
 
-	private Nivel nivel;
+    private String urlInstitucional;
 
-	private TipoInstituicao tipoInstituicao;
+    private Nivel nivel;
 
-	public String getNomeDoCurso() {
-		return nomeDoCurso;
-	}
+    private TipoInstituicao tipoInstituicao;
 
-	public void setNomeDoCurso(String nomeDoCurso) {
-		this.nomeDoCurso = nomeDoCurso;
-	}
+    private String url;
+    
+    private AreaDeConhecimento areaConhecimento;
 
-	public String getUnidadeAcademia() {
-		return unidadeAcademia;
-	}
+    public CursoOutrasIES(String id, String nomeDoCurso, String unidadeAcademia, String iesDoCurso, String urlInstitucional, Nivel nivel, TipoInstituicao tipoInstituicao, AreaDeConhecimento areaDeConhecimento) {
+        this.id = id;
+        this.nomeDoCurso = nomeDoCurso;
+        this.unidadeAcademia = unidadeAcademia;
+        this.iesDoCurso = iesDoCurso;
+        this.urlInstitucional = urlInstitucional;
+        this.nivel = nivel;
+        this.tipoInstituicao = tipoInstituicao;
+        this.areaConhecimento = areaDeConhecimento;
+    }
 
-	public void setUnidadeAcademia(String unidadeAcademia) {
-		this.unidadeAcademia = unidadeAcademia;
-	}
+    public String getNomeDoCurso() {
+        return nomeDoCurso;
+    }
 
-	public String getIesDoCurso() {
-		return iesDoCurso;
-	}
+    public void setNomeDoCurso(String nomeDoCurso) {
+        this.nomeDoCurso = nomeDoCurso;
+    }
 
-	public void setIesDoCurso(String iesDoCurso) {
-		this.iesDoCurso = iesDoCurso;
-	}
+    public String getUnidadeAcademia() {
+        return unidadeAcademia;
+    }
 
-	public String getUrlInstitucional() {
-		return urlInstitucional;
-	}
+    public void setUnidadeAcademia(String unidadeAcademia) {
+        this.unidadeAcademia = unidadeAcademia;
+    }
 
-	public void setUrlInstitucional(String urlInstitucional) {
-		this.urlInstitucional = urlInstitucional;
-	}
+    public String getIesDoCurso() {
+        return iesDoCurso;
+    }
 
-	public Nivel getNivel() {
-		return nivel;
-	}
+    public void setIesDoCurso(String iesDoCurso) {
+        this.iesDoCurso = iesDoCurso;
+    }
 
-	public void setNivel(Nivel nivel) {
-		this.nivel = nivel;
-	}
+    public String getUrlInstitucional() {
+        return urlInstitucional;
+    }
 
-	public TipoInstituicao getTipoInstituicao() {
-		return tipoInstituicao;
-	}
+    public void setUrlInstitucional(String urlInstitucional) {
+        this.urlInstitucional = urlInstitucional;
+    }
 
-	public void setTipoInstituicao(TipoInstituicao tipoInstituicao) {
-		this.tipoInstituicao = tipoInstituicao;
-	}
+    public Nivel getNivel() {
+        return nivel;
+    }
 
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
+    }
+
+    public TipoInstituicao getTipoInstituicao() {
+        return tipoInstituicao;
+    }
+
+    public void setTipoInstituicao(TipoInstituicao tipoInstituicao) {
+        this.tipoInstituicao = tipoInstituicao;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
 }

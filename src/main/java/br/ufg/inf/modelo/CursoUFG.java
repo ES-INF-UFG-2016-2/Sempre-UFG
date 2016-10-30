@@ -2,26 +2,31 @@ package br.ufg.inf.modelo;
 
 import br.ufg.inf.abstratas.AreaDeConhecimento;
 import br.ufg.inf.enums.NiveisCurso;
-import br.ufg.inf.enums.TiposResolucao;
-import br.ufg.inf.enums.Turnos;
+import br.ufg.inf.enums.Nivel;
+import br.ufg.inf.enums.TipoResolucao;
+import br.ufg.inf.enums.Turno;
 
 public class CursoUFG {
 
     private String nome;
     private NiveisCurso nivel;
-    private TiposResolucao tiposResolucao;
+    private TipoResolucao tiposResolucao;
     private int num_resolucao;
     private boolean presencial;
-    private Turnos turno;
+    private Turno turno;
     private AreaDeConhecimento area_de_conhecimento;
 
-    public CursoUFG(NiveisCurso nivel, TiposResolucao tiposResolucao, int num_resolucao, boolean presencial, Turnos turno, AreaDeConhecimento area_de_conhecimento) {
+    public CursoUFG(NiveisCurso nivel, TipoResolucao tiposResolucao, int num_resolucao, boolean presencial, Turno turno, AreaDeConhecimento area_de_conhecimento) {
         this.nivel = nivel;
         this.tiposResolucao = tiposResolucao;
         this.num_resolucao = num_resolucao;
         this.presencial = presencial;
         this.turno = turno;
         this.area_de_conhecimento = area_de_conhecimento;
+    }
+
+    public CursoUFG(Nivel nivel, TipoResolucao tipoResolucao, int numResolucao, boolean ePresencial, Turno turno, br.ufg.inf.modelo.AreaDeConhecimento areaConhecimentoEsperada, UnidadeAcademica unidadeAcademicaEsperada) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getNome() {
@@ -40,11 +45,11 @@ public class CursoUFG {
         this.nivel = nivel;
     }
 
-    public TiposResolucao getTiposResolucao() {
+    public TipoResolucao getTiposResolucao() {
         return tiposResolucao;
     }
 
-    public void setTiposResolucao(TiposResolucao tiposResolucao) {
+    public void setTiposResolucao(TipoResolucao tiposResolucao) {
         this.tiposResolucao = tiposResolucao;
     }
 
@@ -64,11 +69,11 @@ public class CursoUFG {
         this.presencial = presencial;
     }
 
-    public Turnos getTurno() {
+    public Turno getTurno() {
         return turno;
     }
 
-    public void setTurno(Turnos turno) {
+    public void setTurno(Turno turno) {
         this.turno = turno;
     }
 
