@@ -1,31 +1,22 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.servico.DivulgadorEventosService;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-public class DivulgacaoEventoComunidade implements DivulgadorEventosService {
+public class DivulgacaoEventoComunidade {
 
     private Evento evento;
+    private List<Usuario> usuarios;
 
     public DivulgacaoEventoComunidade(Evento evento) {
         this.evento = evento;
     }
 
-    @Override
-    public boolean divulgarEventoParaListaDeUsuarios(Evento evento, List<Usuario> usuarios) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    @Override
-    public boolean divulgarEventoParaTodosUsuarios(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Map<Date, Map<Usuario, Evento>> obtenhaEventosQueNaoForamEnviadosAinda() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     public Evento getEvento() {
