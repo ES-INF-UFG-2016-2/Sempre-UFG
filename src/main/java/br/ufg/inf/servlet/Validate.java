@@ -11,12 +11,13 @@ package br.ufg.inf.servlet;
  */
 import java.sql.*;
 
-public class Validate
- {
-     public static boolean checkUser(String email,String pass) {
-         boolean st = true;
+public class Validate{
+
+    
+    public static boolean checkUser(String email,String pass) {
+         
      
-         return st;                 
+         return true;                 
      }   
 
   

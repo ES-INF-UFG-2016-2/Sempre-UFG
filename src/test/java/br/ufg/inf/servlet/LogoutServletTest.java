@@ -22,6 +22,8 @@ import org.junit.Assert;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class LogoutServletTest{
     
@@ -30,7 +32,7 @@ public class LogoutServletTest{
      HttpSession session = mock(HttpSession.class);
      
     @Before
-    public void rotinas(){
+    public void rotinasTeste(){
         when(request.getParameter("email")).thenReturn("admin");
         when(request.getParameter("password")).thenReturn("12345");
         when(request.getSession()).thenReturn(session);
@@ -38,19 +40,32 @@ public class LogoutServletTest{
      
     @Test
     public void logoutTest() throws IOException, ServletException{
-       
-        PrintWriter writer = new PrintWriter("test.txt");
-        when(response.getWriter()).thenReturn(writer);
+        //variavel que escreve todas as saídas de LoginServlet no arquivo testLogin.txt
+        PrintWriter writerLogin = new PrintWriter("testLogin.txt");
+        
+        //variavel que escreve todas as saídas de LogoutServlet no arquivo testLogin.txt
+        PrintWriter writerLogout = new PrintWriter("testLogout.txt");
+        when(response.getWriter()).thenReturn(writerLogin);
         
         new LoginServlet().doPost(request, response);
         
+        writerLogin.flush();
+        //caso a String lida é igual a string "Logged in", o sistema login com sucesso
+        Assert.assertEquals("Logged in", leArquivo("testLogin.txt"));
+        
+        when(response.getWriter()).thenReturn(writerLogout);
         new LogoutServlet().doGet(request, response);
         
-        HttpSession sessionTest = request.getSession();
+        writerLogout.flush();
+        //caso a String lida é igual a string "Logged out", o sistema fez logout com sucesso
+        Assert.assertEquals("Logged out", leArquivo("testLogout.txt"));
+       
+    }
+    
+    private String leArquivo(String nomeArquivo) throws IOException{
         
-        Assert.assertEquals("Logged out", FileUtils.readFileToString(new File("test.txt"),"UTF-8"));
-        writer.flush();
+        String arquivo = FileUtils.readFileToString(new File(nomeArquivo),"UTF-8");
         
-        
+        return arquivo;
     }
 }

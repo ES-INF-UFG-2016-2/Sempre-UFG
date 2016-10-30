@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet{
 
         if(Validate.checkUser(email, pass))
         {
-            out.print("Welcome");  
+            out.print("Logged in");  
             HttpSession session = request.getSession();
               
             session.setAttribute("email", email); 
