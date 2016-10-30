@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class Egresso extends Usuario {
+public class Egresso {
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
@@ -20,11 +20,7 @@ public class Egresso extends Usuario {
     private BitSet fotos_adicionais;
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
-    private LocalizacaoGeografica naturalidade;
 
-    public Egresso() {
-    }
-    
     public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
         this.nome = nome;
         this.nome_mae = nome_mae;
@@ -108,13 +104,4 @@ public class Egresso extends Usuario {
     public void setLista_historicosUFG(List<HistoricoUFG> lista_historicosUFG) {
         this.lista_historicosUFG = lista_historicosUFG;
     }
-
-    public LocalizacaoGeografica getNaturalidade() {
-        return naturalidade;
-    }
-
-    public void setNaturalidade(LocalizacaoGeografica naturalidade) {
-        this.naturalidade = naturalidade;
-    }
-    
 }
