@@ -1,79 +1,4 @@
 -- -----------------------------------------------------
--- Sequence: `usuario_id_seq`
--- -----------------------------------------------------
-
-DROP SEQUENCE IF EXISTS usuario_id_seq CASCADE;
-
-CREATE SEQUENCE usuario_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1;
-  ALTER TABLE usuario_id_seq
-  OWNER TO postgres;
-  COMMENT ON SEQUENCE usuario_id_seq
-  IS 'Sequence utilizada para geração de id''s da tabela ''usuario''.'
-;
-
-
--- -----------------------------------------------------
--- Sequence: `foto_adicional_egresso_id_seq`
--- -----------------------------------------------------
-
-DROP SEQUENCE IF EXISTS foto_adicional_egresso_id_seq CASCADE;
-
-CREATE SEQUENCE foto_adicional_egresso_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1;
-  ALTER TABLE foto_adicional_egresso_id_seq
-  OWNER TO postgres;
-  COMMENT ON SEQUENCE foto_adicional_egresso_id_seq
-  IS 'Sequence utilizada para geração de id''s da tabela ''foto_adicional_egresso''.'
-;
-
--- -----------------------------------------------------
--- Sequence: `processo_importacao_id_seq`
--- -----------------------------------------------------
-
-DROP SEQUENCE IF EXISTS processo_importacao_id_seq CASCADE;
-
-CREATE SEQUENCE processo_importacao_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1;
-  ALTER TABLE processo_importacao_id_seq
-  OWNER TO postgres;
-  COMMENT ON SEQUENCE processo_importacao_id_seq
-  IS 'Sequence utilizada para geração de id''s da tabela ''processo_importacao''.'
-;
-
-
--- -----------------------------------------------------
--- Sequence: `instancia_administrativa_ufg_id_seq`
--- -----------------------------------------------------
-
-DROP SEQUENCE IF EXISTS instancia_administrativa_ufg_id_seq CASCADE;
-
-CREATE SEQUENCE instancia_administrativa_ufg_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 1;
-  ALTER TABLE instancia_administrativa_ufg_id_seq
-  OWNER TO postgres;
-  COMMENT ON SEQUENCE instancia_administrativa_ufg_id_seq
-  IS 'Sequence utilizada para geração de id''s da tabela ''instancia_administrativa_ufg''.'
-;
-
-
--- -----------------------------------------------------
 -- Enums
 -- -----------------------------------------------------
 DROP TYPE IF EXISTS enum_frequencia_divulgacao CASCADE;
@@ -101,7 +26,7 @@ DROP TABLE IF EXISTS egresso_processo_importacao,
 -- Table `usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS usuario (
-  id INT NOT NULL UNIQUE DEFAULT nextval('usuario_id_seq'::regclass),
+  id BIGSERIAL NOT NULL UNIQUE,
   email_principal VARCHAR(150) NOT NULL UNIQUE,
   senha VARCHAR(100) NOT NULL,
   nome_social VARCHAR(100) NOT NULL,
@@ -119,7 +44,7 @@ CREATE TABLE IF NOT EXISTS usuario (
 -- Table `egresso`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS egresso (
-  id INT NOT NULL UNIQUE,
+  id BIGINT NOT NULL UNIQUE,
   nome_oficial VARCHAR(150) NOT NULL,
   nome_mae VARCHAR(150) NOT NULL,
   data_nascimento TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -140,7 +65,7 @@ CREATE TABLE IF NOT EXISTS egresso (
 -- Table `foto_adicional_egresso`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS foto_adicional_egresso (
-  id INT NOT NULL UNIQUE DEFAULT nextval('foto_adicional_egresso_id_seq'::regclass),
+  id BIGSERIAL NOT NULL UNIQUE,
   id_egresso INT NOT NULL,
   arquivo TEXT NOT NULL,
   PRIMARY KEY (id),
@@ -156,7 +81,7 @@ CREATE TABLE IF NOT EXISTS foto_adicional_egresso (
 -- Table `processo_importacao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS processo_importacao (
-  id INT NOT NULL UNIQUE DEFAULT nextval('processo_importacao_id_seq'::regclass),
+  id BIGSERIAL NOT NULL UNIQUE,
   momento_execucao TIMESTAMP WITH TIME ZONE NOT NULL,
   inicio_periodo TIMESTAMP WITH TIME ZONE NOT NULL,
   fim_periodo TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -203,7 +128,7 @@ CREATE INDEX fk_egresso_processo_importacao_usuario1_idx ON egresso_processo_imp
 -- Table `instancia_administrativa_ufg`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS instancia_administrativa_ufg (
-  id INT NOT NULL UNIQUE DEFAULT nextval('instancia_administrativa_ufg_id_seq'::regclass),
+  id BIGSERIAL NOT NULL UNIQUE,
   sigla_instancia VARCHAR(50) NOT NULL UNIQUE,
   nome VARCHAR(150) NOT NULL,
   tipo enum_tipo_instancia_administrativa_ufg NOT NULL,
