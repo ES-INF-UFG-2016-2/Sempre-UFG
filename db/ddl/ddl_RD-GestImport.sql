@@ -108,9 +108,9 @@ CREATE TABLE IF NOT EXISTS usuario (
   cpf BIGINT NOT NULL UNIQUE,
   foto_pessoal TEXT NULL,
   recebimento_divulgacao enum_frequencia_divulgacao NOT NULL,
-  timestamp_cadastramento DATE NOT NULL,
-  timestamp_ultima_atualizacao DATE NULL,
-  timestamp_exclusao_logica DATE NULL,
+  timestamp_cadastramento TIMESTAMP WITH TIME ZONE NOT NULL,
+  timestamp_ultima_atualizacao TIMESTAMP WITH TIME ZONE NULL,
+  timestamp_exclusao_logica TIMESTAMP WITH TIME ZONE NULL,
   PRIMARY KEY (id, email_principal, cpf))
 ;
 
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS egresso (
   id INT NOT NULL UNIQUE,
   nome_oficial VARCHAR(150) NOT NULL,
   nome_mae VARCHAR(150) NOT NULL,
-  data_nascimento DATE NOT NULL,
+  data_nascimento TIMESTAMP WITH TIME ZONE NOT NULL,
   sexo enum_sexo NULL,
   email_alternativo VARCHAR(150) NULL,
   foto_principal TEXT NULL,
@@ -157,9 +157,9 @@ CREATE TABLE IF NOT EXISTS foto_adicional_egresso (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS processo_importacao (
   id INT NOT NULL UNIQUE DEFAULT nextval('processo_importacao_id_seq'::regclass),
-  momento_execucao DATE NOT NULL,
-  inicio_periodo DATE NOT NULL,
-  fim_periodo DATE NOT NULL,
+  momento_execucao TIMESTAMP WITH TIME ZONE NOT NULL,
+  inicio_periodo TIMESTAMP WITH TIME ZONE NOT NULL,
+  fim_periodo TIMESTAMP WITH TIME ZONE NOT NULL,
   quantidade_importados_sucesso INT NOT NULL,
   quantidade_importados_dados_incorretos INT NOT NULL,
   quantidade_importados_replicados INT NOT NULL,
@@ -207,8 +207,8 @@ CREATE TABLE IF NOT EXISTS instancia_administrativa_ufg (
   sigla_instancia VARCHAR(50) NOT NULL UNIQUE,
   nome VARCHAR(150) NOT NULL,
   tipo enum_tipo_instancia_administrativa_ufg NOT NULL,
-  data_criacao DATE NOT NULL,
-  data_encerramento DATE NULL,
+  data_criacao TIMESTAMP WITH TIME ZONE NOT NULL,
+  data_encerramento TIMESTAMP WITH TIME ZONE NULL,
   email_institucional VARCHAR(150) NOT NULL,
   url_institucional VARCHAR(150) NOT NULL,
   id_responsavel INT NOT NULL,
