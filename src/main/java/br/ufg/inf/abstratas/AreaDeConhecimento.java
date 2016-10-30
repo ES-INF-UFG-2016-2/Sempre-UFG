@@ -3,7 +3,7 @@ package br.ufg.inf.abstratas;
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
-public abstract class AreaDeConhecimento {
+public class AreaDeConhecimento {
     private String nome;
     private int codigo;
 

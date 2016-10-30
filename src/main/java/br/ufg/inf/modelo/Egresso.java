@@ -3,6 +3,7 @@ package br.ufg.inf.modelo;
 import br.ufg.inf.enums.Sexo;
 import br.ufg.inf.enums.VisibilidadeDados;
 
+import java.io.Serializable;
 import java.util.BitSet;
 import java.util.Date;
 import java.util.List;
@@ -10,8 +11,12 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class Egresso {
-    private String nome;
+public class Egresso implements Serializable{
+	
+	private static final long serialVersionUID = 3370581220250685348L;
+	
+	private int id;
+	private String nome;
     private String nome_mae;
     private Date data_nascimento;
     private Sexo sexo;
@@ -32,8 +37,15 @@ public class Egresso {
         this.visibilidade = visibilidade;
         this.lista_historicosUFG = lista_historicosUFG;
     }
+    
+    
 
-    public String getNome() {
+    public Egresso() {
+	}
+
+
+
+	public String getNome() {
         return nome;
     }
 
@@ -104,4 +116,16 @@ public class Egresso {
     public void setLista_historicosUFG(List<HistoricoUFG> lista_historicosUFG) {
         this.lista_historicosUFG = lista_historicosUFG;
     }
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

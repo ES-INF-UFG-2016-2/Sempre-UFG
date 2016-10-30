@@ -1,13 +1,18 @@
 package br.ufg.inf.modelo;
 
+import java.io.Serializable;
+
 import br.ufg.inf.abstratas.AreaDeConhecimento;
 import br.ufg.inf.enums.NiveisCurso;
 import br.ufg.inf.enums.TiposResolucao;
 import br.ufg.inf.enums.Turnos;
 
-public class CursoUFG {
+public class CursoUFG implements Serializable{
 
-    private String nome;
+	private static final long serialVersionUID = 5470137330235095143L;
+	
+	private int id;
+	private String nome;
     private NiveisCurso nivel;
     private TiposResolucao tiposResolucao;
     private int num_resolucao;
@@ -79,4 +84,12 @@ public class CursoUFG {
     public void setArea_de_conhecimento(AreaDeConhecimento area_de_conhecimento) {
         this.area_de_conhecimento = area_de_conhecimento;
     }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

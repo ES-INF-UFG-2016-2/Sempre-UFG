@@ -1,8 +1,11 @@
 package br.ufg.inf.modelo;
 
-public class HistoricoOutrasIES {
+import java.io.Serializable;
 
-	
+public class HistoricoOutrasIES implements Serializable{
+
+	private static final long serialVersionUID = 3739283243487959325L;
+
 	private Integer mesInicio;
 	
 	private Integer mesFim;
