@@ -38,7 +38,7 @@ public class DivulgaEventComunTest {
         //Cria usuário e evento em comum
         usuarioTestado = new Usuario();
         usuarioTestado.setNome("Teste");
-        usuarioTestado.setCpf("1234123");
+        usuarioTestado.setCpf(1234123l);
         usuarioTestado.setMail(destinatarioPadraoEmails);
         evento = new Evento();
         evento.setAssunto("Evento");
