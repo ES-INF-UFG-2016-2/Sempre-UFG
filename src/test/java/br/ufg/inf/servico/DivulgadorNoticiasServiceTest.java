@@ -81,7 +81,6 @@ public class DivulgadorNoticiasServiceTest {
     public void testRemoverNoticiasExpiradas() {
         int idEvento = this.idEvento;
         Date dataExpiracao = new Date(System.currentTimeMillis()-10);
-        System.out.println(dataExpiracao.getTime() + "DAta 1");
         DivulgadorNoticiasService instance = new DivulgadorNoticiasService();
         instance.divulgarNoticia(idEvento, dataExpiracao);
         List<Noticia> noticias = instance.getNoticias();
