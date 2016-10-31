@@ -1,11 +1,12 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
+import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
 import br.ufg.inf.modelo.Usuario;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class PoliticaRecebimentoMensagemTest {
 
@@ -64,10 +65,15 @@ public class PoliticaRecebimentoMensagemTest {
 
 	@Test
 	public void testaPoliticaPadrao(){
-		politica = PoliticaRecebimentoMensagens.CADA_EVENTO;
-		usuario.setTipoDivulgacao(politica);
 		assertEquals("CADA_EVENTO", usuario.getTipoDivulgacao().toString());
 	}
 
+    @Test
+    public void testaAlteracaoDaPoliticaDeMensagem(){
+        usuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.CADA_EVENTO);
+        usuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.MENSAL);
 
+        assertNotEquals("CADA_EVENTO", usuario.getTipoDivulgacao().toString());
+        assertEquals("MENSAL", usuario.getTipoDivulgacao().toString());
+    }
 }

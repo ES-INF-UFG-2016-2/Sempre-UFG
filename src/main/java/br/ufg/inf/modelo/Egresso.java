@@ -1,7 +1,7 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enuns.Sexo;
-import br.ufg.inf.enuns.VisibilidadeDados;
+import br.ufg.inf.enums.Sexo;
+import br.ufg.inf.enums.VisibilidadeDados;
 
 import java.util.BitSet;
 import java.util.Date;

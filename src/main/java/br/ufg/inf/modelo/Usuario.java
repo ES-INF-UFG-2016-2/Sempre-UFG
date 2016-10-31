@@ -1,6 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
+import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
 
 import java.util.BitSet;
 import java.util.Date;
@@ -13,7 +13,7 @@ public class Usuario {
     private String nome;
     private String cpf;
     private BitSet foto = new BitSet();
-    private PoliticaRecebimentoMensagens tipoDivulgacao;
+    private PoliticaRecebimentoMensagens tipoDivulgacao = PoliticaRecebimentoMensagens.CADA_EVENTO;
     private Date ts_cadastramento;
     private Date ts_ult_update;
     private Date ts_exclusao;
