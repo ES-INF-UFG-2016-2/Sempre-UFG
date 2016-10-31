@@ -240,7 +240,224 @@ public class AutenticacaoServiceTest {
         assertEquals(false, resultado);
     }
 
-    //TODO: Inserir demais testes aqui.
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o nome da mãe é nulo.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoNomeMaeNulo() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        egressoPrimeiroAcesso.setNome_mae(null);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o nome da mãe não confere.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoNomeMaeNaoConfere() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        egressoPrimeiroAcesso.setNome_mae("Mãe inválida do egresso");
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a data de nascimento é nula.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoDataNascimentoNula() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        egressoPrimeiroAcesso.setData_nascimento(null);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a data de nascimento não confere.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoDataNascimentoNaoConfere() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            egressoPrimeiroAcesso.setData_nascimento(simpleDateFormat.parse("11/12/1995"));
+        } catch (ParseException exception) {
+        }
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a nacionalidade é nula.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoNacionalidadeNula() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        egressoPrimeiroAcesso.setNaturalidade(null);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o nome do país na nacionalidade é nulo.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoNomePaisNulo() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        LocalizacaoGeografica naturalidade = new LocalizacaoGeografica();
+        naturalidade.setNomeDoPais(null);
+        egressoPrimeiroAcesso.setNaturalidade(naturalidade);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a nacionalidade não confere.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoNacionalidadeNaoConfere() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        LocalizacaoGeografica naturalidade = new LocalizacaoGeografica();
+        naturalidade.setNomeDoPais("País Qualquer");
+        egressoPrimeiroAcesso.setNaturalidade(naturalidade);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a lista de cursos é nula.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoListaCursosNula() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        egressoPrimeiroAcesso.setLista_historicosUFG(null);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a lista de cursos é vazia.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoListaCursosVazia() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        egressoPrimeiroAcesso.setLista_historicosUFG(new ArrayList<HistoricoUFG>());
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o histórico é nulo.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoHistoricoNulo() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        List<HistoricoUFG> historicosUFG = new ArrayList<>();
+        historicosUFG.add(null);
+        egressoPrimeiroAcesso.setLista_historicosUFG(historicosUFG);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a matrícula não confere.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoMatriculaNaoConfere() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        List<HistoricoUFG> historicosUFG = new ArrayList<>();
+        historicosUFG.add(new HistoricoUFG(963258, 0, 0, 0, 0, null, ""));
+        egressoPrimeiroAcesso.setLista_historicosUFG(historicosUFG);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o curso é nulo.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoCursoNulo() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        List<HistoricoUFG> historicosUFG = new ArrayList<>();
+        historicosUFG.add(new HistoricoUFG(123456, 0, 0, 0, 0, null, ""));
+        egressoPrimeiroAcesso.setLista_historicosUFG(historicosUFG);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o nome do curso é nulo.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoNomeCursoNulo() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        CursoUFG cursoCienciasComputacao = new CursoUFG();
+        cursoCienciasComputacao.setNome_instanciaAdm(null);
+        List<HistoricoUFG> historicosUFG = new ArrayList<>();
+        historicosUFG.add(new HistoricoUFG(123456, 0, 0, 0, 0, cursoCienciasComputacao, ""));
+        egressoPrimeiroAcesso.setLista_historicosUFG(historicosUFG);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
+    /**
+     * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o nome do curso não confere.
+     */
+    @Test
+    public void testLoginPrimeiroAcessoNomeCursoNaoConfere() {
+        Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
+
+        CursoUFG cursoCienciasComputacao = new CursoUFG();
+        cursoCienciasComputacao.setNome_instanciaAdm("Um curso qualquer");
+        List<HistoricoUFG> historicosUFG = new ArrayList<>();
+        historicosUFG.add(new HistoricoUFG(123456, 0, 0, 0, 0, cursoCienciasComputacao, ""));
+        egressoPrimeiroAcesso.setLista_historicosUFG(historicosUFG);
+
+        AutenticacaoService instance = new AutenticacaoServiceStub();
+        boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
+        assertEquals(false, resultado);
+    }
+
     /**
      * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando todas as informações conferem.
      */
