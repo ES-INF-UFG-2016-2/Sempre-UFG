@@ -84,4 +84,8 @@ public class CursoUFG {
     public void setArea_de_conhecimento(AreaDeConhecimento area_de_conhecimento) {
         this.area_de_conhecimento = area_de_conhecimento;
     }
+
+    public void setUnidadeAcademica(UnidadeAcademica segundaUnidadeAcademica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

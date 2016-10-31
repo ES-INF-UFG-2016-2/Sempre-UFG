@@ -98,4 +98,8 @@ public class CursoOutrasIES {
         this.url = url;
     }
 
+    public void setUnidadeAcademica(UnidadeAcademica segundaUnidadeAcademica) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
