@@ -28,12 +28,12 @@ public class Responsavel extends Usuario {
 		// Lista de eventos tem tamanho 50;
 		int length = 50;
 
-		
-		// BD retorna objeto Evento ap�s consulta com id_evento
+
+		// BD retorna objeto Evento apos consulta com id_evento
 
 		Evento evento = new Evento(0, null, null, null, 0, null, "palestra", "Ambos", "fora_DE_Escopo");
 
-		// A divulga��o � aprovada ou rejeitada
+		// A divulgacao e aprovada ou rejeitada
 		boolean div_aprovada = div_aprov;
 
 		String parecer = "abc";
