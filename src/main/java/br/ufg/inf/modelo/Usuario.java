@@ -13,7 +13,7 @@ public class Usuario {
     private String nome;
     private String cpf;
     private BitSet foto = new BitSet();
-    private PoliticaRecebimentoMensagens tipoDivulgacao;
+    private PoliticaRecebimentoMensagens tipoDivulgacao = PoliticaRecebimentoMensagens.CADA_EVENTO;
     private Date ts_cadastramento;
     private Date ts_ult_update;
     private Date ts_exclusao;
