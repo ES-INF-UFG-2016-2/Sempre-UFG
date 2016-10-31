@@ -9,7 +9,8 @@ before_script:
   - psql -c "SHOW SERVER_VERSION" -U postgres
   - psql -c "SHOW SERVER_ENCODING" -U postgres
   - psql -c "SHOW DateStyle" -U postgres
-  - psql -c 'create database sempreufg;' -U sempreufg
+  - sh db/postgres.sh
+  #- psql -c 'create database sempreufgtest;' -U sempreufg
   - mysql -e "create database sempreufg;" -u sempreufg
 script:
   - sh postgres.sh
