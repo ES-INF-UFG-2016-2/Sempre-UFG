@@ -72,7 +72,7 @@ public class ExecConsTest {
 
         resultadoObtido = consultaEgresso.executaConsultaDeEgressosPredefinida(identificador, parametros);
         Assert.assertEquals(resultadoEsperado.toString(), resultadoObtido.toString());
-        Assert.assertEquals(((ConsultaEgressoMock) consultaEgresso).getUltimaConsulta(), new Date());
+        Assert.assertEquals(((ConsultaEgressoMock) consultaEgresso).getUltimaConsulta().toString(), new Date().toString());
     }
 
     @Test(expected = IdentificadorInexistenteExepction.class)
