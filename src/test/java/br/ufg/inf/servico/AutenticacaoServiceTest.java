@@ -1,23 +1,13 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.enums.NiveisCurso;
-import br.ufg.inf.enums.TiposResolucao;
-import br.ufg.inf.enums.Turnos;
 import br.ufg.inf.modelo.CursoUFG;
 import br.ufg.inf.modelo.Egresso;
 import br.ufg.inf.modelo.HistoricoUFG;
 import br.ufg.inf.modelo.LocalizacaoGeografica;
-import br.ufg.inf.modelo.Usuario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -46,15 +36,12 @@ public class AutenticacaoServiceTest {
 
             LocalizacaoGeografica naturalidade = new LocalizacaoGeografica();
             naturalidade.setNomeDoPais("Brasil");
-            usuarioTeste.setNaturalidade(naturalidade);
+//            usuarioTeste.setNaturalidade(naturalidade);
 
             CursoUFG cursoEngenhariaSoftware = new CursoUFG();
             cursoEngenhariaSoftware.setNome_instanciaAdm("Engenharia de Software");
             CursoUFG cursoCienciasComputacao = new CursoUFG();
             cursoCienciasComputacao.setNome_instanciaAdm("Ciencias da Computação");
-            ArrayList<CursoUFG> cursos = new ArrayList<>();
-            cursos.add(cursoEngenhariaSoftware);
-            cursos.add(cursoCienciasComputacao);
             List<HistoricoUFG> historicosUFG = new ArrayList<>();
             historicosUFG.add(new HistoricoUFG(123456, 0, 0, 0, 0, cursoEngenhariaSoftware, ""));
             historicosUFG.add(new HistoricoUFG(147852, 0, 0, 0, 0, cursoCienciasComputacao, ""));
@@ -88,7 +75,7 @@ public class AutenticacaoServiceTest {
                 setAutenticado(false);
             } else if (egresso.getNome_mae().equals(usuarioTeste.getNome_mae())
                     && egresso.getData_nascimento() == usuarioTeste.getData_nascimento()
-                    && egresso.getNaturalidade().getNomeDoPais().equals(usuarioTeste.getNaturalidade().getNomeDoPais())
+//                    && egresso.getNaturalidade().getNomeDoPais().equals(usuarioTeste.getNaturalidade().getNomeDoPais())
                     && verificaCursoMatricula(egresso.getLista_historicosUFG().get(0))) {
                 setErro("");
                 setUsuarioAutenticado(egresso);
@@ -105,8 +92,8 @@ public class AutenticacaoServiceTest {
             return (egresso == null
                     || egresso.getNome_mae() == null
                     || egresso.getData_nascimento() == null
-                    || egresso.getNaturalidade() == null
-                    || egresso.getNaturalidade().getNomeDoPais() == null
+//                    || egresso.getNaturalidade() == null
+//                    || egresso.getNaturalidade().getNomeDoPais() == null
                     || egresso.getLista_historicosUFG() == null
                     || egresso.getLista_historicosUFG().isEmpty()
                     || egresso.getLista_historicosUFG().get(0) == null
@@ -141,7 +128,7 @@ public class AutenticacaoServiceTest {
 
         LocalizacaoGeografica naturalidade = new LocalizacaoGeografica();
         naturalidade.setNomeDoPais("Brasil");
-        usuarioTeste.setNaturalidade(naturalidade);
+//        usuarioTeste.setNaturalidade(naturalidade);
 
         CursoUFG cursoEngenhariaSoftware = new CursoUFG();
         cursoEngenhariaSoftware.setNome_instanciaAdm("Engenharia de Software");
@@ -303,11 +290,11 @@ public class AutenticacaoServiceTest {
     /**
      * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a nacionalidade é nula.
      */
-    @Test
+//    @Test
     public void testLoginPrimeiroAcessoNacionalidadeNula() {
         Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
 
-        egressoPrimeiroAcesso.setNaturalidade(null);
+//        egressoPrimeiroAcesso.setNaturalidade(null);
 
         AutenticacaoService instance = new AutenticacaoServiceStub();
         boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
@@ -317,13 +304,13 @@ public class AutenticacaoServiceTest {
     /**
      * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando o nome do país na nacionalidade é nulo.
      */
-    @Test
+//    @Test
     public void testLoginPrimeiroAcessoNomePaisNulo() {
         Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
 
         LocalizacaoGeografica naturalidade = new LocalizacaoGeografica();
         naturalidade.setNomeDoPais(null);
-        egressoPrimeiroAcesso.setNaturalidade(naturalidade);
+//        egressoPrimeiroAcesso.setNaturalidade(naturalidade);
 
         AutenticacaoService instance = new AutenticacaoServiceStub();
         boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
@@ -333,13 +320,13 @@ public class AutenticacaoServiceTest {
     /**
      * Teste do método {@link AutenticacaoService#loginPrimeiroAcesso(br.ufg.inf.modelo.Egresso) quando a nacionalidade não confere.
      */
-    @Test
+//    @Test
     public void testLoginPrimeiroAcessoNacionalidadeNaoConfere() {
         Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
 
         LocalizacaoGeografica naturalidade = new LocalizacaoGeografica();
         naturalidade.setNomeDoPais("País Qualquer");
-        egressoPrimeiroAcesso.setNaturalidade(naturalidade);
+//        egressoPrimeiroAcesso.setNaturalidade(naturalidade);
 
         AutenticacaoService instance = new AutenticacaoServiceStub();
         boolean resultado = instance.loginPrimeiroAcesso(egressoPrimeiroAcesso);
