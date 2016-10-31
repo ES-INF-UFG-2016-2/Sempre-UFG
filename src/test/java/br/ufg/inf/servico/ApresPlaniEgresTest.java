@@ -2,7 +2,6 @@ package br.ufg.inf.servico;
 
 import br.ufg.inf.interfaces.Planilha;
 import br.ufg.inf.stubs.ApresPlaniEgresStub;
-import br.ufg.inf.stubs.PlanilhaStub;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,9 +14,7 @@ public class ApresPlaniEgresTest {
     @Test
     public void testapresPlaniEgresParametroValido(Planilha planilha){
 
-        Planilha planilhaStub = new PlanilhaStub();
-
-        Assert.assertEquals(planilha instanceof Planilha, planilhaStub instanceof Planilha);
+        Assert.assertEquals(planilha != null, true);
 
     }
 
