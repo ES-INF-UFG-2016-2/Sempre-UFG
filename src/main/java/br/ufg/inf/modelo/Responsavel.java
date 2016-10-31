@@ -20,7 +20,6 @@ public class Responsavel extends Usuario {
 		super();
 		setInst_admin(inst_admin);
 
-		System.out.println("Responsavel criado.");
 
 	}
 
@@ -54,12 +53,10 @@ public class Responsavel extends Usuario {
 		Avaliacao avaliacao = new Avaliacao(evento, div_aprovada, parecer, data);
 
 		if (avaliacao.isAprovada()) {
-			System.out.println("Divulgacao aprovada.");
 			return divulgaEventoEgresso(evento.getId(), inst_admin);
 		}
 
 		else {
-			System.out.println("Divulgacao rejeitada.");
 			return encaminhaAvaliacao(avaliacao.getParecer(), avaliacao.getEvento().getId_solicitante());
 
 		}
