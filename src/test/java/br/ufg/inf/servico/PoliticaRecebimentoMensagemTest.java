@@ -1,6 +1,6 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.enuns.PoliticaRecebimentoMensagens;
+import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
 import br.ufg.inf.modelo.Usuario;
 import org.junit.Before;
 import org.junit.Test;

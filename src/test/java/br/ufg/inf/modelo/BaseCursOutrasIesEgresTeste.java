@@ -1,6 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.dao.ConexaoBanco;
+import br.ufg.inf.db.ConexaoBanco;
 import br.ufg.inf.enums.Nivel;
 import br.ufg.inf.enums.TipoInstituicao;
 import junit.framework.TestCase;
