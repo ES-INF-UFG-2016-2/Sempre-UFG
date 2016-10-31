@@ -95,7 +95,7 @@ public class UsuarioTeste {
         Usuario usuario = new Usuario();
         usuario.setMail(email);
         usuario.setSenha(senha);
-        assertEquals(true, usuario.validarUsuario());
+        assertEquals(true, usuario.validarUsuario(email, senha));
     }
 
     @Test
@@ -105,7 +105,7 @@ public class UsuarioTeste {
         Usuario usuario = new Usuario();
         usuario.setMail(email);
         usuario.setSenha(senha);
-        assertEquals(false, usuario.validarUsuario());
+        assertEquals(false, usuario.validarUsuario(email, senha));
     }
 
     @Test
