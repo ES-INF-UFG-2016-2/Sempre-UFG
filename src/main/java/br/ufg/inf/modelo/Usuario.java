@@ -11,7 +11,7 @@ public class Usuario {
     private String mail;
     private String senha;
     private String nome;
-    private String cpf;
+    private long cpf;
     private BitSet foto = new BitSet();
     private PoliticaRecebimentoMensagens tipoDivulgacao = PoliticaRecebimentoMensagens.CADA_EVENTO;
     private Date ts_cadastramento;
@@ -50,11 +50,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
