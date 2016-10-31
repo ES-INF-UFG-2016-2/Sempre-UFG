@@ -2,7 +2,7 @@
 
 psql -h localhost -U postgres -a -f create-user-and-db.sql
 #cat create-user-and-db.sql | sudo su - postgres -c psql
-#TODO: separar no script the gera o banco de dados e no que poula os badados
+#TODO: separar no script que gera o banco de dados e no que popula
 
 export PGDATABASE='sempreufg'
 export PGUSER='sempreufg'
