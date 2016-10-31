@@ -16,9 +16,9 @@ public class PropertiesCreator {
 
 			output = new FileOutputStream("src/test/resources/config.properties");
 
-			prop.setProperty("database", "jdbc:postgresql://localhost:5432/AprovDivulgInfoDB");
-			prop.setProperty("dbuser", "postgres");
-			prop.setProperty("dbpassword", "admin");
+			prop.setProperty("database", "jdbc:postgresql://localhost:5432/sempreufg");
+			prop.setProperty("dbuser", "sempreufg");
+			prop.setProperty("dbpassword", "sempreufg");
 			prop.store(output, null);
 
 		} catch (IOException io) {
