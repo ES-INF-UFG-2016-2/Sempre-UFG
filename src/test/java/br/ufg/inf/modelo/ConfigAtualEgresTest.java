@@ -16,14 +16,14 @@ import br.ufg.inf.modelo.Entidade;
 public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 
 	/** 
-	 * A estrutura se diz válida quando somente uma delas 
-	 * tem o antecessor null e não podem ter mais de um antecessor em comum
-	 * ex. se existir 2 entidades com o mesmo antecessor seria uma estrutura inválida
+	 * A estrutura se diz valida quando somente uma delas 
+	 * tem o antecessor null e nao podem ter mais de um antecessor em comum
+	 * ex. se existir 2 entidades com o mesmo antecessor seria uma estrutura invalida
 	 * @throws Exception 
 	 */
 	@Test
 	public void testaEstruturaEntidade() throws Exception{
-		// Testa com uma estrutura válida
+		// Testa com uma estrutura valida
 		List<Entidade> entidades = entidadesJSONTOEntidade(retornaEntradaEntidadeAtributoJSONValido());
 		
 		List<Integer> referenciasAntecessoras= new ArrayList();
@@ -33,14 +33,14 @@ public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 		
 		for(Integer referencia : referenciasAntecessoras){
 			if(Collections.frequency(referenciasAntecessoras, referencia) >1){
-				throw new Exception("Não pode haver mais de uma entidade com o mesmo antecessor");
+				throw new Exception("Nao pode haver mais de uma entidade com o mesmo antecessor");
 			}
 		}
 	}
 	
 	@Test
 	public void testaEstruturaAtributo() throws Exception{
-		// Testa com uma estrutura válida
+		// Testa com uma estrutura valida
 		List<Entidade> entidades = entidadesJSONTOEntidade(retornaEntradaEntidadeAtributoJSONValido());
 		
 		List<Integer> referenciasAntecessoras= new ArrayList();
@@ -51,7 +51,7 @@ public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 			
 			for(Integer referencia : referenciasAntecessoras){
 				if(Collections.frequency(referenciasAntecessoras, referencia) >1){
-					throw new Exception("Não pode haver mais de um atributo com o mesmo antecessor");
+					throw new Exception("Nao pode haver mais de um atributo com o mesmo antecessor");
 				}
 			}
 			
@@ -61,7 +61,7 @@ public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 	
 	@Test
 	public void testaEstruturaAtributoInvalido() throws Exception{
-		// Testa com uma estrutura válida
+		// Testa com uma estrutura valida
 		List<Entidade> entidades = entidadesJSONTOEntidade(retornaEntradaEntidadeAtributoJSONInValido());
 		
 		List<Integer> referenciasAntecessoras= new ArrayList();
@@ -73,10 +73,10 @@ public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 			for(Integer referencia : referenciasAntecessoras){
 				try{
 					if(Collections.frequency(referenciasAntecessoras, referencia) >1){
-						throw new Exception("Não pode haver mais de um atributo com o mesmo antecessor");
+						throw new Exception("Nao pode haver mais de um atributo com o mesmo antecessor");
 					}
 				}catch (Exception e) {
-					assertEquals(e.getMessage(), "Não pode haver mais de um atributo com o mesmo antecessor");
+					assertEquals(e.getMessage(), "Nao pode haver mais de um atributo com o mesmo antecessor");
 				}
 				
 			}
@@ -87,7 +87,7 @@ public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 	
 	@Test
 	public void testaEstruturaEntidadeInvalida() throws Exception{
-		// Testa com uma estrutura inválida
+		// Testa com uma estrutura invalida
 		List<Entidade> entidades = entidadesJSONTOEntidade(retornaEntradaEntidadeAtributoJSONInValido());
 		
 		List<Integer> referenciasAntecessoras= new ArrayList();
@@ -98,10 +98,10 @@ public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 		for(Integer referencia : referenciasAntecessoras){
 			try{
 				if(Collections.frequency(referenciasAntecessoras, referencia) >1){
-					throw new Exception("Não pode haver mais de uma entidade com o mesmo antecessor");
+					throw new Exception("Nao pode haver mais de uma entidade com o mesmo antecessor");
 				}
 			}catch(Exception e){
-				assertEquals(e.getMessage(), "Não pode haver mais de uma entidade com o mesmo antecessor");
+				assertEquals(e.getMessage(), "Nao pode haver mais de uma entidade com o mesmo antecessor");
 			}
 		}
 	}
@@ -157,7 +157,7 @@ public class ConfigAtualEgresTest extends BaseConfigAtualEgres {
 	}
 	
 	/** 
-	 * Somente uma entidade pode ter o antecessor vazio ou null( primeira questão )
+	 * Somente uma entidade pode ter o antecessor vazio ou null( primeira questao )
 	 */
 	@Test
 	public void testaEntidadeAntecessorValidoNull(){
