@@ -1,6 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enums.Nivel;
+import br.ufg.inf.enums.NiveisCurso;
 import br.ufg.inf.enums.TipoInstituicao;
 
 public class CursoOutrasIES {
@@ -15,7 +15,7 @@ public class CursoOutrasIES {
 
     private String urlInstitucional;
 
-    private Nivel nivel;
+    private NiveisCurso nivel;
 
     private TipoInstituicao tipoInstituicao;
 
@@ -27,7 +27,7 @@ public class CursoOutrasIES {
         
     }
 
-    public CursoOutrasIES(String id, String nomeDoCurso, String unidadeAcademia, String iesDoCurso, String urlInstitucional, Nivel nivel, TipoInstituicao tipoInstituicao, AreaDeConhecimento areaDeConhecimento) {
+    public CursoOutrasIES(String id, String nomeDoCurso, String unidadeAcademia, String iesDoCurso, String urlInstitucional, NiveisCurso nivel, TipoInstituicao tipoInstituicao, AreaDeConhecimento areaDeConhecimento) {
         this.id = id;
         this.nomeDoCurso = nomeDoCurso;
         this.unidadeAcademia = unidadeAcademia;
@@ -70,11 +70,11 @@ public class CursoOutrasIES {
         this.urlInstitucional = urlInstitucional;
     }
 
-    public Nivel getNivel() {
+    public NiveisCurso getNivel() {
         return nivel;
     }
 
-    public void setNivel(Nivel nivel) {
+    public void setNivel(NiveisCurso nivel) {
         this.nivel = nivel;
     }
 

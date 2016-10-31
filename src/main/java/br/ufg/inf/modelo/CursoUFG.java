@@ -1,8 +1,6 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.abstratas.AreaDeConhecimento;
 import br.ufg.inf.enums.NiveisCurso;
-import br.ufg.inf.enums.Nivel;
 import br.ufg.inf.enums.TipoResolucao;
 import br.ufg.inf.enums.Turno;
 
@@ -15,19 +13,18 @@ public class CursoUFG {
     private boolean presencial;
     private Turno turno;
     private AreaDeConhecimento area_de_conhecimento;
+    private UnidadeAcademica unidadeAcademica;
 
-    public CursoUFG(NiveisCurso nivel, TipoResolucao tiposResolucao, int num_resolucao, boolean presencial, Turno turno, AreaDeConhecimento area_de_conhecimento) {
+    public CursoUFG(NiveisCurso nivel, TipoResolucao tiposResolucao, int num_resolucao, boolean presencial, Turno turno, AreaDeConhecimento area_de_conhecimento, UnidadeAcademica unidadeAcademica) {
         this.nivel = nivel;
         this.tiposResolucao = tiposResolucao;
         this.num_resolucao = num_resolucao;
         this.presencial = presencial;
         this.turno = turno;
         this.area_de_conhecimento = area_de_conhecimento;
+        this.unidadeAcademica = unidadeAcademica;
     }
 
-    public CursoUFG(Nivel nivel, TipoResolucao tipoResolucao, int numResolucao, boolean ePresencial, Turno turno, br.ufg.inf.modelo.AreaDeConhecimento areaConhecimentoEsperada, UnidadeAcademica unidadeAcademicaEsperada) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public String getNome() {
         return nome;
@@ -85,7 +82,12 @@ public class CursoUFG {
         this.area_de_conhecimento = area_de_conhecimento;
     }
 
-    public void setUnidadeAcademica(UnidadeAcademica segundaUnidadeAcademica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UnidadeAcademica getUnidadeAcademica() {
+        return unidadeAcademica;
     }
+
+    public void setUnidadeAcademica(UnidadeAcademica unidadeAcademica) {
+        this.unidadeAcademica = unidadeAcademica;
+    }
+
 }

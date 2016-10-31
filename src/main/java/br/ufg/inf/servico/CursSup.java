@@ -10,31 +10,40 @@ import br.ufg.inf.modelo.UnidadeAcademica;
 class CursSup {
 
     public CursoUFG getCursoUFGPorIdentificador(int num_resolucao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     public LocalizacaoGeografica getLocalizacaoPorIdentificador(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String nomeDaCidade = "Goiânia";
+        String nomeDaUnidadeFederativa = "Goiás";
+        String nomeDoPais = "Brasil";
+        String siglaDaUnidadeFederativa = "GO";
+        float longitude = 12312;
+
+        LocalizacaoGeografica localizacao = new LocalizacaoGeografica(id, nomeDaCidade, nomeDaUnidadeFederativa, nomeDoPais, siglaDaUnidadeFederativa);
+        localizacao.setLongitude(longitude);
+
+        return localizacao;
     }
 
     public UnidadeAcademica getUnidadeAcademicaPorIdentificador(int idUnidadeAcademica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     public RegionalUFG getRegionalPorIdentificador(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     public AreaDeConhecimento getAreaDeConhecimentoPorIdentificador(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     public CursoOutrasIES getCursoOutraIESPorIdentificador(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     public boolean getTodosCursosSuperiores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
-    
 }

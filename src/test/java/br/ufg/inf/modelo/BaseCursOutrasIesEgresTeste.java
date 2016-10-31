@@ -1,7 +1,7 @@
 package br.ufg.inf.modelo;
 
 import br.ufg.inf.db.ConexaoBanco;
-import br.ufg.inf.enums.Nivel;
+import br.ufg.inf.enums.NiveisCurso;
 import br.ufg.inf.enums.TipoInstituicao;
 import junit.framework.TestCase;
 
@@ -130,7 +130,7 @@ public class BaseCursOutrasIesEgresTeste extends TestCase {
 		cursoOutrasIES.setUnidadeAcademia("Samambaia");
 		cursoOutrasIES.setIesDoCurso("UFG");
 		cursoOutrasIES.setUrlInstitucional("www.ufg.org");
-		cursoOutrasIES.setNivel(Nivel.Bacharelado);
+		cursoOutrasIES.setNivel(NiveisCurso.BACHARELADO);
 		cursoOutrasIES.setTipoInstituicao(TipoInstituicao.Federal);
 
 		return cursoOutrasIES;

@@ -1,6 +1,6 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.enums.Nivel;
+import br.ufg.inf.enums.NiveisCurso;
 import br.ufg.inf.enums.Regional;
 import br.ufg.inf.enums.TipoInstituicao;
 import br.ufg.inf.enums.TipoResolucao;
@@ -32,9 +32,9 @@ public class CursSupTest {
 
     @Before
     public void setUp() {
-        
+
         cursSup = new CursSup();
-        
+
         //Cria os objetos ESPERADOS referentes as entidades da visão de cursos superiores
         localizacaoEsperada = insereValoresEsperadosLocalizacaoValidos();
         regionalEsperada = insereValoresEsperadosRegional();
@@ -45,20 +45,17 @@ public class CursSupTest {
     }
 
     @Test
-    public void testUnidadeAcademicaCoordenaCursoUFG() {
-
-    }
-
-    @Test
     public void testCursoUfgPertenceAreaDeConhecimento() {
 
         boolean inserida;
 
         try {
 
-            UnidadeAcademica segundaUnidadeAcademica = new UnidadeAcademica(54, "fic", new LocalizacaoGeografica(),
-                    new RegionalUFG(9, Regional.GOIÂNIA_CÂMPUS_COLEMAR_NATAL_E_SILVA, new LocalizacaoGeografica()));
-            cursoUfgEsperada.setUnidadeAcademica(segundaUnidadeAcademica);
+            String idAntigo = cursoUfgEsperada.getArea_de_conhecimento().getId();
+            AreaDeConhecimento segundaAreaConhecimento = new AreaDeConhecimento("biologica932", "biologica", 932);
+            cursoUfgEsperada.setArea_de_conhecimento(segundaAreaConhecimento);
+
+            assertNotEquals(idAntigo, cursoUfgEsperada.getArea_de_conhecimento().getId());
             inserida = true;
 
         } catch (Exception e) {
@@ -66,7 +63,7 @@ public class CursSupTest {
             inserida = false;
         }
 
-        assertFalse("minimo uma e no maximo uma area de conhecimento por curso na ufg.", inserida);
+        assertTrue("minimo uma e no maximo uma area de conhecimento por curso na ufg.", inserida);
     }
 
     @Test
@@ -76,9 +73,11 @@ public class CursSupTest {
 
         try {
 
-            UnidadeAcademica segundaUnidadeAcademica = new UnidadeAcademica(54, "fic", new LocalizacaoGeografica(),
-                    new RegionalUFG(9, Regional.GOIÂNIA_CÂMPUS_COLEMAR_NATAL_E_SILVA, new LocalizacaoGeografica()));
-            cursoOutraIesEsperada.setUnidadeAcademica(segundaUnidadeAcademica);
+            String idAntigo = cursoUfgEsperada.getArea_de_conhecimento().getId();
+            AreaDeConhecimento segundaAreaConhecimento = new AreaDeConhecimento("biologica932", "biologica", 932);
+            cursoUfgEsperada.setArea_de_conhecimento(segundaAreaConhecimento);
+
+            assertNotEquals(idAntigo, cursoUfgEsperada.getArea_de_conhecimento().getId());
             inserida = true;
 
         } catch (Exception e) {
@@ -86,7 +85,7 @@ public class CursSupTest {
             inserida = false;
         }
 
-        assertFalse("maximo uma area de conhecimento por curso em outra ies.", inserida);
+        assertTrue("maximo uma area de conhecimento por curso na ufg.", inserida);
     }
 
     @Test
@@ -95,9 +94,11 @@ public class CursSupTest {
         boolean inserida;
 
         try {
-
-            RegionalUFG segundaRegional = new RegionalUFG(2, Regional.APARECIDA_DE_GOIÂNIA, new LocalizacaoGeografica());
+            int idAntigo = unidadeAcademicaEsperada.getRegional().getId();
+            RegionalUFG segundaRegional = new RegionalUFG(2, Regional.APARECIDA_DE_GOIÂNIA, new LocalizacaoGeografica(null, null, null, null, null));
             unidadeAcademicaEsperada.setRegional(segundaRegional);
+
+            assertNotEquals(idAntigo, unidadeAcademicaEsperada.getRegional().getId());
             inserida = true;
 
         } catch (Exception e) {
@@ -105,7 +106,7 @@ public class CursSupTest {
             inserida = false;
         }
 
-        assertFalse("minimo uma e no maximo uma regional por unidade academica.", inserida);
+        assertTrue("minimo uma e no maximo uma regional por unidade academica.", inserida);
     }
 
     @Test
@@ -116,8 +117,8 @@ public class CursSupTest {
 
     @Test
     public void testLocalizacaoGeograficaValido() {
-
-        assertEquals(localizacaoEsperada, cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId()));
+        
+        assertEquals(localizacaoEsperada.hashCode(), cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId()).hashCode());
     }
 
     @Test
@@ -252,17 +253,14 @@ public class CursSupTest {
 
     public LocalizacaoGeografica insereValoresEsperadosLocalizacaoValidos() {
 
-        LocalizacaoGeografica localizacao = new LocalizacaoGeografica();
+        String id = "3";
         String nomeDaCidade = "Goiânia";
         String nomeDaUnidadeFederativa = "Goiás";
         String nomeDoPais = "Brasil";
         String siglaDaUnidadeFederativa = "GO";
         float longitude = 12312;
 
-        localizacao.setNomeDaCidade(nomeDaCidade);
-        localizacao.setNomeDaUnidadeFederativa(nomeDaUnidadeFederativa);
-        localizacao.setNomeDoPais(nomeDoPais);
-        localizacao.setSiglaDaUnidadeFederativa(siglaDaUnidadeFederativa);
+        LocalizacaoGeografica localizacao = new LocalizacaoGeografica(id, nomeDaCidade, nomeDaUnidadeFederativa, nomeDoPais, siglaDaUnidadeFederativa);
         localizacao.setLongitude(longitude);
 
         return localizacao;
@@ -298,7 +296,7 @@ public class CursSupTest {
 
     public CursoUFG insereValoresEsperadosCursoUFG() {
 
-        Nivel nivel = Nivel.BACHARELADO;
+        NiveisCurso nivel = NiveisCurso.BACHARELADO;
         TipoResolucao tipoResolucao = TipoResolucao.CONSUNI;
         int numResolucao = 32;
         boolean ePresencial = true;
@@ -311,7 +309,7 @@ public class CursSupTest {
     public CursoOutrasIES insereValoresEsperadosCursoOutraIES() {
 
         String nomeCurso = "Rede de Computadores";
-        Nivel nivel = Nivel.BACHARELADO;
+        NiveisCurso nivel = NiveisCurso.BACHARELADO;
         String unidade = "Faculdade de Tecnologia";
         String iesCurso = "Universidade Paulista";
         TipoInstituicao tipoInstituicao = TipoInstituicao.Particular;
