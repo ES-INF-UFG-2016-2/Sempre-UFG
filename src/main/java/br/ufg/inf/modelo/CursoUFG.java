@@ -1,12 +1,13 @@
 package br.ufg.inf.modelo;
 
 import br.ufg.inf.abstratas.AreaDeConhecimento;
-import br.ufg.inf.enuns.NiveisCurso;
-import br.ufg.inf.enuns.TiposResolucao;
-import br.ufg.inf.enuns.Turnos;
+import br.ufg.inf.enums.NiveisCurso;
+import br.ufg.inf.enums.TiposResolucao;
+import br.ufg.inf.enums.Turnos;
 
 public class CursoUFG {
 
+    private String nome;
     private NiveisCurso nivel;
     private TiposResolucao tiposResolucao;
     private int num_resolucao;
@@ -21,6 +22,14 @@ public class CursoUFG {
         this.presencial = presencial;
         this.turno = turno;
         this.area_de_conhecimento = area_de_conhecimento;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public NiveisCurso getNivel() {
