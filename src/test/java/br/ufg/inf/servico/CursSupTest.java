@@ -118,13 +118,13 @@ public class CursSupTest {
     @Test
     public void testLocalizacaoGeograficaValido() {
         
-        assertEquals(localizacaoEsperada.hashCode(), cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId()).hashCode());
+        assertEquals(localizacaoEsperada, cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId()));
     }
 
     @Test
     public void testLocalizacaoGeograficaNull() {
 
-        assertNull("Retornou localização vazia.", cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId()));
+        assertNull("Retornou localização vazia.", cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId().concat("testenull")));
     }
 
     @Test
@@ -133,7 +133,7 @@ public class CursSupTest {
         //modifica o nome da unidade federativa
         localizacaoEsperada.setNomeDaUnidadeFederativa("RJ");
 
-        assertEquals(localizacaoEsperada, cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId()));
+        assertEquals(localizacaoEsperada.getNomeDaUnidadeFederativa(), cursSup.getLocalizacaoPorIdentificador(localizacaoEsperada.getId()).getNomeDaUnidadeFederativa());
     }
 
     @Test

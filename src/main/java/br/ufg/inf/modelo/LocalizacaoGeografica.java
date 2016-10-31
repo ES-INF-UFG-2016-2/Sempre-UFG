@@ -16,6 +16,9 @@ public class LocalizacaoGeografica {
 
     private Float longitude;
 
+    public LocalizacaoGeografica() {
+    }   
+    
     public LocalizacaoGeografica(String id, String nomeDaCidade, String nomeDaUnidadeFederativa, String nomeDoPais, String siglaDaUnidadeFederativa) {
         this.id = id;
         this.nomeDaCidade = nomeDaCidade;

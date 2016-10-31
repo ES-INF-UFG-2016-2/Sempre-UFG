@@ -10,36 +10,64 @@ import br.ufg.inf.modelo.UnidadeAcademica;
 class CursSup {
 
     public CursoUFG getCursoUFGPorIdentificador(int num_resolucao) {
+        if (num_resolucao == 1) {
+
+        }
+
         return null;
     }
 
     public LocalizacaoGeografica getLocalizacaoPorIdentificador(String id) {
 
-        String nomeDaCidade = "Goiânia";
-        String nomeDaUnidadeFederativa = "Goiás";
-        String nomeDoPais = "Brasil";
-        String siglaDaUnidadeFederativa = "GO";
-        float longitude = 12312;
+        if (id == "3") {
+            String nomeDaCidade = "Goiânia";
+            String nomeDaUnidadeFederativa = "Goiás";
+            String nomeDoPais = "Brasil";
+            String siglaDaUnidadeFederativa = "GO";
+            float longitude = 12312;
 
-        LocalizacaoGeografica localizacao = new LocalizacaoGeografica(id, nomeDaCidade, nomeDaUnidadeFederativa, nomeDoPais, siglaDaUnidadeFederativa);
-        localizacao.setLongitude(longitude);
+            LocalizacaoGeografica localizacao = new LocalizacaoGeografica(id, nomeDaCidade, nomeDaUnidadeFederativa, nomeDoPais, siglaDaUnidadeFederativa);
+            localizacao.setLongitude(longitude);
 
-        return localizacao;
+            return localizacao;
+        }
+
+        return null;
+
     }
 
     public UnidadeAcademica getUnidadeAcademicaPorIdentificador(int idUnidadeAcademica) {
+
+        if (idUnidadeAcademica == 1) {
+            UnidadeAcademica unidade = new UnidadeAcademica(0, null, null, null);
+            return unidade;
+        }
         return null;
     }
 
     public RegionalUFG getRegionalPorIdentificador(int id) {
+
+        if (id == 1) {
+
+        }
         return null;
     }
 
     public AreaDeConhecimento getAreaDeConhecimentoPorIdentificador(String id) {
+
+        if (id == "1") {
+
+        }
+
         return null;
     }
 
     public CursoOutrasIES getCursoOutraIESPorIdentificador(String id) {
+
+        if (id == "1") {
+
+        }
+
         return null;
     }
 
