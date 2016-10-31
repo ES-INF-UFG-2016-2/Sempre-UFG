@@ -2,7 +2,7 @@ package br.ufg.inf.servico;
 
 
 import br.ufg.inf.enums.Sexo;
-import br.ufg.inf.enums.Turnos;
+import br.ufg.inf.enums.Turno;
 import br.ufg.inf.enums.VisibilidadeDados;
 import br.ufg.inf.excecoes.ColunaInexistenteException;
 import br.ufg.inf.excecoes.ErroNaConsultaException;
@@ -191,7 +191,7 @@ public class ExecConsTest {
     }
 
     private CursoUFG criaCurso(String nomeCurso) {
-        CursoUFG cursoUFG = new CursoUFG(null, null, 1, true, Turnos.INTEGRAL, null);
+        CursoUFG cursoUFG = new CursoUFG(null, null, 1, true, Turno.INTEGRAL, null);
         cursoUFG.setNome(nomeCurso);
         return cursoUFG;
     }

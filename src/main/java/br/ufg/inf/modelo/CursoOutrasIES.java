@@ -22,6 +22,10 @@ public class CursoOutrasIES {
     private String url;
     
     private AreaDeConhecimento areaConhecimento;
+    
+    public CursoOutrasIES(){
+        
+    }
 
     public CursoOutrasIES(String id, String nomeDoCurso, String unidadeAcademia, String iesDoCurso, String urlInstitucional, Nivel nivel, TipoInstituicao tipoInstituicao, AreaDeConhecimento areaDeConhecimento) {
         this.id = id;
