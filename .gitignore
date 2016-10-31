@@ -242,4 +242,4 @@ local.properties
 # Code Recommenders
 .recommenders/
 
-*.odf
+/nbproject/
