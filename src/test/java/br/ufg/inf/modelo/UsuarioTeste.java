@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author hiago
  */
-public class UsuarioTest {
+public class UsuarioTeste {
 
     @Test
     public void testeEmailCorreto() throws Exception {
