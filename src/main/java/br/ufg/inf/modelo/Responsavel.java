@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Responsavel extends Usuario {
 
 	private List inst_admin = new ArrayList();
