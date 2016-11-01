@@ -11,7 +11,7 @@ public interface AprovDivulgInfoDAOInterface {
 	public boolean salvaAprovacao(boolean divulgacao_aprovada, String parecer_sobre_divulgacao,
 			Date data_aprovacao_ou_rejeicao, int evento_id, int usuario_id);
 
-	boolean salvaUsuario(String email_principal, String senha_criptografada, String nome, int cpf, InputStream foto,
+	boolean salvaUsuario(String email_principal, String senha_criptografada, String nome, long cpf, byte[] foto,
 			String recebe_divulgacao, Timestamp timestamp_de_cadastramento, Timestamp timestamp_de_ultima_atualizacao,
 			Timestamp timestamp_de_exclusao_logica, int instancia_administrativa);
 
@@ -25,7 +25,7 @@ public interface AprovDivulgInfoDAOInterface {
 	boolean salvaArea_Conhecimento(String nome, int codigo, int area_conhecimento);
 
 	public ResultSet buscaAprovacao();
-	public ResultSet buscaUsuario(int cpf);
+	public ResultSet buscaUsuario(long cpf);
 	public ResultSet buscaEvento();
 	public ResultSet buscaArea_Conhecimento();
 	public ResultSet buscaInstancia();

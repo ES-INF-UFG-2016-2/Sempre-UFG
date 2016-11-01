@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.sql.Date;
 
@@ -46,15 +47,14 @@ public class AprovDivulgInfoTest {
 	private String email_principal = "email";
 	private String senha = "senha";
 	private String nome = "primeiro usuario";
-	private int cpf = 123234345;
+	private long cpf = 123234345;
 	private String recebe_divulgacao = "DIARIA";
 	private Date data = new Date(123123);
 	private Timestamp timestamp_de_cadastramento = new Timestamp(data.getTime());
 	private Timestamp timestamp_de_ultima_atualizacao = new Timestamp(data.getTime());
 	private Timestamp timestamp_de_exclusao_logica = new Timestamp(data.getTime());
 	private int instancia_administrativa = 2;
-	InputStream foto = new ByteArrayInputStream(new byte[] { 0xC, 0xA, 0xF, 0xE });
-	
+
 	// evento
 	private String assunto = "assunto";
 	private String tipo_evento = "NOTICIA";
@@ -195,9 +195,17 @@ public class AprovDivulgInfoTest {
 	@Test
 	public void testInsertUsuario() {
 
-		assertTrue(testeDAO.salvaUsuario(email_principal, senha, nome, cpf, foto, recebe_divulgacao,
-				timestamp_de_cadastramento, timestamp_de_ultima_atualizacao, timestamp_de_exclusao_logica,
-				instancia_administrativa));
+		String s = "Foto do usuario";
+		byte[] foto;
+		try {
+			foto = s.getBytes("UTF-8");
+			assertTrue(testeDAO.salvaUsuario(email_principal, senha, nome, cpf, foto, recebe_divulgacao,
+					timestamp_de_cadastramento, timestamp_de_ultima_atualizacao, timestamp_de_exclusao_logica,
+					instancia_administrativa));
+		} catch (UnsupportedEncodingException e) {
+			fail();
+
+		}
 
 	}
 
@@ -272,33 +280,38 @@ public class AprovDivulgInfoTest {
 			hexString.append(String.format("%02X", 0xFF & b));
 		}
 		String senha_criptografada = hexString.toString();
+		String s = "Foto do usuario2";
+		byte[] foto = s.getBytes("UTF-8");
 
 		ResultSet rs = testeDAO.buscaUsuario(cpf);
-		
-		while(rs.next()){
 
-		assertEquals(rs.getString(2), "email@usuario.com");
-		//assertEquals(rs.getString(3), senha_criptografada);
-		assertEquals(rs.getString(4), "segundo usuario");
-		assertEquals(rs.getInt(5), 1233235352);
-		//assertEquals(rs.getBinaryStream(6), foto);
-		assertEquals(rs.getString(7), recebe_divulgacao);
-		assertEquals(rs.getTimestamp(8), timestamp_de_cadastramento);
-		assertEquals(rs.getTimestamp(9), timestamp_de_ultima_atualizacao);
-		assertEquals(rs.getTimestamp(10), timestamp_de_exclusao_logica);
-		assertEquals(rs.getInt(11), 1);
+		while (rs.next()) {
+
+			assertEquals(rs.getString(2), "email@usuario.com");
+			// assertEquals(rs.getString(3), senha_criptografada);
+			assertEquals(rs.getString(4), "segundo usuario");
+			assertEquals(rs.getInt(5), 1233235352);
+
+			assertTrue(Arrays.equals(rs.getBytes(6), foto));
+			assertEquals(rs.getString(7), recebe_divulgacao);
+			assertEquals(rs.getTimestamp(8), timestamp_de_cadastramento);
+			assertEquals(rs.getTimestamp(9), timestamp_de_ultima_atualizacao);
+			assertEquals(rs.getTimestamp(10), timestamp_de_exclusao_logica);
+			assertEquals(rs.getInt(11), 1);
 		}
 	}
 
 	@Test
-	public void testBuscaAprovacao() throws SQLException, FileNotFoundException {
+	public void testBuscaAprovacao()  {
 
 		String busca = "SELECT * FROM public.aprovacao_de_divulgacao WHERE " + "evento = ?;";
 
-		PreparedStatement ps1 = conn.prepareStatement(busca);
-		ps1.setInt(1, 1);
+		
 
 		try {
+			
+			PreparedStatement ps1 = conn.prepareStatement(busca);
+			ps1.setInt(1, 1);
 			ResultSet rs = ps1.executeQuery();
 
 			rs.next();

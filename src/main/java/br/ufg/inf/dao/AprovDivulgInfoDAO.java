@@ -1,9 +1,11 @@
 package br.ufg.inf.dao;
 
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -15,6 +17,7 @@ import java.sql.Timestamp;
 
 import br.ufg.inf.dados.ManipulaDB;
 import br.ufg.inf.interfaces.AprovDivulgInfoDAOInterface;
+
 
 public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
@@ -71,7 +74,15 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		Timestamp timestamp_de_ultima_atualizacao = new Timestamp(data.getTime());
 		Timestamp timestamp_de_exclusao_logica = new Timestamp(data.getTime());
 		int instancia_administrativa = 1;
-		InputStream foto = new ByteArrayInputStream(new byte[] { 0xC, 0xA, 0xF, 0xE });
+		String s = "Foto do usuario2";
+		byte[] foto = null;
+		try {
+			foto = s.getBytes ("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			System.out.println(e.getLocalizedMessage());
+		
+		}
+			
 		// evento
 		String assunto = "outro assunto";
 		String tipo_evento = "PALESTRA";
@@ -181,7 +192,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	@Override
-	public boolean salvaUsuario(String email_principal, String senha, String nome, int cpf, InputStream foto,
+	public boolean salvaUsuario(String email_principal, String senha, String nome, long cpf, byte[] foto,
 			String recebe_divulgacao, Timestamp timestamp_de_cadastramento, Timestamp timestamp_de_ultima_atualizacao,
 			Timestamp timestamp_de_exclusao_logica, int instancia_administrativa) {
 
@@ -206,8 +217,8 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setString(1, email_principal);
 			ps.setString(2, senha_criptografada.toLowerCase().substring(0, 9));
 			ps.setString(3, nome);
-			ps.setInt(4, cpf);
-			ps.setBinaryStream(5, foto);
+			ps.setLong(4, cpf);
+			ps.setBytes(5, foto);
 			ps.setString(6, recebe_divulgacao); // CAST AS recebe_divulgacao
 												// type in
 												// SQL
@@ -389,7 +400,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	@Override
-	public ResultSet buscaUsuario(int cpf) {
+	public ResultSet buscaUsuario(long cpf) {
 
 		try {
 			String busca = "SELECT * FROM usuario WHERE " + "email_principal=?";
