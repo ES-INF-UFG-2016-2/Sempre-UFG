@@ -54,7 +54,7 @@ public class AutenticacaoServiceTest {
                 setErro("Login e senha são obrigatório(s)");
                 setUsuarioAutenticado(null);
                 setAutenticado(false);
-            } else if ((login.equals(usuarioTeste.getCpf()) || login.equals(usuarioTeste.getMail()))
+            } else if ((login.equals(Long.toString(usuarioTeste.getCpf())) || login.equals(usuarioTeste.getMail()))
                     && senha.equals(usuarioTeste.getSenha())) {
                 setErro("");
                 setUsuarioAutenticado(usuarioTeste);
@@ -168,7 +168,7 @@ public class AutenticacaoServiceTest {
     @Test
     public void testLoginSenhaNula() {
         AutenticacaoService autenticacaoService = new AutenticacaoServiceStub();
-        assertEquals(false, autenticacaoService.login("123456789", null));
+        assertEquals(false, autenticacaoService.login("12345678901", null));
     }
 
     /**
@@ -177,7 +177,7 @@ public class AutenticacaoServiceTest {
     @Test
     public void testLoginLoginSenhaDiferentes() {
         AutenticacaoService autenticacaoService = new AutenticacaoServiceStub();
-        assertEquals(false, autenticacaoService.login("987654321", "minhaSenha"));
+        assertEquals(false, autenticacaoService.login("98765432101", "minhaSenha"));
     }
 
     /**
@@ -186,7 +186,7 @@ public class AutenticacaoServiceTest {
     @Test
     public void testLoginLoginDiferente() {
         AutenticacaoService autenticacaoService = new AutenticacaoServiceStub();
-        assertEquals(false, autenticacaoService.login("987654321", "senhaTeste"));
+        assertEquals(false, autenticacaoService.login("98765432101", "senhaTeste"));
     }
 
     /**
@@ -195,7 +195,7 @@ public class AutenticacaoServiceTest {
     @Test
     public void testLoginSenhaDiferente() {
         AutenticacaoService autenticacaoService = new AutenticacaoServiceStub();
-        assertEquals(false, autenticacaoService.login("123456789", "minhaSenha"));
+        assertEquals(false, autenticacaoService.login("12345678901", "minhaSenha"));
     }
 
     /**
@@ -204,7 +204,7 @@ public class AutenticacaoServiceTest {
     @Test
     public void testLoginLoginCPF() {
         AutenticacaoService autenticacaoService = new AutenticacaoServiceStub();
-        assertEquals(true, autenticacaoService.login("123456789", "senhaTeste"));
+        assertEquals(true, autenticacaoService.login("12345678901", "senhaTeste"));
     }
 
     /**
