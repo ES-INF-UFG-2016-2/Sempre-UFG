@@ -5,9 +5,8 @@ import br.ufg.inf.enums.NiveisCurso;
 import br.ufg.inf.enums.TiposResolucao;
 import br.ufg.inf.enums.Turnos;
 
-public class CursoUFG {
+public class CursoUFG extends InstanciaAdm {
 
-    private String nome;
     private NiveisCurso nivel;
     private TiposResolucao tiposResolucao;
     private int num_resolucao;
@@ -15,21 +14,18 @@ public class CursoUFG {
     private Turnos turno;
     private AreaDeConhecimento area_de_conhecimento;
 
+    public CursoUFG() {
+        super();
+    }
+
     public CursoUFG(NiveisCurso nivel, TiposResolucao tiposResolucao, int num_resolucao, boolean presencial, Turnos turno, AreaDeConhecimento area_de_conhecimento) {
+        super();
         this.nivel = nivel;
         this.tiposResolucao = tiposResolucao;
         this.num_resolucao = num_resolucao;
         this.presencial = presencial;
         this.turno = turno;
         this.area_de_conhecimento = area_de_conhecimento;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public NiveisCurso getNivel() {
