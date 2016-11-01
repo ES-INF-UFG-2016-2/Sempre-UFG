@@ -22,7 +22,7 @@ public class AutenticacaoServiceTest {
         private final Egresso usuarioTeste = new Egresso();
 
         public AutenticacaoServiceStub() {
-            usuarioTeste.setCpf("123456789");
+            usuarioTeste.setCpf(12345678901l);
             usuarioTeste.setMail("usuarioTeste@teste.com");
             usuarioTeste.setSenha("senhaTeste");
 
@@ -39,9 +39,9 @@ public class AutenticacaoServiceTest {
 //            usuarioTeste.setNaturalidade(naturalidade);
 
             CursoUFG cursoEngenhariaSoftware = new CursoUFG();
-            cursoEngenhariaSoftware.setNome_instanciaAdm("Engenharia de Software");
+            cursoEngenhariaSoftware.setNome("Engenharia de Software");
             CursoUFG cursoCienciasComputacao = new CursoUFG();
-            cursoCienciasComputacao.setNome_instanciaAdm("Ciencias da Computação");
+            cursoCienciasComputacao.setNome("Ciencias da Computação");
             List<HistoricoUFG> historicosUFG = new ArrayList<>();
             historicosUFG.add(new HistoricoUFG(123456, 0, 0, 0, 0, cursoEngenhariaSoftware, ""));
             historicosUFG.add(new HistoricoUFG(147852, 0, 0, 0, 0, cursoCienciasComputacao, ""));
@@ -98,15 +98,15 @@ public class AutenticacaoServiceTest {
                     || egresso.getLista_historicosUFG().isEmpty()
                     || egresso.getLista_historicosUFG().get(0) == null
                     || egresso.getLista_historicosUFG().get(0).getCursoUFG() == null
-                    || egresso.getLista_historicosUFG().get(0).getCursoUFG().getNome_instanciaAdm() == null);
+                    || egresso.getLista_historicosUFG().get(0).getCursoUFG().getNome() == null);
         }
 
         private boolean verificaCursoMatricula(HistoricoUFG historicoUFG) {
             boolean cursoMatriculaConferem = false;
             for (HistoricoUFG historicoUFGSalvo : usuarioTeste.getLista_historicosUFG()) {
                 if (historicoUFG.getNum_matricula() == historicoUFGSalvo.getNum_matricula()
-                        && historicoUFG.getCursoUFG().getNome_instanciaAdm().equals(
-                                historicoUFGSalvo.getCursoUFG().getNome_instanciaAdm())) {
+                        && historicoUFG.getCursoUFG().getNome().equals(
+                                historicoUFGSalvo.getCursoUFG().getNome())) {
                     cursoMatriculaConferem = true;
                     break;
                 }
@@ -131,9 +131,9 @@ public class AutenticacaoServiceTest {
 //        usuarioTeste.setNaturalidade(naturalidade);
 
         CursoUFG cursoEngenhariaSoftware = new CursoUFG();
-        cursoEngenhariaSoftware.setNome_instanciaAdm("Engenharia de Software");
+        cursoEngenhariaSoftware.setNome("Engenharia de Software");
         CursoUFG cursoCienciasComputacao = new CursoUFG();
-        cursoCienciasComputacao.setNome_instanciaAdm("Ciencias da Computação");
+        cursoCienciasComputacao.setNome("Ciencias da Computação");
         ArrayList<CursoUFG> cursos = new ArrayList<>();
         cursos.add(cursoEngenhariaSoftware);
         cursos.add(cursoCienciasComputacao);
@@ -417,7 +417,7 @@ public class AutenticacaoServiceTest {
         Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
 
         CursoUFG cursoCienciasComputacao = new CursoUFG();
-        cursoCienciasComputacao.setNome_instanciaAdm(null);
+        cursoCienciasComputacao.setNome(null);
         List<HistoricoUFG> historicosUFG = new ArrayList<>();
         historicosUFG.add(new HistoricoUFG(123456, 0, 0, 0, 0, cursoCienciasComputacao, ""));
         egressoPrimeiroAcesso.setLista_historicosUFG(historicosUFG);
@@ -435,7 +435,7 @@ public class AutenticacaoServiceTest {
         Egresso egressoPrimeiroAcesso = criarEgressoTestePadrao();
 
         CursoUFG cursoCienciasComputacao = new CursoUFG();
-        cursoCienciasComputacao.setNome_instanciaAdm("Um curso qualquer");
+        cursoCienciasComputacao.setNome("Um curso qualquer");
         List<HistoricoUFG> historicosUFG = new ArrayList<>();
         historicosUFG.add(new HistoricoUFG(123456, 0, 0, 0, 0, cursoCienciasComputacao, ""));
         egressoPrimeiroAcesso.setLista_historicosUFG(historicosUFG);
