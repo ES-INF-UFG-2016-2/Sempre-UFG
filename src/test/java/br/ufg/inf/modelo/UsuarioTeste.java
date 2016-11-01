@@ -1,4 +1,4 @@
-package test.java.br.ufg.inf.modelo;
+package br.ufg.inf.modelo;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -58,7 +58,7 @@ public class UsuarioTeste {
 
     @Test
     public void testeCpfCorreto() throws Exception {
-        String cpf = "00265453923";
+        long cpf = 265453923l;
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
         assertEquals(cpf, usuario.getCpf());
@@ -66,7 +66,7 @@ public class UsuarioTeste {
 
     @Test
     public void testeCpfIncorretoMenor() throws Exception {
-        String cpf = "0026";
+        long cpf = 0026l;
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
         assertEquals(cpf, usuario.getCpf());
@@ -74,7 +74,7 @@ public class UsuarioTeste {
 
     @Test
     public void testeCpfIncorretoMaior() throws Exception {
-        String cpf = "00262342535235532";
+        long cpf = 262342535235532l;
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
         assertEquals(cpf, usuario.getCpf());
@@ -82,7 +82,7 @@ public class UsuarioTeste {
 
     @Test
     public void testeCpfIncorretoInvalido() throws Exception {
-        String cpf = "0026g453923";
+        long cpf = 26453923l;
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
         assertEquals(cpf, usuario.getCpf());
@@ -91,7 +91,7 @@ public class UsuarioTeste {
     @Test
     public void testeValidarUsuarioTrue() throws Exception {
         String email = "usuario123@gmail.com";
-        String senha = "testesenha1343";
+        String senha = "senha";
         Usuario usuario = new Usuario();
         usuario.setMail(email);
         usuario.setSenha(senha);
