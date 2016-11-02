@@ -6,13 +6,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
+ * Gerencia as informações e operações de autenticação do sistema SempreUFG.
  *
  * @author cleber
  */
 @ManagedBean
 @SessionScoped
 public class AutenticacaoService {
-    
+
     private boolean autenticado;
     private Usuario usuarioAutenticado;
     private String erro;
@@ -20,18 +21,41 @@ public class AutenticacaoService {
     public AutenticacaoService() {
         logout();
     }
-    
+
+    /**
+     * Executa o login de usuário.
+     *
+     * @param login Identificador do usuário (email ou CPF)
+     * @param senha Senha do usuário
+     * @return TRUE se o usuário é autenticado com sucesso ou FALSE caso contrário.
+     */
     public boolean login(String login, String senha) {
         //TODO
         return isAutenticado();
     }
-    
-    public void logout(){
+
+    /**
+     * Efetua o logout do usuário.
+     */
+    public void logout() {
         setAutenticado(false);
         setUsuarioAutenticado(null);
         setErro("");
     }
-    
+
+    /**
+     * Efetua o login de usuário para o primeiro acesso do mesmo.
+     *
+     * @param egresso Objeto com os dados do egresso para verificação de autenticidade do usuário. As seguintes
+     * informações egresso são esperadas para esse tipo de autenticação:
+     * <ul>
+     * <li> Nome da mãe </li>
+     * <li> Data de nascimento </li>
+     * <li> Nacionalidade (nome do país) </li>
+     * <li> Nome de um curso e a respectiva matrícula no mesmo na UFG </li>
+     * </ul>
+     * @return TRUE se o usuário é autenticado com sucesso ou FALSE caso contrário.
+     */
     public boolean loginPrimeiroAcesso(Egresso egresso) {
         //TODO
         return isAutenticado();
@@ -60,5 +84,5 @@ public class AutenticacaoService {
     protected void setErro(String erro) {
         this.erro = erro;
     }
-    
+
 }
