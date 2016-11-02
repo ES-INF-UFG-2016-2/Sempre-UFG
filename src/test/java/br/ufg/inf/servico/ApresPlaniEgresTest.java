@@ -2,6 +2,7 @@ package br.ufg.inf.servico;
 
 import br.ufg.inf.interfaces.Planilha;
 import br.ufg.inf.stubs.ApresPlaniEgresStub;
+import br.ufg.inf.stubs.PlanilhaStub;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,15 +13,16 @@ public class ApresPlaniEgresTest {
 
 
     @Test
-    public void testapresPlaniEgresParametroValido(Planilha planilha){
-
-        Assert.assertEquals(planilha != null, true);
+    public void testapresPlaniEgresParametroValido(){
+        Planilha planilha = new PlanilhaStub();
+        Assert.assertEquals(planilha instanceof Planilha, true);
 
     }
 
     @Test
-    public void testapresPlaniEgresValidUrl(Planilha planilha){
+    public void testapresPlaniEgresValidUrl(){
 
+        Planilha planilha = new PlanilhaStub();
         String regex = "^(https?|http)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
         ApresPlaniEgresStub stub = new ApresPlaniEgresStub();
         String urlStub = "http://sempreufg.ufg.br/egressos/id=122252/planilha.pdf";
