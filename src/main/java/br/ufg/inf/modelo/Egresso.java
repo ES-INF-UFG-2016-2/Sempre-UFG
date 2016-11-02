@@ -21,6 +21,7 @@ public class Egresso extends Usuario {
     private BitSet fotos_adicionais;
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
+    private LocalizacaoGeografica naturalidade;
 
     public Egresso() {
     }
@@ -107,5 +108,13 @@ public class Egresso extends Usuario {
 
     public void setLista_historicosUFG(List<HistoricoUFG> lista_historicosUFG) {
         this.lista_historicosUFG = lista_historicosUFG;
+    }
+
+    public LocalizacaoGeografica getNaturalidade() {
+        return naturalidade;
+    }
+
+    public void setNaturalidade(LocalizacaoGeografica naturalidade) {
+        this.naturalidade = naturalidade;
     }
 }
