@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class Egresso {
+public class Egresso extends Usuario {
+
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
@@ -20,6 +21,9 @@ public class Egresso {
     private BitSet fotos_adicionais;
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
+
+    public Egresso() {
+    }
 
     public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
         this.nome = nome;
