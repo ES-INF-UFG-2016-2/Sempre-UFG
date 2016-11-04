@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS processo_importacao (
   momento_execucao TIMESTAMP WITH TIME ZONE NOT NULL,
   inicio_periodo TIMESTAMP WITH TIME ZONE NOT NULL,
   fim_periodo TIMESTAMP WITH TIME ZONE NOT NULL,
+  quantidade_egressos_recebidos INT NOT NULL,
   quantidade_importados_sucesso INT NOT NULL,
   quantidade_importados_dados_incorretos INT NOT NULL,
   quantidade_importados_replicados INT NOT NULL,
