@@ -2,5 +2,16 @@ language: java
 jdk:
        - oraclejdk8
 addons:
-    mariadb: '5.5'
-script: mvn -X -e -B clean package
+  mariadb: '5.5'
+  postgresql: '9.3'
+before_script:
+  - psql --version ;
+  - psql -c "SHOW SERVER_VERSION" -U postgres
+  - psql -c "SHOW SERVER_ENCODING" -U postgres
+  - psql -c "SHOW DateStyle" -U postgres
+    #- sh db/postgres.sh
+    #- psql -c 'create database sempreufgtest;' -U sempreufg
+    #- mysql -e "create database sempreufg;" -u sempreufg
+script:
+  - psql -h localhost -U postgres -a -f db/postgres/ddl/create-user-and-db.sql
+  - mvn -X -e -B clean package
