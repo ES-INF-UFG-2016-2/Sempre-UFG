@@ -1,126 +1,51 @@
 package br.ufg.inf.servico;
 
+import br.ufg.inf.interfaces.AprovDivulgEventInterface;
 import br.ufg.inf.modelo.AprovDivulgEvent;
+
+import static org.junit.Assert.*;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class AprovDivulgEventTest {
 
-	@Test
-	public void testValidoTrue0() {
+    private static int id_valido = 42; // 0 a 49
+    private static boolean aprovada = true;
+    private static AprovDivulgEventInterface avaliacao;
 
-		int valido = 0;
-		boolean aprovada = true;
+    @Test
+    public void testDivulgacaoAprovada() {
 
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("Evento divulgado aos egressos.", a.aprovDivulgEvent(valido, aprovada));
+        assertTrue(new AprovDivulgEvent(id_valido, aprovada)
+            .getResultado() == "Evento divulgado aos egressos.");
+    }
 
-	}
+    @Test
+    public void testDivulgacaoRejeitada() {
 
-	@Test
-	public void testValidoTrue1() {
+        assertTrue(new AprovDivulgEvent(id_valido, false)
+            .getResultado() == "Parecer encaminhado ao gestor e ao solicitante.");
+    }
 
-		int valido = 1;
-		boolean aprovada = true;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("Evento divulgado aos egressos.", a.aprovDivulgEvent(valido, aprovada));
-	}
+    @Test
+    public void testIdInvalido() {
 
-	@Test
-	public void testValidoTrue49() {
-		int valido = 49;
-		boolean aprovada = true;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("Evento divulgado aos egressos.", a.aprovDivulgEvent(valido, aprovada));
-	}
+        assertTrue(new AprovDivulgEvent(50, aprovada)
+            .getResultado() == "Nao existe evento com id correspondente.");
+    }
 
-	@Test
-	public void testInvalidoTrue50() {
+    @Test
+    public void testIdNegativo() {
 
-		int valido = 50;
-		boolean aprovada = true;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("id_evento n�o pode ser maior que lista.length().", a.aprovDivulgEvent(valido, aprovada));
-	}
+        assertTrue(new AprovDivulgEvent(-1, aprovada)
+            .getResultado() == "Id nao pode ser menor que 1.");
+    }
 
-	@Test
-	public void testValidoFalse0() {
+    @Test
+    public void testIdZero() {
 
-		int valido = 0;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("Parecer encaminhado �s partes interessadas.", a.aprovDivulgEvent(valido, aprovada));
-	}
-
-	@Test
-	public void testValidoFalse1() {
-
-		int valido = 1;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("Parecer encaminhado �s partes interessadas.", a.aprovDivulgEvent(valido, aprovada));
-	}
-
-	@Test
-	public void testValidoFalse49() {
-		int valido = 49;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("Parecer encaminhado �s partes interessadas.", a.aprovDivulgEvent(valido, aprovada));
-	}
-
-	@Test
-	public void testInvalidoFalse50() {
-
-		int valido = 50;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("id_evento n�o pode ser maior que lista.length().",
-
-				a.aprovDivulgEvent(valido, aprovada));
-	}
-
-	@Test
-	public void testInvalidoMinus1() {
-
-		int invalido = -1;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("id_evento n�o pode ser menor que 0.", a.aprovDivulgEvent(invalido, aprovada));
-	}
-
-	@Test
-	public void testInvalidoMinInt() {
-
-		int invalido = -2147483648;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("id_evento n�o pode ser menor que 0.", a.aprovDivulgEvent(invalido, aprovada));
-
-	}
-
-	@Test @Ignore
-	public void testValidoTipoParametro() {
-
-		Integer valido = 10;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("Tipo de id_evento deve ser Integer.", a.aprovDivulgEvent(valido, aprovada));
-	}
-
-	@Test @Ignore
-	public void testInvalidoNullParam() {
-
-		Integer valido = 10;
-		boolean aprovada = false;
-		AprovDivulgEvent a = new AprovDivulgEvent();
-		assertEquals("id_evento n�o pode ser null.", a.aprovDivulgEvent(valido, aprovada));
-	}
-
-
-
-
-
+        assertTrue(new AprovDivulgEvent(0, aprovada)
+            .getResultado() == "Id nao pode ser menor que 1.");
+    }
 }
