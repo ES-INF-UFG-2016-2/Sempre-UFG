@@ -70,10 +70,10 @@ CREATE TABLE egresso
   foto_adicionais bytea[],
   visibilidade visibilidade NOT NULL,
   sexo sexo,
-  id_localizacao integer NOT NULL,
+  naturalidade integer NOT NULL,
   
   CONSTRAINT pk PRIMARY KEY (id),
-  CONSTRAINT fk_localizacao FOREIGN KEY (id_localizacao)
+  CONSTRAINT fk_localizacao FOREIGN KEY (naturalidade)
       REFERENCES localizacao_geografica (id) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE RESTRICT
 )
@@ -90,7 +90,7 @@ ALTER TABLE egresso
 CREATE INDEX fk_id_localizacao_idx
   ON egresso
   USING btree
-  (id_localizacao);
+  (naturalidade);
 
 -- Table: residencia
 
@@ -102,16 +102,16 @@ CREATE TABLE residencia
   data_fim date,
   endereco character varying(300) NOT NULL,
   id_egresso integer NOT NULL,
-  id_localizacao integer NOT NULL,
+  naturalidade integer NOT NULL,
    
   CONSTRAINT pk_residencia PRIMARY KEY (data_inicio),
   CONSTRAINT fk_egresso FOREIGN KEY (id_egresso)
       REFERENCES egresso (id) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE RESTRICT,
-  CONSTRAINT fk_localizacao FOREIGN KEY (id_localizacao)
+  CONSTRAINT fk_localizacao FOREIGN KEY (naturalidade)
       REFERENCES localizacao_geografica (id) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE RESTRICT,
-  CONSTRAINT uq_pk_composta_residencia UNIQUE (id_egresso, id_localizacao, data_inicio)
+  CONSTRAINT uq_pk_composta_residencia UNIQUE (id_egresso, naturalidade, data_inicio)
 )
 WITH (
   OIDS=FALSE
