@@ -6,12 +6,30 @@
     <artifactId>SempreUFG</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SempreUFG</name>
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+    	<!-- Dependencias do JSF e do Primefaces -->
+    	
+    	<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.2.8-02</version>
+			<scope>compile</scope>
+		</dependency>
+		
+    	<!-- END Dependencias do JSF e do Primefaces -->
 
         <dependency>
             <groupId>junit</groupId>
@@ -65,6 +83,19 @@
             <version>7.0</version>
             <type>jar</type>
         </dependency>
+        
+        <!-- Dependencias responsaveis pelo temporizador de backup do banco -->
+        <dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		
     </dependencies>
 
     <build>
@@ -118,5 +149,4 @@
 
         </plugins>
     </build>
-
 </project>
