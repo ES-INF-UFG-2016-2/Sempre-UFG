@@ -2,6 +2,10 @@ package br.ufg.inf.modelo;
 
 import java.util.Date;
 
+import br.ufg.inf.enums.Escopos;
+import br.ufg.inf.enums.Formas;
+import br.ufg.inf.enums.Tipos;
+
 public class Evento {
 
 	private int id;
@@ -10,19 +14,6 @@ public class Evento {
 	private Date data_solicitacao;
 	private int id_solicitante;
 	private Date data_expiracao;
-
-	protected static enum Tipos {
-		NOTICIA, PALESTRA, CURSO, EMPREGO, DIVERSOS
-	};
-
-	protected static enum Formas {
-		MENSAGEM, NOTICIA, AMBOS, NENHUMA
-	};
-
-	protected static enum Escopos {
-		EGRESSOS, COMUNIDADE, FORA_DE_ESCOPO
-	};
-
 	private Tipos tipo_evento;
 	private Formas forma;
 	private Escopos escopo;

@@ -8,34 +8,34 @@ O usuário deve fazer login e clicar na opção "Minha Conta".
 Na imagem abaixo, o usuário tem acesso as suas informações de acordo com as opções do menu esquerdo.
 Em qualquer sessão, **caso o usuário queira atualizar algo dado, basta clicar no botão "Atualizar"**      
 
-![Tela Minha Conta](./anexos/REQ/Prototipos/RF-AtualEgres/dadosPessoaisScroll1.png)
+![Tela Minha Conta](./dadosPessoaisScroll1.png)
 
 ### 1.1 Dados pessoais
 
 Ao entrar na sessão "Dados pessoais" o usuário verá seus dados conforme a(s) tela(s) abaixo:  
 
 #### Dados pessoais - identificação
-![Tela Dados pessoais](./anexos/REQ/Prototipos/RF-AtualEgres/dadosPessoaisScroll1.png)
+![Tela Dados pessoais](./dadosPessoaisScroll1.png)
 
 #### Dados pessoais - pessoal
-![Tela Dados pessoais](./anexos/REQ/Prototipos/RF-AtualEgres/dadosPessoaisScroll2.png)
+![Tela Dados pessoais](./dadosPessoaisScroll2.png)
 
 #### Dados pessoais - endereço residencial
-![Tela Dados pessoais](./anexos/REQ/Prototipos/RF-AtualEgres/dadosPessoaisScroll3.png)
+![Tela Dados pessoais](./dadosPessoaisScroll3.png)
 
 #### Atualizar identificação
 
-![Atualizar identificação](./anexos/REQ/Prototipos/RF-AtualEgres/atualizarIdentificacao.png)
+![Atualizar identificação](./atualizarIdentificacao.png)
 
 #### Atualizar endereço residencial
 
-![Atualizar endereço](./anexos/REQ/Prototipos/RF-AtualEgres/atualizarDadosPessoais.png)
+![Atualizar endereço](./atualizarDadosPessoais.png)
 
 ### 1.2 Ensino Médio
 
 Ao entrar na sessão "Ensino Médio" o usuário verá seus dados conforme a(s) tela(s) abaixo:
 
-![Ensino Médio](./anexos/REQ/Prototipos/RF-AtualEgres/ensinoMedio.png)
+![Ensino Médio](./ensinoMedio.png)
 
 Caso o usuário clique em "Solicitar alteração", será levado a esta [tela](#16-solicitar-altera%C3%A7%C3%A3o)
 
@@ -43,7 +43,7 @@ Caso o usuário clique em "Solicitar alteração", será levado a esta [tela](#1
 
 Ao entrar na sessão "Graduação" o usuário verá seus dados conforme a(s) tela(s) abaixo:
 
-![Graduação](./anexos/REQ/Prototipos/RF-AtualEgres/graduacao.png)
+![Graduação](./graduacao.png)
 
 O usuário não pode alterar ou incluir dados de graduações realizadas na UFG.
 
@@ -66,7 +66,7 @@ O dropdown do campo **"Tipo de instituição"** possui as seguintes opções:
 - Autônoma
 
 
-![Adicionar Graduação](./anexos/REQ/Prototipos/RF-AtualEgres/atualizarGraduacao.png)
+![Adicionar Graduação](./atualizarGraduacao.png)
 
 Caso o usuário queira **atualizar** algum dado de uma graduação realizada na UFG, deverá clicar em "Solicitar Alteração". Ele será levado a esta [tela](#16-solicitar-altera%C3%A7%C3%A3o)
 
@@ -78,10 +78,10 @@ Ao entrar na sessão "Pós-graduação" o usuário verá seus dados conforme a(s
 
 #### Usuário que não fez nenhuma pós-graduação
 Como um egresso pode ainda não ter feito uma pós-graduação, neste caso ele irá se deparar com esta tela:  
-![Pós-graduação vazia](./anexos/REQ/Prototipos/RF-AtualEgres/posGraduacao.png)
+![Pós-graduação vazia](./posGraduacao.png)
 
 #### Usuário que fez alguma pós-graduação
-![Pós-graduação UFG](./anexos/REQ/Prototipos/RF-AtualEgres/posGraduacaoInserida.png)
+![Pós-graduação UFG](./posGraduacaoInserida.png)
 
 #### Adicionar ou atualizar Pós-graduação
 
@@ -102,27 +102,27 @@ O dropdown do campo **"Tipo de instituição"** possui as seguintes opções:
 
 Obs.: Cursos de pós-graduação na UFG são adicionados automáticamente, e não podem ter seus dados alterados
 
-![Adicionar Pós-graduação](./anexos/REQ/Prototipos/RF-AtualEgres/atualizarPosGraduacao.png)
+![Adicionar Pós-graduação](./atualizarPosGraduacao.png)
 
 Caso o usuário queira **atualizar** algum dado de uma pós-graduação realizada na UFG, deverá clicar em "Solicitar Alteração". Ele será levado a esta [tela](#16-solicitar-altera%C3%A7%C3%A3o)
 
 ### 1.4 Participações em projetos
 Ao acessar a opção "Partipações em projetos" o usuário acessará a seguinte tela:
 
-![Participações em projetos](./anexos/REQ/Prototipos/RF-AtualEgres/participacoesProjetos.png)
+![Participações em projetos](./participacoesProjetos.png)
 
 #### Adicionar participação
 
-![Adicionar participação](./anexos/REQ/Prototipos/RF-AtualEgres/atualizarParticipacoesProjetos.png)
+![Adicionar participação](./atualizarParticipacoesProjetos.png)
 
 ### 1.5 Carreira
 Ao acessar a opção "Carreira" o usuário acessará a seguinte tela:
 
-![Carreira](./anexos/REQ/Prototipos/RF-AtualEgres/carreira.png)
+![Carreira](./carreira.png)
 
 #### Carreira ainda não preenchida
 
-![Carreira não prenchida](./anexos/REQ/Prototipos/RF-AtualEgres/carreiraVazia.png)
+![Carreira não prenchida](./carreiraVazia.png)
 
 ### 1.6 Solicitar alteração
 
@@ -134,4 +134,4 @@ Tela acessada quando o usuário clica no botão "Solicitar alteração", present
 
 Nesta tela o usuário pode informar que algum dos campos acima (capturado automaticamente pelo sistema) está errado.
 
-![Solicitar alteracao](./anexos/REQ/Prototipos/RF-AtualEgres/solicitarAlteracao.png)
+![Solicitar alteracao](./solicitarAlteracao.png)
