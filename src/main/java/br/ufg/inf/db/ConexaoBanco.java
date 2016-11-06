@@ -11,7 +11,7 @@ public class ConexaoBanco {
 	public static Connection getConnection(){
 		if(conn != null) return conn;
 
-		return getConnection("postgres");
+		return getConnection("sempreufg");
 
 	}
 
@@ -24,7 +24,7 @@ public class ConexaoBanco {
 		}
 
 		try {
-			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/db_test", username,"123456");
+			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/sempreufg", username,"sempreufg");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return conn;

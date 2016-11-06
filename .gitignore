@@ -242,3 +242,4 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+/nbproject/

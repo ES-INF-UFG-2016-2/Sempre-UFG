@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Responsavel extends Usuario {
 
 	private List inst_admin = new ArrayList();
@@ -20,7 +21,6 @@ public class Responsavel extends Usuario {
 		super();
 		setInst_admin(inst_admin);
 
-		System.out.println("Responsavel criado.");
 
 	}
 
@@ -29,24 +29,12 @@ public class Responsavel extends Usuario {
 		// Lista de eventos tem tamanho 50;
 		int length = 50;
 
-		if (id_evento < 0) {
-			throw new IllegalArgumentException("id_evento n�o pode ser menor que 0.");
-		} else if (id_evento > length - 1) {
 
-			throw new IllegalArgumentException("id_evento n�o pode ser maior que lista.length().");
-		} else if (!(id_evento instanceof Integer)) {
-
-			throw new IllegalArgumentException("Tipo de id_evento deve ser Integer.");
-		} else if (id_evento == null) {
-
-			throw new IllegalArgumentException("id_evento n�o pode ser null.");
-		}
-
-		// BD retorna objeto Evento ap�s consulta com id_evento
+		// BD retorna objeto Evento apos consulta com id_evento
 
 		Evento evento = new Evento(0, null, null, null, 0, null, "palestra", "Ambos", "fora_DE_Escopo");
 
-		// A divulga��o � aprovada ou rejeitada
+		// A divulgacao e aprovada ou rejeitada
 		boolean div_aprovada = div_aprov;
 
 		String parecer = "abc";
@@ -54,12 +42,10 @@ public class Responsavel extends Usuario {
 		Avaliacao avaliacao = new Avaliacao(evento, div_aprovada, parecer, data);
 
 		if (avaliacao.isAprovada()) {
-			System.out.println("Divulgacao aprovada.");
 			return divulgaEventoEgresso(evento.getId(), inst_admin);
 		}
 
 		else {
-			System.out.println("Divulgacao rejeitada.");
 			return encaminhaAvaliacao(avaliacao.getParecer(), avaliacao.getEvento().getId_solicitante());
 
 		}
@@ -67,7 +53,7 @@ public class Responsavel extends Usuario {
 
 	public String encaminhaAvaliacao(String parecer, int id_solicitante) {
 
-		return "Parecer encaminhado �s partes interessadas.";
+		return "Parecer encaminhado ao gestor e ao solicitante.";
 
 	}
 
