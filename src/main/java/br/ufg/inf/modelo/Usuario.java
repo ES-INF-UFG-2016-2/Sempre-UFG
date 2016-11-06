@@ -1,9 +1,11 @@
 package br.ufg.inf.modelo;
 
-import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
-
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Date;
+import java.util.List;
+
+import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
 
 public class Usuario {
 
@@ -11,12 +13,14 @@ public class Usuario {
     private String mail;
     private String senha;
     private String nome;
-    private String cpf;
+    private long cpf;
     private BitSet foto = new BitSet();
-    private PoliticaRecebimentoMensagens tipoDivulgacao;
+    private PoliticaRecebimentoMensagens tipoDivulgacao = PoliticaRecebimentoMensagens.CADA_EVENTO;
     private Date ts_cadastramento;
     private Date ts_ult_update;
     private Date ts_exclusao;
+
+	private List<Papel> listaPapel;
 
     public PoliticaRecebimentoMensagens getTipoDivulgacao() {
         return tipoDivulgacao;
@@ -50,11 +54,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -92,5 +96,16 @@ public class Usuario {
 
     public boolean validarUsuario(String email, String senha) {
         return senha.equals("senha");
+    }
+
+    public List<Papel> getListaPapel() {
+        if (this.listaPapel == null) {
+            this.listaPapel = new ArrayList<Papel>();
+        }
+        return this.listaPapel;
+    }
+
+    public void setListaPapel(List<Papel> listaPapel) {
+        this.listaPapel = listaPapel;
     }
 }

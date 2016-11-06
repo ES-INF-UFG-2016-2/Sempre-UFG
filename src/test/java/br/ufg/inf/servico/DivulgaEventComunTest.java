@@ -4,8 +4,6 @@ import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
 import br.ufg.inf.modelo.AprovacaoDivulgacaoEvento;
 import br.ufg.inf.modelo.Evento;
 import br.ufg.inf.modelo.Usuario;
-import br.ufg.inf.servico.AprovadorEventosService;
-import br.ufg.inf.servico.DivulgadorEventosService;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -32,15 +30,15 @@ public class DivulgaEventComunTest {
     private Usuario usuarioTestado;
     private Evento evento;
 
-    private DivulgadorEventosService divulgadorEventosService;
-    private AprovadorEventosService aprovadorEventosService;
+    private DivulgadorEventosServiceInterface divulgadorEventosServiceInterface;
+    private AprovadorEventosServiceInterface aprovadorEventosServiceInterface;
 
     @Before
     public void setUp() {
         //Cria usuário e evento em comum
         usuarioTestado = new Usuario();
         usuarioTestado.setNome("Teste");
-        usuarioTestado.setCpf("1234123");
+        usuarioTestado.setCpf(1234123l);
         usuarioTestado.setMail(destinatarioPadraoEmails);
         evento = new Evento();
         evento.setAssunto("Evento");
@@ -52,11 +50,11 @@ public class DivulgaEventComunTest {
 
     @Test
     public void testEventoNaoAprovadoNaoEEnviado() throws Exception {
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
+        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertFalse(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(usuarioTestado);
-        boolean resultado = divulgadorEventosService.divulgarEventoParaListaDeUsuarios(evento, usuarios);
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaListaDeUsuarios(evento, usuarios);
         assertFalse(resultado);
         List<Message> inbox = Mailbox.get(destinatarioPadraoEmails);
         assertTrue(inbox.size() == 0);
@@ -64,11 +62,11 @@ public class DivulgaEventComunTest {
 
     @Test
     public void testEventoSoEhDivulgadoUmaVez() throws Exception {
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
+        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(usuarioTestado);
-        boolean resultado = divulgadorEventosService.divulgarEventoParaListaDeUsuarios(evento, usuarios);
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaListaDeUsuarios(evento, usuarios);
         assertTrue(resultado);
         List<Message> inbox = Mailbox.get(destinatarioPadraoEmails);
         assertTrue(inbox.size() == 1);
@@ -79,13 +77,13 @@ public class DivulgaEventComunTest {
 
     @Test
     public void testEventoDivulgadoApenasUmaVezUsuarioRepetidoNaLista() throws Exception {
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
+        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(usuarioTestado);
         usuarios.add(usuarioTestado);
         usuarios.add(usuarioTestado);
-        boolean resultado = divulgadorEventosService.divulgarEventoParaListaDeUsuarios(evento, usuarios);
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaListaDeUsuarios(evento, usuarios);
         assertTrue(resultado);
         List<Message> inbox = Mailbox.get(destinatarioPadraoEmails);
         assertTrue(inbox.size() == 1);
@@ -101,15 +99,15 @@ public class DivulgaEventComunTest {
         Usuario outroUsuario = new Usuario();
         outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.MENSAL);
         outroUsuario.setMail(outroDestinatarioEmails);
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
+        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(outroUsuario);
-        boolean resultado = divulgadorEventosService.divulgarEventoParaListaDeUsuarios(evento, usuarios);
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaListaDeUsuarios(evento, usuarios);
         assertTrue(resultado);
         List<Message> inbox = Mailbox.get(outroDestinatarioEmails);
         assertTrue(inbox.size() == 0);
-        Map<Date, Map<Usuario, Evento>> eventosAindaNaoEnviados = divulgadorEventosService
+        Map<Date, Map<Usuario, Evento>> eventosAindaNaoEnviados = divulgadorEventosServiceInterface
             .obtenhaEventosQueNaoForamEnviadosAinda();
         assertTrue(eventosAindaNaoEnviados.containsKey(emUmMes));
         Map<Usuario, Evento> usuarioEventoMap = eventosAindaNaoEnviados.get(emUmMes);
@@ -123,15 +121,15 @@ public class DivulgaEventComunTest {
         Usuario outroUsuario = new Usuario();
         outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.SEMANAL);
         outroUsuario.setMail(outroDestinatarioEmails);
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
+        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(outroUsuario);
-        boolean resultado = divulgadorEventosService.divulgarEventoParaListaDeUsuarios(evento, usuarios);
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaListaDeUsuarios(evento, usuarios);
         assertTrue(resultado);
         List<Message> inbox = Mailbox.get(outroDestinatarioEmails);
         assertTrue(inbox.size() == 0);
-        Map<Date, Map<Usuario, Evento>> eventosAindaNaoEnviados = divulgadorEventosService
+        Map<Date, Map<Usuario, Evento>> eventosAindaNaoEnviados = divulgadorEventosServiceInterface
             .obtenhaEventosQueNaoForamEnviadosAinda();
         assertTrue(eventosAindaNaoEnviados.containsKey(emUmaSemana));
         Map<Usuario, Evento> usuarioEventoMap = eventosAindaNaoEnviados.get(emUmaSemana);
@@ -145,15 +143,15 @@ public class DivulgaEventComunTest {
         Usuario outroUsuario = new Usuario();
         outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.DIARIA);
         outroUsuario.setMail(outroDestinatarioEmails);
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
+        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.add(outroUsuario);
-        boolean resultado = divulgadorEventosService.divulgarEventoParaListaDeUsuarios(evento, usuarios);
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaListaDeUsuarios(evento, usuarios);
         assertTrue(resultado);
         List<Message> inbox = Mailbox.get(outroDestinatarioEmails);
         assertTrue(inbox.size() == 0);
-        Map<Date, Map<Usuario, Evento>> eventosAindaNaoEnviados = divulgadorEventosService
+        Map<Date, Map<Usuario, Evento>> eventosAindaNaoEnviados = divulgadorEventosServiceInterface
             .obtenhaEventosQueNaoForamEnviadosAinda();
         assertTrue(eventosAindaNaoEnviados.containsKey(amanha));
         Map<Usuario, Evento> usuarioEventoMap = eventosAindaNaoEnviados.get(amanha);
@@ -164,9 +162,9 @@ public class DivulgaEventComunTest {
     public void testEventoDivulgadoParaTodosUsuarios() throws Exception {
         Usuario outroUsuario = new Usuario();
         outroUsuario.setMail(outroDestinatarioEmails);
-        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosService.buscaEventoAprovado(evento);
+        AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
-        boolean resultado = divulgadorEventosService.divulgarEventoParaTodosUsuarios(evento);
+        boolean resultado = divulgadorEventosServiceInterface.divulgarEventoParaTodosUsuarios(evento);
         assertTrue(resultado);
         List<Message> inbox = Mailbox.get(destinatarioPadraoEmails);
         assertTrue(inbox.size() == 1);
