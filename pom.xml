@@ -5,8 +5,8 @@
     <groupId>br.ufg.inf</groupId>
     <artifactId>SempreUFG</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SempreUFG</name>
     <packaging>war</packaging>
+    <name>SempreUFG</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -146,7 +146,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>
