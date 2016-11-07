@@ -20,7 +20,8 @@ O dropdown do campo **"Identificação"** possui as seguintes opções:
 - CPF
 - Passaporte
 
-O dropdown do campo **"Unidade acadêmica"** e **"Curso"** devem possuir respectivamente as unidades e cursos do seguinte [link](https://www.ufg.br/n/68989-unidades-academicas-da-ufg)
+O dropdown do campo **"Unidade acadêmica"** e **"Curso"** devem possuir respectivamente as unidades acadêmicas e cursos da UFG, sendo que os cursos dipostos no dropdown "Curso", são os pertencentes à unidade acadêmica escolhida, conforme o seguinte
+ [link](https://www.ufg.br/n/68989-unidades-academicas-da-ufg).
 
 Ao clicar no botão **"Adicionar"** o usuário poderá ser levado as seguintes tela:
 
