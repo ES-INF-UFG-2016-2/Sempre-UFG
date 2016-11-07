@@ -1,4 +1,4 @@
-package br.ufg.inf;
+package br.ufg.inf.db;
 
 import org.junit.*;
 
@@ -128,7 +128,7 @@ public class CursUfgEgresTest {
 ///////////////////////////////////// CURSO_DA_UFG /////////////////////////////////////////////////////
 
     /**
-     * Verificar este teste
+     *
      */
     @Test
     public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais() {
@@ -149,7 +149,7 @@ public class CursUfgEgresTest {
     }
 
     /**
-     * Rever teste
+     *
      */
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
     public void testaArmazenaCursoDaUFGAreaDeConhecimentoNula() throws SQLException {
@@ -159,7 +159,7 @@ public class CursUfgEgresTest {
     }
 
     /**
-     * Rever teste
+     *
      */
     @Test
     public void testaArmazenaCursoDaUFGAreaDeConhecimentoCodigoString() {
@@ -254,7 +254,7 @@ public class CursUfgEgresTest {
     }
 
     /**
-     * Rever teste
+     *
      *
      * @throws SQLException
      */
@@ -519,7 +519,7 @@ public class CursUfgEgresTest {
     }
 
     /**
-     * Verificar esse teste
+     *
      *
      * @throws SQLException
      */
