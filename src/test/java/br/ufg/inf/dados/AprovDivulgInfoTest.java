@@ -43,6 +43,7 @@ public class AprovDivulgInfoTest {
 	// interface
 	private static AprovDivulgInfoDAOInterface testeDAO = new AprovDivulgInfoDAO();
 
+	
 	// usuario
 	private String email_principal = "email";
 	private String senha = "senha";
@@ -224,6 +225,8 @@ public class AprovDivulgInfoTest {
 				email_institucional, url_institucional));
 	}
 
+	
+	
 	@Test
 	@Ignore
 	public void testInsertCurso() throws SQLException, IOException {
