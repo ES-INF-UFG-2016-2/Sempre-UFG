@@ -7,54 +7,38 @@ import java.util.List;
 
 public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
-	private static List lista = new ArrayList();
-	private static Responsavel r = new Responsavel(lista);
-	private static int instancia = 0;
+	private static List lista_intancias = new ArrayList();
+	private static Responsavel responsavel = new Responsavel(lista_intancias);
+	private int id_evento;
+	private boolean sol_aprov;
 
-	public AprovDivulgEvent() {
+	public  AprovDivulgEvent(int id, boolean sol_aprov)  {
 
-		System.out.println(instancia);
-		instancia++;
+		this.id_evento = id;
+		this.sol_aprov = sol_aprov;
+	
 
 	}
-
-	public String aprovDivulgEvent(int id, boolean div_aprov) {
-
-		// Scanner sc = new Scanner(System.in);
-
-		try {
-			return r.avaliaSolicitacao(id, div_aprov);
-		} catch (Exception e) {
-			System.out.println("ERRO!");
-
-			return e.getMessage();
+	
+	public String getResultado(){
+		
+		int tamanho_lista = 50;
+		List lista_de_eventos = new ArrayList();
+		
+		for (int i = 0; i < tamanho_lista; i++) {
+			lista_de_eventos.add(i);
+			
 		}
 
-	}
+		 if (this.id_evento <= 0) {
+			return "Id nao pode ser menor que 1.";
+		} else if (!lista_de_eventos.contains(this.id_evento)) {
+			return "Nao existe evento com id correspondente.";
+		} else {
 
-	public static void main(String args[]) {
-
-	}
-
-	private String testeAA(){
-
-		return "AAAA";
-	}
-
-	public static List getLista() {
-		return lista;
-	}
-
-	public static void setLista(List lista) {
-		AprovDivulgEvent.lista = lista;
-	}
-
-	public static Responsavel getR() {
-		return r;
-	}
-
-	public static void setR(Responsavel r) {
-		AprovDivulgEvent.r = r;
+			return responsavel.avaliaSolicitacao(this.id_evento, this.sol_aprov);
+		}
+		
 	}
 
 }
