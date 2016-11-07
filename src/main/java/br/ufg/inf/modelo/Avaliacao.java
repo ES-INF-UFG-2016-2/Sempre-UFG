@@ -16,7 +16,6 @@ public class Avaliacao {
 		this.data = data;
 		this.evento = evento;
 
-		System.out.println("Avaliacao criada.");
 
 	}
 
