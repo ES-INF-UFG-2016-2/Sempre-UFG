@@ -16,7 +16,8 @@ public class EgressoService implements EgressoServiceInterface{
 
 	@Override
 	public Egresso converterXmlParaEgresso(InputStream content) {
-		return null;
+		Egresso egresso = new Egresso();
+		return egresso;
 	}
 
 	@Override

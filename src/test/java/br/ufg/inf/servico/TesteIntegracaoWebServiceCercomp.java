@@ -2,9 +2,7 @@ package br.ufg.inf.servico;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +17,7 @@ import br.ufg.inf.dao.InstituicaoEnsinoDao;
 import br.ufg.inf.modelo.CursoUFG;
 import br.ufg.inf.modelo.Egresso;
 import br.ufg.inf.modelo.InstituicaoEnsino;
+import br.ufg.inf.stubs.WebServiceCercompMock;
 
 public class TesteIntegracaoWebServiceCercomp {
 	private EgressoService egressoService;
@@ -94,10 +93,7 @@ public class TesteIntegracaoWebServiceCercomp {
 	@Test
 	public void testaConversaoXmlParaEgresso(){
 		try {
-			URL url = new URL(EgressoWebService.URL_WEB_SERVICE);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			InputStream inputStream = connection.getInputStream();
-			
+			InputStream inputStream = new WebServiceCercompMock().consultarWebServiceEgresso();
 			Egresso egresso = getEgressoService().converterXmlParaEgresso(inputStream);
 			Assert.assertTrue(egresso != null);
 		} catch (MalformedURLException e) {
