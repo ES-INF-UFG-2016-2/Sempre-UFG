@@ -226,9 +226,13 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
-
-				return true;
+			try {
+				if (buscaUsuario(cpf).next()) {
+					return true;
+				}
+				
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
 			e.printStackTrace();
 
@@ -412,8 +416,19 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	@Override
-	public ResultSet buscaEvento() {
-		// TODO Auto-generated method stub
+	public ResultSet buscaEvento(String assunto) {
+
+		try {
+			String busca = "SELECT * FROM usuario WHERE " + "email_principal=?";
+			PreparedStatement ps1;
+			ps1 = conn.prepareStatement(busca);
+			ps1.setString(1, "email@usuario.com");
+
+			return ps1.executeQuery();
+		} catch (Exception e) {
+
+		}
+
 		return null;
 	}
 

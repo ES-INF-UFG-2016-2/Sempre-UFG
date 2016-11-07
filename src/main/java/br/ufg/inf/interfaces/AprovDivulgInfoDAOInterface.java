@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 
-public interface AprovDivulgInfoDAOInterface {
+public interface AprovDivulgInfoDAOInterface  {
 
 	public boolean salvaAprovacao(boolean divulgacao_aprovada, String parecer_sobre_divulgacao,
 			Date data_aprovacao_ou_rejeicao, int evento_id, int usuario_id);
@@ -26,7 +26,7 @@ public interface AprovDivulgInfoDAOInterface {
 
 	public ResultSet buscaAprovacao();
 	public ResultSet buscaUsuario(long cpf);
-	public ResultSet buscaEvento();
+	public ResultSet buscaEvento(String assunto);
 	public ResultSet buscaArea_Conhecimento();
 	public ResultSet buscaInstancia();
 
