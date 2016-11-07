@@ -46,3 +46,10 @@ informações da arquitetura que satisfará os requisitos levantados.
 -	Java Server Pages [http://java.sun.com/products/jsp/]
 -	jQuery [http://api.jquery.com]
 -	AJAX [http://api.jquery.com/jquery.ajax/] 
+
+## 2. Visões do Sistema
+
+### 2.1. Visão de Projeto
+
+### 2.1. Visão de Processo
+Será utilizado um container de aplicações para o deploy da aplicação (Apache Tomcat 8), que irá disponibilizar e servir as páginas JSP. Os dados serão armazenados em um banco local, podendo ser tanto o PostgreSQL, quanto o MariaDB (Utilizando o framework Hibernate). Algumas requisições dinamicas da página podem ser solicitadas por requisições AJAX do jQuery. Qualquer requisição deve ser respondida pelo servidor utilizando Servlets.
