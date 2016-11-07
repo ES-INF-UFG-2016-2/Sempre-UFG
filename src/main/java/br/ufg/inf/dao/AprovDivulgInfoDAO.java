@@ -134,7 +134,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
+			if (e.getMessage().toString().equals("No results were returned by the query.")) {
 				return true;
 			}
 			
@@ -175,7 +175,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
+			if (e.getMessage().toString().equals("No results were returned by the query.")) {
 				return true;
 			}
 			e.printStackTrace();
@@ -226,7 +226,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
+			if (e.getMessage().toString().equals("No results were returned by the query.")) {
 
 				return true;
 			}
@@ -262,7 +262,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
+			if (e.getMessage().toString().equals("No results were returned by the query.")) {
 
 				return true;
 			}
@@ -292,7 +292,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
+			if (e.getMessage().toString().equals("No results were returned by the query.")) {
 
 				return true;
 			}
