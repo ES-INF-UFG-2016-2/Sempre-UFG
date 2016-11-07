@@ -1,10 +1,7 @@
 package br.ufg.inf.dados;
 
 import ch.unibe.jexample.Given;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import java.sql.*;
 
@@ -151,6 +148,11 @@ public class GestaoSistemaTest {
         Assert.assertTrue(lancouExcecao);
     }
 
+    /**
+     * Teste ignorado, porque a implementação desde requisito não será feita neste momento.
+     * Porém, o teste será mantido para ser utilizado posteriormente.
+     */
+    @Ignore
     @Given("testaSeTabelaSempreUFGExiste")
     @Test
     public void testInserirDoisRegistrosNaTabelaSempreUFGLancaExcecao() {
@@ -493,7 +495,7 @@ public class GestaoSistemaTest {
 
     private static void executaSqlComStatement(String sql) throws SQLException {
         Statement statement = conexaoBD.createStatement();
-        statement.executeQuery(sql);
+        statement.execute(sql);
     }
 
 }
