@@ -1,6 +1,5 @@
 package br.ufg.inf.dao;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -18,29 +17,25 @@ import java.sql.Timestamp;
 import br.ufg.inf.dados.ManipulaDB;
 import br.ufg.inf.interfaces.AprovDivulgInfoDAOInterface;
 
-
 public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 	// conexao
 	static Connection conn = null;
 
-	
-	public  Connection abreConexao () {
-		
+	public Connection abreConexao() {
+
 		if (conn == null) {
 			ManipulaDB db;
 			try {
 				db = new ManipulaDB();
 				return db.criaConexao();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return null;
 	}
-	
-	
+
 	public static void testaConexao() throws IOException {
 
 		if (conn == null) {
@@ -49,8 +44,6 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		}
 	}
-	
-	
 
 	public void populateDb() {
 
@@ -77,12 +70,12 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		String s = "Foto do usuario2";
 		byte[] foto = null;
 		try {
-			foto = s.getBytes ("UTF-8");
+			foto = s.getBytes("UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			System.out.println(e.getLocalizedMessage());
-		
+
 		}
-			
+
 		// evento
 		String assunto = "outro assunto";
 		String tipo_evento = "PALESTRA";
@@ -144,6 +137,8 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
 				return true;
 			}
+			
+			e.printStackTrace();
 		}
 
 		return false;
@@ -178,13 +173,13 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 			return false;
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 
-		} catch (SQLException e1) {
-
-			if (e1.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
+			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
 				return true;
 			}
+			e.printStackTrace();
+
 		}
 
 		return false;
@@ -229,19 +224,18 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 			ps.executeQuery();
 
-		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		} catch (Exception e) {
 
 			if (e.getMessage().toString().equals("Nenhum resultado foi retornado pela consulta.")) {
+
 				return true;
 			}
+			e.printStackTrace();
 
-			return false;
 		}
 
 		return false;
+
 	}
 
 	@Override
@@ -273,7 +267,8 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 				return true;
 			}
 
-			return false;
+			e.printStackTrace();
+
 		}
 
 		return false;
@@ -302,7 +297,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 				return true;
 			}
 
-			return false;
+			e.printStackTrace();
 		}
 		return false;
 
@@ -406,8 +401,8 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			String busca = "SELECT * FROM usuario WHERE " + "email_principal=?";
 			PreparedStatement ps1;
 			ps1 = conn.prepareStatement(busca);
-			ps1.setString(1, "email@usuario.com");			
-			
+			ps1.setString(1, "email@usuario.com");
+
 			return ps1.executeQuery();
 		} catch (Exception e) {
 
