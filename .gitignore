@@ -244,5 +244,6 @@ local.properties
 .recommenders/
 
 # node_modules and bower_components from web folder
-src/main/web/node_modules
-src/main/web/bower_components
+src/web/vendor
+src/web/node_modules
+src/web/bower_components
