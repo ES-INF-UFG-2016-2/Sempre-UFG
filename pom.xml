@@ -73,18 +73,13 @@
             <artifactId>hibernate-commons-annotations</artifactId>
             <version>5.0.1.Final</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.21</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
     </dependencies>
 
     <build>
