@@ -156,6 +156,11 @@
             <version>2.5</version>
         </dependency>
 
+	<dependency>
+	<groupId>org.postgresql</groupId>
+	<artifactId>postgresql</artifactId>
+	<version>9.4-1200-jdbc41</version>
+	</dependency>
         
         <dependency>
             <groupId>javax</groupId>
@@ -217,5 +222,9 @@
         </plugins>
     </build>
 
+<<<<<<< HEAD
 </project>
 >>>>>>> develop
+=======
+</project>
+>>>>>>> refs/remotes/origin/develop
