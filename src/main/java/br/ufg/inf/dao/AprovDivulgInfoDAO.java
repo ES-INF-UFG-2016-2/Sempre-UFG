@@ -1,5 +1,9 @@
 package br.ufg.inf.dao;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -60,7 +64,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		String email_principal = "email@usuario.com";
 		String senha = "senha";
 		String nome = "segundo usuario";
-		int cpf = 1233235352;
+		long cpf = 1233235352L;
 		String recebe_divulgacao = "DIARIA";
 		Date data = new Date(123123);
 		Timestamp timestamp_de_cadastramento = new Timestamp(data.getTime());
@@ -130,15 +134,17 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setInt(5, usuario_id);
 			ps.executeQuery();
 
-			return false;
-
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
-				return true;
+			try {
+				if (buscaAprovacao(1).next()) {
+					return true;
+				}
+
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-			
-			e.printStackTrace();
+
 		}
 
 		return false;
@@ -171,14 +177,16 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 			ps.executeQuery();
 
-			return false;
-
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
-				return true;
+			try {
+				if (buscaEvento("assunto").next()) {
+					return true;
+				}
+
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-			e.printStackTrace();
 
 		}
 
@@ -214,9 +222,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setString(3, nome);
 			ps.setLong(4, cpf);
 			ps.setBytes(5, foto);
-			ps.setString(6, recebe_divulgacao); // CAST AS recebe_divulgacao
-												// type in
-												// SQL
+			ps.setString(6, recebe_divulgacao);
 			ps.setTimestamp(7, timestamp_de_cadastramento);
 			ps.setTimestamp(8, timestamp_de_ultima_atualizacao);
 			ps.setTimestamp(9, timestamp_de_exclusao_logica);
@@ -230,11 +236,10 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 				if (buscaUsuario(cpf).next()) {
 					return true;
 				}
-				
+
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			e.printStackTrace();
 
 		}
 
@@ -266,16 +271,19 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
+			try {
+				if (buscaInstancia(sigla_instancia).next()) {
+					return true;
+				}
 
-				return true;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-
-			e.printStackTrace();
 
 		}
 
 		return false;
+
 	}
 
 	@Override
@@ -294,19 +302,23 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setInt(3, area_conhecimento);
 			ps.executeQuery();
 
+
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
+			try {
+				if (buscaArea_Conhecimento(nome_area).next()) {
+					return true;
+				}
 
-				return true;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
 
-			e.printStackTrace();
 		}
+
 		return false;
 
 	}
-
 	public static void truncateAprovacao() {
 
 		try {
@@ -393,7 +405,28 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	@Override
-	public ResultSet buscaAprovacao() {
+	public ResultSet buscaAprovacao(int evento_id) {
+
+		String busca = "SELECT * FROM public.aprovacao_de_divulgacao WHERE " + "evento = ?;";
+
+		try {
+
+			PreparedStatement ps1 = conn.prepareStatement(busca);
+			ps1.setInt(1, 1);
+			ResultSet rs = ps1.executeQuery();
+
+			if (rs.next()) {
+
+				return rs;
+			} else {
+
+				return null;
+			}
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+		}
 
 		return null;
 	}
@@ -402,13 +435,15 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	public ResultSet buscaUsuario(long cpf) {
 
 		try {
-			String busca = "SELECT * FROM usuario WHERE " + "email_principal=?";
+			String busca = "SELECT * FROM usuario WHERE " + "cpf=?";
 			PreparedStatement ps1;
 			ps1 = conn.prepareStatement(busca);
-			ps1.setString(1, "email@usuario.com");
+			ps1.setLong(1, cpf);
 
 			return ps1.executeQuery();
 		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
 
 		}
 
@@ -419,13 +454,16 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	public ResultSet buscaEvento(String assunto) {
 
 		try {
-			String busca = "SELECT * FROM usuario WHERE " + "email_principal=?";
+			String busca = "SELECT * FROM evento WHERE " + "assunto=?";
 			PreparedStatement ps1;
 			ps1 = conn.prepareStatement(busca);
-			ps1.setString(1, "email@usuario.com");
+			ps1.setString(1, assunto);
 
 			return ps1.executeQuery();
+
 		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
 
 		}
 
@@ -433,14 +471,43 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	@Override
-	public ResultSet buscaArea_Conhecimento() {
-		// TODO Auto-generated method stub
+	public ResultSet buscaArea_Conhecimento(String nome_area) {
+		
+		try {
+			String busca = "SELECT * FROM area_de_conhecimento WHERE "
+							+ "sigla_instancia=?";
+			PreparedStatement ps1;
+			ps1 = conn.prepareStatement(busca);
+			ps1.setString(1, nome_area);
+
+			return ps1.executeQuery();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
 		return null;
 	}
-
+	
 	@Override
-	public ResultSet buscaInstancia() {
-		// TODO Auto-generated method stub
+	public ResultSet buscaInstancia(String sigla) {
+		try {
+			String busca = "SELECT * FROM instancia_administrativa_ufg WHERE "
+							+ "sigla_instancia=?";
+			PreparedStatement ps1;
+			ps1 = conn.prepareStatement(busca);
+			ps1.setString(1, sigla);
+
+			return ps1.executeQuery();
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+
+		}
+
 		return null;
 	}
 

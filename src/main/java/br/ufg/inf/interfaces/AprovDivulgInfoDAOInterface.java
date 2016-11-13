@@ -24,11 +24,11 @@ public interface AprovDivulgInfoDAOInterface  {
 
 	boolean salvaArea_Conhecimento(String nome, int codigo, int area_conhecimento);
 
-	public ResultSet buscaAprovacao();
+	public ResultSet buscaAprovacao(int evento_id);
 	public ResultSet buscaUsuario(long cpf);
 	public ResultSet buscaEvento(String assunto);
-	public ResultSet buscaArea_Conhecimento();
-	public ResultSet buscaInstancia();
+	public ResultSet buscaArea_Conhecimento(String nome_area);
+	public ResultSet buscaInstancia(String sigla);
 
 	public Connection abreConexao();
 	public void truncateAll();

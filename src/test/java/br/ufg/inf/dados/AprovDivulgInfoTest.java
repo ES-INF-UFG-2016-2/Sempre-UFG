@@ -43,7 +43,6 @@ public class AprovDivulgInfoTest {
 	// interface
 	private static AprovDivulgInfoDAOInterface testeDAO = new AprovDivulgInfoDAO();
 
-	
 	// usuario
 	private String email_principal = "email";
 	private String senha = "senha";
@@ -225,8 +224,6 @@ public class AprovDivulgInfoTest {
 				email_institucional, url_institucional));
 	}
 
-	
-	
 	@Test
 	@Ignore
 	public void testInsertCurso() throws SQLException, IOException {
@@ -294,7 +291,6 @@ public class AprovDivulgInfoTest {
 			// assertEquals(rs.getString(3), senha_criptografada);
 			assertEquals(rs.getString(4), "segundo usuario");
 			assertEquals(rs.getInt(5), 1233235352);
-
 			assertTrue(Arrays.equals(rs.getBytes(6), foto));
 			assertEquals(rs.getString(7), recebe_divulgacao);
 			assertEquals(rs.getTimestamp(8), timestamp_de_cadastramento);
@@ -305,14 +301,12 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	public void testBuscaAprovacao()  {
+	public void testBuscaAprovacao() {
 
 		String busca = "SELECT * FROM public.aprovacao_de_divulgacao WHERE " + "evento = ?;";
 
-		
-
 		try {
-			
+
 			PreparedStatement ps1 = conn.prepareStatement(busca);
 			ps1.setInt(1, 1);
 			ResultSet rs = ps1.executeQuery();
