@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 
 import br.ufg.inf.dados.ManipulaDB;
 import br.ufg.inf.interfaces.AprovDivulgInfoDAOInterface;
+import br.ufg.inf.modelo.Usuario;
 
 public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
@@ -46,7 +47,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		}
 	}
 
-	public void populateDb() {
+	public void populateDb() throws Exception {
 
 		// instancia_administrativa
 		String sigla_instancia = "IF";
@@ -194,7 +195,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	@Override
 	public boolean salvaUsuario(String email_principal, String senha, String nome, long cpf, byte[] foto,
 			String recebe_divulgacao, Timestamp timestamp_de_cadastramento, Timestamp timestamp_de_ultima_atualizacao,
-			Timestamp timestamp_de_exclusao_logica, int instancia_administrativa) {
+			Timestamp timestamp_de_exclusao_logica, int instancia_administrativa) throws Exception {
 
 		try {
 			MessageDigest algorithm;
@@ -217,7 +218,11 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setString(1, email_principal);
 			ps.setString(2, senha_criptografada.toLowerCase().substring(0, 9));
 			ps.setString(3, nome);
+			if (Usuario.validarCpf(cpf)){
 			ps.setLong(4, cpf);
+			} else {
+				throw new Exception("CPF invalido.");
+			}
 			ps.setBytes(5, foto);
 			ps.setString(6, recebe_divulgacao);
 			ps.setTimestamp(7, timestamp_de_cadastramento);
@@ -229,14 +234,13 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			try {
+			
 				if (buscaUsuario(cpf).next()) {
 					return true;
 				}
 
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+			 
+			
 
 		}
 
