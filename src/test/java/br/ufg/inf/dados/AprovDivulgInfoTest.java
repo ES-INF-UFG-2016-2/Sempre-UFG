@@ -47,7 +47,7 @@ public class AprovDivulgInfoTest {
 	private String email_principal = "email";
 	private String senha = "senha";
 	private String nome = "primeiro usuario";
-	private long cpf = 123234345;
+	private long cpf = 62768503657L;
 	private String recebe_divulgacao = "DIARIA";
 	private Date data = new Date(123123);
 	private Timestamp timestamp_de_cadastramento = new Timestamp(data.getTime());
@@ -100,6 +100,7 @@ public class AprovDivulgInfoTest {
 	@BeforeClass
 	public static void abreConexao() throws Exception {
 
+		
 		conn = testeDAO.abreConexao();
 		testeDAO.truncateAll();
 		testeDAO.populateDb();
@@ -110,6 +111,7 @@ public class AprovDivulgInfoTest {
 	public static void fechaConexao() throws IOException, SQLException {
 
 		conn.close();
+		
 
 	}
 
@@ -194,6 +196,7 @@ public class AprovDivulgInfoTest {
 
 		} catch(Exception e) {
 			
+			
 		}
 	}
 
@@ -276,6 +279,7 @@ public class AprovDivulgInfoTest {
 		PreparedStatement ps1 = conn.prepareStatement(busca);
 		ResultSet rs = ps1.executeQuery();
 
+	
 		while (rs.next()) {
 
 			assertEquals(rs.getString(2), nivel);

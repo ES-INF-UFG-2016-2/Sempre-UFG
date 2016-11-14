@@ -1,6 +1,5 @@
 package br.ufg.inf.dao;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -62,7 +61,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		String email_principal = "email@usuario.com";
 		String senha = "senha";
 		String nome = "segundo usuario";
-		long cpf = 1233235352L;
+		long cpf = 26966318400L;
 		String recebe_divulgacao = "DIARIA";
 		Date data = new Date(123123);
 		Timestamp timestamp_de_cadastramento = new Timestamp(data.getTime());
@@ -107,7 +106,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 					timestamp_de_ultima_atualizacao, timestamp_de_exclusao_logica, instancia_administrativa);
 			salvaAprovacao(divulgacao_aprovada, parecer, data_aprovacao_ou_rejeicao, evento, usuario);
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -115,7 +114,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	public boolean salvaAprovacao(boolean divulgacao_aprovada, String parecer_sobre_divulgacao,
-			Date data_aprovacao_ou_rejeicao, int evento_id, int usuario_id) {
+			Date data_aprovacao_ou_rejeicao, int evento_id, int usuario_id) throws Exception {
 
 		try {
 			testaConexao();
@@ -134,13 +133,8 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			try {
-				if (buscaAprovacao(1).next()) {
-					return true;
-				}
-
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			if (buscaAprovacao(1).next()) {
+				return true;
 			}
 
 		}
@@ -218,8 +212,8 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setString(1, email_principal);
 			ps.setString(2, senha_criptografada.toLowerCase().substring(0, 9));
 			ps.setString(3, nome);
-			if (Usuario.validarCpf(cpf)){
-			ps.setLong(4, cpf);
+			if (Usuario.validarCpf(cpf)) {
+				ps.setLong(4, cpf);
 			} else {
 				throw new Exception("CPF invalido.");
 			}
@@ -234,13 +228,10 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			
-				if (buscaUsuario(cpf).next()) {
-					return true;
-				}
 
-			 
-			
+			if (buscaUsuario(cpf).next()) {
+				return true;
+			}
 
 		}
 
@@ -303,7 +294,6 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setInt(3, area_conhecimento);
 			ps.executeQuery();
 
-
 		} catch (Exception e) {
 
 			try {
@@ -320,6 +310,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		return false;
 
 	}
+
 	public static void truncateAprovacao() {
 
 		try {
@@ -426,7 +417,6 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e.getMessage());
 		}
 
 		return null;
@@ -443,8 +433,6 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 			return ps1.executeQuery();
 		} catch (Exception e) {
-
-			System.out.println(e.getMessage());
 
 		}
 
@@ -464,8 +452,6 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e.getMessage());
-
 		}
 
 		return null;
@@ -473,10 +459,9 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 	@Override
 	public ResultSet buscaArea_Conhecimento(String nome_area) {
-		
+
 		try {
-			String busca = "SELECT * FROM area_de_conhecimento WHERE "
-							+ "sigla_instancia=?";
+			String busca = "SELECT * FROM area_de_conhecimento WHERE " + "sigla_instancia=?";
 			PreparedStatement ps1;
 			ps1 = conn.prepareStatement(busca);
 			ps1.setString(1, nome_area);
@@ -485,18 +470,15 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e.getMessage());
-
 		}
 
 		return null;
 	}
-	
+
 	@Override
 	public ResultSet buscaInstancia(String sigla) {
 		try {
-			String busca = "SELECT * FROM instancia_administrativa_ufg WHERE "
-							+ "sigla_instancia=?";
+			String busca = "SELECT * FROM instancia_administrativa_ufg WHERE " + "sigla_instancia=?";
 			PreparedStatement ps1;
 			ps1 = conn.prepareStatement(busca);
 			ps1.setString(1, sigla);
@@ -504,8 +486,6 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			return ps1.executeQuery();
 
 		} catch (Exception e) {
-
-			System.out.println(e.getMessage());
 
 		}
 
