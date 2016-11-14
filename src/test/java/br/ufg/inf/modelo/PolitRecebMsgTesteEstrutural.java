@@ -29,7 +29,6 @@ public class PolitRecebMsgTesteEstrutural {
 	public void testPolitRecebMsgNull() {
 
 		Usuario usuarioDefault = new Usuario();
-		String politica = "politica";
 
 		try {
 			usuarioDefault.setTipoDivulgacao(null);
@@ -44,11 +43,15 @@ public class PolitRecebMsgTesteEstrutural {
 
 	@Test
 	public void testRetornaPolitRecebMsg() {
+		
+		
 	}
 
 	@Test
 	public void testPolitRecebMsgDefault() throws Exception {
-
+		
+		assertTrue(new Usuario().getTipoDivulgacao().equals(PoliticaRecebimentoMensagens.CADA_EVENTO));
+		
 	}
 
 	@Test
