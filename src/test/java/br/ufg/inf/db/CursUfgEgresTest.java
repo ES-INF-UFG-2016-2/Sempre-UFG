@@ -7,18 +7,20 @@ import java.io.File;
 import java.io.FileReader;
 import java.sql.*;
 
+import static org.junit.Assert.assertEquals;
+
 public class CursUfgEgresTest {
 
-    private static Connection conexao;
-    private static Statement stmt;
     private static String sysBar = System.getProperty("file.separator");
     private static String DDLPath = "db" + sysBar + "mariadb" + sysBar + "ddl" + sysBar + "RD-CursUfgEgres.sql";
     private static String HOST = "localHOST";
-    private static int    PORTA = 3306;
+    private static int PORTA = 3306;
     private static String NOME_BANCO = "SempreUFG";
     private static String USUARIO = "root";
     private static String SENHA = "root";
     private static String URL = "jdbc:mariadb://" + HOST + ":" + PORTA + "/" + NOME_BANCO;
+    private static Connection conexao;
+    private static Statement stmt;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -46,26 +48,29 @@ public class CursUfgEgresTest {
 
     public static void executeDDL() throws Exception {
 
-        StringBuilder fileData = new StringBuilder();
+        String fileData = "";
         BufferedReader reader = new BufferedReader(new FileReader(new File(DDLPath)));
         char[] buf = new char[1024];
         int numRead;
 
-        while((numRead = reader.read(buf)) != -1){
+        while ((numRead = reader.read(buf)) != -1) {
             String readData = String.valueOf(buf, 0, numRead);
-            fileData.append(readData);
+            fileData += readData;
         }
 
         reader.close();
 
-        try{
-            stmt.addBatch(fileData.toString());
-            stmt.executeBatch();
-        }
-        catch (SQLException e) {
+        String[] splitResult = fileData.split(";");
+
+        try {
+            for (int i = 0; i < splitResult.length - 1; i++) {
+                stmt.executeUpdate(splitResult[i] + ";");
+            }
+        } catch (SQLException e) {
             conexao.rollback();
             throw new Exception(e);
         }
+
     }
 
     public static void limpaBanco() throws Exception {
@@ -98,14 +103,16 @@ public class CursUfgEgresTest {
     }
 
     @Test
-    public void testaArmazenaAreaDeConhecimentoQualquer() {
-        String sql = "INSERT INTO AREA_DE_CONHECIMENTO VALUES ('EXATAS',01,01);";
+    public void testaArmazenaAreaDeConhecimentoQualquer() throws SQLException {
+        String item = "('EXATAS', 01, 01)";
+        String sql = "INSERT INTO AREA_DE_CONHECIMENTO VALUES " + item + ";";
 
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AREA_DE_CONHECIMENTO WHERE NOME = 'EXATAS' AND CODIGO = 01 AND SUPER_AREA = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
+
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -127,18 +134,16 @@ public class CursUfgEgresTest {
 
 ///////////////////////////////////// CURSO_DA_UFG /////////////////////////////////////////////////////
 
-    /**
-     *
-     */
     @Test
-    public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais() {
+    public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais() throws SQLException {
         String sql = "INSERT INTO AREA_DE_CONHECIMENTO VALUES ('HU¬MA¬NA$*',01,01);";
 
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AREA_DE_CONHECIMENTO WHERE NOME = 'HU¬MA¬NA$*' AND CODIGO = 01 AND SUPER_AREA = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
+
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -148,9 +153,7 @@ public class CursUfgEgresTest {
 
     }
 
-    /**
-     *
-     */
+
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
     public void testaArmazenaCursoDaUFGAreaDeConhecimentoNula() throws SQLException {
         String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', NULL);";
@@ -158,35 +161,16 @@ public class CursUfgEgresTest {
 
     }
 
-    /**
-     *
-     */
-    @Test
-    public void testaArmazenaCursoDaUFGAreaDeConhecimentoCodigoString() {
-        String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Bacharelado', 'CEPEC', 01, FALSE, 'Matutino','SAMAMBAIA', '01');";
-
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
 ////////////////////////////////////////// HISTORICO_NA_UFG ///////////////////////////////////////////////////////
 
-    @Test
-    public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() {
+    @Test(expected = java.sql.SQLDataException.class)
+    public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() throws SQLException {
         String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Aperfeicoamento', 'CONSUNI', -1, FALSE, 'Vespertino','SAMAMBAIA', 12);";
-
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        stmt.executeUpdate(sql);
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
-    public void testaArmazenaCursoDaUFGNumeroNulo() throws SQLException {
+    public void testaArmazenaCursoDaUFGNumeroDaResolucaoNulo() throws SQLException {
         String sql = "INSERT INTO CURSO_DA_UFG VALUES ('Aperfeicoamento', 'CONSUNI', NULL, FALSE, 'Vespertino','SAMAMBAIA',10);";
         stmt.executeUpdate(sql);
 
@@ -196,6 +180,10 @@ public class CursUfgEgresTest {
     public void testaArmazenaHistoricoUfgQualquer() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (201301571, 01, 2013, 12, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM HISTORICO_NA_UFG WHERE NUMERO_MATRICULA_CURSO = 201301571 AND MES_DE_INICIO = 01 AND ANO_DE_INICIO = 2013 AND MES_DE_FIM = 12 AND ANO_DE_FIM = 2016 AND TITULO_DO_TRABALHO_FINAL = 'TRABALHO FINAL' AND CURSO = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -220,12 +208,20 @@ public class CursUfgEgresTest {
     public void testaArmazenaHistoricoUfgMesDeInicioLimiteInferior() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (201101571, 01, 2013, 12, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM HISTORICO_NA_UFG WHERE NUMERO_MATRICULA_CURSO = 201101571 AND MES_DE_INICIO = 01 AND ANO_DE_INICIO = 2013 AND MES_DE_FIM = 12 AND ANO_DE_FIM = 2016 AND TITULO_DO_TRABALHO_FINAL = 'TRABALHO FINAL' AND CURSO = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaHistoricoUfgMesDeInicioLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (201301571, 12, 2013, 12, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM HISTORICO_NA_UFG WHERE NUMERO_MATRICULA_CURSO = 201301571 AND MES_DE_INICIO = 12 AND ANO_DE_INICIO = 2013 AND MES_DE_FIM = 12 AND ANO_DE_FIM = 2016 AND TITULO_DO_TRABALHO_FINAL = 'TRABALHO FINAL' AND CURSO = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLDataException.class)
@@ -234,7 +230,10 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    @Test
+    /**
+     * @throws SQLException
+     */
+    @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaHistoricoUfgMesDeInicioAcimaLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (152201000, 13, 2013, 12, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
@@ -251,13 +250,11 @@ public class CursUfgEgresTest {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (152201111, 05, 1960, 12, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
 
+        sql = "SELECT * FROM HISTORICO_NA_UFG WHERE NUMERO_MATRICULA_CURSO = 152201111 AND MES_DE_INICIO = 05 AND ANO_DE_INICIO = 1960 AND MES_DE_FIM = 12 AND ANO_DE_FIM = 2016 AND TITULO_DO_TRABALHO_FINAL = 'TRABALHO FINAL' AND CURSO = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
-    /**
-     *
-     *
-     * @throws SQLException
-     */
     @Test
     public void testaArmazenaHistoricoUfgAnoInicioAbaixoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (222201000, 09, 1959, 12, 2016, 'TRABALHO FINAL', 01);";
@@ -288,7 +285,7 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    @Test
+    @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaHistoricoUfgMesFimAcimaLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (223205000, 10, 2012, 19, 2016, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
@@ -304,27 +301,31 @@ public class CursUfgEgresTest {
     public void testaArmazenaHistoricoUfgAnoFimLimiteInferior() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (223207000, 09, 1980, 01, 1980, 'TRABALHO FINAL', 01);";
         stmt.executeUpdate(sql);
-    }
 
-    @Test
-    public void testaArmazenaHistoricoUfgAnoFimAbaixoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (223208000, 09, 1980, 01, 1978, 'TRABALHO FINAL', 01);";
-        stmt.executeUpdate(sql);
+        sql = "SELECT * FROM HISTORICO_NA_UFG WHERE NUMERO_MATRICULA_CURSO = 223207000 AND MES_DE_INICIO = 09 AND ANO_DE_INICIO = 1980 AND MES_DE_FIM = 01 AND ANO_DE_FIM = 1980 AND TITULO_DO_TRABALHO_FINAL = 'TRABALHO FINAL' AND CURSO = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaHistoricoUfgTituloTrabalhoFinalNulo() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (223209000, 09, 1980, 01, 1986, NULL, 01);";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM HISTORICO_NA_UFG WHERE NUMERO_MATRICULA_CURSO = 223209000 AND MES_DE_INICIO = 09 AND ANO_DE_INICIO = 1980 AND MES_DE_FIM = 01 AND ANO_DE_FIM = 1986 AND CURSO = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaHistoricoUfgTituloTrabalhoFinalEmBranco() throws SQLException {
         String sql = "INSERT INTO HISTORICO_NA_UFG VALUES (223210000, 09, 1980, 01, 1980, '', 01);";
         stmt.executeUpdate(sql);
-    }
 
-    ///////////////////////////////////////// AVALIACAO_DO_CURSO_PELO_EGRESSO //////////////////////////////////////////////
+        sql = "SELECT * FROM HISTORICO_NA_UFG WHERE NUMERO_MATRICULA_CURSO = 223210000 AND MES_DE_INICIO = 09 AND ANO_DE_INICIO = 1980 AND MES_DE_FIM = 01 AND ANO_DE_FIM = 1980 AND TITULO_DO_TRABALHO_FINAL = '' AND CURSO = 01;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
+    }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
     public void testaArmazenaHistoricoUfgCursoNulo() throws SQLException {
@@ -342,6 +343,12 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoQualquer() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (01, '2016-02-02', 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 01 AND DATA_AVALIACAO = '2016-02-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -380,16 +387,28 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (15 , '2016-01-02', 'Outra', 0, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 15 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 0 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (15 , '2016-01-02', 'Outra', 10, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 15 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 10 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLDataException.class)
@@ -414,12 +433,24 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoConceitoGlobalCursoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (03 , '2016-01-02', 'Outra', 8, 0, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 03 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 0 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoConceitoGlobalCursoLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (15 , '2016-01-02', 'Outra', 8, 10, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 15 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 10 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLDataException.class)
@@ -444,12 +475,24 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoPreparacaoParaMercadoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (06 , '1995-01-02', 'Outra', 8, 8, 0, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 06 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 0 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoPreparacaoParaMercadoLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (07 , '1995-01-02', 'Outra', 8, 8, 10, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 10 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLDataException.class)
@@ -474,12 +517,24 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMelhoriaCapacidadeComunicacaoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (06 , '1990-01-02', 'Outra', 8, 8, 8, 0, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 06 AND DATA_AVALIACAO = '1990-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 0 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMelhoriaCapacidadeComunicacaoLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (07 , '1982-01-02', 'Outra', 8, 8, 8, 10, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1982-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 10 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLDataException.class)
@@ -504,12 +559,24 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeLimiteInferior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (06 , '1998-01-02', 'Outra', 8, 8, 8, 8, 0, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 06 AND DATA_AVALIACAO = '1998-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 0 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (07 , '1997-01-02', 'Outra', 8, 8, 8, 8, 10, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1997-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 10 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLDataException.class)
@@ -518,11 +585,6 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    /**
-     *
-     *
-     * @throws SQLException
-     */
     @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeAcimaLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (40 , '1995-01-02', 'Outra', 8, 8, 8, 8, 15, 8, 'COMENTARIO');";
@@ -539,12 +601,24 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoLimiteInferior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (18 , '1998-01-02', 'Outra', 8, 8, 8, 8, 8, 0, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 18 AND DATA_AVALIACAO = '1998-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 0 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (07 , '1997-01-02', 'Outra', 8, 8, 8, 8, 8, 10, 'COMENTARIO');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1997-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 10 AND COMENTARIO = 'COMENTARIO';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLDataException.class)
@@ -553,14 +627,6 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-
-    //////////////////////////////////////// REALIZACAO_DE_PROGRAMA_ACADEMICO //////////////////////////////////////////////
-
-    /**
-     * Verificar esse teste
-     *
-     * @throws SQLException
-     */
     @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoAcimaLimiteSuperior() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (40 , '1995-01-02', 'Outra', 8, 8, 8, 8, 8, 15, 'COMENTARIO');";
@@ -571,12 +637,22 @@ public class CursUfgEgresTest {
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoComentarioNulo() throws SQLException {
         String sql = "INSERT INTO AVALIACAO_DO_CURSO_PELO_EGRESSO VALUES (01 , '1995-01-02', 'Outra', 8, 8, 8, 8, 8, 8, NULL);";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM AVALIACAO_DO_CURSO_PELO_EGRESSO WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8;";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test
     public void testaArmazenaRealizacaoDeProgramaAcademicoQualquer() throws SQLException {
         String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20101842 , 'Intercambio', '2016-02-01' , '2016-12-01', 'Descricao');";
         stmt.executeUpdate(sql);
+
+        sql = "SELECT * FROM REALIZACAO_DE_PROGRAMA_ACADEMICO WHERE HISTORICO = 20101842 AND TIPO = 'Intercambio' AND DATA_INICIO = '2016-02-01' AND DATA_FIM = '2016-12-01' AND DESCRICAO = 'Descricao';";
+        ResultSet resultado = stmt.executeQuery(sql);
+        assertEquals(true, resultado.isBeforeFirst());
     }
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
@@ -596,8 +672,6 @@ public class CursUfgEgresTest {
         String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20130149, 'Iniciacao_Cientifica', NULL , '2016-09-15', 'Descricao');";
         stmt.executeUpdate(sql);
     }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
     public void testaArmazenaRealizacaoDeProgramaAcademicoDataFimNula() throws SQLException {
