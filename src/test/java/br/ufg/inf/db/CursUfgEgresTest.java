@@ -16,8 +16,8 @@ public class CursUfgEgresTest {
     private static String HOST = "localHOST";
     private static int PORTA = 3306;
     private static String NOME_BANCO = "SempreUFG";
-    private static String USUARIO = "root";
-    private static String SENHA = "root";
+    private static String USUARIO = "";
+    private static String SENHA = "";
     private static String URL = "jdbc:mariadb://" + HOST + ":" + PORTA + "/" + NOME_BANCO;
     private static Connection conexao;
     private static Statement stmt;
