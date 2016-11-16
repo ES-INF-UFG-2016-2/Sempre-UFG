@@ -15,7 +15,7 @@ public class CursUfgEgresTest {
     private static String DDLPath = "db" + sysBar + "mariadb" + sysBar + "ddl" + sysBar + "RD-CursUfgEgres.sql";
     private static String HOST = "localhost";
     private static int PORTA = 3306;
-    private static String NOME_BANCO = "SempreUFG";
+    private static String NOME_BANCO = "sempreUFG";
     private static String USUARIO = "";
     private static String SENHA = "";
     private static String URL = "jdbc:mariadb://" + HOST + ":" + PORTA + "/" + NOME_BANCO;
