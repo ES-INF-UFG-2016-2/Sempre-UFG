@@ -2,5 +2,11 @@ language: java
 jdk:
        - oraclejdk8
 addons:
-    mariadb: '5.5'
-script: mvn -X -e -B clean package
+  mariadb: '5.5'
+  postgresql: '9.3'
+before_script:
+  - psql --version ;
+script:
+  - psql -h localhost -U postgres -a -f db/postgres/ddl/create-user-and-db.sql
+  - sh db/postgres/postgres.sh
+  - mvn -X -e -B clean package

@@ -33,17 +33,17 @@ public class DivulgaEventEgresTest {
         divulgadorEventosServiceInterface = new DivulgadorEventosService();
         usuarioTestatoI = new Usuario();
         usuarioTestatoI.setNome("NomeUsuarioTesteI");
-        usuarioTestatoI.setCpf("99999999999");
+        usuarioTestatoI.setCpf(99999999999l);
         usuarioTestatoI.setMail("usuarioTestado");
 
         usuarioTestatoII = new Usuario();
         usuarioTestatoII.setNome("NomeUsuarioTesteII");
-        usuarioTestatoII.setCpf("99999999998");
+        usuarioTestatoII.setCpf(99999999998l);
         usuarioTestatoII.setMail("usuarioTestadoIII");
 
         usuarioTestatoIII = new Usuario();
         usuarioTestatoIII.setNome("NomeUsuarioTesteIII");
-        usuarioTestatoIII.setCpf("99999999998");
+        usuarioTestatoIII.setCpf(99999999998l);
         usuarioTestatoIII.setMail("usuarioTestadoIII");
 
         usuarioCurso.add(usuarioTestatoI);

@@ -13,7 +13,7 @@ public class Usuario {
     private String mail;
     private String senha;
     private String nome;
-    private String cpf;
+    private long cpf;
     private BitSet foto = new BitSet();
     private PoliticaRecebimentoMensagens tipoDivulgacao = PoliticaRecebimentoMensagens.CADA_EVENTO;
     private Date ts_cadastramento;
@@ -54,11 +54,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -108,4 +108,60 @@ public class Usuario {
     public void setListaPapel(List<Papel> listaPapel) {
         this.listaPapel = listaPapel;
     }
+    
+    public static boolean validarCpf(long cpf) {
+
+		String str_cpf = String.valueOf(cpf);
+
+		while (str_cpf.length() < 11) {
+
+			str_cpf = "0" + str_cpf;
+
+		}
+
+		String cpf_completo = str_cpf;
+
+		str_cpf = str_cpf.substring(0, 9);
+		char dig10, dig11;
+		int sm, i, r, num, peso;
+
+		sm = 0;
+		peso = 10;
+		for (i = 0; i <= 8; i++) {
+			num = (int) (str_cpf.charAt(i) - 48);
+			sm = sm + (num * peso);
+			peso = peso - 1;
+		}
+
+		r = 11 - (sm % 11);
+		if ((r == 10) || (r == 11))
+			dig10 = '0';
+		else
+			dig10 = (char) (r + 48);
+
+		sm = 0;
+		peso = 11;
+		str_cpf = str_cpf + dig10;
+		for (i = 0; i <= 9; i++) {
+			num = (int) (str_cpf.charAt(i) - 48);
+			sm = sm + (num * peso);
+			peso = peso - 1;
+		}
+
+		r = 11 - (sm % 11);
+		if ((r == 10) || (r == 11))
+			dig11 = '0';
+		else
+			dig11 = (char) (r + 48);
+
+		str_cpf = str_cpf + dig11;
+
+		if (dig10 == cpf_completo.charAt(9) && dig11 == cpf_completo.charAt(10) && cpf_completo.equals(str_cpf)) {
+
+			return true;
+
+		}
+
+		return false;
+	}
 }

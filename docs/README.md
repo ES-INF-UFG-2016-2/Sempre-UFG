@@ -17,9 +17,9 @@ Aqui estão organizados todos os e *Planos* e artefatos de documentação para o
 
 * [Requisitos de Software](./wiki/extras/documentos-do-professor-juliano/requisitos-de-software-para-sempre-ufg-2016.pdf) **(PDF)**
 * [Características de Usabilidade](./wiki/Características-de-Usabilidade.md)
-* [Documento de Especificação de Interface](./wiki/Documento-de-Especificação-de-Interface.md)
 
 ### Arquitetura
 
+* [Plano de Arquitetura](./wiki/Plano-de-Arquitetura.md)
 * [Diagramas de Arquitetura](./wiki/Diagramas-de-Arquitetura.md)
 * [Projeto de Web Service](./wiki/Projeto-de-Web-Service.md)
