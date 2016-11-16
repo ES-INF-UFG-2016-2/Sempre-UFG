@@ -13,7 +13,7 @@ public class CursUfgEgresTest {
 
     private static String sysBar = System.getProperty("file.separator");
     private static String DDLPath = "db" + sysBar + "mariadb" + sysBar + "ddl" + sysBar + "RD-CursUfgEgres.sql";
-    private static String HOST = "localHOST";
+    private static String HOST = "localhost";
     private static int PORTA = 3306;
     private static String NOME_BANCO = "SempreUFG";
     private static String USUARIO = "";
