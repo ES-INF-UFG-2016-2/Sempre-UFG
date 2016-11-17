@@ -8,6 +8,7 @@ import br.ufg.inf.interfaces.EgressoDaoInterface;
 import br.ufg.inf.modelo.Egresso;
 import br.ufg.inf.servico.ExecultarConsultasMock;
 
+
 public class EgressoDao implements EgressoDaoInterface<Egresso> {
 	
 	public void consultarPorConsultaPreDefinida(){
