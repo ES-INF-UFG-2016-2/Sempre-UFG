@@ -3,6 +3,7 @@ package br.ufg.inf.modelo;
 import br.ufg.inf.enums.Sexo;
 import br.ufg.inf.enums.VisibilidadeDados;
 
+import java.io.Serializable;
 import java.util.BitSet;
 import java.util.Date;
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class Egresso extends Usuario {
+public class Egresso extends Usuario implements Serializable{
 
-    private String nome;
+	private static final long serialVersionUID = 1L;
+	
+	private String nome;
     private String nome_mae;
     private Date data_nascimento;
     private Sexo sexo;
