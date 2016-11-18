@@ -13,4 +13,5 @@ before_script:
 script:
 - psql -h localhost -U postgres -a -f db/postgres/ddl/create-user-and-db.sql
 - sh db/postgres/postgres.sh
-- mvn -X -e -B clean package sonar:sonar -Dsonar.login=$SONAR_TOKEN
+- mvn -X -e -B clean compile sonar:sonar -Dsonar.login=$SONAR_TOKEN
+- mvn -X -e -B package
