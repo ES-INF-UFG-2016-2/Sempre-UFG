@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 
 import br.ufg.inf.dados.ManipulaDB;
 import br.ufg.inf.interfaces.AprovDivulgInfoDAOInterface;
+import br.ufg.inf.modelo.Usuario;
 
 public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
@@ -45,7 +46,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		}
 	}
 
-	public void populateDb() {
+	public void populateDb() throws Exception {
 
 		// instancia_administrativa
 		String sigla_instancia = "IF";
@@ -60,7 +61,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 		String email_principal = "email@usuario.com";
 		String senha = "senha";
 		String nome = "segundo usuario";
-		int cpf = 1233235352;
+		long cpf = 26966318400L;
 		String recebe_divulgacao = "DIARIA";
 		Date data = new Date(123123);
 		Timestamp timestamp_de_cadastramento = new Timestamp(data.getTime());
@@ -105,7 +106,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 					timestamp_de_ultima_atualizacao, timestamp_de_exclusao_logica, instancia_administrativa);
 			salvaAprovacao(divulgacao_aprovada, parecer, data_aprovacao_ou_rejeicao, evento, usuario);
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -113,7 +114,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	public boolean salvaAprovacao(boolean divulgacao_aprovada, String parecer_sobre_divulgacao,
-			Date data_aprovacao_ou_rejeicao, int evento_id, int usuario_id) {
+			Date data_aprovacao_ou_rejeicao, int evento_id, int usuario_id) throws Exception {
 
 		try {
 			testaConexao();
@@ -130,15 +131,12 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setInt(5, usuario_id);
 			ps.executeQuery();
 
-			return false;
-
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
+			if (buscaAprovacao(1).next()) {
 				return true;
 			}
-			
-			e.printStackTrace();
+
 		}
 
 		return false;
@@ -171,14 +169,16 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 			ps.executeQuery();
 
-			return false;
-
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
-				return true;
+			try {
+				if (buscaEvento("assunto").next()) {
+					return true;
+				}
+
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-			e.printStackTrace();
 
 		}
 
@@ -189,7 +189,7 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	@Override
 	public boolean salvaUsuario(String email_principal, String senha, String nome, long cpf, byte[] foto,
 			String recebe_divulgacao, Timestamp timestamp_de_cadastramento, Timestamp timestamp_de_ultima_atualizacao,
-			Timestamp timestamp_de_exclusao_logica, int instancia_administrativa) {
+			Timestamp timestamp_de_exclusao_logica, int instancia_administrativa) throws Exception {
 
 		try {
 			MessageDigest algorithm;
@@ -212,11 +212,13 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 			ps.setString(1, email_principal);
 			ps.setString(2, senha_criptografada.toLowerCase().substring(0, 9));
 			ps.setString(3, nome);
-			ps.setLong(4, cpf);
+			if (Usuario.validarCpf(cpf)) {
+				ps.setLong(4, cpf);
+			} else {
+				throw new Exception("CPF invalido.");
+			}
 			ps.setBytes(5, foto);
-			ps.setString(6, recebe_divulgacao); // CAST AS recebe_divulgacao
-												// type in
-												// SQL
+			ps.setString(6, recebe_divulgacao);
 			ps.setTimestamp(7, timestamp_de_cadastramento);
 			ps.setTimestamp(8, timestamp_de_ultima_atualizacao);
 			ps.setTimestamp(9, timestamp_de_exclusao_logica);
@@ -226,11 +228,10 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
 
+			if (buscaUsuario(cpf).next()) {
 				return true;
 			}
-			e.printStackTrace();
 
 		}
 
@@ -262,16 +263,19 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
+			try {
+				if (buscaInstancia(sigla_instancia).next()) {
+					return true;
+				}
 
-				return true;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-
-			e.printStackTrace();
 
 		}
 
 		return false;
+
 	}
 
 	@Override
@@ -292,13 +296,17 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 
 		} catch (Exception e) {
 
-			if (e.getMessage().toString().equals("No results were returned by the query.")) {
+			try {
+				if (buscaArea_Conhecimento(nome_area).next()) {
+					return true;
+				}
 
-				return true;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
 
-			e.printStackTrace();
 		}
+
 		return false;
 
 	}
@@ -389,7 +397,27 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	@Override
-	public ResultSet buscaAprovacao() {
+	public ResultSet buscaAprovacao(int evento_id) {
+
+		String busca = "SELECT * FROM public.aprovacao_de_divulgacao WHERE " + "evento = ?;";
+
+		try {
+
+			PreparedStatement ps1 = conn.prepareStatement(busca);
+			ps1.setInt(1, 1);
+			ResultSet rs = ps1.executeQuery();
+
+			if (rs.next()) {
+
+				return rs;
+			} else {
+
+				return null;
+			}
+
+		} catch (Exception e) {
+
+		}
 
 		return null;
 	}
@@ -398,10 +426,10 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	public ResultSet buscaUsuario(long cpf) {
 
 		try {
-			String busca = "SELECT * FROM usuario WHERE " + "email_principal=?";
+			String busca = "SELECT * FROM usuario WHERE " + "cpf=?";
 			PreparedStatement ps1;
 			ps1 = conn.prepareStatement(busca);
-			ps1.setString(1, "email@usuario.com");
+			ps1.setLong(1, cpf);
 
 			return ps1.executeQuery();
 		} catch (Exception e) {
@@ -412,20 +440,55 @@ public class AprovDivulgInfoDAO implements AprovDivulgInfoDAOInterface {
 	}
 
 	@Override
-	public ResultSet buscaEvento() {
-		// TODO Auto-generated method stub
+	public ResultSet buscaEvento(String assunto) {
+
+		try {
+			String busca = "SELECT * FROM evento WHERE " + "assunto=?";
+			PreparedStatement ps1;
+			ps1 = conn.prepareStatement(busca);
+			ps1.setString(1, assunto);
+
+			return ps1.executeQuery();
+
+		} catch (Exception e) {
+
+		}
+
 		return null;
 	}
 
 	@Override
-	public ResultSet buscaArea_Conhecimento() {
-		// TODO Auto-generated method stub
+	public ResultSet buscaArea_Conhecimento(String nome_area) {
+
+		try {
+			String busca = "SELECT * FROM area_de_conhecimento WHERE " + "sigla_instancia=?";
+			PreparedStatement ps1;
+			ps1 = conn.prepareStatement(busca);
+			ps1.setString(1, nome_area);
+
+			return ps1.executeQuery();
+
+		} catch (Exception e) {
+
+		}
+
 		return null;
 	}
 
 	@Override
-	public ResultSet buscaInstancia() {
-		// TODO Auto-generated method stub
+	public ResultSet buscaInstancia(String sigla) {
+		try {
+			String busca = "SELECT * FROM instancia_administrativa_ufg WHERE " + "sigla_instancia=?";
+			PreparedStatement ps1;
+			ps1 = conn.prepareStatement(busca);
+			ps1.setString(1, sigla);
+
+			return ps1.executeQuery();
+
+		} catch (Exception e) {
+
+		}
+
 		return null;
 	}
 
