@@ -6,8 +6,8 @@ addons:
   postgresql: '9.3'
   sonarqube: true
 env:
-	global:
-		- secure: 9585d2776d0c16c02eefb0456bc46a1e4f0ec12b
+  global:
+    - secure: 9585d2776d0c16c02eefb0456bc46a1e4f0ec12b
 before_script:
   - psql --version ;
 script:
