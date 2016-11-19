@@ -4,9 +4,11 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 
 import br.ufg.inf.enums.TipoInstituicao;
 import br.ufg.inf.modelo.Egresso;
+import br.ufg.inf.modelo.LocalizacaoGeografica;
 
 public class AuxiliaInsercao {
 
@@ -49,6 +51,49 @@ public class AuxiliaInsercao {
 
 			return true;
 
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	public boolean insereLocalizacaoGeografica(Connection connection, String sql, LocalizacaoGeografica localizacao) {
+
+		try {
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setString(1, localizacao.getNomeDaCidade());
+			stmt.setString(2, localizacao.getNomeDaUnidadeFederativa());
+			stmt.setString(3, localizacao.getNomeDoPais());
+			stmt.setString(4, localizacao.getSiglaDaUnidadeFederativa());
+			stmt.setFloat(5, localizacao.getLatitude());
+			stmt.setFloat(6, localizacao.getLongitude());
+
+			stmt.execute();
+			stmt.close();
+
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	public boolean insereHistoricoEnsinoMedio(Connection connection, String sql, int mesInicio, int mesFim,
+			int anoInicio, int anoFim) {
+
+		try {
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, mesInicio);
+			stmt.setInt(2, anoInicio);
+			stmt.setInt(3, mesFim);
+			stmt.setInt(4, anoFim);
+
+			stmt.execute();
+			stmt.close();
+
+			return true;
 		} catch (SQLException e) {
 			return false;
 		}
