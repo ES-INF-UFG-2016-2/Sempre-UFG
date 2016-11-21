@@ -10,7 +10,12 @@ public class AprovacaoDivulgacaoEvento {
     private String parecerSobreDivulgacao;
     private Date dataDoParecer;
 
-    public AprovacaoDivulgacaoEvento() {
+    public AprovacaoDivulgacaoEvento(Evento evento, Usuario aprovadoPor, boolean divulgacaoAprovada, String parecerSobreDivulgacao, Date dataDoParecer) {
+        this.evento = evento;
+        this.aprovadoPor = aprovadoPor;
+        this.divulgacaoAprovada = divulgacaoAprovada;
+        this.parecerSobreDivulgacao = parecerSobreDivulgacao;
+        this.dataDoParecer = dataDoParecer;
     }
 
     public Evento getEvento() {
