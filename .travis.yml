@@ -17,7 +17,7 @@ before_script:
 - psql --version
 - mysql --version
 script:
-- mysql -h localhost -uroot db/mariadb/ddl/cria-usuario-e-db.sql
+- mysql -h localhost -uroot < db/mariadb/ddl/cria-usuario-e-db.sql
 - sh db/mariadb/mariadb.sh
 - psql -h localhost -U postgres -a -f db/postgres/create-user-and-db.sql
 - sh db/postgres/postgres.sh
