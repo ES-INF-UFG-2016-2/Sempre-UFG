@@ -10,4 +10,4 @@ export MYSQL_DATABASE='sempreufg'
 export MYSQL_USER='sempreufg'
 export MYSQL_PASSWORD='sempreufg'
 
-mysql -h localhost < $MARIAFOLDER/ddl/cria-usuario-e-db.sql
+mysql -h localhost < $MARIAFOLDER/ddl/RD-AtuProfisEgres.sql
