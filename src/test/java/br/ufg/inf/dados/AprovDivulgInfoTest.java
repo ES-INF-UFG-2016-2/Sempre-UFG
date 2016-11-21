@@ -43,12 +43,11 @@ public class AprovDivulgInfoTest {
 	// interface
 	private static AprovDivulgInfoDAOInterface testeDAO = new AprovDivulgInfoDAO();
 
-	
 	// usuario
 	private String email_principal = "email";
 	private String senha = "senha";
 	private String nome = "primeiro usuario";
-	private long cpf = 123234345;
+	private long cpf = 62768503657L;
 	private String recebe_divulgacao = "DIARIA";
 	private Date data = new Date(123123);
 	private Timestamp timestamp_de_cadastramento = new Timestamp(data.getTime());
@@ -99,8 +98,9 @@ public class AprovDivulgInfoTest {
 	static Connection conn = null;
 
 	@BeforeClass
-	public static void abreConexao() throws IOException {
+	public static void abreConexao() throws Exception {
 
+		
 		conn = testeDAO.abreConexao();
 		testeDAO.truncateAll();
 		testeDAO.populateDb();
@@ -111,6 +111,7 @@ public class AprovDivulgInfoTest {
 	public static void fechaConexao() throws IOException, SQLException {
 
 		conn.close();
+		
 
 	}
 
@@ -190,7 +191,13 @@ public class AprovDivulgInfoTest {
 	@Test
 	public void testInsertAprovacao() {
 
-		assertTrue(testeDAO.salvaAprovacao(divulgacao_aprovada, parecer, data_aprovacao_ou_rejeicao, evento, usuario));
+		try{
+			assertTrue(testeDAO.salvaAprovacao(divulgacao_aprovada, parecer, data_aprovacao_ou_rejeicao, evento, usuario));
+
+		} catch(Exception e) {
+			
+			
+		}
 	}
 
 	@Test
@@ -203,7 +210,7 @@ public class AprovDivulgInfoTest {
 			assertTrue(testeDAO.salvaUsuario(email_principal, senha, nome, cpf, foto, recebe_divulgacao,
 					timestamp_de_cadastramento, timestamp_de_ultima_atualizacao, timestamp_de_exclusao_logica,
 					instancia_administrativa));
-		} catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			fail();
 
 		}
@@ -213,20 +220,29 @@ public class AprovDivulgInfoTest {
 	@Test
 	public void testInsertEvento() {
 
-		assertTrue(testeDAO.salvaEvento(assunto, tipo_evento, descricao, data_solicitacao, solicitante_divulgacao,
-				solicitante_email, forma_divulgacao, escopo_divulgacao, data_expiracao));
+		
+		try {
+			assertTrue(testeDAO.salvaEvento(assunto, tipo_evento, descricao, data_solicitacao, solicitante_divulgacao,
+					solicitante_email, forma_divulgacao, escopo_divulgacao, data_expiracao));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Test
 	public void testInsertInstancia() {
 
-		assertTrue(testeDAO.salvaInstancia(sigla_instancia, nome_instancia, tipo_instancia, data_criacao, data_encerra,
-				email_institucional, url_institucional));
+		try {
+			assertTrue(testeDAO.salvaInstancia(sigla_instancia, nome_instancia, tipo_instancia, data_criacao, data_encerra,
+					email_institucional, url_institucional));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	
-	
 	@Test
 	@Ignore
 	public void testInsertCurso() throws SQLException, IOException {
@@ -263,6 +279,7 @@ public class AprovDivulgInfoTest {
 		PreparedStatement ps1 = conn.prepareStatement(busca);
 		ResultSet rs = ps1.executeQuery();
 
+	
 		while (rs.next()) {
 
 			assertEquals(rs.getString(2), nivel);
@@ -294,7 +311,6 @@ public class AprovDivulgInfoTest {
 			// assertEquals(rs.getString(3), senha_criptografada);
 			assertEquals(rs.getString(4), "segundo usuario");
 			assertEquals(rs.getInt(5), 1233235352);
-
 			assertTrue(Arrays.equals(rs.getBytes(6), foto));
 			assertEquals(rs.getString(7), recebe_divulgacao);
 			assertEquals(rs.getTimestamp(8), timestamp_de_cadastramento);
@@ -305,14 +321,12 @@ public class AprovDivulgInfoTest {
 	}
 
 	@Test
-	public void testBuscaAprovacao()  {
+	public void testBuscaAprovacao() {
 
 		String busca = "SELECT * FROM public.aprovacao_de_divulgacao WHERE " + "evento = ?;";
 
-		
-
 		try {
-			
+
 			PreparedStatement ps1 = conn.prepareStatement(busca);
 			ps1.setInt(1, 1);
 			ResultSet rs = ps1.executeQuery();
