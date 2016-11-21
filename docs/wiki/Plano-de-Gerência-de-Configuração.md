@@ -172,7 +172,7 @@ As branches `develop`, `homolog` e `master` são bloqueadas para fazer *push*. P
 
 O fluxo de desenvolvimento de software na visão da GCS – com o esquema das três principais branches no repositório do **Sempre UFG** – está ilustrado abaixo:
 
-![Politica-de-GCO](./anexos/GCO/politica-de-branches/Politica-de-GCO.png)
+![Politica-de-GCO](./anexos/gco/politicas-de-gco/politica-de-branches.png)
 
 ### 3.4. Estrutura do Repositório
 

@@ -9,7 +9,7 @@ O template SB Admin 2 pode ser encontrado por meio da URL: https://startbootstra
 ## Estrutura
  As páginas do software SempreUFG deverá seguir a estrutura da imagem abaixo:
 
-![Estrutura da página](./anexos/REQ/Caracteristicas-de-Usabilidade/estrutura.png)
+![Estrutura da página](./anexos/req/caracteristicas-de-usabilidade/estrutura.png)
 
 ### Podemos observar a seguinte estrutura:
 
@@ -26,7 +26,7 @@ Linha de separação entre o título da página e o restante do conteúdo.
 ## Mensagens
 Todas as mensagens de alerta e confirmação deverão utilizar um popup do tipo modal, conforme a imagem a baixo:
 
-![Modal Boostrap](./anexos/REQ/Caracteristicas-de-Usabilidade/modal.png)
+![Modal Boostrap](./anexos/req/caracteristicas-de-usabilidade/modal.png)
 
 ## Formulário
 
@@ -53,4 +53,4 @@ Todas as tabelas deverão seguir o padrão "Basic Table" conforme a URL:
 https://blackrockdigital.github.io/startbootstrap-sb-admin-2/pages/tables.html
 As tabelas com quantidade de linhas superiores a 30 deverão ser paginadas conforme a imagem abaixo:
 
-![Paginação](./anexos/REQ/Caracteristicas-de-Usabilidade/paginacao.png)
+![Paginação](./anexos/req/caracteristicas-de-usabilidade/paginacao.png)
