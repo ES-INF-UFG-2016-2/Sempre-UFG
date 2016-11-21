@@ -1,4 +1,4 @@
-package java.br.ufg.inf.db;;
+package br.ufg.inf.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
