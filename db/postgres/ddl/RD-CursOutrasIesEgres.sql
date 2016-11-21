@@ -1,7 +1,7 @@
-CREATE TYPE nivel AS ENUM (‘Bacharelado’, ‘Licenciatura’, ‘Aperfeiçoamento’, ‘Especialização’, ‘Mestrado’, ‘Doutorado’);
-CREATE TYPE tipo_instituicao AS ENUM (‘Federal’, ‘Estadual’, ‘Municipal’, ‘Particular’);
-CREATE TYPE sexo AS ENUM (‘masculino’, feminino’);
-CREATE TYPE visibilidade AS ENUM (‘Público’, ‘Privado’, ‘Só Egressos’);
+CREATE TYPE nivel AS ENUM ('Bacharelado', 'Licenciatura', 'Aperfeiçoamento', 'Especialização', 'Mestrado', 'Doutorado');
+CREATE TYPE tipo_instituicao AS ENUM ('Federal', 'Estadual', 'Municipal', 'Particular');
+CREATE TYPE sexo AS ENUM ('masculino', 'feminino');
+CREATE TYPE visibilidade AS ENUM ('Público', 'Privado', 'Só Egressos');
 CREATE TABLE CURSO_OUTRAS_IES_EGRES
 (
 NOME_CURSO			VARCHAR(150)	NOT NULL,

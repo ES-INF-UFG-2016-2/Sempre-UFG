@@ -11,7 +11,7 @@ env:
 before_script:
 - psql --version ;
 script:
-- psql -h localhost -U postgres -a -f db/postgres/ddl/create-user-and-db.sql
+- psql -h localhost -U postgres -a -f db/postgres/create-user-and-db.sql
 - sh db/postgres/postgres.sh
 - mvn -e -B clean compile
 - sonar-scanner -X -Dsonar.host.url=https://sonarqube.com -Dsonar.login=$SONAR_TOKEN
