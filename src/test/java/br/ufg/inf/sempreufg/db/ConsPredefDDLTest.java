@@ -1,4 +1,4 @@
-package br.ufg.inf.db;
+package br.ufg.inf.sempreufg.db;
 
 import br.ufg.inf.stubs.ConsPredefDAOStub;
 import br.ufg.inf.stubs.ConsPredefStub;
@@ -12,7 +12,7 @@ public class ConsPredefDDLTest {
 
     private String sysBar = System.getProperty("file.separator");
     private String URLCONEXAO = "jdbc:mysql://localhost:3306/sempreufg";
-    private String DDLPath = "db" + sysBar + "ddl" + sysBar + "RD-ConsPredef.sql";
+    private String DDLPath = "db" + sysBar + "mariadb" + sysBar + "ddl" + sysBar + "RD-ConsPredef.sql";
     private String USUARIO = "root";
     private String SENHA = "root";
 
