@@ -31,35 +31,35 @@ public class PoliticaRecebimentoMensagemTest {
 	@Test
 	public void testaPoliticaRecebimentoMensagemIndividual(){
 		politica = PoliticaRecebimentoMensagens.CADA_EVENTO;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		assertEquals("CADA_EVENTO", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaRecebimentoMensagemAgrupadaDia(){
 		politica = PoliticaRecebimentoMensagens.DIARIA;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		assertEquals("DIARIA", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaRecebimentoMensagemAgrupadaSemana(){
 		politica = PoliticaRecebimentoMensagens.SEMANAL;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		assertEquals("SEMANAL", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaRecebimentoMensagemAgrupadaMes(){
 		politica = PoliticaRecebimentoMensagens.MENSAL;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		assertEquals("MENSAL", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaNaoRecebimentoMensagem(){
 		politica = PoliticaRecebimentoMensagens.NAO_RECEBE;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		assertEquals("NAO_RECEBE", usuario.getTipoDivulgacao().toString());
 	}
 
@@ -70,8 +70,8 @@ public class PoliticaRecebimentoMensagemTest {
 
     @Test
     public void testaAlteracaoDaPoliticaDeMensagem(){
-        usuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.CADA_EVENTO);
-        usuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.MENSAL);
+        usuario.DefinirPolitRecebMsg(PoliticaRecebimentoMensagens.CADA_EVENTO);
+        usuario.DefinirPolitRecebMsg(PoliticaRecebimentoMensagens.MENSAL);
 
         assertNotEquals("CADA_EVENTO", usuario.getTipoDivulgacao().toString());
         assertEquals("MENSAL", usuario.getTipoDivulgacao().toString());
