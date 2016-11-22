@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script para popular o postgres cm os dados necessários para rodar os testes
+# Script para popular o postgres cm os dados necessarios para rodar os testes
 
 set -e
 
