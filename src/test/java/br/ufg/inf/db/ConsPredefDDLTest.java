@@ -3,7 +3,6 @@ package br.ufg.inf.db;
 import br.ufg.inf.stubs.ConsPredefDAOStub;
 import br.ufg.inf.stubs.ConsPredefStub;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.*;
@@ -66,7 +65,7 @@ public class ConsPredefDDLTest {
     @Test
     public void testSucessfulQueryMetadataPersistence() {
         ConsPredefStub cps = new ConsPredefStub("", "", false, new Date(0L), new Date(0L), "");
-        sut.saveQueryMetada(cps);// throws unsupported because its a plcaholder for the real thing.
+        sut.saveQueryMetada(cps);// does nothing because its a plcaholder for the real thing.
         Assert.assertEquals(1, countQueryMetadata("CONSPREDEF", "id"));
     }
 
