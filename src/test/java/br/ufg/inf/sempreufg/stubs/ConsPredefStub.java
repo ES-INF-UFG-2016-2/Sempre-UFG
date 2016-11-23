@@ -1,4 +1,4 @@
-package br.ufg.inf.stubs;
+package br.ufg.inf.sempreufg.stubs;
 
 import java.util.Date;
 
