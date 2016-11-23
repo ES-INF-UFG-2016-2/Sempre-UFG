@@ -1,7 +1,7 @@
 package br.ufg.inf.sempreufg.db;
 
-import br.ufg.inf.stubs.sempreufg.ConsPredefDAOStub;
-import br.ufg.inf.stubs.sempreufg.ConsPredefStub;
+import br.ufg.inf.sempreufg.stubs.ConsPredefDAOStub;
+import br.ufg.inf.sempreufg.stubs.ConsPredefStub;
 import org.junit.Assert;
 import org.junit.Test;
 
