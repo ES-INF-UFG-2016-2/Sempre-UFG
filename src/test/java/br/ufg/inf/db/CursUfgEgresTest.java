@@ -12,13 +12,13 @@ import static org.junit.Assert.assertEquals;
 public class CursUfgEgresTest {
 
     private static String sysBar = System.getProperty("file.separator");
-    private static String DDLPath = "db" + sysBar + "mariadb" + sysBar + "ddl" + sysBar + "RD-CursUfgEgres.sql";
+    private static String DDLPath = "db" + sysBar + /*"mariadb" + sysBar + */ "ddl" + sysBar + "RD-CursUfgEgres.sql";
     private static String HOST = "localhost";
-    private static int PORTA = 3306;
+    private static int PORTA = 5432;
     private static String NOME_BANCO = "sempreufg";
     private static String USUARIO = "sempreufg";
     private static String SENHA = "sempreufg";
-    private static String URL = "jdbc:mariadb://" + HOST + ":" + PORTA + "/" + NOME_BANCO;
+    private static String URL = "jdbc:postgresql://" + HOST + ":" + PORTA + "/" + NOME_BANCO;
     private static Connection conexao;
     private static Statement stmt;
 
@@ -42,7 +42,9 @@ public class CursUfgEgresTest {
     }
 
     public static Connection getConexao() throws SQLException {
-        return DriverManager.getConnection(URL, USUARIO, SENHA);
+        Connection connection = DriverManager.getConnection(URL, USUARIO, SENHA);
+        connection.setAutoCommit(false);
+        return connection;
     }
 
 
