@@ -57,6 +57,27 @@ CREATE TABLE IF NOT EXISTS Consulta_Mostra_Atributo
 	FOREIGN KEY (atributo_ID) REFERENCES Atributo (nome_atributo)	
 );
 
+CREATE TABLE IF NOT EXISTS Atributo_Desvia_Para_Atributo
+(
+    identificador			VARCHAR(100) NOT NULL UNIQUE,
+    atributo_origem			VARCHAR(100) NOT NULL  UNIQUE,
+    atributo_destino		VARCHAR(100) NOT NULL,
+    valor_atributo_origem	VARCHAR(100) NOT NULL,
+    PRIMARY KEY (identificador),
+    FOREIGN KEY (atributo_origem) REFERENCES Atributo(nome_atributo),
+    FOREIGN KEY (atributo_destino) REFERENCES Atributo(nome_atributo)
+);
+
+CREATE TABLE IF NOT EXISTS Entidade_Agrupa_Entidade
+(
+    identificador			VARCHAR(100) NOT NULL UNIQUE,
+    entidade_agrupadora		VARCHAR(100) NOT NULL,
+    entidade_agrupada		VARCHAR(100) NOT NULL,
+    PRIMARY KEY (identificador),
+    FOREIGN KEY (entidade_agrupadora) REFERENCES Entidade (nome_entidade),
+    FOREIGN KEY (entidade_agrupada) REFERENCES Entidade (nome_entidade)
+);
+
 ALTER TABLE Usuario ADD COLUMN tipo_divulgacao VARCHAR(12) NOT NULL;
 ALTER TABLE Usuario ADD CONSTRAINT check_divulgacao CHECK(tipo_divulgacao = 'cada_evento' OR  tipo_divulgacao = 'diaria' OR tipo_divulgacao = 'semanal' OR tipo_divulgacao = 'mensal' OR tipo_divulgacao = 'nao_recebe'); 
 
