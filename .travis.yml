@@ -7,7 +7,6 @@ addons:
   sonarqube: true
 sonarqube:
   branches:
-  - g3-corrige-sonarqube-travis
   - develop
   - master
 env:
@@ -17,9 +16,9 @@ before_script:
 - psql --version
 - mysql --version
 script:
-- mysql -h localhost -uroot < db/mariadb/ddl/cria-usuario-e-db.sql
+- mysql -h localhost -u root < db/mariadb/cria-usuario-e-db.sql
 - sh db/mariadb/mariadb.sh
-- psql -h localhost -U postgres -a -f db/postgres/create-user-and-db.sql
+- psql -h localhost -U postgres -a -f db/postgres/cria-usuario-e-db.sql
 - sh db/postgres/postgres.sh
 - mvn -e -B clean compile
 - sonar-scanner -X -Dsonar.host.url=https://sonarqube.com -Dsonar.login=$SONAR_TOKEN
