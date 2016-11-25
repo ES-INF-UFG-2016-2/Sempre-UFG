@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.RD_DivulgInfoEntidades;
+package br.ufg.inf.sempreufg.RD_DivulgInfoEntidades;
 
 import java.sql.Date;
 
