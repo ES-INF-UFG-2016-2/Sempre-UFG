@@ -7,7 +7,6 @@ addons:
   sonarqube: true
 sonarqube:
   branches:
-  - g3-corrige-sonarqube-travis
   - develop
   - master
 env:
