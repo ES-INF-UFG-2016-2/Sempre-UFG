@@ -14,22 +14,22 @@ Tendo isso em mente, temos por papéis do sistema:
  - PRPG
 
 As funções oferecidas pelo sistema são:
- 1. Cadastro / Inclusão
-    1.1 Egresso
-    1.2 Notícia
-    1.3 Evento
- 2. Visualização / Consulta
-    2.1 Egresso
-    2.2 Notícia
-    2.3 Evento
- 3. Edição / Exclusão
-    3.1 Egresso
-    3.2 Notícia
-    3.3 Evento
- 4. Privilégios Adminsitrativos
-    4.1 Manter Papéis
-    4.2 Manter Usuários
-    4.3 Manter Avisos do Sistema
+ - 1. Cadastro / Inclusão
+    * 1.1 Egresso
+    * 1.2 Notícia
+    * 1.3 Evento
+ - 2. Visualização / Consulta
+    * 2.1 Egresso
+    * 2.2 Notícia
+    * 2.3 Evento
+ - 3. Edição / Exclusão
+    * 3.1 Egresso
+    * 3.2 Notícia
+    * 3.3 Evento
+ - 4. Privilégios Adminsitrativos
+    * 4.1 Manter Papéis
+    * 4.2 Manter Usuários
+    * 4.3 Manter Avisos do Sistema
 
 Por padrão, cada perfil tem o seguinte mapeamento de permissões:
 
