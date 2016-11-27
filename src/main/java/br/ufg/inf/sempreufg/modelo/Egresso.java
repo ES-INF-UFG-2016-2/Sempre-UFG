@@ -2,8 +2,8 @@ package br.ufg.inf.sempreufg.modelo;
 
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
+import com.sun.mail.iap.ByteArray;
 
-import java.util.BitSet;
 import java.util.Date;
 import java.util.List;
 
@@ -12,20 +12,21 @@ import java.util.List;
  */
 public class Egresso extends Usuario {
 
+
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
     private Sexo sexo;
     private String email_alternativo;
-    private BitSet foto_principal;
-    private BitSet fotos_adicionais;
+    private ByteArray foto_principal;
+    private ByteArray fotos_adicionais;
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
 
     public Egresso() {
     }
 
-    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
+    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, ByteArray foto_principal, ByteArray fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
         this.nome = nome;
         this.nome_mae = nome_mae;
         this.data_nascimento = data_nascimento;
@@ -77,19 +78,19 @@ public class Egresso extends Usuario {
         this.email_alternativo = email_alternativo;
     }
 
-    public BitSet getFoto_principal() {
+    public ByteArray getFoto_principal() {
         return foto_principal;
     }
 
-    public void setFoto_principal(BitSet foto_principal) {
+    public void setFoto_principal(ByteArray foto_principal) {
         this.foto_principal = foto_principal;
     }
 
-    public BitSet getFotos_adicionais() {
+    public ByteArray getFotos_adicionais() {
         return fotos_adicionais;
     }
 
-    public void setFotos_adicionais(BitSet fotos_adicionais) {
+    public void setFotos_adicionais(ByteArray fotos_adicionais) {
         this.fotos_adicionais = fotos_adicionais;
     }
 
