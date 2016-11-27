@@ -11,6 +11,13 @@ import java.util.List;
  * Created by user1 on 09/10/2016.
  */
 public class Egresso extends Usuario {
+    public int getId_Egresso() {
+        return id_Egresso;
+    }
+
+    public void setId_Egresso(int id_Egresso) {
+        this.id_Egresso = id_Egresso;
+    }
 
     private int id_Egresso;
     private String nome;

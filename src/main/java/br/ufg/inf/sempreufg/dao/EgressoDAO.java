@@ -66,8 +66,19 @@ public class EgressoDAO implements EgressoDAOInterface{
         else return novoEgresso;
     }
 
+
     @Override
     public boolean alterar(Egresso egresso) throws SQLException {
+        if (conexao == null) conexao = ConexaoBanco.getConnection();
+
+        try{
+            String alteraEgresso = "UPDATE TABLE egresso SET () WHERE id = '" + egresso.getId_Egresso() + "';";
+            instrucao = conexao.prepareStatement(alteraEgresso);
+            instrucao.executeQuery();
+        }catch(Exception erro){
+            erro.printStackTrace();
+            System.err.println("ERRO NA EXECUÇÃO DA QUERY - ATUALIZAR EGRESSO!");
+        }
         return false;
     }
 
