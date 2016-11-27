@@ -2,7 +2,7 @@ package br.ufg.inf.sempreufg.modelo;
 
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
-import com.sun.mail.iap.ByteArray;
+import com.sun.mail.iap.byte[];
 
 import java.util.Date;
 import java.util.List;
@@ -12,21 +12,34 @@ import java.util.List;
  */
 public class Egresso extends Usuario {
 
-
+    private int id_Egresso;
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
     private Sexo sexo;
     private String email_alternativo;
-    private ByteArray foto_principal;
-    private ByteArray fotos_adicionais;
+    private byte[] foto_principal;
+    private byte[] fotos_adicionais;
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
 
     public Egresso() {
     }
 
-    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, ByteArray foto_principal, ByteArray fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
+    //Construtor novo
+    public Egresso(int id_Egresso, String nome, String nome_mae, Date data_nascimento, byte[] foto_principal, byte[] fotos_adicionais, VisibilidadeDados visibilidade, Sexo sexo) {
+        this.id_Egresso  = id_Egresso;
+        this.nome = nome;
+        this.nome_mae = nome_mae;
+        this.data_nascimento = data_nascimento;
+        this.sexo = sexo;
+        this.foto_principal = foto_principal;
+        this.fotos_adicionais = fotos_adicionais;
+        this.visibilidade = visibilidade;
+    }
+
+    // Construtor antigo
+    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, byte[] foto_principal, byte[] fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
         this.nome = nome;
         this.nome_mae = nome_mae;
         this.data_nascimento = data_nascimento;
@@ -78,19 +91,19 @@ public class Egresso extends Usuario {
         this.email_alternativo = email_alternativo;
     }
 
-    public ByteArray getFoto_principal() {
+    public byte[] getFoto_principal() {
         return foto_principal;
     }
 
-    public void setFoto_principal(ByteArray foto_principal) {
+    public void setFoto_principal(byte[] foto_principal) {
         this.foto_principal = foto_principal;
     }
 
-    public ByteArray getFotos_adicionais() {
+    public byte[] getFotos_adicionais() {
         return fotos_adicionais;
     }
 
-    public void setFotos_adicionais(ByteArray fotos_adicionais) {
+    public void setFotos_adicionais(byte[] fotos_adicionais) {
         this.fotos_adicionais = fotos_adicionais;
     }
 
