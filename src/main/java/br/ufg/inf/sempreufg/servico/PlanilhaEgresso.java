@@ -19,9 +19,10 @@ public class PlanilhaEgresso {
 		File path_rename = new File(path_planilha);
 		path_rename.mkdir();
 		
-		if(	planilha.renameTo(new File(path_planilha+File.separator+nome_plani+".ods"))){
-			System.out.println("sucesso");
-		}
+		
+		planilha.getAbsoluteFile().renameTo(new File(path_planilha+File.separator+nome_plani+".ods"));
+			
+		
 				
 		
 		try {
