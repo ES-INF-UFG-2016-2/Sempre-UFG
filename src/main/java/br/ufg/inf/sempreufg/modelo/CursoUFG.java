@@ -1,6 +1,5 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.sempreufg.abstratas.AreaDeConhecimento;
 import br.ufg.inf.sempreufg.enums.NiveisCurso;
 import br.ufg.inf.sempreufg.enums.TiposResolucao;
 import br.ufg.inf.sempreufg.enums.Turnos;
