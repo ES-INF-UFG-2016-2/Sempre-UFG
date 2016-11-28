@@ -2,11 +2,14 @@ package br.ufg.inf.sempreufg.modelo;
 
 import br.ufg.inf.sempreufg.enums.ComandoSQL;
 import br.ufg.inf.sempreufg.enums.VerbosidadeValores;
+import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
+
+import java.util.HashMap;
 
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogItens {
+public class LogItens implements LogConfigItem {
 
     private String nomeAplicacao;
     private boolean tentativasConexao;
@@ -91,4 +94,8 @@ public class LogItens {
     }
 
 
+    @Override
+    public void configurarParametros(HashMap parametros) {
+
+    }
 }

@@ -3,11 +3,14 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.ComandoSQL;
 import br.ufg.inf.sempreufg.enums.MensagemClienteValores;
 import br.ufg.inf.sempreufg.enums.MensagemValores;
+import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
+
+import java.util.HashMap;
 
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogLocal {
+public class LogLocal implements LogConfigItem {
 
     private MensagemClienteValores nivelMensagemCliente;
     private MensagemValores nivelMensagemLog;
@@ -47,4 +50,8 @@ public class LogLocal {
     }
 
 
+    @Override
+    public void configurarParametros(HashMap parametros) {
+
+    }
 }

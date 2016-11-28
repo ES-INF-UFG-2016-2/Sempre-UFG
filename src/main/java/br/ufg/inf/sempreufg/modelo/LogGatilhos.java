@@ -1,9 +1,13 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
+
+import java.util.HashMap;
+
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogGatilhos {
+public class LogGatilhos implements LogConfigItem{
     private String destinoLog;
     private String diretorioLog;
     private String nomeArquivo;
@@ -48,5 +52,10 @@ public class LogGatilhos {
 
     public void setTamanhoMaximoLog(int tamanhoMaximoLog) {
         this.tamanhoMaximoLog = tamanhoMaximoLog;
+    }
+
+    @Override
+    public void configurarParametros(HashMap parametros) {
+
     }
 }
