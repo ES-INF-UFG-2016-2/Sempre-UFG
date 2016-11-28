@@ -1,11 +1,11 @@
-package br.ufg.inf.factory;
+package br.ufg.inf.sempreufg.factory;
 
 import java.sql.SQLException;
 
-import br.ufg.inf.enums.TipoBanco;
-import br.ufg.inf.interfaces.BackupBancoInterface;
-import br.ufg.inf.modelo.BackupBancoMariaDb;
-import br.ufg.inf.modelo.BackupBancoPostegres;
+import br.ufg.inf.sempreufg.enums.TipoBanco;
+import br.ufg.inf.sempreufg.interfaces.BackupBancoInterface;
+import br.ufg.inf.sempreufg.modelo.BackupBancoMariaDb;
+import br.ufg.inf.sempreufg.modelo.BackupBancoPostegres;
 
 
 public class FabricaBackup {

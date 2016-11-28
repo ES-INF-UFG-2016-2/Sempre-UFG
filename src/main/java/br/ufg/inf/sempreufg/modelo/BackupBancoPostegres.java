@@ -1,11 +1,11 @@
-package br.ufg.inf.modelo;
+package br.ufg.inf.sempreufg.modelo;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
-import br.ufg.inf.abstratas.AbstractBackupBanco;
-import br.ufg.inf.factory.ConnectionFactoryPostegres;
+import br.ufg.inf.sempreufg.abstratas.AbstractBackupBanco;
+import br.ufg.inf.sempreufg.factory.ConnectionFactoryPostegres;
 
 
 public class BackupBancoPostegres extends AbstractBackupBanco{

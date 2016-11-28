@@ -1,6 +1,6 @@
-package br.ufg.inf.modelo;
+package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.enums.TipoBanco;
+import br.ufg.inf.sempreufg.enums.TipoBanco;
 
 public class ControleTipoBanco {
 	public static TipoBanco obterTipoBancoLogado(){

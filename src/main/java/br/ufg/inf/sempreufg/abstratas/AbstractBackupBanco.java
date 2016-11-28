@@ -1,14 +1,14 @@
-package br.ufg.inf.abstratas;
+package br.ufg.inf.sempreufg.abstratas;
+
+import br.ufg.inf.sempreufg.dao.BackupBancoDao;
+import br.ufg.inf.sempreufg.interfaces.BackupBancoInterface;
+import br.ufg.inf.sempreufg.modelo.ParametrosBackupBanco;
 
 import java.sql.Connection;
 import java.util.List;
 
-import br.ufg.inf.dao.BackupBancoDao;
-import br.ufg.inf.interfaces.BackupBancoInterface;
-import br.ufg.inf.modelo.ParametrosBackupBanco;
-
 public abstract class AbstractBackupBanco implements BackupBancoInterface{
-	
+
 	protected Connection con;
 
 	@Override

@@ -1,40 +1,39 @@
-package br.ufg.inf.mb;
+package br.ufg.inf.sempreufg.mb;
 
-import java.sql.SQLException;
-import java.util.List;
+import br.ufg.inf.sempreufg.modelo.ControleTipoBanco;
+import br.ufg.inf.sempreufg.modelo.JobsDoBanco;
+import br.ufg.inf.sempreufg.modelo.ParametrosBackupBanco;
+import br.ufg.inf.sempreufg.enums.MedidasTempo;
+import br.ufg.inf.sempreufg.enums.TipoBanco;
+import br.ufg.inf.sempreufg.factory.FabricaBackup;
+import br.ufg.inf.sempreufg.interfaces.BackupBancoInterface;
+import br.ufg.inf.sempreufg.servico.BackupBancoService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
-import br.ufg.inf.enums.MedidasTempo;
-import br.ufg.inf.enums.TipoBanco;
-import br.ufg.inf.factory.FabricaBackup;
-import br.ufg.inf.interfaces.BackupBancoInterface;
-import br.ufg.inf.modelo.ControleTipoBanco;
-import br.ufg.inf.modelo.JobsDoBanco;
-import br.ufg.inf.modelo.ParametrosBackupBanco;
-import br.ufg.inf.servico.BackupBancoService;
+import java.sql.SQLException;
+import java.util.List;
 
 
 @ManagedBean(name="ParametrosBackupBancoMB")
 @ViewScoped
 public class ParametrosBackupBancoMB {
-	
+
 	private List<ParametrosBackupBanco> parametrosBackupBanco;
 	private ParametrosBackupBanco parametroBackupBanco;
 	private TipoBanco tipoBanco;
 	private BackupBancoInterface backupBanco;
 	private BackupBancoService backupBancoService;
-	
+
 	private String tempoBackup;
-	
+
 	public ParametrosBackupBancoMB() {
 		super();
 	}
-	
+
 	@PostConstruct
 	public void init(){
 		try {
@@ -55,45 +54,45 @@ public class ParametrosBackupBancoMB {
 			limparCamposCadastro();
 		}
 	}
-	
-	
+
+
 	public void excluirParametros(){
 		getBackupBancoService().removerParametros();
 		consultarParametrosBackup();
 		FacesContext.getCurrentInstance().addMessage("Sucesso", new FacesMessage("Parametros excluidos com sucesso"));
 	}
-	
+
 	private void limparCamposCadastro() {
 		setParametroBackupBanco(new ParametrosBackupBanco());
 	}
-	
+
 	public void consultarParametrosBackup(){
 		BackupBancoService backupBancoService = new BackupBancoService(getTipoBanco());
 		List<ParametrosBackupBanco> parametrosBackupBanco = backupBancoService.consultarParametrosBackupBanco();
 		setParametrosBackupBanco(parametrosBackupBanco);
 	}
-	
+
 	public void inicializarServicoManualBackup(){
 		new JobsDoBanco().inicializarServicoDeBackup();
 		FacesContext.getCurrentInstance().addMessage("Sucesso", new FacesMessage("Serviço de backup inicializado. Será executado conforme parametrização"));
 	}
-	
+
 	public boolean existemParametrosBancoCadastrados(){
 		return new BackupBancoService(getTipoBanco()).existeParametrosBancoCadastrados();
 	}
-	
+
 	public boolean validarEntradaDados(){
 		if (existemParametrosBancoCadastrados()) {
 			String msg = "Já existe parametros cadastrados para o backup do banco."+
 						 "Delete-os para inserir novos, ou edite os existentes";
-					
+
 			FacesContext.getCurrentInstance().addMessage("Falha", new FacesMessage(msg));
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	public String redirect(String link){
 		return link+"?faces-redirect=true";
 	}
@@ -148,7 +147,7 @@ public class ParametrosBackupBancoMB {
 	public void setTempoBackup(String tempoBackup) {
 		this.tempoBackup = tempoBackup;
 	}
-	
+
 	public MedidasTempo[] getUnidadeTempoExecucaoBackup(){
 		return MedidasTempo.values();
 	}

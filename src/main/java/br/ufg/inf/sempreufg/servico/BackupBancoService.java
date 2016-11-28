@@ -1,23 +1,23 @@
-package br.ufg.inf.servico;
+package br.ufg.inf.sempreufg.servico;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.ufg.inf.dao.BackupBancoDao;
-import br.ufg.inf.enums.TipoBanco;
-import br.ufg.inf.factory.ConnectionFactory;
-import br.ufg.inf.factory.FabricaBackup;
-import br.ufg.inf.interfaces.BackupBancoInterface;
-import br.ufg.inf.modelo.ParametrosBackupBanco;
+import br.ufg.inf.sempreufg.dao.BackupBancoDao;
+import br.ufg.inf.sempreufg.enums.TipoBanco;
+import br.ufg.inf.sempreufg.factory.ConnectionFactory;
+import br.ufg.inf.sempreufg.factory.FabricaBackup;
+import br.ufg.inf.sempreufg.interfaces.BackupBancoInterface;
+import br.ufg.inf.sempreufg.modelo.ParametrosBackupBanco;
 
 public class BackupBancoService{
-	
+
 	private TipoBanco tipoBanco;
 	private BackupBancoInterface backupBanco;
 	private ParametrosBackupBanco parametros;
 	private BackupBancoDao backupBancoDao;
-	
+
 	public BackupBancoService(TipoBanco tipoBanco) {
 		super();
 		this.tipoBanco = tipoBanco;
@@ -33,7 +33,7 @@ public class BackupBancoService{
 	public void realizarBackup(){
 		getBackupBanco().realizarBackup(getParametros());
 	}
-	
+
 	public void salvarParametrosBackup(ParametrosBackupBanco parametrosBackupBanco){
 		try {
 			Connection con = new ConnectionFactory().getConnection(getTipoBanco());
@@ -42,7 +42,7 @@ public class BackupBancoService{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void removerParametros(){
 		try {
 			Connection con = new ConnectionFactory().getConnection(getTipoBanco());
@@ -51,16 +51,16 @@ public class BackupBancoService{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean existeParametrosBancoCadastrados() {
 		List<ParametrosBackupBanco> parametros = getBackupBanco().consultarParametrosBackupBanco();
 		return !parametros.isEmpty();
 	}
-	
+
 	public List<ParametrosBackupBanco> consultarParametrosBackupBanco() {
 		return getBackupBanco().consultarParametrosBackupBanco();
 	}
-	
+
 	public TipoBanco getTipoBanco() {
 		return tipoBanco;
 	}

@@ -1,16 +1,16 @@
-package br.ufg.inf.modelo;
+package br.ufg.inf.sempreufg.modelo;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 
-import br.ufg.inf.abstratas.AbstractBackupBanco;
-import br.ufg.inf.factory.ConnectionFactoryMariaDb;
+import br.ufg.inf.sempreufg.abstratas.AbstractBackupBanco;
+import br.ufg.inf.sempreufg.factory.ConnectionFactoryMariaDb;
 
 
 public class BackupBancoMariaDb extends AbstractBackupBanco {
-	
-	
+
+
 
 	public BackupBancoMariaDb() throws ClassNotFoundException, SQLException {
 		super();

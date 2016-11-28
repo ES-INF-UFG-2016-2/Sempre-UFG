@@ -1,9 +1,9 @@
-package br.ufg.inf.factory;
+package br.ufg.inf.sempreufg.factory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import br.ufg.inf.enums.TipoBanco;
+import br.ufg.inf.sempreufg.enums.TipoBanco;
 
 public class ConnectionFactory {
 	public Connection getConnection(TipoBanco tipoBanco) throws ClassNotFoundException, SQLException{

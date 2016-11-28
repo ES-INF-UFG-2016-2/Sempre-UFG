@@ -1,4 +1,4 @@
-package br.ufg.inf.modelo;
+package br.ufg.inf.sempreufg.modelo;
 
 import java.util.List;
 
@@ -15,22 +15,22 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
-import br.ufg.inf.enums.MedidasTempo;
-import br.ufg.inf.servico.BackupBancoService;
+import br.ufg.inf.sempreufg.enums.MedidasTempo;
+import br.ufg.inf.sempreufg.servico.BackupBancoService;
 
 
 public class JobsDoBanco implements Job{
-	
+
 	public static void main(String[] args) {
 		new JobsDoBanco().inicializarServicoDeBackup();
 	}
-	
+
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		BackupBancoService bkp = new BackupBancoService(ControleTipoBanco.obterTipoBancoLogado());
 		bkp.realizarBackup();
 	}
-	
+
 	public void inicializarServicoDeBackup(){
 		BackupBancoService bkp = new BackupBancoService(ControleTipoBanco.obterTipoBancoLogado());
 		List<ParametrosBackupBanco> parametros = bkp.consultarParametrosBackupBanco();
@@ -41,7 +41,7 @@ public class JobsDoBanco implements Job{
 			int tempo = parametros.get(0).getTempo();
 			MedidasTempo unidade = parametros.get(0).getUnidade();
 			String cronSchedule = "";
-			
+
 			switch (unidade) {
 			case DIAS:
 				cronSchedule = "0 0/* * "+tempo+" * * ?";
@@ -58,7 +58,7 @@ public class JobsDoBanco implements Job{
 			init(cronSchedule);
 		}
 	}
-	
+
 	public void init(String cronExpression){
 		SchedulerFactory shedFact = new StdSchedulerFactory();
 		try {

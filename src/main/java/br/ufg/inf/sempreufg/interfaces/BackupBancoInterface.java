@@ -1,8 +1,8 @@
-package br.ufg.inf.interfaces;
+package br.ufg.inf.sempreufg.interfaces;
+
+import br.ufg.inf.sempreufg.modelo.ParametrosBackupBanco;
 
 import java.util.List;
-
-import br.ufg.inf.modelo.ParametrosBackupBanco;
 
 
 public interface BackupBancoInterface {
@@ -10,5 +10,5 @@ public interface BackupBancoInterface {
 	boolean caminhoBackupEValido(String caminho) throws IllegalArgumentException;
 	void criarBackup(String caminho, String caminhoPadraoParaExecucao);
 	void salvarParametrosBackupBanco(ParametrosBackupBanco parametros);
-	List<ParametrosBackupBanco> consultarParametrosBackupBanco(); 
+	List<ParametrosBackupBanco> consultarParametrosBackupBanco();
 }

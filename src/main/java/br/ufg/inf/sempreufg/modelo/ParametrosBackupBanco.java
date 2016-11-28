@@ -1,14 +1,14 @@
-package br.ufg.inf.modelo;
+package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.enums.MedidasTempo;
+import br.ufg.inf.sempreufg.enums.MedidasTempo;
 
 public class ParametrosBackupBanco {
-	
+
 	private String diretorioPadraoExecucaoBackup;
 	private String diretorioBackup;
 	private MedidasTempo unidade;
 	private int tempo;
-	
+
 	public String getDiretorioPadraoExecucaoBackup() {
 		return diretorioPadraoExecucaoBackup;
 	}
