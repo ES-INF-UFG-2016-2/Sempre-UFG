@@ -6,52 +6,113 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+          rel="stylesheet" type="text/css"/>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
+    <script>
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    </script>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-primary">
-        <h3>SEMPRE UFG</h3>
-    </nav>
+<nav class="navbar navbar-light bg-primary">
+    <h3>SEMPRE UFG</h3>
+</nav>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Dados Pessoais</h1>
-        <form class="col-sm-6">
-            <div class="form-group ">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite seu email aqui">
+    <h1>Dados Pessoais</h1>
 
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Senha</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha aqui">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Nome Social</label>
-                <input type="password" class="form-control" id="socialName" placeholder="Digite seu nome aqui">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">CPF</label>
-                <input type="password" class="form-control" id="CPF" placeholder="Digite seu CPF aqui">
-            </div>
-            <div class="form-group">
-                <label for="exampleSelect1">Receber divulgação</label>
-                <select class="form-control" id="exampleSelect1">
-                    <option>Sim</option>
-                    <option>Não</option>
+    <div class="row">
+        <form>
 
-                </select>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           placeholder="Digite seu email aqui">
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Senha</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1"
+                           placeholder="Digite sua senha aqui">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Nome Social</label>
+                    <input type="password" class="form-control" id="socialName" placeholder="Digite seu nome aqui">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">CPF</label>
+                    <input type="password" class="form-control" id="CPF" placeholder="Digite seu CPF aqui">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect1">Receber divulgação</label>
+                    <select class="form-control" id="exampleSelect1">
+                        <option>Sim</option>
+                        <option>Não</option>
+
+                    </select>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary">Adicionar</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary">Alterar</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary">Gravar</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary">Excluir</button>
+                    </div>
+
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="custom-file">
-                    <input type="file" id="file" class="custom-file-input">
-                    <span class="custom-file-control"></span>
-                </label>
+
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+
+                        <div class="form-group">
+                            <div class="image-upload">
+                                <label for="file-input">
+                                    <img id="blah" src="images/student.png" alt="your image" height="200" width="200">
+                                </label>
+
+                                <input id="file-input" onchange="readURL(this);" type="file"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Salvar</button>
+
         </form>
     </div>
+
+
+</div>
 
 </div>
 
