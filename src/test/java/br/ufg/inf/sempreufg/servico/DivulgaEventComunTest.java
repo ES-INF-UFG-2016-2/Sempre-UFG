@@ -97,7 +97,7 @@ public class DivulgaEventComunTest {
         Date hoje = new Date();
         Date emUmMes = adicionarUmaUnidadeDataAtual(hoje, 1L, ChronoUnit.MONTHS);
         Usuario outroUsuario = new Usuario();
-        outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.MENSAL);
+        outroUsuario.DefinirPolitRecebMsg(PoliticaRecebimentoMensagens.MENSAL);
         outroUsuario.setMail(outroDestinatarioEmails);
         AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
@@ -119,7 +119,7 @@ public class DivulgaEventComunTest {
         Date hoje = new Date();
         Date emUmaSemana = adicionarUmaUnidadeDataAtual(hoje, 1L, ChronoUnit.WEEKS);
         Usuario outroUsuario = new Usuario();
-        outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.SEMANAL);
+        outroUsuario.DefinirPolitRecebMsg(PoliticaRecebimentoMensagens.SEMANAL);
         outroUsuario.setMail(outroDestinatarioEmails);
         AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
@@ -141,7 +141,7 @@ public class DivulgaEventComunTest {
         Date hoje = new Date();
         Date amanha = adicionarUmaUnidadeDataAtual(hoje, 1L, ChronoUnit.DAYS);
         Usuario outroUsuario = new Usuario();
-        outroUsuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.DIARIA);
+        outroUsuario.DefinirPolitRecebMsg(PoliticaRecebimentoMensagens.DIARIA);
         outroUsuario.setMail(outroDestinatarioEmails);
         AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento = aprovadorEventosServiceInterface.buscaEventoAprovado(evento);
         assertTrue(aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
