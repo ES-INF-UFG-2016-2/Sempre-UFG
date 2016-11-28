@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Exemplo</title>
+</h:head>
+<h:body>
+	<p:growl id="msg"/>
+	
+	<h:form>
+		<p:commandButton id="btn_voltar"
+						 value="Voltar" 
+						 action="#{ParametrosBackupBancoMB.redirect('/parametros_backup_banco.xhtml')}" 
+						 partialSubmit="true" 
+						 process="btn_voltar"/>
+						 
+		<fieldset>
+			<LEGEND>Parametros Backup Banco</LEGEND>
+			<h:panelGrid columns="2">
+			
+				<h:outputLabel for="diretorio_backup" value="Diretorio para salvar o backup : "/>
+				<p:inputText id="diretorio_backup" 
+							 value="#{ParametrosBackupBancoMB.parametroBackupBanco.diretorioBackup}" 
+							 required="true" 
+							 requiredMessage="Digite o diretorio para salvar o backup"/>
+							 
+				<h:outputLabel for="diretorio_backup_padrao_execucao" value="Diretorio padrão execução backup : "/>
+				<p:inputText id="diretorio_backup_padrao_execucao" 
+							 value="#{ParametrosBackupBancoMB.parametroBackupBanco.diretorioPadraoExecucaoBackup}" 
+							 required="true" 
+							 requiredMessage="Digite o diretorio padrão para execução do backup"/>
+			
+				<h:outputLabel for="tempo" value="De quanto em quanto tempo o backup deve ser feito : "/>
+				<p:inputText id="tempo" 
+							 value="#{ParametrosBackupBancoMB.parametroBackupBanco.tempo}" 
+							 required="true" 
+							 requiredMessage="Digite o tempo para execução do backup" type="number"/>
+							 
+				<h:outputLabel for="tempo" value="Unidade de tempo : "/>			 
+				<p:selectOneMenu id="unidade_medida" value="#{ParametrosBackupBancoMB.tempoBackup}">
+		            <f:selectItem itemLabel="Selecione" itemValue="" />
+		            <f:selectItems value="#{ParametrosBackupBancoMB.unidadeTempoExecucaoBackup}" />
+        		</p:selectOneMenu>
+			
+				<p:commandButton value="Salvar" update="@form :msg" actionListener="#{ParametrosBackupBancoMB.salvarParametrosBanco}"/>
+			</h:panelGrid>
+		</fieldset>
+	</h:form>	
+</h:body>
+</html>
