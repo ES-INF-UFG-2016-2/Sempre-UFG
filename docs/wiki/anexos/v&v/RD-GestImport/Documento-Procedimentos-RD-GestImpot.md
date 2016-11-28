@@ -1,11 +1,11 @@
 # Documento de Procedimentos - (RD-GestImport)
 
 ## 1. Descrição do Artefato
-Definir e descrever qual sera o artefato a ser testado com os procedimentos neste documento adotados, e apos a coleta dos restulados, quais interessados expor as medidas necessárias para o sucesso na entrega do artefato.
+Definir e descrever qual sera o artefato a ser testado com os procedimentos neste documento adotados.
 
-|Artefato Avaliado| Descrição do Artefato | Nome do Responsavel do Artefato|
-|-----------------|-----------------------|---------------------|
-|Codigo de Testes RD-GestImport|Implementação dos testes unitários referente ao RD-GestImport.|Higor André|
+|Artefato Avaliado| Descrição do Artefato |
+|-----------------|-----------------------|
+|Codigo de Testes RD-GestImport|Implementação dos testes unitários referente ao RD-GestImport.|
 
 ## 2. Critérios de Coberturas dos Testes
 Definir aqui as condições que devem ser satisfeitas para que o conjunto de testes seja considerado bem sucedido.
@@ -26,11 +26,36 @@ Nesta parte do documento devem ser descritos os procedimentos e os casos de test
 - Os resultados coletados e analisados foram descritos no Relatório-Resultados-Procedimentos-RD-GestImport.
 - Quaisquer problemas ocorridos na execução deverá ser informado no cartão da tarefa no Trello. Marcando o gerente do projeto bem como o responsável pela implementação dos teste do requisito.
 
-### 3.2 Casos de Testes
-|Caso de Teste|Descrição|Entrada|Saida Esperada|
-|-------------|---------|-------|--------------|
-|CT1.1|Timestamp da execução da importação deve ser unico|Data já existente|Erro de unicidade com data ja existente|
-|CT1.2|Timestamp da execução da importação deve ser no formato de data|Data em formato de String|Erro de semantica com data no formato diferente de Date|
-|CT1.3|Timestamp da execução da importação deve ser inacessivel sua alteração|Modifica data já existente|Erro de integridade com data já existente|
-|CT2.1|Deve conter no minino um e no maximo um usuario para cada importação de dados de egressos que é realizado.
-|CT2.2|Usuario que realizou a importação de dados deve ser unico para um Timestamp|Usuario já existente|Erro de unicidade com usuario já existente|
+### 3.2 Recursos dos Testes
+REC1 - <Nome do Recurso>
+Descrição: definição do recuso em si e como foi definido.
+Aplicabilidade: em qual contexto sera usado este recurso, e quais situações (Casos de testes) se aplica seus dados.
+Localidade: commit refente a base de dados com as entradas utilizadas nos testes..Ex: ddl
+
+REC2 - <Nome do Recurso>
+Descrição: definição do recuso em si e como foi definido.
+Aplicabilidade: em qual contexto sera usado este recurso, e quais situações (Casos de testes) se aplica seus dados.
+Localidade: commit refente a base de dados com as entradas utilizadas nos testes..Ex: ddl
+
+### 3.3 Casos de Testes
+
+#### 3.3.1 Entradas Válidas
+
+ CT1.1 - Timestamp da execução da importação de dados
+ Descrição: definicao do caso de teste
+ Entrada: valor que sera dado como entrada para se ter a saida esperada.
+ Saida Esperada: valor desejavel para a saida do artefato testado.
+ Recurso: REC1
+
+ OBS: Entradas válidas temos duas situações a serem testadas:
+ - rejeitar uma entrada válida.
+ - aceitar causando um resultado incorreto.
+
+  da geração de resultado incorreto.
+
+#### 3.3.2 Entradas Inválidas
+CT1.1 - Timestamp da execução da importação de dados
+Descrição:
+Entrada:
+Saida Esperada:
+Recurso:
