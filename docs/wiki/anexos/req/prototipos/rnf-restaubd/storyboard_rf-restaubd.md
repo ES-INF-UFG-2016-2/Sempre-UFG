@@ -17,4 +17,4 @@
 
 	* 1.2.3 - Após selecionar as opções desejadas o usuário tem a opção "Concluir" para finalizar.
 
-![Estrutura da página](./anexos/REQ/Prototipos/RNF-RestauBD/RNF-RestauBD.png)
+![Estrutura da página](prototipo_rf-restaubd.png)
