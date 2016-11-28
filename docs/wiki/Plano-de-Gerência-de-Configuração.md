@@ -6,21 +6,21 @@ Plano de Gerência de Configuração
 
 <!-- MDTOC maxdepth:2 firsth1:0 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
 
-- [1. Introdução](#1-introdução)   
-   - [1.1. Definições, Acrônimos e Abreviações](#11-definições-acrônimos-e-abreviações)   
-   - [1.2. Referências](#12-referências)   
-- [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)   
-   - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)   
-   - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)   
-- [3. A Gerência de Configuração](#3-a-gerência-de-configuração)   
-   - [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerência-de-configuração)   
-   - [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)   
-   - [3.3. Branches](#33-branches)   
-   - [3.4. Estrutura do Repositório](#34-estrutura-do-repositório)   
-   - [3.5. Identificação da Configuração](#35-identificação-da-configuração)   
-   - [3.6. Commits](#36-commits)   
-   - [3.7. Controle de mudanças](#37-controle-de-mudanças)   
-   - [3.8. Baselines](#38-baselines)   
+- [1. Introdução](#1-introdução)
+   - [1.1. Definições, Acrônimos e Abreviações](#11-definições-acrônimos-e-abreviações)
+   - [1.2. Referências](#12-referências)
+- [2. Organização, Responsabilidades, e Interfaces](#2-organização-responsabilidades-e-interfaces)
+   - [2.1. Responsabilidades dos GCOs](#21-responsabilidades-dos-gcos)
+   - [2.2. Responsabilidades da equipe de desenvolvimento em relação à GCO](#22-responsabilidades-da-equipe-de-desenvolvimento-em-relação-à-gco)
+- [3. A Gerência de Configuração](#3-a-gerência-de-configuração)
+   - [3.1. Artefatos da Gerência de Configuração](#31-artefatos-da-gerência-de-configuração)
+   - [3.2. Ferramentas e Tecnologias](#32-ferramentas-e-tecnologias)
+   - [3.3. Branches](#33-branches)
+   - [3.4. Estrutura do Repositório](#34-estrutura-do-repositório)
+   - [3.5. Identificação da Configuração](#35-identificação-da-configuração)
+   - [3.6. Commits](#36-commits)
+   - [3.7. Controle de mudanças](#37-controle-de-mudanças)
+   - [3.8. Baselines](#38-baselines)
 
 <!-- /MDTOC -->
 
@@ -51,16 +51,16 @@ utilizada neste projeto e como contribuir no mesmo.
 ### 1.2. Referências
 
 <h6 id="cite-ref-1"/>
-###### 1. SANTOS, Gustavo Moraes dos et al. Template de Plano de Gerenciamento de Configuração. Disponível em: <http://github.com/gabrielaimeeg/DroidMetronome/wiki/TEMPLATE-Plano-de-Gerenciamento-de-Configuração>. Acesso em: 28 mar. 2015.
+###### 1. SANTOS, Gustavo Moraes dos et al. Template de Plano de Gerenciamento de Configuração. Disponível em: http://github.com/gabrielaimeeg/DroidMetronome/wiki/TEMPLATE-Plano-de-Gerenciamento-de-Configuração. Acesso em: 28 mar. 2015.
 
 <h6 id="cite-ref-2"/>
-###### 2. OLIVEIRA, J. L. Diretrizes para Membros da Equipe. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/diretrizes-para-membros-da-equipe.pdf>. Acesso em: 2 out. 2016.
+###### 2. OLIVEIRA, J. L. Diretrizes para Membros da Equipe. Disponível em: https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/diretrizes-para-membros-da-equipe.pdf. Acesso em: 2 out. 2016.
 
 <h6 id="cite-ref-3"/>
-###### 3. OLIVEIRA, J. L. Requisitos de Software - SempreUFG. Disponível em: <https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/requisitos-de-software-para-sempre-ufg-2016.pdf>. Acesso em: 2 out. 2016.
+###### 3. OLIVEIRA, J. L. Requisitos de Software - SempreUFG. Disponível em: https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/blob/develop/docs/wiki/extras/documentos-do-professor-juliano/requisitos-de-software-para-sempre-ufg-2016.pdf. Acesso em: 2 out. 2016.
 
 <h6 id="cite-ref-4"/>
-###### 4. WERNER, Tom Preston. Semantic versioning 2.0.0. Disponível em: <http://semver.org>. Acesso em: 28 mar. 2015.
+###### 4. WERNER, Tom Preston. Semantic versioning 2.0.0. Disponível em: http://semver.org. Acesso em: 28 mar. 2015.
 
 ## 2. Organização, Responsabilidades, e Interfaces
 A gerência de configuração faz um papel fundamental para que o
@@ -161,7 +161,7 @@ O repositório de código fonte deve ter no mínimo **três** branches:
 As branches `develop`, `homolog` e `master` são bloqueadas para fazer *push*. Para enviar *commits* para essas branches é necessário fazer o seguinte procedimento:
 
 1. O integrante que está em determinado grupo cria uma ***branch*** **temporária** para seu uso próprio a partir da branch **`develop`**; <br> A branch deve ter como nome:
-	* *O prefixo de* ***nome do grupo +*** *o nome da tarefa / requisito / funcionalidade que será feito nela.*  
+	* *O prefixo de* ***nome do grupo +*** *o nome da tarefa / requisito / funcionalidade que será feito nela.*
 	Exemplos:
 		* `G1-RF-ExecCons`
 		* `G3-RD-AprovDivulgInfo`
@@ -172,15 +172,23 @@ As branches `develop`, `homolog` e `master` são bloqueadas para fazer *push*. P
 
 O fluxo de desenvolvimento de software na visão da GCS – com o esquema das três principais branches no repositório do **Sempre UFG** – está ilustrado abaixo:
 
-![Politica-de-GCO](./anexos/GCO/politica-de-branches/Politica-de-GCO.png)
+![Politica-de-GCO](./anexos/gco/politicas-de-gco/politica-de-branches.png)
 
 ### 3.4. Estrutura do Repositório
 
 > * `db`
-> 	- *`ddl`*
-> 		+ *Arquivos SQL de DDL*
-> 	- *`dml`*
-> 		+ *Arquivos SQL de DML*
+>	- *`postgres`*
+> 		+ *Arquivos SQL específicos do PostgreSQL*
+>		- **`ddl`**
+>			+ *Arquivos SQL de DDL específicos para o PostgreSQL*
+>		- **`dml`**
+>			+ *Arquivos SQL de DML específicos para o PostgreSQL*
+> 	- *`mariadb`*
+> 		+ *Arquivos SQL específicos do MariaDB*
+>		- **`ddl`**
+>			+ *Arquivos SQL de DDL específicos para o MariaDB*
+>		- **`dml`**
+>			+ *Arquivos SQL de DML específicos para o MariaDB*
 > * `docs`
 > 	- *Documentação do sistema*
 > 	- *`wiki`*
@@ -343,19 +351,19 @@ Como apresentado sucintamente na seção [3.3](#33-branches):
 
 1. Um membro de algum dos grupos de desenvolvimento do software abre um *PR* para submeter seu trabalho da sua branch temporária para a `develop`;
 2. O GCO do grupo a qual esse integrante pertence recebe um email notificando-o do novo *PR* e/ou visualiza o novo *PR* no seu [GitHub](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/pulls).
-3. Visualizado o novo *PR*, o GCO do grupo inicia uma **análise de impacto da mudança**:  
+3. Visualizado o novo *PR*, o GCO do grupo inicia uma **análise de impacto da mudança**:
     3.1. Abre o repositório na *branch* do membro, observando – de acordo com o tipo de cada artefato adicionado ou modificado (seção [3.1](#31-artefatos-da-gerência-de-configuração)):
-    * 3.1.1. Se ele cumpriu os padrões:  
+    * 3.1.1. Se ele cumpriu os padrões:
         * 3.1.1. Do ***nome da branch*** (seção [3.3](#33-branches));
         * 3.1.2. Da ***estrutura do repositório*** (colocou os artefatos no diretório correto – seção [3.4](#34-estrutura-do-repositório));
         * 3.1.3. Do ***nome do(s) novo(s) arquivo(s)*** no repositório (seção [3.5](#35-identificação-da-configuração));
         * 3.1.4. De ***construção*** do artefato de software (seção [3.5](#35-identificação-da-configuração)):
             - Nomes de classes, variáveis, métodos, boas práticas de programação – *análise estática*, via manual (leitura de software) e via [SonarQube](http://www.sonarqube.org)
             - Erros de sintaxe, de lógica e/ou de compilação – *análise dinâmica*, via manual (compilando e executando o código) e via [Travis CI](https://travis-ci.org/ES-INF-UFG-2016-2/Sempre-UFG)
-        * 3.1.5. Da(s) ***mensagem(ns) de commit e do Pull Request*** (seção [3.6](#36-commits))  
+        * 3.1.5. Da(s) ***mensagem(ns) de commit e do Pull Request*** (seção [3.6](#36-commits))
     * 3.1.2. O GCO usará o "*Code Review*" do *Pull Request* para relatar a análise, se **aprova** ou **desaprova** a solicitação de mudança.
-4. O membro referencia o seu *PR* no *card* ou *issue* de origem da solicitação de mudança, para se ter a rastreabilidade do seu trabalho no projeto.  
-    4.1. Se for um *card* no [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), usar o recurso "**Power-Ups**" > ![GitHub_favicon](http://imgh.us/github_favicon.svg) **GitHub** > **Attach Pull Request...** > <**#número Nome do PR**>  
+4. O membro referencia o seu *PR* no *card* ou *issue* de origem da solicitação de mudança, para se ter a rastreabilidade do seu trabalho no projeto.
+    4.1. Se for um *card* no [quadro de atividades do projeto no **Trello**](https://trello.com/b/CH0jPQVT), usar o recurso "**Power-Ups**" > ![GitHub_favicon](http://imgh.us/github_favicon.svg) **GitHub** > **Attach Pull Request...** > <**#número Nome do PR**>
     4.2. Se for uma *issue* no [**GitHub** do projeto](https://github.com/ES-INF-UFG-2016-2/Sempre-UFG/issues), escrever em comentário o número do *PR* seguido de *cerquilha* ("**#**").
 
 ### 3.8. Baselines
