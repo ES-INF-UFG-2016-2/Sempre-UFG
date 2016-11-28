@@ -26,7 +26,7 @@ public class Usuario {
         return tipoDivulgacao;
     }
 
-    public void setTipoDivulgacao(PoliticaRecebimentoMensagens tipoDivulgacao) {
+    public void DefinirPolitRecebMsg(PoliticaRecebimentoMensagens tipoDivulgacao) {
         this.tipoDivulgacao = tipoDivulgacao;
     }
 
