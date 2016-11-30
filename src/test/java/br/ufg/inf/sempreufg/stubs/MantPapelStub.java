@@ -1,7 +1,6 @@
 package br.ufg.inf.sempreufg.stubs;
 
 import java.util.ArrayList;
-
 import org.junit.Before;
 
 public class MantPapelStub {
@@ -29,9 +28,7 @@ public class MantPapelStub {
 		}
 		if(!papel.equals("") && !recurso.equals("")){
 			resultadoInsercao = "Permissão Inserida";
-		}
-		
-		
+		}		
         return resultadoInsercao;
     }
 
@@ -48,15 +45,13 @@ public class MantPapelStub {
     public String excluirPermissaoUsuario( String usuario ) {
     	initArray();
     	String resultadoExclusao;
-    	
-    	
+    	 	
     	if(consultaPermissao(usuario)==false){
 			resultadoExclusao = "Permissao não Existente";
 		}
     	else{
     		listaPermissoes.remove(usuario);
-			resultadoExclusao = "Permissão Excluida";
-			
+			resultadoExclusao = "Permissão Excluida";			
 		}
 		return resultadoExclusao;
 	 }
