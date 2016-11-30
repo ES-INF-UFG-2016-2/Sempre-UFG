@@ -32,35 +32,35 @@ public class PoliticaRecebimentoMensagemTest {
 	@Test
 	public void testaPoliticaRecebimentoMensagemIndividual(){
 		politica = PoliticaRecebimentoMensagens.CADA_EVENTO;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		Assert.assertEquals("CADA_EVENTO", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaRecebimentoMensagemAgrupadaDia(){
 		politica = PoliticaRecebimentoMensagens.DIARIA;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		Assert.assertEquals("DIARIA", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaRecebimentoMensagemAgrupadaSemana(){
 		politica = PoliticaRecebimentoMensagens.SEMANAL;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		Assert.assertEquals("SEMANAL", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaRecebimentoMensagemAgrupadaMes(){
 		politica = PoliticaRecebimentoMensagens.MENSAL;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		Assert.assertEquals("MENSAL", usuario.getTipoDivulgacao().toString());
 	}
 
 	@Test
 	public void testaPoliticaNaoRecebimentoMensagem(){
 		politica = PoliticaRecebimentoMensagens.NAO_RECEBE;
-		usuario.setTipoDivulgacao(politica);
+		usuario.DefinirPolitRecebMsg(politica);
 		Assert.assertEquals("NAO_RECEBE", usuario.getTipoDivulgacao().toString());
 	}
 
@@ -71,8 +71,8 @@ public class PoliticaRecebimentoMensagemTest {
 
     @Test
     public void testaAlteracaoDaPoliticaDeMensagem(){
-        usuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.CADA_EVENTO);
-        usuario.setTipoDivulgacao(PoliticaRecebimentoMensagens.MENSAL);
+        usuario.DefinirPolitRecebMsg(PoliticaRecebimentoMensagens.CADA_EVENTO);
+        usuario.DefinirPolitRecebMsg(PoliticaRecebimentoMensagens.MENSAL);
 
         Assert.assertNotEquals("CADA_EVENTO", usuario.getTipoDivulgacao().toString());
         Assert.assertEquals("MENSAL", usuario.getTipoDivulgacao().toString());
