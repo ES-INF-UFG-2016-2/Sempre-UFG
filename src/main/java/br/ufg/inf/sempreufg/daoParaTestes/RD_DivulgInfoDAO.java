@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.sempreufg.dao;
+package br.ufg.inf.sempreufg.daoParaTestes;
 
-import br.ufg.inf.db.ConexaoBanco;
-import br.ufg.inf.sempreufg.RD_DivulgInfoEntidades.*;
+import br.ufg.inf.sempreufg.db.ConexaoBanco;
+import br.ufg.inf.sempreufg.entidadesParaTestes.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
