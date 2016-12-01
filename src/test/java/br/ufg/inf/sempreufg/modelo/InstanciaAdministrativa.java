@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.sempreufg.entidadesParaTestes;
+package br.ufg.inf.sempreufg.modelo;
 
 import java.sql.Date;
 

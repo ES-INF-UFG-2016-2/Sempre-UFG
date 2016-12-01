@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.sempreufg.entidadesParaTestes;
+package br.ufg.inf.sempreufg.modelo;
 
 /**
  *
  * @author Kalyn
  */
-public class EventoRelacionadoArea {
+public class EventoRelacionadoInstancia {
     private String EVENTO;
-    private String AREA_CONHECIMENTO;
+    private String INSTANCIA_ADMINISTRATIVA;
 
     public String getEVENTO() {
         return EVENTO;
@@ -21,12 +21,12 @@ public class EventoRelacionadoArea {
         this.EVENTO = EVENTO;
     }
 
-    public String getAREA_CONHECIMENTO() {
-        return AREA_CONHECIMENTO;
+    public String geINSTANCIA_ADMINISTRATIVA() {
+        return INSTANCIA_ADMINISTRATIVA;
     }
 
-    public void setAREA_CONHECIMENTO(String AREA_CONHECIMENTO) {
-        this.AREA_CONHECIMENTO = AREA_CONHECIMENTO;
+    public void setINSTANCIA_ADMINISTRATIVA(String INSTANCIA_ADMINISTRATIVA) {
+        this.INSTANCIA_ADMINISTRATIVA = INSTANCIA_ADMINISTRATIVA;
     }
     
     
