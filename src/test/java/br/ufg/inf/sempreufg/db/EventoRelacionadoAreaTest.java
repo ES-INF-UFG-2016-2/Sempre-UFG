@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufg.inf.sempreufg.dao;
+package br.ufg.inf.sempreufg.db;
 
-import br.ufg.inf.sempreufg.RD_DivulgInfoEntidades.*;
+import br.ufg.inf.sempreufg.daoParaTestes.RD_DivulgInfoDAO;
+import br.ufg.inf.sempreufg.entidadesParaTestes.*;
 import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
