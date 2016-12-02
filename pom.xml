@@ -13,6 +13,23 @@
     </properties>
 
     <dependencies>
+    	<!-- Dependencias do JSF e do Primefaces -->
+
+    	<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.1</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.2.8-02</version>
+			<scope>compile</scope>
+		</dependency>
+
+    	<!-- END Dependencias do JSF e do Primefaces -->
 
         <dependency>
             <groupId>junit</groupId>
