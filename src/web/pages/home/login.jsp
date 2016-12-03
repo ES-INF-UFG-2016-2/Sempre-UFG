@@ -40,9 +40,9 @@
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <a href="index.jsp" class="btn btn-lg btn-success btn-block">Login</a>
+                                <br>
+                                <a href="index.jsp" class="btn btn-lg btn-primary btn-block">Entrar como Visitante</a>
                             </fieldset>
-                            <br>
-                            <a href="index.jsp" class="btn btn-lg btn-primary btn-block">Entrar como Visitante</a>
                         </form>
                     </div>
                 </div>
