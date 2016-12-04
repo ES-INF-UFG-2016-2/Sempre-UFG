@@ -2,7 +2,6 @@ package br.ufg.inf.sempreufg.modelo;
 
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
-import com.sun.mail.iap.byte[];
 
 import java.util.Date;
 import java.util.List;
@@ -11,13 +10,6 @@ import java.util.List;
  * Created by user1 on 09/10/2016.
  */
 public class Egresso extends Usuario {
-    public int getId_Egresso() {
-        return id_Egresso;
-    }
-
-    public void setId_Egresso(int id_Egresso) {
-        this.id_Egresso = id_Egresso;
-    }
 
     private int id_Egresso;
     private String nome;
@@ -56,6 +48,14 @@ public class Egresso extends Usuario {
         this.fotos_adicionais = fotos_adicionais;
         this.visibilidade = visibilidade;
         this.lista_historicosUFG = lista_historicosUFG;
+    }
+
+    public int getId_Egresso() {
+        return id_Egresso;
+    }
+
+    public void setId_Egresso(int id_Egresso) {
+        this.id_Egresso = id_Egresso;
     }
 
     public String getNome() {

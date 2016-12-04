@@ -1,8 +1,6 @@
 package br.ufg.inf.sempreufg.dao;
 
 import br.ufg.inf.sempreufg.db.ConexaoBanco;
-import br.ufg.inf.sempreufg.enums.Sexo;
-import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.interfaces.EgressoDAOInterface;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 
@@ -10,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 public class EgressoDAO implements EgressoDAOInterface{
@@ -19,7 +16,7 @@ public class EgressoDAO implements EgressoDAOInterface{
     private static PreparedStatement instrucao = null;
 
     @Override
-    public Egresso salvar(Egresso egresso) throws SQLException{
+    public Egresso salvar(Egresso egresso) throws Exception {
         if (conexao == null) conexao = ConexaoBanco.getConnection();
 
         try{
@@ -50,6 +47,7 @@ public class EgressoDAO implements EgressoDAOInterface{
             String consultaEgresso = "SELECT id FROM egresso where nome = '" + egresso.getNome() + "' AND " +
                 "nome_mae = '" + egresso.getNome_mae() + "' AND data_nascimento = '" + egresso.getData_nascimento() + "';";
 
+            System.out.println("INSTRUÇÃO SALVAR: " + consultaEgresso);
             instrucao = conexao.prepareStatement(consultaEgresso);
             ResultSet resultado = instrucao.executeQuery();
             int id_Egresso = resultado.getInt(1);
@@ -62,7 +60,7 @@ public class EgressoDAO implements EgressoDAOInterface{
             System.err.println("ERRO NA EXECUÇÃO DA QUERY - CONSULTAR EGRESSO APÓS SALVAR!");
         }
 
-        if (novoEgresso == null) throw new RuntimeException("ERRO AO MONTAR NOVO EGRESSO APÓS SALVAR!");
+        if (novoEgresso == null) throw new Exception("ERRO AO MONTAR NOVO EGRESSO APÓS SALVAR!");
         else return novoEgresso;
     }
 
@@ -72,21 +70,36 @@ public class EgressoDAO implements EgressoDAOInterface{
         if (conexao == null) conexao = ConexaoBanco.getConnection();
 
         try{
-            String alteraEgresso = "UPDATE TABLE egresso SET () WHERE id = '" + egresso.getId_Egresso() + "';";
+            String alteraEgresso = "UPDATE TABLE egresso SET (id = ?, nome = ?, nome_mae = ?, data_nascimento = ?," +
+                "foto_principal = ?, fotos_adicionais = ?, visibilidade = ?, sexo = ?) WHERE id = '" + egresso.getId_Egresso() + "';";
+
             instrucao = conexao.prepareStatement(alteraEgresso);
-            instrucao.executeQuery();
+
+            instrucao.setInt(1, egresso.getId_Egresso());
+            instrucao.setString(2, egresso.getNome());
+            instrucao.setString(3, egresso.getNome_mae());
+            instrucao.setDate(4, (java.sql.Date) egresso.getData_nascimento());
+            instrucao.setBytes(5, egresso.getFoto_principal());
+            instrucao.setBytes(6, egresso.getFotos_adicionais());
+            instrucao.setString(7, egresso.getVisibilidade().toString());
+            instrucao.setString(8, egresso.getSexo().toString());
+
+            instrucao.executeQuery(alteraEgresso);
+
         }catch(Exception erro){
             erro.printStackTrace();
             System.err.println("ERRO NA EXECUÇÃO DA QUERY - ATUALIZAR EGRESSO!");
         }
-        return false;
+         return false;
     }
 
     @Override
-    public boolean deletar(int id_Egresso) throws SQLException{
+    public boolean deletar(Egresso egresso) throws SQLException{
+        int id_Egresso = egresso.getId_Egresso();
         if (conexao == null) conexao = ConexaoBanco.getConnection();
 
         try{
+
             String deletaEgresso = "DELETE FROM egresso where id = '" + id_Egresso + "';";
             instrucao = conexao.prepareStatement(deletaEgresso);
             instrucao.executeUpdate(deletaEgresso);
@@ -110,7 +123,8 @@ public class EgressoDAO implements EgressoDAOInterface{
     }
 
     @Override
-    public Egresso getById(int id_Egresso) throws SQLException{
+    public Egresso getById(int id_Egresso) throws Exception {
+        /*
         if (conexao == null) conexao = ConexaoBanco.getConnection();
 
         Egresso egresso = null;
@@ -142,7 +156,7 @@ public class EgressoDAO implements EgressoDAOInterface{
                     visibilidade = VisibilidadeDados.SO_EGRESSOS;
                     break;
                 default:
-                    throw new RuntimeException("String visibilidade não identificada em: resultado.getString(7)");
+                    throw new Exception("String visibilidade não identificada em: resultado.getString(7)");
             }
 
             Sexo sexo; // MASCULINO, FEMININO
@@ -155,7 +169,7 @@ public class EgressoDAO implements EgressoDAOInterface{
                     sexo = Sexo.FEMININO;
                     break;
                 default:
-                    throw new RuntimeException("String sexo não identificada em: resultado.getString(8)");
+                    throw new Exception("String sexo não identificada em: resultado.getString(8)");
             }
 
             egresso = new Egresso(
@@ -175,12 +189,15 @@ public class EgressoDAO implements EgressoDAOInterface{
 
         }
 
-        if (egresso == null) throw new RuntimeException("Egresso não encontrado!");
+        if (egresso == null) throw new Exception("Egresso não encontrado!");
         else return egresso;
+        */
+        return null;
     }
 
     @Override
     public List<Egresso> getAll() throws SQLException{
+
         return null;
     }
 }

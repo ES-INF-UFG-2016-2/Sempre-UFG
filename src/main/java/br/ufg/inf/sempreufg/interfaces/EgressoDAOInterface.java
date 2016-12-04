@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface EgressoDAOInterface {
 
-    public Egresso salvar(Egresso egresso) throws SQLException;
+    public Egresso salvar(Egresso egresso) throws Exception;
 
     public boolean alterar(Egresso egresso) throws SQLException;
 
-    public boolean deletar(int id_Egresso) throws SQLException;
+    public boolean deletar(Egresso egresso) throws SQLException;
 
-    public Egresso getById(int id_Egresso) throws SQLException;
+    public Egresso getById(int id_Egresso) throws Exception;
 
     public List<Egresso> getAll() throws SQLException;
 }
