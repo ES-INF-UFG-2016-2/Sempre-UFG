@@ -1,11 +1,12 @@
 package br.ufg.inf.sempreufg.servico;
 
 import br.ufg.inf.sempreufg.dao.EgressoDAO;
+import br.ufg.inf.sempreufg.interfaces.EgressoServiceInterface;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 
 import java.sql.SQLException;
 
-public class EgressoService implements EgressoServiceInterface{
+public class EgressoService implements EgressoServiceInterface {
 
     static EgressoDAO egressoDAO;
 

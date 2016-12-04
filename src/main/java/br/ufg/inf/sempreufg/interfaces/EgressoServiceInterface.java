@@ -1,4 +1,4 @@
-package br.ufg.inf.sempreufg.servico;
+package br.ufg.inf.sempreufg.interfaces;
 
 import br.ufg.inf.sempreufg.modelo.Egresso;
 
