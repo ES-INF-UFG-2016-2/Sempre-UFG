@@ -7,9 +7,9 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Optional theme -->
+	<!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
+	<!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <meta charset="utf-8">
@@ -33,7 +33,7 @@
           <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Configuracoes</a></li>
                     <li><a data-toggle="tab" href="#gerencial">Gerencial</a></li>
                     <li><a data-toggle="tab" href="#manutencao">Aviso de ManutenÃ§Ã£o</a></li>
                 </ul>
@@ -43,20 +43,26 @@
     <!-- CountÃºdo das Tabs -->
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
-                <h3>HOME</h3>
+                <h3>Configurações</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
+            </div>  <!-- fim conteúdo configurações -->
             <div id="gerencial" class="tab-pane fade">
-                <h3>Menu 1</h3>
+                <h3>Gerencial</h3>
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
+            </div> <!-- Fim conteúdo gerencial -->
+             
+             
+             
+           <!-- Divisor de conteúdo da aba "Aviso de Manutenção" -->
             <div id="manutencao" class="tab-pane fade">
-                <!-- Colunas de datepickers-->
-                <div class="row">
+            	<h4> <b> Manutencao Programada </b></h4>   
+            	<br>
+                <!-- Linhas de datepickers-->
+                <div class="row"> <b>
                     <div class="col-md-3">
                         <!-- Date picker -->
                         <div>
-                            ManutenÃ§Ã£o Programada: <input class="datepicker" type="text" name="date">
+                            Data Inicial: <input class="datepicker" type="text" name="date">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -65,6 +71,7 @@
                             Data Final: <input class="datepicker" type="text" name="date">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <!-- Date picker -->
                         <div>
@@ -73,20 +80,69 @@
                     </div>
                     <div class="col-md-3">
                         <!-- Date picker -->
-                        <div>
+                        <div class="pull-right">
                          Hora Final: <input class="datepicker" type="text" name="date">
                         </div>                        
-                    </div>
-                </div>
+                    </div></b>
+                </div> <!--  fim da linha de datepickers -->
                 
                 
-        </div>
-
-
-
-      </div>
-    </div>
-
+                
+                <!-- Divisor da Abrangência -->
+                <div class="row">
+                	<br>
+                	  <div class=col-md-1>
+                	  	<p><b>Abrangencia</b></p>
+                	  	
+                	  </div>
+                	  <div class="col-md-10">
+                            <label class="radio-inline"><input type="radio" name="optradio">Todos</label>
+							<label class="radio-inline"><input type="radio" name="optradio">Responsaveis</label>
+							<label class="radio-inline"><input type="radio" name="optradio">Engressos</label>                            
+                     </div>
+                </div> <!-- Fim do divisor da Abrangência -->
+                
+                
+                
+               <!-- Divisor do Motivo -->
+               <div>
+	               <form class="form-horizontal">
+					    <div class="form-group">
+					    <br>
+					    <div class="pull-left">
+					      <label class="control-label col-sm-1" for="email">Motivo</label>
+					    </div>
+					    
+					      <div class="col-sm-12">
+					        	<input type="email" class="form-control" id="motivo" placeholder="Manutencao Preventiva">
+					    </div>
+					    </div>
+					</form> 
+				</div> <!-- Fim do Divisor do Motivo -->   
+               	
+               	
+               	
+               	<div> <!-- Divisor de Visualização da mensagem -->
+	               	<form>
+					    <div class="form-group">
+					      <label for="inputlg">Visualizacao da Mensagem</label>
+					      <div class="col-md-13">
+					            <textarea class="form-control" rows="9" placeholder="Insira aqui a mensagem" required></textarea>
+					        </div>
+					    </div>
+	
+					</form>		
+                </div> <!-- Fim do Divisor de Visualização da mensagem -->
+                
+                
+                
+                <div class="pull-right">
+				  <button type="button" class="btn btn-info">Enviar</button>
+				</div>
+                
+        	</div> <!-- Divisor de manutenção -->
+      </div> <!-- Divisor tab-content -->
+    </div> <!-- Divisor panel-body -->
+    
 </BODY>
-
 </HTML>
