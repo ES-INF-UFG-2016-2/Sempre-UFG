@@ -52,9 +52,10 @@
             </div> <!-- Fim conteúdo gerencial -->
              
              
-             
            <!-- Divisor de conteúdo da aba "Aviso de Manutenção" -->
             <div id="manutencao" class="tab-pane fade">
+                    <form action="PrevManutHandler.jsp" method="get">
+            
             	<h4> <b> Manutencao Programada </b></h4>   
             	<br>
                 <!-- Linhas de datepickers-->
@@ -62,26 +63,26 @@
                     <div class="col-md-3">
                         <!-- Date picker -->
                         <div>
-                            Data Inicial: <input class="datepicker" type="text" name="date">
+                            Data Inicial: <input class="datepicker" type="text" name="date1">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <!-- Date picker -->
                         <div>
-                            Data Final: <input class="datepicker" type="text" name="date">
+                            Data Final: <input class="datepicker" type="text" name="date2">
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <!-- Date picker -->
                         <div>
-                         Hora Inicial: <input class="datepicker" type="text" name="date">
+                         Hora Inicial: <input class="datepicker" type="text" name="date3">
                         </div>                        
                     </div>
                     <div class="col-md-3">
                         <!-- Date picker -->
                         <div class="pull-right">
-                         Hora Final: <input class="datepicker" type="text" name="date">
+                         Hora Final: <input class="datepicker" type="text" name="date4">
                         </div>                        
                     </div></b>
                 </div> <!--  fim da linha de datepickers -->
@@ -104,9 +105,8 @@
                 
                 
                 
-               <!-- Divisor do Motivo -->
+	               <!-- Divisor do Motivo -->
                <div>
-	               <form class="form-horizontal">
 					    <div class="form-group">
 					    <br>
 					    <div class="pull-left">
@@ -114,32 +114,28 @@
 					    </div>
 					    
 					      <div class="col-sm-12">
-					        	<input type="email" class="form-control" id="motivo" placeholder="Manutencao Preventiva">
+					        	<input type="email" class="form-control" name ="motivo" id="motivo" placeholder="Manutencao Preventiva">
 					    </div>
 					    </div>
-					</form> 
 				</div> <!-- Fim do Divisor do Motivo -->   
                	
                	
                	
                	<div> <!-- Divisor de Visualização da mensagem -->
-	               	<form>
 					    <div class="form-group">
 					      <label for="inputlg">Visualizacao da Mensagem</label>
 					      <div class="col-md-13">
 					            <textarea class="form-control" rows="9" placeholder="Insira aqui a mensagem" required></textarea>
 					        </div>
 					    </div>
-	
-					</form>		
                 </div> <!-- Fim do Divisor de Visualização da mensagem -->
                 
                 
                 
                 <div class="pull-right">
-				  <button type="button" class="btn btn-info">Enviar</button>
+				  <button type="submit" class="btn btn-info">Enviar</button>
 				</div>
-                
+		</form>
         	</div> <!-- Divisor de manutenção -->
       </div> <!-- Divisor tab-content -->
     </div> <!-- Divisor panel-body -->
