@@ -1,3 +1,4 @@
+sudo: false
 language: java
 jdk:
 - oraclejdk8
@@ -10,6 +11,10 @@ sonarqube:
   - G3-correcao-execucao-sonar-branches
   - develop
   - master
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+  - "$HOME/.sonar"
 env:
   global:
   - secure: PXlAFVaBHmKU1QFzNnC/1PmERdcDSbRk00/CUvxnPMV/4izmhQZBCWi51z/vH4YSUR+dZI/YwuCz1tVhQ/h7sRjRksCvIqPtrTWuHRwnJh278xtziKG1gmmfte07ciocBeekEjOp29is2HNHfkRBWncroW0+ib/FUX94ly58ywUTgR/2iQeKuyCgyMIQfm6JjDNFKJpajBC2HZKziejbPu5yaMuXKI5Ak+jNLQ0m/IGsctLBeMawIYZFxAinBF2QhoSc+N5Zou9RL1fM7Euzgw8srxlzaYkfmzBpdJem6rce5ykn1yz2UJYfhrmg0eUqdu98mKkKz0VPIPbd9WlXtI8pl0rfxMLUB5K/NlqGXpAIm4f+pvvNtAU1gGdwnezyX8iBAK0pjKiV3s3xnmc7j+lTX3OxIRXvcvyL1ytDyQQa/WZ8e2XwJhW75q6oLALPH04n/AL0bRjJJNbEggqPQ93nlYIgK4F6uWvdz/1koWBv3B4vBlq2FTIT7cbtE1YXesY8C0vaxJyenftUkBKU12bGRk2Gmii5YuhkExkn8FAQuDyr3EBSXaEeEcnVqKJ1s46iYSurTGTtVoDH80NV7gbXl61pos1e8OystLRC1+PlpqEj3SdMho596veSMv5Zt62mm8daPsloFltYrNivy41c7n8fKnRq01hIRgMUqoU=
