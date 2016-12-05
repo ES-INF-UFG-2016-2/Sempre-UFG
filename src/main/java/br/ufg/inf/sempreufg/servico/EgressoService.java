@@ -8,6 +8,7 @@ import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 
 
 public class EgressoService implements EgressoServiceInterface{
@@ -60,7 +61,8 @@ public class EgressoService implements EgressoServiceInterface{
 										  new BitSet(),
 										  new BitSet(),
 										  VisibilidadeDados.PUBLICO,
-										  new ArrayList<HistoricoUFG>());
+										  new ArrayList<HistoricoUFG>(),
+                                                                                  new LocalizacaoGeografica());
 			egressos.add(egresso);
 		}
 
