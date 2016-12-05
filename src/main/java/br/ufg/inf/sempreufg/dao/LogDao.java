@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import br.ufg.inf.sempreufg.modelo.Log;
 /**
@@ -28,6 +28,7 @@ public class LogDao {
      * Adiciona um log ao banco de dados
      * @param log 
      */
+    
     public void salvarLog(Log log) {
         StringBuilder sql = new StringBuilder();
 
