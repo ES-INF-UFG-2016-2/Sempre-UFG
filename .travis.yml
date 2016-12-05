@@ -7,6 +7,7 @@ addons:
   sonarqube: true
 sonarqube:
   branches:
+  - G3-correcao-execucao-sonar-branches
   - develop
   - master
 env:
@@ -21,6 +22,5 @@ script:
 - psql -h localhost -U postgres -a -f db/postgres/cria-usuario-e-db.sql
 - sh db/postgres/postgres.sh
 - mvn -e -B clean compile
-- sonar-scanner -X -Dsonar.host.url=https://sonarqube.com -Dsonar.login=$SONAR_TOKEN
-- mvn -e sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=https:/sonarqube.com
+- mvn -e sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch=$TRAVIS_BRANCH
 - mvn -e -B package
