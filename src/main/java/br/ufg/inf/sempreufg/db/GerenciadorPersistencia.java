@@ -1,4 +1,4 @@
-package br.ufg.inf.sempreufg.persistencia;
+package br.ufg.inf.sempreufg.db;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
