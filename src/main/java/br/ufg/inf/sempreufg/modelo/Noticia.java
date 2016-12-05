@@ -1,18 +1,26 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  *
  * @author Matheus Cardoso Duarte Santos
  */
+
+@Entity
+@Table(name = "EVENTO")
 public class Noticia {
 
+    @Id
     private int idEvento;
-    private Date expiracao;
+    private boolean expirada;
+    private Date dataExpiracao;
 
-    public Noticia(int idEvento) {
+    public Noticia(int idEvento, Date dataExpiracao) {
         this.idEvento = idEvento;
+        this.expirada = false;
+        this.dataExpiracao = dataExpiracao;
     }
 
     public int getIdEvento() {
@@ -23,12 +31,19 @@ public class Noticia {
         this.idEvento = idEvento;
     }
 
-    public Date getExpiracao() {
-        return expiracao;
+    public boolean isExpirada() {
+        return expirada;
     }
 
-    public void setExpiracao(Date expiracao) {
-        this.expiracao = expiracao;
+    public void setExpirada() {
+        this.expirada = true;
     }
 
+    public Date getDataExpiracao() {
+        return dataExpiracao;
+    }
+
+    public void setDataExpiracao(Date dataExpiracao) {
+        this.dataExpiracao = dataExpiracao;
+    }
 }
