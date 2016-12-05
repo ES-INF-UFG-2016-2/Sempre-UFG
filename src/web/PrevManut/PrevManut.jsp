@@ -14,6 +14,9 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link type="text/css" href="css/bootstrap-timepicker.css" />
+    <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
 
             <script>
                 $(function () {
@@ -45,6 +48,9 @@
             <div id="home" class="tab-pane fade in active">
                 <h3>Configurações</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            
+ 
+                  
             </div>  <!-- fim conteúdo configurações -->
             <div id="gerencial" class="tab-pane fade">
                 <h3>Gerencial</h3>
@@ -58,48 +64,42 @@
             
             	<h4> <b> Manutencao Programada </b></h4>   
             	<br>
-                <!-- Linhas de datepickers-->
+                <!-- Linhas de date e time pickers-->
                 <div class="row"> <b>
                     <div class="col-md-3">
                         <!-- Date picker -->
-                        <div>
-                            Data Inicial: <input class="datepicker" type="text" name="date1">
-                        </div>
+                            Data Inicial: <input class="datepicker" type="text" name="dataInicial" required>
                     </div>
                     <div class="col-md-3">
                         <!-- Date picker -->
-                        <div>
-                            Data Final: <input class="datepicker" type="text" name="date2">
-                        </div>
+                            Data Final: <input class="datepicker" type="text" name="dataFinal" required>
                     </div>
 
                     <div class="col-md-3">
-                        <!-- Date picker -->
-                        <div>
-                         Hora Inicial: <input class="datepicker" type="text" name="date3">
-                        </div>                        
-                    </div>
+                        <!-- Time picker -->
+            				Hora Inicial:<input type="text" class="input-small" name="horaInicial" required>
+                    </div>                        
                     <div class="col-md-3">
-                        <!-- Date picker -->
+                        <!-- Time picker -->
                         <div class="pull-right">
-                         Hora Final: <input class="datepicker" type="text" name="date4">
-                        </div>                        
+            				Hora Final:<input type="text" class="input-small" name ="horaFinal" required>
+            			</div>
                     </div></b>
-                </div> <!--  fim da linha de datepickers -->
+                </div> <!--  fim da linha de date e time pickers -->
                 
                 
                 
                 <!-- Divisor da Abrangência -->
                 <div class="row">
                 	<br>
-                	  <div class=col-md-1>
+                	  <div class=col-md-2>
                 	  	<p><b>Abrangencia</b></p>
                 	  	
                 	  </div>
                 	  <div class="col-md-10">
-                            <label class="radio-inline"><input type="radio" name="optradio">Todos</label>
-							<label class="radio-inline"><input type="radio" name="optradio">Responsaveis</label>
-							<label class="radio-inline"><input type="radio" name="optradio">Engressos</label>                            
+                            <label class="radio-inline" active><input type="radio" name="optradio" value="todos" checked="">Todos</label>
+							<label class="radio-inline"><input type="radio" name="optradio" value="responsaveis">Responsaveis</label>
+							<label class="radio-inline"><input type="radio" name="optradio" value="egressos">Egressos</label>                            
                      </div>
                 </div> <!-- Fim do divisor da Abrangência -->
                 
@@ -110,11 +110,11 @@
 					    <div class="form-group">
 					    <br>
 					    <div class="pull-left">
-					      <label class="control-label col-sm-1" for="email">Motivo</label>
+					      <label for="motivo">Motivo</label>
 					    </div>
 					    
-					      <div class="col-sm-12">
-					        	<input type="email" class="form-control" name ="motivo" id="motivo" placeholder="Manutencao Preventiva">
+					      <div class="col-sm-13">
+					        	<input type="text" class="form-control" name ="motivo" id="motivo" placeholder="Manutencao Preventiva" required>
 					    </div>
 					    </div>
 				</div> <!-- Fim do Divisor do Motivo -->   
@@ -122,10 +122,11 @@
                	
                	
                	<div> <!-- Divisor de Visualização da mensagem -->
+               	<br>
 					    <div class="form-group">
 					      <label for="inputlg">Visualizacao da Mensagem</label>
 					      <div class="col-md-13">
-					            <textarea class="form-control" rows="9" placeholder="Insira aqui a mensagem" required></textarea>
+					            <textarea class="form-control" rows="9" placeholder="Insira aqui a mensagem" name ="mensagem" required></textarea>
 					        </div>
 					    </div>
                 </div> <!-- Fim do Divisor de Visualização da mensagem -->
@@ -139,6 +140,10 @@
         	</div> <!-- Divisor de manutenção -->
       </div> <!-- Divisor tab-content -->
     </div> <!-- Divisor panel-body -->
+    
+    <script type="text/javascript">
+            $('.input-small').timepicker();
+        </script>
     
 </BODY>
 </HTML>
