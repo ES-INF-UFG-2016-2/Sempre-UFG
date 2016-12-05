@@ -3,6 +3,7 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 
+import java.io.Serializable;
 import java.util.BitSet;
 import java.util.Date;
 import java.util.List;
@@ -10,8 +11,11 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class Egresso extends Usuario {
+public class Egresso extends Usuario implements Serializable {
 
+    private static final long serialVersionUID = 3370581220250685348L;
+
+    private int id;
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
@@ -21,11 +25,9 @@ public class Egresso extends Usuario {
     private BitSet fotos_adicionais;
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
+    private LocalizacaoGeografica naturalidade;
 
-    public Egresso() {
-    }
-
-    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
+    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
         this.nome = nome;
         this.nome_mae = nome_mae;
         this.data_nascimento = data_nascimento;
@@ -35,6 +37,10 @@ public class Egresso extends Usuario {
         this.fotos_adicionais = fotos_adicionais;
         this.visibilidade = visibilidade;
         this.lista_historicosUFG = lista_historicosUFG;
+        this.naturalidade = naturalidade;
+    }
+
+    public Egresso() {
     }
 
     public String getNome() {
@@ -107,5 +113,21 @@ public class Egresso extends Usuario {
 
     public void setLista_historicosUFG(List<HistoricoUFG> lista_historicosUFG) {
         this.lista_historicosUFG = lista_historicosUFG;
+    }
+
+    public LocalizacaoGeografica getNaturalidade() {
+        return naturalidade;
+    }
+
+    public void setNaturalidade(LocalizacaoGeografica naturalidade) {
+        this.naturalidade = naturalidade;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
