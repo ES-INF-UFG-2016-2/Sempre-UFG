@@ -14,7 +14,7 @@ public class SolicitacaoDivulgacaoEventoDAO {
 
         private static final SessionFactory sessionFactory = HibernateSession.getSessionFactory();
 
-        public int salvar(Evento evento, Usuario usuario){
+        public int salvar(int evento, int usuario){
             Transaction transact = null;
             int solicitacaoDivulgacaoEventoID = 0;
             try (Session session = sessionFactory.openSession()) {
@@ -69,7 +69,7 @@ public class SolicitacaoDivulgacaoEventoDAO {
 
     }
 
-    public void updateUser(int id, SolicitacaoDivulgacaoEvento novaSolicitacaoDivulgacaoEvento){
+    public void atualizar(int id, SolicitacaoDivulgacaoEvento novaSolicitacaoDivulgacaoEvento){
 
         Transaction transact = null;
         try (Session session = sessionFactory.openSession()) {
