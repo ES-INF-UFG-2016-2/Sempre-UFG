@@ -244,7 +244,7 @@
                     <a href="#"><i class="fa fa-search fa-fw"></i> Consultas de Egressos<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="../egressos/criar_consulta.jsp">Nova Consulta</a>
+                            <a href="../consultas/criar_consulta.jsp">Nova Consulta</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
