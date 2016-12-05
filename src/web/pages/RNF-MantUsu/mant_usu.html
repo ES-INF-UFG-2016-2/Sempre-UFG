@@ -27,6 +27,20 @@
         }
     }
 
+    function onClick(){
+        alert("Hello! I am an alert box!!");
+            var email = document.getElementById('exampleInputEmail1').value;
+            var senha = document.getElementById('exampleInputPassword1').value;
+            var socialName = document.getElementById('socialName').value;
+            var cpf = document.getElementById('CPF').value;
+
+            alert(email + " " + senha + " " socialName +  " " +  cpf);
+        }
+
+
+
+
+
     </script>
 </head>
 <body>
@@ -54,12 +68,12 @@
                            placeholder="Digite sua senha aqui">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Nome Social</label>
-                    <input type="password" class="form-control" id="socialName" placeholder="Digite seu nome aqui">
+                    <label for="socialName">Nome Social</label>
+                    <input type="text" class="form-control" id="socialName" placeholder="Digite seu nome aqui">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">CPF</label>
-                    <input type="password" class="form-control" id="CPF" placeholder="Digite seu CPF aqui">
+                    <label for="CPF">CPF</label>
+                    <input type="text" class="form-control" id="CPF" placeholder="Digite seu CPF aqui">
                 </div>
                 <div class="form-group">
                     <label for="exampleSelect1">Receber divulgação</label>
@@ -79,7 +93,7 @@
                         <button type="button" class="btn btn-primary">Alterar</button>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-primary">Gravar</button>
+                        <button type="button" class="btn btn-primary" onclick="myFunction()">Gravar</button>
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary">Excluir</button>
@@ -87,6 +101,17 @@
 
                 </div>
             </div>
+
+            <button onclick="myFunction()">Try it</button>
+
+            <script>
+function myFunction() {
+            var email = document.getElementById('exampleInputEmail1').value;
+            var senha = document.getElementById('exampleInputPassword1').value;
+            var socialName = document.getElementById('socialName').value;
+            var cpf = document.getElementById('CPF').value;
+}
+</script>
 
 
             <div class="col-md-2">
@@ -106,11 +131,8 @@
 
                 </div>
             </div>
-
-
         </form>
     </div>
-
 
 </div>
 
