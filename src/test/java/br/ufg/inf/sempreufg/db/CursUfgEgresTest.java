@@ -14,14 +14,6 @@ public class CursUfgEgresTest {
 
     private static String sysBar = System.getProperty("file.separator");
     private static String DDLPath = "db" + sysBar + "postgres" + sysBar + "ddl" + sysBar + "RD-CursUfgEgres.sql";
-    /*
-    private static String HOST = "localhost";
-    private static int PORTA = 5432;
-    private static String NOME_BANCO = "sempreufg";
-    private static String USUARIO = "sempreufg";
-    private static String SENHA = "sempreufg";
-    private static String URL = "jdbc:postgresql://" + HOST + ":" + PORTA + "/" + NOME_BANCO;
-    */
     private static Connection conexao;
     private static Statement stmt;
 
@@ -38,47 +30,10 @@ public class CursUfgEgresTest {
 
     }
 
-    /*
-    public static Connection getConexao() throws SQLException {
-        Connection connection = DriverManager.getConnection(URL, USUARIO, SENHA);
-        connection.setAutoCommit(false);
-        return connection;
-    }
-*/
-
-    public static void executeDDL() throws Exception {
-
-        String fileData = "";
-        BufferedReader reader = new BufferedReader(new FileReader(new File(DDLPath)));
-        char[] buf = new char[1024];
-        int numRead;
-
-        while ((numRead = reader.read(buf)) != -1) {
-            String readData = String.valueOf(buf, 0, numRead);
-            fileData += readData;
-        }
-
-        reader.close();
-
-        String[] splitResult = fileData.split(";");
-
-        try {
-            for (int i = 0; i < splitResult.length - 1; i++) {
-                stmt.executeUpdate(splitResult[i] + ";");
-            }
-        } catch (SQLException e) {
-            conexao.rollback();
-            throw new Exception(e);
-        }
-
-    }
-
     public static void limpaBanco() throws Exception {
         try {
-            stmt.execute("DROP TABLE AREA_DE_CONHECIMENTO, CURSO_DA_UFG, HISTORICO_NA_UFG, AVALIACAO_DO_CURSO_PELO_EGRESSO, REALIZACAO_DE_PROGRAMA_ACADEMICO;");
-            conexao.commit();
-        } catch (SQLException e) {
             conexao.rollback();
+        } catch (SQLException e) {
             throw new Exception(e);
         }
     }
@@ -95,11 +50,6 @@ public class CursUfgEgresTest {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        executeDDL();
     }
 
     @Test
@@ -132,8 +82,6 @@ public class CursUfgEgresTest {
 
     }
 
-///////////////////////////////////// CURSO_DA_UFG /////////////////////////////////////////////////////
-
     @Test
     public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais() throws SQLException {
         String sql = "INSERT INTO AREA_DE_CONHECIMENTO VALUES ('HU¬MA¬NA$*',01,01);";
@@ -160,8 +108,6 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
 
     }
-
-////////////////////////////////////////// HISTORICO_NA_UFG ///////////////////////////////////////////////////////
 
     @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() throws SQLException {
