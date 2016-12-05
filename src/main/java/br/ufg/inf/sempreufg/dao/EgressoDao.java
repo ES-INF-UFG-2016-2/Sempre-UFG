@@ -11,6 +11,7 @@ import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.interfaces.EgressoDaoInterface;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 
 public class EgressoDao implements EgressoDaoInterface<Egresso>{
 
@@ -50,7 +51,8 @@ public class EgressoDao implements EgressoDaoInterface<Egresso>{
 										  new BitSet(),
 										  new BitSet(),
 										  VisibilidadeDados.PUBLICO,
-										  new ArrayList<HistoricoUFG>());
+										  new ArrayList<HistoricoUFG>(),
+                                                                                  new LocalizacaoGeografica());
 			egressos.add(egresso);
 		}
 
