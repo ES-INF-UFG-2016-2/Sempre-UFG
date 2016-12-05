@@ -13,4 +13,8 @@ public class GerenciadorPersistencia {
         return entityManager.createQuery(hibernateQuery, classe).getResultList();
     }
 
+    public static EntityManager obtenhaEntityManager() {
+        return entityManager;
+    }
+
 }
