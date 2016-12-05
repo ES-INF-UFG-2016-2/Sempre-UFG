@@ -11,11 +11,11 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class Egresso implements Serializable{
-	
+public class Egresso extends Usuario implements Serializable{
+
 	private static final long serialVersionUID = 3370581220250685348L;
-	
-	private int id;
+
+    private int id;
 	private String nome;
     private String nome_mae;
     private Date data_nascimento;
@@ -37,8 +37,8 @@ public class Egresso implements Serializable{
         this.visibilidade = visibilidade;
         this.lista_historicosUFG = lista_historicosUFG;
     }
-    
-    
+
+
 
     public Egresso() {
 	}
