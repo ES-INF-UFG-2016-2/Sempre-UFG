@@ -19,22 +19,26 @@ public class CursUfgEgresTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        iniciaConexao();
+        estabelecerConexao();
     }
 
-
-    public static void iniciaConexao() throws Exception {
+    public static void estabelecerConexao() throws Exception {
         conexao = ConexaoBanco.getConnection();
         conexao.setAutoCommit(false);
         stmt = conexao.createStatement();
-
     }
 
-    public static void limpaBanco() throws Exception {
+    @After
+    public void tearDown() throws Exception {
+        refazerAlteracoes();
+    }
+
+    public static void refazerAlteracoes() throws Exception {
         try {
             conexao.rollback();
         } catch (SQLException e) {
-            throw new Exception(e);
+            System.err.println("Erro ao LIMPAR BANCO!");
+            e.printStackTrace();
         }
     }
 
@@ -46,7 +50,7 @@ public class CursUfgEgresTest {
                 conexao.close();
                 stmt.close();
             } catch (SQLException e) {
-                System.out.println("Erro ao ENCERRAR conexao!");
+                System.err.println("Erro ao ENCERRAR conexao!");
                 e.printStackTrace();
             }
         }
@@ -631,9 +635,6 @@ public class CursUfgEgresTest {
         stmt.executeUpdate(sql);
     }
 
-    @After
-    public void tearDown() throws Exception {
-        limpaBanco();
-    }
+
 
 }
