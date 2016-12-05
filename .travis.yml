@@ -8,8 +8,7 @@ addons:
   sonarqube: true
 sonarqube:
   branches:
-  - develop
-  - master
+  - "develop"
 cache:
   directories:
   - "$HOME/.m2/repository"
@@ -21,11 +20,11 @@ before_script:
 - psql --version
 - mysql --version
 script:
+- echo "Branch sendo executada $TRAVIS_BRANCH"
 - mysql -h localhost -u root < db/mariadb/cria-usuario-e-db.sql
 - sh db/mariadb/mariadb.sh
 - psql -h localhost -U postgres -a -f db/postgres/cria-usuario-e-db.sql
 - sh db/postgres/postgres.sh
 - mvn -e -B clean compile
-- echo $TRAVIS_BRANCH
 - mvn -e sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch=$TRAVIS_BRANCH
 - mvn -e -B package
