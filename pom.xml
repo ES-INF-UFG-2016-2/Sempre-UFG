@@ -31,6 +31,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+        
+        <dependency>
+    <groupId>org.jopendocument</groupId>
+    <artifactId>jOpenDocument</artifactId>
+    <version>1.3b1</version>
+</dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
