@@ -9,6 +9,7 @@ addons:
 sonarqube:
   branches:
   - "develop"
+  - "$TRAVIS_BRANCH"
 cache:
   directories:
   - "$HOME/.m2/repository"
