@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by user1 on 09/10/2016.
  */
-public class Egresso implements Serializable {
+public class Egresso extends Usuario implements Serializable {
 
     private static final long serialVersionUID = 3370581220250685348L;
 
@@ -27,7 +27,7 @@ public class Egresso implements Serializable {
     private List<HistoricoUFG> lista_historicosUFG;
     private LocalizacaoGeografica naturalidade;
 
-    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
+    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
         this.nome = nome;
         this.nome_mae = nome_mae;
         this.data_nascimento = data_nascimento;
@@ -37,6 +37,7 @@ public class Egresso implements Serializable {
         this.fotos_adicionais = fotos_adicionais;
         this.visibilidade = visibilidade;
         this.lista_historicosUFG = lista_historicosUFG;
+        this.naturalidade = naturalidade;
     }
 
     public Egresso() {
@@ -121,7 +122,7 @@ public class Egresso implements Serializable {
     public void setNaturalidade(LocalizacaoGeografica naturalidade) {
         this.naturalidade = naturalidade;
     }
-
+    
     public int getId() {
         return id;
     }
