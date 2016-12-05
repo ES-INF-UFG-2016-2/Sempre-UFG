@@ -1,6 +1,7 @@
 package br.ufg.inf.sempreufg.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import br.ufg.inf.sempreufg.enums.Escopos;
 import br.ufg.inf.sempreufg.enums.Formas;
@@ -17,6 +18,8 @@ public class Evento {
 	private Tipos tipo_evento;
 	private Formas forma;
 	private Escopos escopo;
+    private List<AreaDeConhecimento> areas_conhecimento;
+    private List<PublicoAlvo> publicos_alvo;
 
 	public Evento() {
 
