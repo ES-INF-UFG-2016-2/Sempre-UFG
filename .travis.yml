@@ -9,6 +9,7 @@ addons:
 sonarqube:
   branches:
   - G3-correcao-execucao-sonar-branches
+  - $TRAVIS_BRANCH
   - develop
   - master
 cache:
