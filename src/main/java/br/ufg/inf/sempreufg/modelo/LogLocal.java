@@ -3,11 +3,17 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.ComandoSQL;
 import br.ufg.inf.sempreufg.enums.MensagemClienteValores;
 import br.ufg.inf.sempreufg.enums.MensagemValores;
+import br.ufg.inf.sempreufg.enums.NivelMensagensCliente;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogLocal {
+public class LogLocal implements LogConfigItem
+{
 
     private MensagemClienteValores nivelMensagemCliente;
     private MensagemValores nivelMensagemLog;
@@ -46,5 +52,27 @@ public class LogLocal {
         this.duracaoComando = duracaoComando;
     }
 
+
+    @Override
+    public void configurarParametros(ArrayList<ParametroLog> parametros)
+    {
+        Iterator<ParametroLog> iterador = parametros.iterator();
+
+        while(iterador.hasNext() )
+        {
+            ParametroLog param = iterador.next();
+
+            for(MensagemClienteValores valor : MensagemClienteValores.values() )
+            {
+                System.out.println("Testando: " + valor.name() );
+                if(valor.name().equals(param.getValor() ) )
+                {
+                    System.out.println("É um valor válido");
+                }
+            }
+
+
+        }
+    }
 
 }
