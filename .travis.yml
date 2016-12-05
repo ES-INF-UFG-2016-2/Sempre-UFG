@@ -8,8 +8,6 @@ addons:
   sonarqube: true
 sonarqube:
   branches:
-  - G3-correcao-execucao-sonar-branches
-  - $TRAVIS_BRANCH
   - develop
   - master
 cache:
@@ -28,5 +26,6 @@ script:
 - psql -h localhost -U postgres -a -f db/postgres/cria-usuario-e-db.sql
 - sh db/postgres/postgres.sh
 - mvn -e -B clean compile
+- echo $TRAVIS_BRANCH
 - mvn -e sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch=$TRAVIS_BRANCH
 - mvn -e -B package
