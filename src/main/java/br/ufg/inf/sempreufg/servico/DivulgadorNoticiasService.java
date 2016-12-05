@@ -23,7 +23,7 @@ public class DivulgadorNoticiasService implements DivulgadorNoticiasServiceInter
             }
         }
         removerNoticiasExpiradas();
-        noticias.add(new Noticia(idEvento, new Date(System.currentTimeMillis());
+        noticias.add(new Noticia(idEvento, new Date(System.currentTimeMillis())));
         return true;
     }
 
