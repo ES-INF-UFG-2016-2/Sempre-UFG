@@ -1,7 +1,14 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import javax.persistence.*;
+
+@Entity
+// Não há DDL para esta entidade! @Table(name = "")
 public class SolicitacaoDivulgacaoEvento {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="user_enrollment")
+    @SequenceGenerator(name="user_enrollment", initialValue=100, sequenceName="SOLICITAVCAO_DIVULGACAO_EVENTO_ID_SEQUENCE", allocationSize=1)
     private int id;
     private Evento evento;
     private Usuario usuario;
@@ -9,8 +16,7 @@ public class SolicitacaoDivulgacaoEvento {
 
     public SolicitacaoDivulgacaoEvento(){}
 
-    public SolicitacaoDivulgacaoEvento(int id, Evento evento, Usuario usuario) {
-        this.id = id;
+    public SolicitacaoDivulgacaoEvento(Evento evento, Usuario usuario) {
         this.evento = evento;
         this.usuario = usuario;
         this.aprovado = false;
@@ -18,10 +24,6 @@ public class SolicitacaoDivulgacaoEvento {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Evento getEvento() {
