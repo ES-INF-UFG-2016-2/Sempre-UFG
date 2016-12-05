@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
-import br.ufg.inf.enums.TipoInstituicao;
-import br.ufg.inf.modelo.Egresso;
-import br.ufg.inf.modelo.LocalizacaoGeografica;
+import br.ufg.inf.sempreufg.enums.*;
+import br.ufg.inf.sempreufg.modelo.Egresso;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 
 public class AuxiliaInsercao {
 

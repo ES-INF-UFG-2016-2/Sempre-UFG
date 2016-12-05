@@ -13,13 +13,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.ufg.inf.db.auxiliar.AuxiliaInsercao;
-import br.ufg.inf.enums.Sexo;
-import br.ufg.inf.enums.TipoInstituicao;
-import br.ufg.inf.enums.VisibilidadeDados;
+import br.ufg.inf.sempreufg.enums.*;
+import br.ufg.inf.sempreufg.modelo.Egresso;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 import br.ufg.inf.excecoes.DadosBDInvalidosException;
 import br.ufg.inf.excecoes.ErroConexaoException;
-import br.ufg.inf.modelo.Egresso;
-import br.ufg.inf.modelo.LocalizacaoGeografica;
+import br.ufg.inf.sempreufg.db.ConexaoBanco;
 
 public class EnsMedioEgresTest {
 
@@ -39,7 +38,7 @@ public class EnsMedioEgresTest {
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			throw new ErroConexaoException("Fechamento de conex„o: erro");
+			throw new ErroConexaoException("Fechamento de conex√£o: erro");
 		}
 	}
 
@@ -56,7 +55,7 @@ public class EnsMedioEgresTest {
 			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			dateformat = format.parse(data_nascimento);
 		} catch (ParseException e) {
-			throw new DadosBDInvalidosException("Parse de data n„o permitido");
+			throw new DadosBDInvalidosException("Parse de data n√£o permitido");
 		}
 
 		Egresso egresso = new Egresso();
@@ -103,7 +102,7 @@ public class EnsMedioEgresTest {
 
 		boolean inseriu = auxiliar.insereLocalizacaoGeografica(connection, sql, localizacao);
 
-		assertTrue("Dados de LocalizaÁ„o Geografica Inserido com sucesso", inseriu);
+		assertTrue("Dados de Localiza√ß√£o Geografica Inserido com sucesso", inseriu);
 	}
 	
 	@Test
