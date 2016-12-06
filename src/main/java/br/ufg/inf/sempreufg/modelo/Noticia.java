@@ -35,8 +35,8 @@ public class Noticia {
         return expirada;
     }
 
-    public void setExpirada() {
-        this.expirada = true;
+    public void setExpirada(boolean expirada) {
+        this.expirada = expirada;
     }
 
     public Date getDataExpiracao() {

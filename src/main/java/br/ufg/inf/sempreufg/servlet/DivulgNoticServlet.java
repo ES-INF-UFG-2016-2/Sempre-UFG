@@ -30,7 +30,7 @@ public class DivulgNoticServlet extends HttpServlet {
             noticiaRepository.obterListaNoticiasNaoExpiradas().forEach(noticia ->
             {
                 JSON.put("id", noticia.getIdEvento());
-                JSON.put("id", noticia.getDataExpiracao());
+                JSON.put("dataExpiracao", noticia.getDataExpiracao());
             });
 
             out.print(JSON);
