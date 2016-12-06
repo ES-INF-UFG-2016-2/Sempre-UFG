@@ -25,7 +25,7 @@ $(function () {
     $("#formularioConsulta").on("submit", function(event){
         event.preventDefault();
         var jsonFormulario = JSON.stringify($("#formularioConsulta").serializeArray());
-        console.log(jsonFormulario);
+        estruturarFiltros($("#formularioConsulta").serializeArray());
     });
 });
 
@@ -106,4 +106,45 @@ function onChangeSelect(elemento){
 function gerarPrefixo(){
     var tamanho = 7;
     return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, tamanho);
+}
+
+function estruturarFiltros(arrayConsulta){
+    var filtros = {};
+    var filtrosEstruturados = [];
+    $.each(arrayConsulta, function(indice, valor){
+        if(valor["name"].startsWith("filtro") && valor["name"].indexOf("item_filtro") != -1){
+            var nomeFiltro = valor["name"].split("-")[0];
+            if(filtros[nomeFiltro] == null){
+                filtros[nomeFiltro] = [];
+            }
+            filtros[nomeFiltro].push(valor);
+        }
+    });
+    
+    
+    $.each(filtros, function(indiceFiltro, filtro){
+        console.log(filtro);
+        var itensFiltro = {};
+        var itensFiltroEstruturados = [];
+        $.each(filtro, function(indiceItemFiltro, itemFiltro){
+            var arrayNome = itemFiltro["name"].split("-");
+            var nomeItemFiltro = arrayNome[1];
+            var nomeElemento = arrayNome[2];
+            if(itensFiltro[nomeItemFiltro] == null){
+                itensFiltro[nomeItemFiltro] = {};
+            }
+            itensFiltro[nomeItemFiltro][nomeElemento] = itemFiltro["value"];
+        });
+        
+        $.each(itensFiltro, function(indiceItemFiltro, itemFiltro){
+            //TODO: Validar dados inseridos.
+            if(itemFiltro["parametro"] == "data" && itemFiltro["operador"] == "entre") {
+                itemFiltro["argumento1"] = itemFiltro["argumento1"] + ".." + itemFiltro["argumento2"];
+            }
+            delete itemFiltro["argumento2"];
+            itensFiltroEstruturados.push(itemFiltro);
+        });
+        filtrosEstruturados.push(itensFiltroEstruturados);
+    });
+    return filtrosEstruturados;    
 }
