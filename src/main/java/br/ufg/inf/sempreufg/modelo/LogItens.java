@@ -1,10 +1,13 @@
 package br.ufg.inf.sempreufg.modelo;
 
 import br.ufg.inf.sempreufg.enums.ComandoSQL;
+import br.ufg.inf.sempreufg.enums.MensagemClienteValores;
+import br.ufg.inf.sempreufg.enums.MensagemValores;
 import br.ufg.inf.sempreufg.enums.VerbosidadeValores;
 import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
@@ -14,7 +17,7 @@ public class LogItens implements LogConfigItem {
     private String nomeAplicacao;
     private boolean tentativasConexao;
     private boolean duracaoComandos;
-    private VerbosidadeValores versidade;
+    private VerbosidadeValores verbosidade;
     private boolean nomeServidor;
     private String comentarioPrefixo;
     private boolean esperaLimite;
@@ -46,11 +49,11 @@ public class LogItens implements LogConfigItem {
     }
 
     public VerbosidadeValores getVersidade() {
-        return versidade;
+        return verbosidade;
     }
 
     public void setVersidade(VerbosidadeValores versidade) {
-        this.versidade = versidade;
+        this.verbosidade = versidade;
     }
 
     public boolean isNomeServidor() {
@@ -95,7 +98,99 @@ public class LogItens implements LogConfigItem {
 
 
     @Override
-    public void configurarParametros(HashMap parametros) {
+    public void configurarParametros(ArrayList<ParametroLog> parametros)
+    {
+Iterator<ParametroLog> iterador = parametros.iterator();
+    	
+    	while(iterador.hasNext() )
+    	{
+    		ParametroLog param = iterador.next();
+    		
+    		switch(param.getSigla() )
+    		{
+    		case "nomeAplicacao":
+    			this.nomeAplicacao = param.getValor();
+     			
+    			break;
+    		case "tentativasConexao":
+    			
+    			if(param.getValor().equalsIgnoreCase("true") )
+    				this.tentativasConexao = true;
+    			else
+    				this.tentativasConexao = false;
 
+    			break;
+ 
+    		case "duracaoComandos":
+    			
+    			if(param.getValor().equalsIgnoreCase("true") )
+    				this.duracaoComandos = true;
+    			else
+    				this.duracaoComandos = false;
+    			
+    			break;
+    			
+    		case "verbosidade":
+    			
+    			for(VerbosidadeValores valor: VerbosidadeValores.values() )
+    			{
+    				String string = param.getValor();
+    				if( string.equals(valor.name()))
+    				{
+    					this.verbosidade = valor;
+    				}
+    			}
+    			
+    			break;
+    			
+			case "nomeServidor":
+			    		
+				if(param.getValor().equalsIgnoreCase("true") )
+    				this.nomeServidor = true;
+    			else
+    				this.nomeServidor = false;
+				
+			    break;
+			
+			case "comentarioPrefixo":
+				
+				this.comentarioPrefixo = param.getValor();
+				
+				break;    
+			    
+			case "esperaLimite":
+				
+				if(param.getValor().equalsIgnoreCase("true") )
+    				this.esperaLimite = true;
+    			else
+    				this.esperaLimite = false;
+				
+				break;
+				
+				
+			case "comandoSQL":
+				
+				for(ComandoSQL valor: ComandoSQL.values() )
+    			{
+    				String string = param.getValor();
+    				if( string.equals(valor.name()))
+    				{
+    					this.comandoSQL = valor;
+    				}
+    			}
+				
+				break;
+				
+			case "fusoHorario":
+				
+				this.fusoHorario = param.getValor();
+				
+				break;
+    			
+    		default:
+    			// process
+    			break;
+    		}
+    	}
     }
 }

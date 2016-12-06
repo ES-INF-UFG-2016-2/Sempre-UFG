@@ -12,8 +12,8 @@ import java.util.Iterator;
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogLocal implements LogConfigItem {
-
+public class LogLocal implements LogConfigItem 
+{
     private MensagemClienteValores nivelMensagemCliente;
     private MensagemValores nivelMensagemLog;
     private ComandoSQL tipoComandosSQL;
