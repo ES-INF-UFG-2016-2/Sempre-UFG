@@ -1,9 +1,10 @@
 package br.ufg.inf.servico;
 
-import br.ufg.inf.modelo.CursoUFG;
-import br.ufg.inf.modelo.Egresso;
-import br.ufg.inf.modelo.HistoricoUFG;
-import br.ufg.inf.modelo.LocalizacaoGeografica;
+import br.ufg.inf.sempreufg.servico.AutenticacaoService;
+import br.ufg.inf.sempreufg.modelo.CursoUFG;
+import br.ufg.inf.sempreufg.modelo.Egresso;
+import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

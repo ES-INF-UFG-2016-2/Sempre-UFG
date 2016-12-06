@@ -1,17 +1,13 @@
-package br.ufg.inf.servico;
+package br.ufg.inf.sempreufg.servico;
 
-import br.ufg.inf.modelo.Egresso;
-import br.ufg.inf.modelo.Usuario;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import br.ufg.inf.sempreufg.modelo.Egresso;
+import br.ufg.inf.sempreufg.modelo.Usuario;
 
 /**
  * Gerencia as informações e operações de autenticação do sistema SempreUFG.
  *
  * @author cleber
  */
-@ManagedBean
-@SessionScoped
 public class AutenticacaoService {
 
     private boolean autenticado;
