@@ -32,16 +32,6 @@ CREATE TABLE egresso
    CONSTRAINT pk_egresso PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS residencia;
-CREATE TABLE residencia
-(
-  data_inicio date NOT NULL,
-  data_fim date,
-  endereco varchar(300) NOT NULL,
-  
-  CONSTRAINT pk_residencia PRIMARY KEY (data_inicio)
-);
-
 DROP TABLE IF EXISTS localizacao_geografica;
 CREATE TABLE localizacao_geografica
 (
@@ -52,9 +42,22 @@ CREATE TABLE localizacao_geografica
 	sigla varchar(2) NOT NULL,
 	latitude real,
 	longitude real,
-
 	  
 	CONSTRAINT pk_localizacao_geografica PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS residencia;
+CREATE TABLE residencia
+(
+  data_inicio date NOT NULL,
+  data_fim date,
+  endereco varchar(300) NOT NULL,
+  egresso_id 				BIGINT NOT NULL,
+  localizacao_geografica_id BIGINT NOT NULL,
+  
+  CONSTRAINT pk_residencia PRIMARY KEY (data_inicio, egresso_id, localizacao_geografica_id),
+  CONSTRAINT fk_residencia_egresso foreign key (egresso_id) references egresso(id),
+  CONSTRAINT fk_residencia_localizacao foreign key (localizacao_geografica_id) references localizacao_geografica(id)
 );
 
 DROP TABLE IF EXISTS area_conhecimento;
@@ -193,8 +196,7 @@ CREATE TABLE historico_ensino_medio
 	mes_fim 				INTEGER 		NOT NULL,
 	ano_fim 				INTEGER 		NOT NULL,
 	
-	UNIQUE(id_egresso, id),
-	CONSTRAINT pk_hist_ens_medio PRIMARY KEY (id),
+	CONSTRAINT pk_hist_ens_medio PRIMARY KEY (id, id_egresso, id_inst_ensino_medio),
 	CONSTRAINT fk_hist_ens_medio FOREIGN KEY (id_egresso) REFERENCES egresso (id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	CONSTRAINT fk_hist_inst_ens_medio FOREIGN KEY (id_inst_ensino_medio) REFERENCES inst_ensino_medio (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
@@ -231,8 +233,7 @@ CREATE TABLE historico_outra_ies
 	mes_fm					INTEGER		NOT NULL,
 	ano_fim					INTEGER		NOT NULL,
 	
-	UNIQUE(id_egresso, id_curso_outra_ies),
-	CONSTRAINT pk_hist_outra_ies PRIMARY KEY (id),
+	CONSTRAINT pk_hist_outra_ies PRIMARY KEY (id, id_egresso, id_curso_outra_ies),
 	CONSTRAINT fk_hist_ies FOREIGN KEY (id_egresso) REFERENCES egresso (id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	CONSTRAINT fk_hist_outra_ies FOREIGN KEY (id_curso_outra_ies) REFERENCES curso_outra_ies (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
