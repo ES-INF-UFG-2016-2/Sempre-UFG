@@ -21,6 +21,12 @@ $(function () {
     var Filtro = function(itensFiltro){
         this.itensFiltro = itensFiltro;
     }
+    
+    $("#formularioConsulta").on("submit", function(event){
+        event.preventDefault();
+        var jsonFormulario = JSON.stringify($("#formularioConsulta").serializeArray());
+        console.log(jsonFormulario);
+    });
 });
 
 function adicionarFiltro(elemento) {
@@ -28,9 +34,14 @@ function adicionarFiltro(elemento) {
     var filtroHTML = $(".filtro").get(0).outerHTML;
     var filtroObject = $($.parseHTML(filtroHTML));
     $(filtroObject).removeClass("hidden");
+    
     if($(divFiltros).children().length != 0) {
         $(divFiltros).append($(".disjuncao-filtro").get(0).outerHTML);
     }
+    
+    var prefixoItem = "filtro_" + gerarPrefixo() + "-";
+    $(filtroObject).find("input").val(prefixoItem);
+    
     $(divFiltros).append($(filtroObject).get(0).outerHTML);   
 }
 
@@ -54,12 +65,13 @@ function adicionarItemFiltro(elemento) {
     var itemFiltroObject = $($.parseHTML(itemFiltroHTML));
     $(itemFiltroObject).removeClass("hidden");
     $(itemFiltroObject).removeClass("template");
+    
+    var prefixoItem = $(divItens).prev().val() + "item_filtro_" + gerarPrefixo() + "-";
+    $.each($(itemFiltroObject).find(".form-control"), function(index, value){
+        $(value).attr("name", prefixoItem + $(value).attr("name"));
+    });
+    
     $(divItens).append($(itemFiltroObject).get(0).outerHTML);
-}
-
-function removerItemFiltro(elemento){
-    var divItemFiltro = $(elemento).parent().parent();
-    $(divItemFiltro).remove();
 }
 
 function removerItemFiltro(elemento){
@@ -89,4 +101,9 @@ function onChangeSelect(elemento){
         
         $(segundoArgumento).addClass("hidden");
     }
+}
+
+function gerarPrefixo(){
+    var tamanho = 7;
+    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, tamanho);
 }

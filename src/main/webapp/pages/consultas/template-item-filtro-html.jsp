@@ -3,7 +3,7 @@
 <div class="itemFiltro row hidden template">
     <div class="row col-md-11">
         <div class="form-group col-md-3 col-sm-6">
-            <select class="form-control select-parametro" onchange="onChangeSelect(this)">
+            <select name="parametro" class="form-control select-parametro" onchange="onChangeSelect(this)">
                 <option>Idade</option>
                 <option>Nome</option>
                 <option>Sexo</option>
@@ -11,7 +11,7 @@
             </select>
         </div>
         <div class="form-group col-md-3 col-sm-6">
-            <select class="form-control select-operador" onchange="onChangeSelect(this)">
+            <select name="operador" class="form-control select-operador" onchange="onChangeSelect(this)">
                 <option value="maior">maior que</option>
                 <option value="menor">menor que</option>
                 <option value="igual">igual</option>
@@ -20,10 +20,10 @@
             </select>
         </div>
         <div class="form-group col-md-6 col-sm-12 primeiro-argumento">
-            <input class="form-control" placeholder="valor">
+            <input name="argumento1" class="form-control" placeholder="valor">
         </div>
         <div class="form-group col-md-3 col-sm-6 segundo-argumento hidden">
-            <input class="form-control" placeholder="valor">
+            <input name="argumento2" class="form-control" placeholder="valor">
         </div>
     </div>
     <div class="form-group col-md-1 text-center">

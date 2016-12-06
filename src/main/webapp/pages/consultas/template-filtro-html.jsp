@@ -8,6 +8,7 @@
         </button>
     </div>
     <div class="panel-body">
+        <input name="filtro_id" class="form-control" value="" type="hidden"/>
         <div class="itensFiltros">
             <!-- Itens de filtro serão inseridos aqui dinamicamente -->
         </div>

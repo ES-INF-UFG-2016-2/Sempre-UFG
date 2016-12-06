@@ -33,20 +33,20 @@
                             <h1 class="page-header">Definir Consulta de Egressos</h1>
                         </div>
                     </div>
-                    <form role="form">
+                    <form id="formularioConsulta" role="form">
                         <div class="row">
                             <div class="form-group col-md-5 col-sm-8">
-                                <input class="form-control" placeholder="Nome da consulta">
+                                <input name="nome-consulta" class="form-control" placeholder="Nome da consulta" />
                             </div>
                             <div class="form-group col-md-3 col-sm-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">Consulta pública
+                                        <input name="consulta-publica" type="checkbox">Consulta pública
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group col-md-4 col-sm-12 col-xs-12">
-                                <button type="button" class="btn btn-primary col-md-12 col-sm-12 col-xs-12">Salvar definição de consulta</button>
+                                <button class="btn btn-primary col-md-12 col-sm-12 col-xs-12" type="submit">Salvar definição de consulta</button>
                             </div>
                         </div>
                         <div class="row">
