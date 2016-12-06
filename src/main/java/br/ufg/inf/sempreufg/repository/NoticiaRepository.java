@@ -11,7 +11,7 @@ public class NoticiaRepository {
 
     private NoticiaDAO noticiaDAO = new NoticiaDAO();
 
-    public Noticia persisteNoticia(Noticia noticia){
+    public int persisteNoticia(Noticia noticia){
         return noticiaDAO.salvar(noticia.getIdEvento(), noticia.getDataExpiracao());
     }
     public Noticia obterNoticia(int IdEvento){
@@ -34,8 +34,8 @@ public class NoticiaRepository {
         noticiaDAO.remover(idEvento);
     }
 
-    public Noticia atualizaNoticia (Noticia noticia){
-        return noticiaDAO.atualizar(noticia.getIdEvento(), noticia.getDataExpiracao());
+    public void atualizaNoticia (Noticia noticia){
+        noticiaDAO.atualizar(noticia.getIdEvento(), noticia);
     }
 
 }
