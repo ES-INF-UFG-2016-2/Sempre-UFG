@@ -1,15 +1,14 @@
 package br.ufg.inf.sempreufg.servico;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+import br.ufg.inf.sempreufg.enums.NomeCampos;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 
 
 public class EgressoService implements EgressoServiceInterface{
@@ -62,10 +61,22 @@ public class EgressoService implements EgressoServiceInterface{
 										  new BitSet(),
 										  new BitSet(),
 										  VisibilidadeDados.PUBLICO,
-										  new ArrayList<HistoricoUFG>());
+										  new ArrayList<HistoricoUFG>(),
+                                                                                  new LocalizacaoGeografica());
 			egressos.add(egresso);
 		}
 
 		return egressos;
 	}
+
+    @Override
+    public List<Egresso> consultarEgressoPorConsultaPreDefinida(String string) {
+        return new ExecultarConsultasMock().criarListaEgresso();
+    }
+
+    @Override
+    public List<Egresso> consultaPorAdHoc(Map<NomeCampos, String> parametros) {
+        return new ExecultarConsultasMock().criarListaEgresso();
+    }
+
 }
