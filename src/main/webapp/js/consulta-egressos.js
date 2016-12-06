@@ -23,20 +23,40 @@ $(function () {
     }
 });
 
-function removerItemFiltro(element){
-    console.log("removendo");
-    console.log(element);
-    var divItemFiltro = $(element).parent().parent();
-    console.log(divItemFiltro);
+function removerItemFiltro(elemento){
+    var divItemFiltro = $(elemento).parent().parent();
     $(divItemFiltro).remove();
 }
 
-function adicionarItemFiltro(element) {
-    console.log("adicionando item de filtro");
-    var divItens = $(element).parent().parent().children().get(0);
+function adicionarItemFiltro(elemento) {
+    var divItens = $(elemento).parent().parent().children().get(0);
     var itemFiltroHTML = $(".itemFiltro").get(0).outerHTML;
     var itemFiltroObject = $($.parseHTML(itemFiltroHTML));
     $(itemFiltroObject).removeClass("hidden");
     $(itemFiltroObject).removeClass("template");
     $(divItens).append($(itemFiltroObject).get(0).outerHTML);
+}
+
+function onChangeSelect(elemento){
+    var linhaItemFiltro = $(elemento).parent().parent();
+    var parametroSelecionado = $(linhaItemFiltro).find(".select-parametro").val();
+    var operadorSelecionado = $(linhaItemFiltro).find(".select-operador").val();
+    var primeiroArgumento = $(linhaItemFiltro).find(".primeiro-argumento");
+    var segundoArgumento = $(linhaItemFiltro).find(".segundo-argumento");
+    
+    if(parametroSelecionado == "data" && operadorSelecionado == "entre"){
+        $(primeiroArgumento).removeClass("col-md-6");
+        $(primeiroArgumento).removeClass("col-sm-12");
+        $(primeiroArgumento).addClass("col-md-3");
+        $(primeiroArgumento).addClass("col-sm-6");
+        
+        $(segundoArgumento).removeClass("hidden");
+    } else {
+        $(primeiroArgumento).removeClass("col-md-3");
+        $(primeiroArgumento).removeClass("col-sm-6");
+        $(primeiroArgumento).addClass("col-md-6");
+        $(primeiroArgumento).addClass("col-sm-12");
+        
+        $(segundoArgumento).addClass("hidden");
+    }
 }
