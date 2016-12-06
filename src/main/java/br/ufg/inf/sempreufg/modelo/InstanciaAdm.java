@@ -1,23 +1,32 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class InstanciaAdm {
+public class InstanciaAdm implements Serializable {
 
-	private String sigla;
-	private String nome_instanciaAdm;
+    private String sigla;
+    private String nome;
 
-	private enum Tipos {
-		REGIONAL, UNIDADE, CURSO
-	};
+    private enum Tipos {
+        REGIONAL, UNIDADE, CURSO
+    };
 
-	private Tipos tipo;
-	private Date data_criacao = new Date();
-	private Date data_enc = new Date();
-	private String email;
-	private String url_inst;
-	private List instancias = new ArrayList();
+    private Tipos tipo;
+    private Date data_criacao = new Date();
+    private Date data_enc = new Date();
+    private String email;
+    private String url_inst;
+    private List instancias = new ArrayList();
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
 }
