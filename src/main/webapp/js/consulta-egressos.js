@@ -23,18 +23,48 @@ $(function () {
     }
 });
 
-function removerItemFiltro(elemento){
-    var divItemFiltro = $(elemento).parent().parent();
-    $(divItemFiltro).remove();
+function adicionarFiltro(elemento) {
+    var divFiltros = $(elemento).parent().parent().find("#filtros");
+    var filtroHTML = $(".filtro").get(0).outerHTML;
+    var filtroObject = $($.parseHTML(filtroHTML));
+    $(filtroObject).removeClass("hidden");
+    if($(divFiltros).children().length != 0) {
+        $(divFiltros).append($(".disjuncao-filtro").get(0).outerHTML);
+    }
+    $(divFiltros).append($(filtroObject).get(0).outerHTML);   
+}
+
+function removerFiltro(elemento){
+    var divFiltro = $(elemento).parent().parent();
+    var vizinhoAcima = $(divFiltro).prev();
+    var vizinhoAbaixo = $(divFiltro).next();
+
+    if($(vizinhoAcima).length != 0){
+        $(vizinhoAcima).remove();
+    } else if($(vizinhoAbaixo).length != 0){
+        $(vizinhoAbaixo).remove();
+    }
+    
+    $(divFiltro).remove();
 }
 
 function adicionarItemFiltro(elemento) {
-    var divItens = $(elemento).parent().parent().children().get(0);
+    var divItens = $(elemento).parent().parent().find(".itensFiltros");
     var itemFiltroHTML = $(".itemFiltro").get(0).outerHTML;
     var itemFiltroObject = $($.parseHTML(itemFiltroHTML));
     $(itemFiltroObject).removeClass("hidden");
     $(itemFiltroObject).removeClass("template");
     $(divItens).append($(itemFiltroObject).get(0).outerHTML);
+}
+
+function removerItemFiltro(elemento){
+    var divItemFiltro = $(elemento).parent().parent();
+    $(divItemFiltro).remove();
+}
+
+function removerItemFiltro(elemento){
+    var divItemFiltro = $(elemento).parent().parent();
+    $(divItemFiltro).remove();
 }
 
 function onChangeSelect(elemento){

@@ -16,6 +16,10 @@
     </head>
 
     <body>
+        
+        <jsp:include page="template-filtro-html.jsp"/>
+        <jsp:include page="template-disjuncao-filtro-html.jsp"/>
+        <jsp:include page="template-item-filtro-html.jsp"/>
 
         <div id="wrapper">
 
@@ -80,130 +84,11 @@
                             </div>
                             <div class="col-lg-8">
                                 <h3>Filtros da Consulta</h3>
-                                
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Filtro #1
-                                        <button type="button" class="close" 
-                                                data-target="#id_of_panel" 
-                                                data-dismiss="alert">
-                                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                                        </button>
+                                    <div id="filtros">
+                                        <!-- <!-- Filtros serão inseridos aqui dinamicamente -->
                                     </div>
-                                    <div class="panel-body">
-                                        <div id="itensFiltros">
-                                            <div class="itemFiltro row hidden template">
-                                                <div class="row col-md-11">
-                                                    <div class="form-group col-md-3 col-sm-6">
-                                                        <select class="form-control select-parametro" onchange="onChangeSelect(this)">
-                                                            <option>Idade</option>
-                                                            <option>Nome</option>
-                                                            <option>Sexo</option>
-                                                            <option>data</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-3 col-sm-6">
-                                                        <select class="form-control select-operador" onchange="onChangeSelect(this)">
-                                                            <option value="maior">maior que</option>
-                                                            <option value="menor">menor que</option>
-                                                            <option value="igual">igual</option>
-                                                            <option value="entre">entre</option>
-                                                            <option value="contem">contém</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-sm-12 primeiro-argumento">
-                                                        <input class="form-control" placeholder="valor">
-                                                    </div>
-                                                    <div class="form-group col-md-3 col-sm-6 segundo-argumento hidden">
-                                                        <input class="form-control" placeholder="valor">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-1 text-center">
-                                                    <button type="button" onclick="removerItemFiltro(this)" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 text-center">
-                                            <button type="button" onclick="adicionarItemFiltro(this)" class="btn btn-primary">Adicionar Condição</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                    <div class="text-center"><p>OU</p></div>
-                                
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        Filtro #2
-                                        <button type="button" class="close" 
-                                                data-target="#id_of_panel" 
-                                                data-dismiss="alert">
-                                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                                        </button>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="row col-md-11">
-                                                <div class="form-group col-md-3 col-sm-6">
-                                                    <select class="form-control">
-                                                        <option>Idade</option>
-                                                        <option>Nome</option>
-                                                        <option>Sexo</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-3 col-sm-6">
-                                                    <select class="form-control">
-                                                        <option>maior que</option>
-                                                        <option>menor que</option>
-                                                        <option>igual</option>
-                                                        <option>entre</option>
-                                                        <option>contém</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-3 col-sm-6">
-                                                    <input class="form-control" placeholder="valor">
-                                                </div>
-                                                <div class="form-group col-md-3 col-sm-6">
-                                                    <input class="form-control" placeholder="valor">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-1 text-center">
-                                                <button type="button" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="row col-md-11">
-                                                <div class="form-group col-md-3 col-sm-6">
-                                                    <select class="form-control">
-                                                        <option>Idade</option>
-                                                        <option>Nome</option>
-                                                        <option>Sexo</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-3 col-sm-6">
-                                                    <select class="form-control">
-                                                        <option>maior que</option>
-                                                        <option>menor que</option>
-                                                        <option>igual</option>
-                                                        <option>entre</option>
-                                                        <option>contém</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-6 col-sm-12">
-                                                    <input class="form-control" placeholder="valor">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-1 text-center">
-                                                <button type="button" class="btn btn-danger btn-circle"><i class="fa fa-times"></i></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 text-center">
-                                            <button type="button" class="btn btn-success btn-circle"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-12 text-center">
-                                    <button type="button" class="btn btn-success btn-circle"><i class="fa fa-plus"></i></button>
+                                    <button type="button" onclick="adicionarFiltro(this)" class="btn btn-primary">Adicionar Filtro</button>
                                 </div>
                             </div>
                         </div>
