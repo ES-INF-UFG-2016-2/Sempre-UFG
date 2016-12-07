@@ -24,7 +24,7 @@
     </div>
     <div id="forms">
         <div class="divulgarEventoTitle">
-            <h3>Divulgar Evento</h3>
+            <h3>Solicitações para Divulgação de Evento</h3>
             <hr id="hrtitle" />
         </div>
         <div class="listaSolicitacoes">
@@ -36,18 +36,17 @@
                     </th>
                 </thead>
                 <tbody>
-                    <!-- <c:forEach var="evento" items="${list}"> -->
+                    <!-- <c:forEach var="evento" items="${elist}"> -->
                     <tr>
                         <td class="tdlist">
-                            <p>
-                                teste
-                            </p>
+                            <div class="tituloEvento">
+                                <c:out value="{evento.name}" />
+                            </div>
                         </td>
                         <td class="tdlistButton">
                             <button class="btn btn-primary" type="button" name="button">Visualizar</button>
                         </td>
                     </tr>
-
                     <!-- </c:forEach> -->
                 </tbody>
             </table>
