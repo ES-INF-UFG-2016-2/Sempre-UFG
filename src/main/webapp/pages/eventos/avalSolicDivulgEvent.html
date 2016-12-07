@@ -1,0 +1,58 @@
+<!-- <%@ page import="java.util.List"%> -->
+<!DOCTYPE html>
+<!-- <% List eList = (List)session.getAttribute("empList");%> -->
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Solicitação de Divulgação de Evento</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="avalSolicDivulgEvent.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div container-fluid>
+            <div navbar-header>
+                <a id="title" class="navbar-brand" href="#">Sempre UFG</a>
+            </div>
+        </div>
+    </nav>
+    <div id="lateral">
+        <!-- TODO: implementar a visualização de sidebar-->
+    </div>
+    <div id="forms">
+        <div class="divulgarEventoTitle">
+            <h3>Divulgar Evento</h3>
+            <hr id="hrtitle" />
+        </div>
+        <div class="listaSolicitacoes">
+            <table id="tablelist">
+                <!-- <%=eList%> -->
+                <thead>
+                    <th class="thlist">
+                        Título do Evento
+                    </th>
+                </thead>
+                <tbody>
+                    <!-- <c:forEach var="evento" items="${list}"> -->
+                        <tr>
+                            <td class="tdlist">
+                                <p>
+                                    teste
+                                </p>
+                            </td>
+                            <td class="tdlistButton">
+                                <button class="btn btn-primary" type="button" name="button">Visualizar</button>
+                            </td>
+                        </tr>
+
+                    <!-- </c:forEach> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
