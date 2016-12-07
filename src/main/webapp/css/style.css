@@ -1,5 +1,5 @@
 /*!
- * Start Bootstrap - SB Admin (http://startbootstrap.com/)
+ * Start Bootstrap - Sempre UFG (http://startbootstrap.com/)
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
@@ -8,7 +8,7 @@
 
 body {
     margin-top: 100px;
-    background-color: #222;
+    background-color: #fff;
 }
 
 @media(min-width:768px) {
@@ -44,6 +44,16 @@ body {
 
 /* Top Navigation */
 
+.navbar-fixed-top {
+    background-color: #0D47A1;
+    color: #fff
+}
+
+.navbar-brand {
+    color: #fff !important
+}
+
+
 .top-nav {
     padding: 0 15px;
 }
@@ -57,7 +67,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;
-    color: #999;
+    color: #fff;
 }
 
 .top-nav>li>a:hover,
@@ -122,7 +132,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background-color: #fff;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -130,12 +140,14 @@ ul.alert-dropdown {
 
     .side-nav>li>a {
         width: 225px;
+        color: #424242 !important
     }
 
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
-        background-color: #000 !important;
+        background-color: #fff !important;
+        color: #0D47A1 !important;
     }
 }
 
@@ -147,12 +159,22 @@ ul.alert-dropdown {
     display: block;
     padding: 10px 15px 10px 38px;
     text-decoration: none;
-    color: #999;
+    color: #000;
 }
 
 .side-nav>li>ul>li>a:hover {
     color: #fff;
 }
+.navbar-nav>.active>a:hover{
+  color: #0D47A1 !important;
+  background-color: #EEEEEE !important;
+}
+
+.navbar-nav>.active>a{
+  color: #0D47A1 !important;
+  background-color: #EEEEEE !important;
+}
+
 
 /* Flot Chart Containers */
 
@@ -224,4 +246,20 @@ ul.alert-dropdown {
 
 .panel-yellow > a:hover {
     color: #df8a13;
+}
+
+.form-group{
+
+    margin-top: 16mm;
+    margin-left: 40mm;
+    margin-right: 120mm;
+
+}
+.checkbox{
+    margin-top: 10mm
+
+}
+.paragrafo-checkbox{
+    margin-left: 5mm
+
 }
