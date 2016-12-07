@@ -24,17 +24,14 @@ $(function () {
             url: $form.attr("action"),
             data: dados,
             success: function (data, textStatus, jqXHR) {
-                console.log(data);
                 var resultado = JSON.parse(data);
                 if (resultado["resultado"] == 0) {
-                    console.log("Sucesso" + resultado["mensagem"]);
                     $("#modal-notificacao").find("#titulo-modal-notificao").html("Sucesso!");
                     $("#modal-notificacao").find("#corpo-modal-notificacao").html(resultado["mensagem"]);
                     $form[0].reset();
                 } else {
                     $("#modal-notificacao").find("#titulo-modal-notificao").html("Erro!");
                     $("#modal-notificacao").find("#corpo-modal-notificacao").html(resultado["mensagem"]);
-                    consoloe.log("Erro" + resultado["mensagem"]);
                 }
                 $("#modal-notificacao").modal();
             }

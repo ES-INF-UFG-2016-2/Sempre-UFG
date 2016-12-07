@@ -1,5 +1,6 @@
 package br.ufg.inf.sempreufg.servlet;
 
+import br.ufg.inf.sempreufg.servico.ConsultaServico;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class ConsultaEgressosServlet extends HttpServlet {
     
     private static final int RESULTADO_SUCESSO = 0;
     private static final int RESULTADO_ACAO_DESCONHECIDA = 1;
+    private static final int RESULTADO_ERRO_SALVAR = 2;
 
     /**
      * Processa requisições para os métodos HTTP <code>GET</code> e <code>POST</code>.
@@ -60,14 +62,21 @@ public class ConsultaEgressosServlet extends HttpServlet {
             throws ServletException, IOException {
         Map<String, Object> resultado = new HashMap<>();
         
-        String jsonFiltros = request.getParameter(PARAMETRO_DADOS_CONSULTA);
-        System.out.println("JSON: " + jsonFiltros);
+        String dadosConsultaJson = request.getParameter(PARAMETRO_DADOS_CONSULTA);
+        System.out.println("JSON: " + dadosConsultaJson);
         
-        //TODO: Comunicar com o service ConsultaServico.
+        ConsultaServico consultaServico = new ConsultaServico();
+        boolean resultadoSalvamento = consultaServico.salvarConsulta(dadosConsultaJson);
         
         resultado = new HashMap<String, Object>();
-        resultado.put(PARAMETRO_RESULTADO, RESULTADO_SUCESSO);
-        resultado.put(PARAMETRO_MENSAGEM, "Nova consulta criada com sucesso");
+        
+        if(resultadoSalvamento){
+            resultado.put(PARAMETRO_RESULTADO, RESULTADO_SUCESSO);
+            resultado.put(PARAMETRO_MENSAGEM, "Nova consulta criada com sucesso.");
+        } else {
+            resultado.put(PARAMETRO_RESULTADO, RESULTADO_ERRO_SALVAR);
+            resultado.put(PARAMETRO_MENSAGEM, "Não foi possível salvar a consulta.");
+        }
         
         return resultado;
     }
