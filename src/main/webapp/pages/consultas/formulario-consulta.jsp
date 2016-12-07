@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <title>SempreUFG - Definir Consulta de Egressos</title>
         
         <jsp:include page="../includes/header.jsp"/>
         
