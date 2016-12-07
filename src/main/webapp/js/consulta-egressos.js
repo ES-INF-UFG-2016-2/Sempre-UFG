@@ -1,9 +1,22 @@
 $(function () {
     $("#formularioConsulta").on("submit", function (event) {
         event.preventDefault();
+        
+        var formularioArray = $("#formularioConsulta").serializeArray();
+        var dadosConsulta = {}
+        
+        
+        dadosConsulta["nome"] = $($.find("input[name=nome-consulta]")).val();
+        if($($.find("input[name=consulta-publica]:checked")).length > 0){
+            dadosConsulta["ePublica"] = true;
+        } else {
+            dadosConsulta["ePublica"] = false;
+        }
+        
+        dadosConsulta["filtros"] = estruturarFiltros(formularioArray);
 
         var dados = "acao=definirConsulta";
-        dados += "&filtros=" + JSON.stringify(estruturarFiltros($("#formularioConsulta").serializeArray()));
+        dados += "&dadosConsulta=" + JSON.stringify(dadosConsulta);
 
         var $form = $(this);
         $.ajax({

@@ -18,7 +18,7 @@ public class ConsultaEgressosServlet extends HttpServlet {
     private static final String ACAO_NOVA_CONSULTA = "definirConsulta";
     
     private static final String PARAMETRO_ACAO = "acao";
-    private static final String PARAMETRO_FILTROS = "filtros";
+    private static final String PARAMETRO_DADOS_CONSULTA = "dadosConsulta";
     private static final String PARAMETRO_RESULTADO = "resultado";
     private static final String PARAMETRO_MENSAGEM = "mensagem";
     
@@ -60,7 +60,7 @@ public class ConsultaEgressosServlet extends HttpServlet {
             throws ServletException, IOException {
         Map<String, Object> resultado = new HashMap<>();
         
-        String jsonFiltros = request.getParameter(PARAMETRO_FILTROS);
+        String jsonFiltros = request.getParameter(PARAMETRO_DADOS_CONSULTA);
         System.out.println("JSON: " + jsonFiltros);
         
         //TODO: Comunicar com o service ConsultaServico.
