@@ -20,6 +20,7 @@
         <jsp:include page="template-filtro-html.jsp"/>
         <jsp:include page="template-disjuncao-filtro-html.jsp"/>
         <jsp:include page="template-item-filtro-html.jsp"/>
+        <jsp:include page="modal-notificacao.jsp"/>
 
         <div id="wrapper">
 
@@ -33,7 +34,7 @@
                             <h1 class="page-header">Definir Consulta de Egressos</h1>
                         </div>
                     </div>
-                    <form id="formularioConsulta" role="form">
+                    <form id="formularioConsulta" role="form" method="POST" action="ConsultaEgressosServlet">
                         <div class="row">
                             <div class="form-group col-md-5 col-sm-8">
                                 <input name="nome-consulta" class="form-control" placeholder="Nome da consulta" />
