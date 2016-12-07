@@ -36,7 +36,9 @@ function adicionarFiltro(elemento) {
     $(filtroObject).removeClass("hidden");
 
     if ($(divFiltros).children().length != 0) {
-        $(divFiltros).append($(".disjuncao-filtro").get(0).outerHTML);
+        var divDisjuncao = $($.parseHTML($(".disjuncao-filtro").get(0).outerHTML));
+        $(divDisjuncao).removeClass("hidden");
+        $(divFiltros).append($(divDisjuncao).get(0).outerHTML);
     }
 
     var prefixoItem = "filtro_" + gerarPrefixo() + "-";
