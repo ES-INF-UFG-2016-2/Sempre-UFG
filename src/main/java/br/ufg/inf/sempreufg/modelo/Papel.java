@@ -1,5 +1,6 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,14 @@ import java.util.List;
  * @author Bruno Martins de Carvalho
  *
  */
+
+@Entity
+@Table(name = "Papel")
 public class Papel {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="idPapel")
+    @SequenceGenerator(name="idPapel", initialValue=10, sequenceName="PAPEL_ID_SEQUENCE", allocationSize=1)
 	private Integer idPapel;
 	private String siglaPapel;
 	private String nomePapel;
@@ -16,7 +23,17 @@ public class Papel {
 	private List<Usuario> listaUsuario;
 	private List<Recurso> listaRecurso;
 
-	public Integer getIdPapel() {
+    public Papel(){};
+
+    public Papel(String siglaPapel, String nomePapel, List<Usuario> listaUsuario, List<Recurso> listaRecurso) {
+        this.siglaPapel = siglaPapel;
+        this.nomePapel = nomePapel;
+        this.listaUsuario = listaUsuario;
+        this.listaRecurso = listaRecurso;
+    }
+
+
+    public Integer getIdPapel() {
 		return idPapel;
 	}
 
@@ -41,25 +58,10 @@ public class Papel {
 	}
 
 	public List<Recurso> getListaRecurso() {
-		if (this.listaRecurso == null) {
-			this.listaRecurso = new ArrayList<Recurso>();
-		}
-		return this.listaRecurso;
-	}
-
-	public void setListaRecurso(final List<Recurso> listaRecurso) {
-		this.listaRecurso = listaRecurso;
+		return new ArrayList<>(this.listaRecurso);
 	}
 
 	public List<Usuario> getListaUsuario() {
-		if (this.listaUsuario == null) {
-			this.listaUsuario = new ArrayList<Usuario>();
-		}
-		return this.listaUsuario;
+		return new ArrayList<>(this.listaUsuario);
 	}
-
-	public void setListaUsuario(final List<Usuario> listaUsuario) {
-		this.listaUsuario = listaUsuario;
-	}
-
 }
