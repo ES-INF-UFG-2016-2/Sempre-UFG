@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
 <head>
@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>SempreUFG</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/plugins/morris.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/plugins/morris.css" rel="stylesheet">
+    <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                                         <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p>Solicitação de evento X</p>
                                     </div>
                                 </div>
                             </a>
@@ -61,7 +61,7 @@
                                         <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p>Solicitação de evento X</p>
                                     </div>
                                 </div>
                             </a>
@@ -76,7 +76,7 @@
                                         <h5 class="media-heading"><strong>John Smith</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        <p>Solicitação de evento X</p>
                                     </div>
                                 </div>
                             </a>
@@ -135,34 +135,105 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+                  <li>
+                      <a ><i class="fa fa-fw "></i><font size="4">Permissões</font></a>
+                  </li>
                     <li>
-                        <a href="gestor.html"><i class="fa fa-fw fa-dashboard"></i>Gestor do Sistema</a>
-                    </li>
-                    <li>
-                        <a href="egresso.html"><i class="fa fa-fw fa-bar-chart-o"></i>Egresso</a>
+                        <a href="gestor.html"><i class="fa fa-fw "></i>Gestor do Sistema</a>
                     </li>
                     <li class="active">
-                        <a href="cavi.html"><i class="fa fa-fw fa-table"></i>CAVI</a>
+                        <a href="egresso.html"><i class="fa fa-fw "></i>Egresso</a>
                     </li>
                     <li>
-                        <a href="prograd.html"><i class="fa fa-fw fa-edit"></i>PROGRAD</a>
+                        <a href="cavi.html"><i class="fa fa-fw "></i>CAVI</a>
                     </li>
                     <li>
-                        <a href="prpg.html"><i class="fa fa-fw fa-desktop"></i> PRPG</a>
+                        <a href="prograd.html"><i class="fa fa-fw "></i>PROGRAD</a>
+                    </li>
+                    <li>
+                        <a href="prpg.html"><i class="fa fa-fw "></i>PRPG</a>
                     </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+
+        <div class="form-group" >
+            <label>
+              <div class="titulo-checkbox">
+                <font size="6">Executar consultas</font>
+              </div>
+            </label>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value=""><font size="4">Consultas pré-definidas</font>
+                </label>
+            </div>
+            <div class="paragrafo-checkbox">
+            <p>Consultas pré-definidas são consultas geralmente realizadas com muita frequência, gravadas para facilitar o acesso do usuário à informação. Usuários com essa permissão não poderão criar consultas pré-definidas, mas poderâo executar qualquer consulta que já estiver registrada</p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value=""><font size="4">Consultas ad-hoc</font>
+            </div>
+            <div class="paragrafo-checkbox">
+            <p>Consultas ad-hoc são uma forma de montar consultas pela interface. Usuários com esta permissão poderão montar qualquer consulta, recebendo ou não parâmetros</p>
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <label>
+              <div class="titulo-checkbox">
+                <font size="6">Alterar dados</font>
+              </div>
+            </label>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value=""><font size="4">Editar dados de usuário</font>
+                </label>
+            </div>
+            <div class="paragrafo-checkbox">
+            <p>Usuário com esta permissão pode editar seus dados, exceto dados de cursos da UFG </p>
+            </div>
+
+        </div>
+
+        <div class="form-group" >
+            <label>
+              <div class="titulo-checkbox">
+                <font size="6">Acesso à notícias</font>
+                </div>
+            </label>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value=""><font size="4">Cadastrar notícias</font>
+                </label>
+            </div>
+            <div class="paragrafo-checkbox">
+            <p>Concede permissão apenas para cadastrar notícias</p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value=""><font size="4">Receber notícias</font>
+            </div>
+            <div class="paragrafo-checkbox">
+              <p>Permite ao usuário apenas ler e receber as notícias cadastradas
+            </div>
+        </div>
+
+
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/plugins/morris/raphael.min.js"></script>
-    <script src="../js/plugins/morris/morris.min.js"></script>
-    <script src="../js/plugins/morris/morris-data.js"></script>
+    <script src="../../js/jquery.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/plugins/morris/raphael.min.js"></script>
+    <script src="../../js/plugins/morris/morris.min.js"></script>
+    <script src="../../js/plugins/morris/morris-data.js"></script>
 
 </body>
 

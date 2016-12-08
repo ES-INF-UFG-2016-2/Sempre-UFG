@@ -249,7 +249,6 @@ ul.alert-dropdown {
 }
 
 .form-group{
-
     margin-top: 16mm;
     margin-left: 40mm;
     margin-right: 120mm;
@@ -261,5 +260,9 @@ ul.alert-dropdown {
 }
 .paragrafo-checkbox{
     margin-left: 5mm
+
+}
+.titulo-checkbox{
+    color: #0D47A1
 
 }
