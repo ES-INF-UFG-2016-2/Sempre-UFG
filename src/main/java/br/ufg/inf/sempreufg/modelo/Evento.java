@@ -1,6 +1,8 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.ufg.inf.sempreufg.enums.Escopos;
 import br.ufg.inf.sempreufg.enums.Formas;
@@ -17,6 +19,8 @@ public class Evento {
 	private Tipos tipo_evento;
 	private Formas forma;
 	private Escopos escopo;
+    private List<AreaDeConhecimento> areas_conhecimento;
+    private List<PublicoAlvo> publicos_alvo;
 
 	public Evento() {
 
@@ -63,6 +67,78 @@ public class Evento {
 		this.tipo_evento = evento;
 	}
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAssunto() {
+        return assunto;
+    }
+
+    public void setAssunto(String assunto) {
+        this.assunto = assunto;
+    }
+
+    public String getDes_evento() {
+        return des_evento;
+    }
+
+    public void setDes_evento(String des_evento) {
+        this.des_evento = des_evento;
+    }
+
+    public Date getData_solicitacao() {
+        return data_solicitacao;
+    }
+
+    public void setData_solicitacao(Date data_solicitacao) {
+        this.data_solicitacao = data_solicitacao;
+    }
+
+    public int getId_solicitante() {
+        return id_solicitante;
+    }
+
+    public void setId_solicitante(int id_solicitante) {
+        this.id_solicitante = id_solicitante;
+    }
+
+    public Date getData_expiracao() {
+        return data_expiracao;
+    }
+
+    public void setData_expiracao(Date data_expiracao) {
+        this.data_expiracao = data_expiracao;
+    }
+
+    public List<AreaDeConhecimento> getAreas_conhecimento() {
+        return new ArrayList<>(areas_conhecimento);
+    }
+
+    public void addArea_conhecimento(AreaDeConhecimento areaDeConhecimento) {
+        areas_conhecimento.add(areaDeConhecimento);
+    }
+
+    public void removeArea_conhecimento(AreaDeConhecimento areaDeConhecimento) {
+        areas_conhecimento.remove(areaDeConhecimento);
+    }
+
+    public List<PublicoAlvo> getPublicos_alvo() {
+        return new ArrayList<>(publicos_alvo);
+    }
+
+    public void addPublico_alvo(PublicoAlvo publicoAlvo) {
+        publicos_alvo.add(publicoAlvo);
+    }
+
+    public void removePublico_alvo(PublicoAlvo publicoAlvo) {
+        publicos_alvo.remove(publicoAlvo);
+    }
+
 	public Formas getForma() {
 		return forma;
 	}
@@ -75,56 +151,8 @@ public class Evento {
 		return escopo;
 	}
 
-	public void setEsc(Escopos esc) {
+	private void setEsc(Escopos esc) {
 		this.escopo = esc;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getAssunto() {
-		return assunto;
-	}
-
-	public void setAssunto(String assunto) {
-		this.assunto = assunto;
-	}
-
-	public String getDes_evento() {
-		return des_evento;
-	}
-
-	public void setDes_evento(String des_evento) {
-		this.des_evento = des_evento;
-	}
-
-	public Date getData_solicitacao() {
-		return data_solicitacao;
-	}
-
-	public void setData_solicitacao(Date data_solicitacao) {
-		this.data_solicitacao = data_solicitacao;
-	}
-
-	public int getId_solicitante() {
-		return id_solicitante;
-	}
-
-	public void setId_solicitante(int id_solicitante) {
-		this.id_solicitante = id_solicitante;
-	}
-
-	public Date getData_expiracao() {
-		return data_expiracao;
-	}
-
-	public void setData_expiracao(Date data_expiracao) {
-		this.data_expiracao = data_expiracao;
 	}
 
 }
