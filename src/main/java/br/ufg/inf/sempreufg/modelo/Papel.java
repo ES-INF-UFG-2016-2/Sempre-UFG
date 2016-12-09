@@ -3,6 +3,7 @@ package br.ufg.inf.sempreufg.modelo;
 import org.json.JSONObject;
 
 import javax.persistence.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,15 +63,9 @@ public class Papel {
 		return new ArrayList<>(this.listaRecurso);
 	}
 
-    public JSONObject getListaRecursoAsJson() {
-
+    private JSONObject getListaRecursoAsJson() {
         JSONObject listaRecursoAsJsonObj = new JSONObject();
-
-        int index = 0;
-        for(Recurso recurso : this.listaRecurso) {
-            listaRecursoAsJsonObj.put(Integer.toString(index++), recurso.toJSON());
-        }
-
+        this.listaRecurso.forEach(recurso -> listaRecursoAsJsonObj.put(recurso.getIdRecurso(), recurso.toJSON()));
         return listaRecursoAsJsonObj;
     }
 
@@ -90,15 +85,9 @@ public class Papel {
 		return new ArrayList<>(this.listaUsuario);
 	}
 
-    public JSONObject getListaUsuarioAsJson() {
-
+    private JSONObject getListaUsuarioAsJson() {
         JSONObject listaUsuarioAsJsonObj = new JSONObject();
-
-        int index = 0;
-        for(Usuario usuario : this.listaUsuario) {
-            listaUsuarioAsJsonObj.put(Integer.toString(index++), usuario.toJSON());
-        }
-
+        this.listaUsuario.forEach(usuario -> listaUsuarioAsJsonObj.put(Integer.toString(usuario.getIdUsuario()), usuario.toJSON()));
         return listaUsuarioAsJsonObj;
     }
 
@@ -117,12 +106,38 @@ public class Papel {
     public JSONObject toJSON(){
 
         JSONObject papelAsJsonObj = new JSONObject();
+        JSONObject innerJson = new JSONObject();
 
-        papelAsJsonObj.put("idPapel", getIdPapel());
-        papelAsJsonObj.put("siglaPapel", getSiglaPapel());
-        papelAsJsonObj.put("nomePapel", getNomePapel());
+        innerJson.put("siglaPapel", getSiglaPapel());
+        innerJson.put("nomePapel", getNomePapel());
+        innerJson.put("listaRecursos", getListaRecursoAsJson());
+        innerJson.put("listaUsuarios", getListaUsuarioAsJson());
+
+        papelAsJsonObj.put(Integer.toString(getIdPapel()), innerJson);
 
         return papelAsJsonObj;
+    }
+
+    public static Papel fromJSON(JSONObject papelAsJsonObj){
+
+        List<Recurso> listaRecursos = new ArrayList<>();
+        List<Usuario> listaUsuarios = new ArrayList<>();
+
+        papelAsJsonObj.getJSONObject("listaRecursos").names().forEach(recursoAsJsonObj -> {
+                listaRecursos.add(Recurso.fromJSON((JSONObject) recursoAsJsonObj));
+            }
+        );
+
+        papelAsJsonObj.getJSONObject("listaUsuarios").names().forEach(usuarioAsJsonObj -> {
+                try {
+                    listaUsuarios.add(Usuario.fromJSON((JSONObject) usuarioAsJsonObj));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        );
+
+        return new Papel(papelAsJsonObj.getString("siglaPapel"), papelAsJsonObj.getString("nomePapel"), listaUsuarios, listaRecursos);
     }
 
 }

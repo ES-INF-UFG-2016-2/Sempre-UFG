@@ -1,11 +1,9 @@
 package br.ufg.inf.sempreufg.modelo;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import br.ufg.inf.sempreufg.enums.PoliticaRecebimentoMensagens;
 import org.json.JSONObject;
@@ -17,8 +15,8 @@ public class Usuario {
     private String senha;
     private String nome;
     private long cpf;
-    private BitSet foto = new BitSet();
-    private PoliticaRecebimentoMensagens tipoDivulgacao = PoliticaRecebimentoMensagens.CADA_EVENTO;
+    private BitSet foto;
+    private PoliticaRecebimentoMensagens tipoDivulgacao;
     private Date ts_cadastramento;
     private Date ts_ult_update;
     private Date ts_exclusao;
@@ -183,34 +181,55 @@ public class Usuario {
 
     }
 
+    private JSONObject getListaPapelAsJson() {
+        JSONObject listaPapelAsJsonObj = new JSONObject();
+        this.listaPapel.forEach(papel -> listaPapelAsJsonObj.put(Integer.toString(papel.getIdPapel()), papel.toJSON()));
+        return listaPapelAsJsonObj;
+    }
+
     public JSONObject toJSON(){
 
         JSONObject usuarioAsJsonObj = new JSONObject();
+        JSONObject innerJson = new JSONObject();
         DateFormat formatter = new SimpleDateFormat("dd/mm/yy");
 
-        usuarioAsJsonObj.put("idUsuario", getIdUsuario());
-        usuarioAsJsonObj.put("email", getMail());
-        usuarioAsJsonObj.put("senha", getSenha());
-        usuarioAsJsonObj.put("nome", getNome());
-        usuarioAsJsonObj.put("cpf", getSenha());
-        usuarioAsJsonObj.put("tipoDivulgacao", getTipoDivulgacao());
-        usuarioAsJsonObj.put("ts_cadastramento", formatter.format(getTs_cadastramento()));
-        usuarioAsJsonObj.put("ts_ult_update", formatter.format(getTs_ult_update()));
-        usuarioAsJsonObj.put("ts_exclusao", formatter.format(getTs_exclusao()));
+        innerJson.put("email", getMail());
+        innerJson.put("senha", getSenha());
+        innerJson.put("nome", getNome());
+        innerJson.put("cpf", getSenha());
+        innerJson.put("tipoDivulgacao", getTipoDivulgacao());
+        innerJson.put("ts_cadastramento", formatter.format(getTs_cadastramento()));
+        innerJson.put("ts_ult_update", formatter.format(getTs_ult_update()));
+        innerJson.put("ts_exclusao", formatter.format(getTs_exclusao()));
+        innerJson.put("listaPapeis", getListaPapelAsJson());
+
+        usuarioAsJsonObj.put(Integer.toString(getIdUsuario()), innerJson);
 
         return usuarioAsJsonObj;
     }
 
-    public JSONObject getListaPapelAsJson() {
+    public static Usuario fromJSON(JSONObject usuarioAsJson) throws ParseException {
 
-        JSONObject listaUsuarioAsJsonObj = new JSONObject();
+        DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.getDefault());
+        List<Papel> listaPapeis = new ArrayList<>();
 
-        int index = 0;
-        for(Papel papel : this.listaPapel) {
-            listaUsuarioAsJsonObj.put(Integer.toString(index++), papel.toJSON());
-        }
+        usuarioAsJson.getJSONObject("listaPapeis").names().forEach(papelAsJsonObj -> {
+                listaPapeis.add(Papel.fromJSON((JSONObject) papelAsJsonObj));
+            }
+        );
 
-        return listaUsuarioAsJsonObj;
+        return new Usuario(
+            usuarioAsJson.getString("email"),
+            usuarioAsJson.getString("senha"),
+            usuarioAsJson.getString("nome"),
+            Long.parseLong(usuarioAsJson.getString("cpf")),
+            new BitSet(), // Necessário uma forma de recuperar esse dado em JSON
+            PoliticaRecebimentoMensagens.valueOf(usuarioAsJson.getString("tipoDivulgacao")),
+            format.parse(usuarioAsJson.getString("ts_cadastramento")),
+            format.parse(usuarioAsJson.getString("ts_ult_update")),
+            format.parse(usuarioAsJson.getString("ts_exclusao")),
+            listaPapeis
+        );
     }
 
 }
