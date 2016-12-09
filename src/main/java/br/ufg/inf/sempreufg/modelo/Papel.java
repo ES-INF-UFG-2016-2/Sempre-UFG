@@ -1,5 +1,7 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import org.json.JSONObject;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,6 @@ public class Papel {
         this.listaRecurso = listaRecurso;
     }
 
-
     public Integer getIdPapel() {
 		return idPapel;
 	}
@@ -61,7 +62,67 @@ public class Papel {
 		return new ArrayList<>(this.listaRecurso);
 	}
 
+    public JSONObject getListaRecursoAsJson() {
+
+        JSONObject listaRecursoAsJsonObj = new JSONObject();
+
+        int index = 0;
+        for(Recurso recurso : this.listaRecurso) {
+            listaRecursoAsJsonObj.put(Integer.toString(index++), recurso.toJSON());
+        }
+
+        return listaRecursoAsJsonObj;
+    }
+
+	public void addRecurso(Recurso recurso) {
+	    this.listaRecurso.add(recurso);
+    }
+
+    public void removeRecurso(Recurso recurso) {
+        this.listaRecurso.remove(recurso);
+    }
+
+    public void setListaRecurso(List<Recurso> listaRecurso){
+        this.listaRecurso = listaRecurso;
+    }
+
 	public List<Usuario> getListaUsuario() {
 		return new ArrayList<>(this.listaUsuario);
 	}
+
+    public JSONObject getListaUsuarioAsJson() {
+
+        JSONObject listaUsuarioAsJsonObj = new JSONObject();
+
+        int index = 0;
+        for(Usuario usuario : this.listaUsuario) {
+            listaUsuarioAsJsonObj.put(Integer.toString(index++), usuario.toJSON());
+        }
+
+        return listaUsuarioAsJsonObj;
+    }
+
+    public void addUsuario(Usuario usuario) {
+        this.listaUsuario.add(usuario);
+    }
+
+    public void removeUsuario(Usuario usuario) {
+        this.listaUsuario.remove(usuario);
+    }
+
+    public void setListaUsuario(List<Usuario> listaUsuario){
+        this.listaUsuario = listaUsuario;
+    }
+
+    public JSONObject toJSON(){
+
+        JSONObject papelAsJsonObj = new JSONObject();
+
+        papelAsJsonObj.put("idPapel", getIdPapel());
+        papelAsJsonObj.put("siglaPapel", getSiglaPapel());
+        papelAsJsonObj.put("nomePapel", getNomePapel());
+
+        return papelAsJsonObj;
+    }
+
 }
