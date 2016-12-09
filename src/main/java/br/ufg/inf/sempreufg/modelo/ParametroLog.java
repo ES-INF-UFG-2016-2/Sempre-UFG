@@ -6,6 +6,17 @@ public class ParametroLog
 	String valor;
 	String descricao;
 	
+	public ParametroLog()
+	{
+		
+	}
+	
+	public ParametroLog(String sg, String vl )
+	{
+		this.sigla = sg;
+		this.valor = vl;
+	}
+	
 	public String getSigla() {
 		return sigla;
 	}
