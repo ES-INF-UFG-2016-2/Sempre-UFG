@@ -130,6 +130,10 @@ public class Usuario {
         this.listaPapel = listaPapel;
     }
 
+    public void addPapel(Papel papel) {
+        this.listaPapel.add(papel);
+    }
+
     public static boolean validarCpf(long cpf) {
 
 		String str_cpf = String.valueOf(cpf);

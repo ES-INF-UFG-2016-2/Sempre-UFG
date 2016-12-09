@@ -63,6 +63,10 @@ public class Recurso {
 		this.listaPapel = listaPapel;
 	}
 
+    public void addPapel(Papel papel) {
+        this.listaPapel.add(papel);
+    }
+
     private JSONObject getListaPapelAsJson() {
         JSONObject listaPapelAsJsonObj = new JSONObject();
         this.listaPapel.forEach(papel -> listaPapelAsJsonObj.put(Integer.toString(papel.getIdPapel()), papel.toJSON()));
