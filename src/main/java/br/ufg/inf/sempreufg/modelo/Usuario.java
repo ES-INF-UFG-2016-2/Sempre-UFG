@@ -1,15 +1,18 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Date;
 import java.util.List;
 
 import br.ufg.inf.sempreufg.enums.PoliticaRecebimentoMensagens;
+import org.json.JSONObject;
 
 public class Usuario {
 
-    private final int ID_USER = 0;
+    private int idUsuario;
     private String mail;
     private String senha;
     private String nome;
@@ -21,6 +24,29 @@ public class Usuario {
     private Date ts_exclusao;
 
 	private List<Papel> listaPapel;
+
+    public Usuario(){}
+
+    public Usuario(String mail, String senha, String nome, long cpf, BitSet foto, PoliticaRecebimentoMensagens tipoDivulgacao, Date ts_cadastramento, Date ts_ult_update, Date ts_exclusao, List<Papel> listaPapel) {
+        this.mail = mail;
+        this.senha = senha;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.foto = foto;
+        this.tipoDivulgacao = tipoDivulgacao;
+        this.ts_cadastramento = ts_cadastramento;
+        this.ts_ult_update = ts_ult_update;
+        this.ts_exclusao = ts_exclusao;
+        this.listaPapel = listaPapel;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setTipoDivulgacao(PoliticaRecebimentoMensagens tipoDivulgacao) {
+        this.tipoDivulgacao = tipoDivulgacao;
+    }
 
     public PoliticaRecebimentoMensagens getTipoDivulgacao() {
         return tipoDivulgacao;
@@ -99,10 +125,7 @@ public class Usuario {
     }
 
     public List<Papel> getListaPapel() {
-        if (this.listaPapel == null) {
-            this.listaPapel = new ArrayList<Papel>();
-        }
-        return this.listaPapel;
+        return new ArrayList<>(this.listaPapel);
     }
 
     public void setListaPapel(List<Papel> listaPapel) {
@@ -156,12 +179,38 @@ public class Usuario {
 
 		str_cpf = str_cpf + dig11;
 
-		if (dig10 == cpf_completo.charAt(9) && dig11 == cpf_completo.charAt(10) && cpf_completo.equals(str_cpf)) {
+        return dig10 == cpf_completo.charAt(9) && dig11 == cpf_completo.charAt(10) && cpf_completo.equals(str_cpf);
 
-			return true;
+    }
 
-		}
+    public JSONObject toJSON(){
 
-		return false;
-	}
+        JSONObject usuarioAsJsonObj = new JSONObject();
+        DateFormat formatter = new SimpleDateFormat("dd/mm/yy");
+
+        usuarioAsJsonObj.put("idUsuario", getIdUsuario());
+        usuarioAsJsonObj.put("email", getMail());
+        usuarioAsJsonObj.put("senha", getSenha());
+        usuarioAsJsonObj.put("nome", getNome());
+        usuarioAsJsonObj.put("cpf", getSenha());
+        usuarioAsJsonObj.put("tipoDivulgacao", getTipoDivulgacao());
+        usuarioAsJsonObj.put("ts_cadastramento", formatter.format(getTs_cadastramento()));
+        usuarioAsJsonObj.put("ts_ult_update", formatter.format(getTs_ult_update()));
+        usuarioAsJsonObj.put("ts_exclusao", formatter.format(getTs_exclusao()));
+
+        return usuarioAsJsonObj;
+    }
+
+    public JSONObject getListaPapelAsJson() {
+
+        JSONObject listaUsuarioAsJsonObj = new JSONObject();
+
+        int index = 0;
+        for(Papel papel : this.listaPapel) {
+            listaUsuarioAsJsonObj.put(Integer.toString(index++), papel.toJSON());
+        }
+
+        return listaUsuarioAsJsonObj;
+    }
+
 }
