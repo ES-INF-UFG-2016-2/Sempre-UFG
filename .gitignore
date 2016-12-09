@@ -248,3 +248,4 @@ classes/
 src/web/vendor
 src/web/node_modules
 src/web/bower_components
+/bin/

@@ -49,8 +49,36 @@ public class LogConfig
 		this.itens = itens;
 	}
 
-	private void gerarArquivoLog()
+	private void gerarArquivoLog() throws IOException
     {
+		String line = null;
+		FileReader reader = new FileReader(arquivoLog);
+    	BufferedReader br = new BufferedReader( reader );
+    	StringBuilder fileContent = new StringBuilder();
+    	
+    	while( (line = br.readLine()) != null )
+    	{
+    		    		
+    		if(line.contains( "client_min_messages"))
+    		{
+    			System.out.println("Entrei aqui");
+    			line = "#client_min_messages = " + local.getNivelMensagemCliente()+ "		# values in order of decreasing detail:";
+    			
+    			//line = line.replaceFirst("\'(.*?)\'", local.get)
+    			fileContent.append( line + System.getProperty("line.separator") );
+    		}
+    		else {
+    			fileContent.append( line + System.getProperty("line.separator") );
+    			
+    			
+    		}
+    	}
+    	
+    	FileWriter fw = new FileWriter(arquivoLog);
+    	BufferedWriter out = new BufferedWriter( fw );
+    	out.write(fileContent.toString());
+    	out.close();
+		
     }
 
     public File getArquivoLog() {
@@ -73,26 +101,10 @@ public class LogConfig
 
     public int carregarConfigFile() throws IOException
     {
-		ArrayList<String> linhas = new ArrayList<String>();
-		String line = null;
-		
     	arquivoLog = new File("C:\\Program Files\\PostgreSQL\\9.6\\data\\postgresql.conf" );
-		FileReader reader = new FileReader(arquivoLog);
-    	BufferedReader br = new BufferedReader( reader );
     	
-    	while( (line = br.readLine()) != null )
-    	{
-    		if(line.contains( "Linha teste:"))
-    			line = line.replaceAll("Linha teste:", "Erivan");
-    		linhas.add( line + "\n");
-    	}
     	
-    	FileWriter fw = new FileWriter(arquivoLog);
-    	BufferedWriter out = new BufferedWriter( fw );
-    	out.write(linhas.toString());
-		
+    	gerarArquivoLog();
     	return 0;
     }
-
-
 }
