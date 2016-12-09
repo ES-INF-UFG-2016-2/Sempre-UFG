@@ -17,7 +17,7 @@ public class PapelDAO {
 
     private static final SessionFactory sessionFactory = HibernateSession.getSessionFactory();
 
-    public int salvar(String siglaPapel, String nomePapel, ArrayList<Usuario> usuarios, ArrayList<Recurso> recursos){
+    public int salvar(String siglaPapel, String nomePapel, List<Usuario> usuarios, List<Recurso> recursos){
 
         int papelID = 0;
         Transaction transact = null;
