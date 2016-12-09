@@ -1,5 +1,7 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 /**
@@ -45,5 +47,16 @@ public class Recurso {
 	public void setListaPapel(List<Papel> listaPapel) {
 		this.listaPapel = listaPapel;
 	}
+
+	public JSONObject toJSON(){
+
+	    JSONObject recursoAsJsonObj = new JSONObject();
+
+        recursoAsJsonObj.put("idRecurso", getIdRecurso());
+        recursoAsJsonObj.put("siglaRecurso", getSiglaRecurso());
+        recursoAsJsonObj.put("descricao", getDescricao());
+
+	    return recursoAsJsonObj;
+    }
 
 }
