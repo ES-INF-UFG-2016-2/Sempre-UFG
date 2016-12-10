@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,232 +20,533 @@ import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 
 public class PessoaEgresTest {
 
-    Connection con;
-    String sql;
+	Connection con;
+	String sql;
 
-    @Before
-    public void setUp() {
+	@Before
+	public void setUp() {
 
-        try {
+		try {
 
-            con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SempreUFG", "postgres", "postgres");
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SempreUFG", "postgres", "admin");
 
-        } catch (SQLException e) {
+		} catch (SQLException e) {
 
-            System.out.println("Conexão com o banco PostgreSQL não criada!");
-        }
-    }
+			System.out.println("Conexão com o banco PostgreSQL não criada!");
+		}
+	}
 
-    @Test
-    public void testInsereLocalizacaoGeograficaComCamposOpcionais() {
+	@Test
+	public void testInserirLocalizacaoGeograficaComCamposOpcionais() {
 
-        String cidade = "Catalão";
-        String unidade_federativa = "GO";
-        String pais = "Brasil";
-        String sigla = "GO";
-        float latitude = 321343004;
-        float longitude = 03520220043;
+		String cidade = "Catalão";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
+		float latitude = 321343004;
+		float longitude = 03520220043;
 
-        boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, latitude, longitude);
-        assertTrue(inseriu);
-    }
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, latitude, longitude);
+		assertTrue(inseriu);
+	}
 
-    @Test
-    public void testInsereLocalizacaoGeograficaSemCamposOpcionais() {
+	@Test
+	public void testInserirLocalizacaoGeograficaSemCamposOpcionais() {
 
-        String cidade = "Jataí";
-        String unidade_federativa = "GO";
-        String pais = "Brasil";
-        String sigla = "GO";
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-        boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
-        assertTrue(inseriu);
-    }
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+		assertTrue(inseriu);
+	}
 
-    @Test
-    public void testInsereLocalizacaoGeograficaComIdentificadorLocalizacaoDuplicado() {
+	@Test
+	public void testInserirLocalizacaoGeograficaSemCidade() {
 
-        int id = 1;
-        String cidade = "Inhumas";
-        String unidade_federativa = "GO";
-        String pais = "Brasil";
-        String sigla = "GO";
-        float longitude = 03571043;
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-        boolean inseriu = inserirLocalizacaoGeografica(id, cidade, unidade_federativa, pais, sigla, 0, longitude);
-        assertFalse(inseriu);
-    }
+		boolean inseriu = inserirLocalizacaoGeografica(null, unidade_federativa, pais, sigla, 0, 0);
+		assertFalse(inseriu);
+	}
 
-    @Test
-    public void testInserirEgresso() {
+	@Test
+	public void testInserirLocalizacaoGeograficaSemUnidadeFederativa() {
 
-        int id_localizacao = 1;
-        String cidade = "Jataí";
-        String unidade_federativa = "GO";
-        String pais = "Brasil";
-        String sigla = "GO";
+		String cidade = "Jataí";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-        this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, null, pais, sigla, 0, 0);
+		assertFalse(inseriu);
+	}
 
-        String nome = "Nome teste";
-        String nome_mae = "Nome Mae Teste";
-        Date data_nascimento = new Date(new java.util.Date().getTime());
-        byte[] foto_principal = "1".getBytes();
-        byte[] foto_adicionais = "1".getBytes();
-        VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
-        Sexo sexo = Sexo.MASCULINO;
-        int naturalidade = 1;
+	@Test
+	public void testInserirLocalizacaoGeograficaSemPais() {
 
-        boolean inseriu = inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, foto_principal, foto_adicionais, visibilidade, sexo,
-                naturalidade);
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String sigla = "GO";
 
-        assertTrue(inseriu);
-    }
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, null, sigla, 0, 0);
+		assertFalse(inseriu);
+	}
 
-    @Test
-    public void testInserirResidencia() {
+	@Test
+	public void testInserirLocalizacaoGeograficaSemSigla() {
 
-        int id_localizacao = 1;
-        String cidade = "Jataí";
-        String unidade_federativa = "GO";
-        String pais = "Brasil";
-        String sigla = "GO";
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
 
-        this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, null, 0, 0);
+		assertFalse(inseriu);
+	}
 
-        String nome = "Nome teste";
-        String nome_mae = "Nome Mae Teste";
-        Date data_nascimento = new Date(new java.util.Date().getTime());
-        byte[] foto_principal = "teste".getBytes();
-        byte[] foto_adicionais = "teste".getBytes();
-        VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
-        Sexo sexo = Sexo.MASCULINO;
-        int naturalidade = 1;
+	@Test
+	public void testInserirLocalizacaoGeograficaComTodosOsCamposNulos() {
 
-        this.inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, foto_principal, foto_adicionais, visibilidade, sexo, naturalidade);
+		boolean inseriu = inserirLocalizacaoGeografica(null, null, null, null, 0, 0);
+		assertFalse(inseriu);
+	}
 
-        final int id_egresso = 1;
-        final String endereco = "Rua 10";
-        final Date data_inicio = new Date(new java.util.Date().getTime());
-        final Date data_fim = new Date(new java.util.Date().getTime());
+	@Test
+	// testar string cidade com mais de 150 caracteres
+	public void testInserirLocalizacaoGeograficaComCidadeOverflow() {
 
-        boolean inseriu = this.inserirResidencia(id_egresso, endereco, data_inicio, data_fim, naturalidade);
-        assertTrue(inseriu);
-    }
+		String cidade = "ASDFGHJKLÇASDFGHJKLÇDGFSDFASDFASFHADFHASFHAFSGSDFASDFASHDFHGDJDGJDGSJSFGDHAFGADSFFGASDFGDFHGDJGSJSDGFAGADSGASDFGFADHGDJDGSAGASDGAFSGHJHGASDGASGASGSGSAGSAGASDGSDAGSGSDGASSDGGSGSGSAG";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-    private boolean inserirLocalizacaoGeografica(String cidade, String unidade_federativa, String pais, String sigla, float latitude,
-            float longitude) {
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+		assertFalse(inseriu);
+	}
 
-        boolean resultado = true;
+	@Test
+	// testar string unidade_federativa com mais de 150 caracteres
+	public void testInserirLocalizacaoGeograficaComUnidadeFederativaOverflow() {
 
-        sql = "INSERT INTO localizacao_geografica(nome_cidade, nome_unidade_federativa, nome_pais, sigla, latitude,longitude)"
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+		String cidade = "Goiania";
+		String unidade_federativa = "ASDFGHJKLÇASDFGHJKLÇDGFSDFASDFASFHADFHASFHAFSGSDFASDFASHDFHGDJDGJDGSJSFGDHAFGADSFFGASDFGDFHGDJGSJSDGFAGADSGASDFGFADHGDJDGSAGASDGAFSGHJHGASDGASGASGSGSAGSAGASDGSDAGSGSDGASSDGGSGSGSAG";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-        try {
-            PreparedStatement stmt = this.con.prepareStatement(sql);
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+		assertFalse(inseriu);
+	}
 
-            stmt.setString(1, cidade);
-            stmt.setString(2, unidade_federativa);
-            stmt.setString(3, pais);
-            stmt.setString(4, sigla);
-            stmt.setFloat(5, latitude);
-            stmt.setFloat(6, longitude);
-            stmt.execute();
-            stmt.close();
+	@Test
+	// testar string país com mais de 150 caracteres
+	public void testInserirLocalizacaoGeograficaComPaisOverflow() {
 
-        } catch (SQLException e) {
-            Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+		String cidade = "Goiania";
+		String unidade_federativa = "Goias";
+		String pais = "ASDFGHJKLÇASDFGHJKLÇDGFSDFASDFASFHADFHASFHAFSGSDFASDFASHDFHGDJDGJDGSJSFGDHAFGADSFFGASDFGDFHGDJGSJSDGFAGADSGASDFGFADHGDJDGSAGASDGAFSGHJHGASDGASGASGSGSAGSAGASDGSDAGSGSDGASSDGGSGSGSAG";
+		String sigla = "GO";
 
-            resultado = false;
-        }
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+		assertFalse(inseriu);
+	}
 
-        return resultado;
-    }
+	@Test
+	// testar string sigla com mais de 2 caracteres
+	public void testInserirLocalizacaoGeograficaComSiglaOverflow() {
 
-    private boolean inserirLocalizacaoGeografica(int id, String cidade, String unidade_federativa, String pais, String sigla, float latitude,
-            float longitude) {
+		String cidade = "Goiania";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GOIANIA";
 
-        boolean resultado = true;
+		boolean inseriu = inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+		assertFalse(inseriu);
+	}
 
-        sql = "INSERT INTO localizacao_geografica(nome_cidade, nome_unidade_federativa, nome_pais, sigla, latitude,longitude, id)"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+	@Test
+	public void testInserirLocalizacaoGeograficaComIdentificadorLocalizacaoDuplicado() {
 
-        try {
-            PreparedStatement stmt = this.con.prepareStatement(sql);
+		int id = 1;
+		String cidade = "Inhumas";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
+		float longitude = 03571043;
 
-            stmt.setString(1, cidade);
-            stmt.setString(2, unidade_federativa);
-            stmt.setString(3, pais);
-            stmt.setString(4, sigla);
-            stmt.setFloat(5, latitude);
-            stmt.setFloat(6, longitude);
-            stmt.setInt(7, id);
-            stmt.execute();
-            stmt.close();
+		boolean inseriu = inserirLocalizacaoGeografica(id, cidade, unidade_federativa, pais, sigla, 0, longitude);
+		assertFalse(inseriu);
+	}
 
-        } catch (SQLException e) {
-            Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+	@Test
+	public void testInserirEgresso() {
 
-            resultado = false;
-        }
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-        return resultado;
-    }
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
 
-    private boolean inserirEgresso(int id, String nome, String nome_mae, Date data_nascimento, byte[] foto_principal, byte[] foto_adicionais,
-            VisibilidadeDados visibilidade, Sexo sexo, int naturalidade) {
+		String nome = "Nome teste";
+		String nome_mae = "Nome Mae Teste";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_principal = "1".getBytes();
+		byte[] foto_adicionais = "1".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PUBLICO;
+		Sexo sexo = Sexo.MASCULINO;
 
-        boolean resultado = true;
+		boolean inseriu = inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, foto_principal,
+				foto_adicionais, visibilidade, sexo);
 
-        sql = "INSERT INTO egresso(nome, nome_mae, data_nascimento, foto_principal,  visibilidade, sexo, naturalidade)"
-                + "VALUES (?, ?, ?, ?, CAST(? AS visibilidade), CAST(? AS sexo), ?)";
+		assertTrue(inseriu);
+	}
 
-        try {
-            PreparedStatement stmt = this.con.prepareStatement(sql);
+	@Test
+	public void testInserirEgressoSemFotoPrincipal() {
 
-            stmt.setString(1, nome);
-            stmt.setString(2, nome_mae);
-            stmt.setDate(3, data_nascimento);
-            stmt.setBytes(4, foto_principal);
-            stmt.setString(5, visibilidade.toString().toLowerCase());
-            stmt.setString(6, sexo.toString().toLowerCase());
-            stmt.setInt(7, naturalidade);
-            stmt.execute();
-            stmt.close();
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-        } catch (SQLException e) {
-            Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
 
-            resultado = false;
-        }
+		String nome = "Nome teste";
+		String nome_mae = "Nome Mae Teste";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_adicionais = "1".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
+		Sexo sexo = Sexo.MASCULINO;
 
-        return resultado;
-    }
+		boolean inseriu = inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, null, foto_adicionais,
+				visibilidade, sexo);
 
-    private boolean inserirResidencia(int id_egresso, String endereco, Date data_inicio, Date data_fim, int naturalidade) {
+		assertTrue(inseriu);
+	}
 
-        boolean resultado = true;
+	@Test
+	public void testInserirEgressoSemFotoAdicional() {
 
-        sql = "INSERT INTO residencia(data_inicio, data_fim, endereco, id_egresso, naturalidade) VALUES (?, ?, ?, ?, ?)";
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
 
-        try {
-            PreparedStatement stmt = this.con.prepareStatement(sql);
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
 
-            stmt.setDate(1, data_inicio);
-            stmt.setDate(2, data_fim);
-            stmt.setString(3, endereco);
-            stmt.setInt(4, id_egresso);
-            stmt.setInt(5, naturalidade);
-            stmt.execute();
-            stmt.close();
-            stmt.executeQuery();
+		String nome = "Nome teste";
+		String nome_mae = "Nome Mae Teste";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_principal = "1".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
+		Sexo sexo = Sexo.MASCULINO;
 
-        } catch (SQLException e) {
-            Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+		boolean inseriu = inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, foto_principal, null,
+				visibilidade, sexo);
 
-            resultado = false;
-        }
+		assertTrue(inseriu);
+	}
 
-        return resultado;
-    }
+	@Test
+	public void testInserirEgressoSemSexo() {
+
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
+
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+
+		String nome = "Nome teste";
+		String nome_mae = "Nome Mae Teste";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_principal = "1".getBytes();
+		byte[] foto_adicionais = "1".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
+
+		boolean inseriu = inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, foto_principal,
+				foto_adicionais, visibilidade, null);
+
+		assertTrue(inseriu);
+	}
+
+	@Test
+	public void testInserirEgressoSemNome() {
+
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
+
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+
+		String nome_mae = "Nome Mae Teste";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_principal = "1".getBytes();
+		byte[] foto_adicionais = "1".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
+		Sexo sexo = Sexo.MASCULINO;
+
+		boolean inseriu = inserirEgresso(id_localizacao, null, nome_mae, data_nascimento, foto_principal,
+				foto_adicionais, visibilidade, sexo);
+
+		assertFalse(inseriu);
+	}
+
+	@Test
+	public void testInserirEgressoSemNomeMae() {
+
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
+
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+
+		String nome = "Murilo";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_principal = "1".getBytes();
+		byte[] foto_adicionais = "1".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
+		Sexo sexo = Sexo.MASCULINO;
+
+		boolean inseriu = inserirEgresso(id_localizacao, nome, null, data_nascimento, foto_principal, foto_adicionais,
+				visibilidade, sexo);
+
+		assertFalse(inseriu);
+	}
+
+	@Test
+	public void testInserirEgressoSemDataNascimento() {
+
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
+
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+
+		String nome = "Nome Teste";
+		String nome_mae = "Nome Mae Teste";
+		byte[] foto_principal = "1".getBytes();
+		byte[] foto_adicionais = "1".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
+		Sexo sexo = Sexo.MASCULINO;
+
+		boolean inseriu = inserirEgresso(id_localizacao, nome, nome_mae, null, foto_principal, foto_adicionais,
+				visibilidade, sexo);
+
+		assertFalse(inseriu);
+	}
+
+	@Test
+	public void testInserirEgressoSemVisibilidade() {
+
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "Goias";
+		String pais = "Brasil";
+		String sigla = "GO";
+
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+
+		String nome = "Nome Teste";
+		String nome_mae = "Nome Mae Teste";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_principal = "1".getBytes();
+		byte[] foto_adicionais = "1".getBytes();
+		Sexo sexo = Sexo.MASCULINO;
+
+		boolean inseriu = inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, foto_principal,
+				foto_adicionais, null, sexo);
+
+		assertFalse(inseriu);
+	}
+
+	@Test
+	public void testInserirResidencia() {
+
+		int id_localizacao = 1;
+		String cidade = "Jataí";
+		String unidade_federativa = "GO";
+		String pais = "Brasil";
+		String sigla = "GO";
+
+		this.inserirLocalizacaoGeografica(cidade, unidade_federativa, pais, sigla, 0, 0);
+
+		String nome = "Nome teste";
+		String nome_mae = "Nome Mae Teste";
+		Date data_nascimento = new Date(new java.util.Date().getTime());
+		byte[] foto_principal = "teste".getBytes();
+		byte[] foto_adicionais = "teste".getBytes();
+		VisibilidadeDados visibilidade = VisibilidadeDados.PRIVADO;
+		Sexo sexo = Sexo.MASCULINO;
+
+		this.inserirEgresso(id_localizacao, nome, nome_mae, data_nascimento, foto_principal, foto_adicionais,
+				visibilidade, sexo);
+
+		final String endereco = "Rua 10";
+		final Date data_inicio = new Date(new java.util.Date().getTime());
+		final Date data_fim = new Date(new java.util.Date().getTime());
+
+		boolean inseriu = this.inserirResidencia(this.obterIdUltimoEgressoInserido(), endereco, data_inicio, data_fim,
+				id_localizacao);
+		assertTrue(inseriu);
+	}
+
+	private boolean inserirLocalizacaoGeografica(String cidade, String unidade_federativa, String pais, String sigla,
+			float latitude, float longitude) {
+
+		boolean resultado = true;
+
+		sql = "INSERT INTO localizacao_geografica(nome_cidade, nome_unidade_federativa, nome_pais, sigla, latitude, longitude)"
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
+
+		try {
+			PreparedStatement stmt = this.con.prepareStatement(sql);
+
+			stmt.setString(1, cidade);
+			stmt.setString(2, unidade_federativa);
+			stmt.setString(3, pais);
+			stmt.setString(4, sigla);
+			stmt.setFloat(5, latitude);
+			stmt.setFloat(6, longitude);
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+
+			resultado = false;
+		}
+
+		return resultado;
+	}
+
+	private boolean inserirLocalizacaoGeografica(int id, String cidade, String unidade_federativa, String pais,
+			String sigla, float latitude, float longitude) {
+
+		boolean resultado = true;
+
+		sql = "INSERT INTO localizacao_geografica(nome_cidade, nome_unidade_federativa, nome_pais, sigla, latitude,longitude, id)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+		try {
+			PreparedStatement stmt = this.con.prepareStatement(sql);
+
+			stmt.setString(1, cidade);
+			stmt.setString(2, unidade_federativa);
+			stmt.setString(3, pais);
+			stmt.setString(4, sigla);
+			stmt.setFloat(5, latitude);
+			stmt.setFloat(6, longitude);
+			stmt.setInt(7, id);
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+
+			resultado = false;
+		}
+
+		return resultado;
+	}
+
+	private boolean inserirEgresso(int id, String nome, String nome_mae, Date data_nascimento, byte[] foto_principal,
+			byte[] foto_adicionais, VisibilidadeDados visibilidade, Sexo sexo) {
+
+		boolean resultado = true;
+
+		sql = "INSERT INTO egresso(nome, nome_mae, data_nascimento, foto_principal,  visibilidade, sexo)"
+				+ "VALUES (?, ?, ?, ?, CAST(? AS visibilidade), CAST(? AS sexo))";
+
+		try {
+			PreparedStatement stmt = this.con.prepareStatement(sql);
+
+			stmt.setString(1, nome);
+			stmt.setString(2, nome_mae);
+			stmt.setDate(3, data_nascimento);
+			stmt.setBytes(4, foto_principal);
+			if (visibilidade != null) {
+				stmt.setString(5, visibilidade.getNome());
+			} else {
+				stmt.setString(5, null);
+			}
+			if (sexo != null) {
+				stmt.setString(6, sexo.toString().toLowerCase());
+			} else {
+				stmt.setString(6, null);
+			}
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+
+			resultado = false;
+		}
+
+		return resultado;
+	}
+
+	private int obterIdUltimoEgressoInserido() {
+
+		int resultado = 0;
+
+		sql = "SELECT id FROM egresso ORDER BY id DESC LIMIT 1";
+
+		try {
+			PreparedStatement stmt = this.con.prepareStatement(sql);
+
+			final ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				resultado = rs.getInt(1);
+			}
+
+			stmt.close();
+
+		} catch (SQLException e) {
+			Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+		}
+
+		return resultado;
+	}
+
+	private boolean inserirResidencia(int id_egresso, String endereco, Date data_inicio, Date data_fim,
+			int localizacao_geografica_id) {
+
+		boolean resultado = true;
+
+		sql = "INSERT INTO residencia(data_inicio, data_fim, endereco, egresso_id, localizacao_geografica_id) VALUES (?, ?, ?, ?, ?)";
+
+		try {
+			PreparedStatement stmt = this.con.prepareStatement(sql);
+
+			stmt.setDate(1, data_inicio);
+			stmt.setDate(2, data_fim);
+			stmt.setString(3, endereco);
+			stmt.setInt(4, id_egresso);
+			stmt.setInt(5, localizacao_geografica_id);
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			Logger.getLogger(PessoaEgresTest.class.getName()).log(Level.SEVERE, null, e);
+
+			resultado = false;
+		}
+
+		return resultado;
+	}
 }
