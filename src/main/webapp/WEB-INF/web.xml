@@ -2,12 +2,22 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
+	<!-- Servlets para importação egresso -->
 	<servlet>
-		<servlet-name>ImportEgresPeriodServlet</servlet-name>
-		<servlet-class>br.ufg.inf.sempreufg.servlet.ImportEgresPeriodServlet</servlet-class>
+		<servlet-name>ResultadoImportacaoEgressoServlet</servlet-name>
+		<servlet-class>br.ufg.inf.sempreufg.servlet.ResultadoImportacaoEgressoServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ImportEgresPeriodServlet</servlet-name>
+		<servlet-name>ResultadoImportacaoEgressoServlet</servlet-name>
 		<url-pattern>/pages/import_egres_period/resultado_importacao</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ImportacaoEgressoServlet</servlet-name>
+		<servlet-class>br.ufg.inf.sempreufg.servlet.ImportacaoEgressoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImportacaoEgressoServlet</servlet-name>
+		<url-pattern>/pages/import_egres_period/importar_egressos</url-pattern>
+	</servlet-mapping>
+	<!-- Fim Servlets impotração egresso -->
 </web-app>

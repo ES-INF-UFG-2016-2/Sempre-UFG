@@ -38,7 +38,7 @@ public class CursoUFGDAO implements CursoUFGDAOInterface<CursoUFG>{
 
     @Override
     public List<CursoUFG> getAll() {
-        return null;
+        return this.criarListaCursoUfgMock();
     }
 
 	@Override
@@ -78,6 +78,7 @@ public class CursoUFGDAO implements CursoUFGDAOInterface<CursoUFG>{
 											   true,
 											   Turnos.INTEGRAL,
 											   new AreaDeConhecimento("AreaConhecimento", 10));
+			cursoUFG.setNome("Nome " + i);
 			cursos.add(cursoUFG);
 		}
 

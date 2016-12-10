@@ -39,26 +39,26 @@
 												<div class="col-lg-12">
 													<h4>Estatísticas de importação</h4>
 													<div class="form-group">
-														<label for="actuation">Total de egressos exportados pelo CERCOMP:</label>
-														<output id="periodoInicial" style="width: 15%; display: initial !important;"> 80 </output>
+														<label for="totalExpoCercomp">Total de egressos exportados pelo CERCOMP:</label>
+														<output id="totalExpoCercomp" style="width: 15%; display: initial !important;">${totalExportadoCercomp}</output>
 													</div>
 													<div class="form-group">
-														<label for="actuation">Total de egressos importados com sucesso:</label>
-														<output id="periodoInicial" style="width: 15%; display: initial !important;"> 80 </output>
+														<label for="totalImportadoSucesso">Total de egressos importados com sucesso:</label>
+														<output id="totalImportadoSucesso" style="width: 15%; display: initial !important;">${totalImportadoSucesso}</output>
 													</div>
 													<div class="form-group">
-														<label for="actuation">Total de egressos não importados devido a erros:</label>
-														<output id="periodoInicial" style="width: 15%; display: initial !important;"> 80 </output>
+														<label for="totalNaoImportadoErro">Total de egressos não importados devido a erros:</label>
+														<output id="totalNaoImportadoErro" style="width: 15%; display: initial !important;">${totalNaoImportadoErro}</output>
 													</div>
 													<div class="form-group">
-														<label for="actuation">Total de egressos não importados devido a replicação:</label>
-														<output id="periodoInicial" style="width: 15%; display: initial !important;"> 80 </output>
+														<label for="totalNaoImportadoReplicacao">Total de egressos não importados devido a replicação:</label>
+														<output id="totalNaoImportadoReplicacao" style="width: 15%; display: initial !important;">${totalNaoImportadoReplicacao}</output>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-lg-12">
-													<div class="panel panel-default">
+													<div id="panel" class="panel panel-default">
 														<!-- Default panel contents -->
 														<div class="panel-heading">Lista de egressos exportados pelo CERCOMP</div>
 														<div class="panel-body">
@@ -108,7 +108,7 @@
 																<%--For displaying Page numbers.--%>
 																<ul class="pagination">
 																	<c:forEach begin="1" end="${noOfPages}" var="i">
-																		<li><a href="/SempreUFG/pages/import_egres_period/resultado_importacao?page=${i}">${i}</a></li>
+																		<li><a href="/SempreUFG/pages/import_egres_period/resultado_importacao?page=${i}#panel">${i}</a></li>
 																	</c:forEach>
 																</ul>
 															</div>
