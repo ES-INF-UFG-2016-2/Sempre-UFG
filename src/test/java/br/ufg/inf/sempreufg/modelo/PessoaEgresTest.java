@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +14,7 @@ import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.ufg.inf.sempreufg.db.ConexaoBanco;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 
@@ -26,14 +26,8 @@ public class PessoaEgresTest {
 	@Before
 	public void setUp() {
 
-		try {
+		con = ConexaoBanco.getConnection();
 
-			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/SempreUFG", "postgres", "admin");
-
-		} catch (SQLException e) {
-
-			System.out.println("Conexão com o banco PostgreSQL não criada!");
-		}
 	}
 
 	@Test
