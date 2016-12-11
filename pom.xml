@@ -94,6 +94,12 @@
             <version>1.7.21</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+
         <!-- Dependencias responsaveis pelo temporizador de backup do banco -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
