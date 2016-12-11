@@ -1,6 +1,6 @@
 <!-- <%@ page import="java.util.List"%> -->
 <!DOCTYPE html>
-<!-- <% List eList = (List)session.getAttribute("empList");%> -->
+<!-- <% List eventos = (List)session.getAttribute("evento"); %> -->
 
 <html>
 
@@ -9,6 +9,8 @@
     <title>Solicitação de Divulgação de Evento</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="avalSolicDivulgEvent.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -36,20 +38,54 @@
                     </th>
                 </thead>
                 <tbody>
-                    <!-- <c:forEach var="evento" items="${elist}"> -->
-                    <tr>
-                        <td class="tdlist">
-                            <div class="tituloEvento">
-                                <c:out value="{evento.name}" />
-                            </div>
-                        </td>
-                        <td class="tdlistButton">
-                            <button class="btn btn-primary" type="button" name="button">Visualizar</button>
-                        </td>
-                    </tr>
-                    <!-- </c:forEach> -->
+                    <form class="listForm" action="descricaoEvento." method="post">
+                        <!-- <c:forEach var="evento" items="${dao.eventos}" varStatus="id"> -->
+                        <tr>
+                            <td class="tdlist">
+                                <div class="tituloEvento">
+                                    <p>Seminario de Fulano teste</p>
+                                    <c:out value="{evento.assunto}" />
+                                    <input type="hidden" name="contador" value="${id.count}">
+                                </div>
+                            </td>
+                            <td class="tdlistButton">
+                                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" name="abreEvento" value="Visualizar">
+                            </td>
+                        </tr>
+                        <!-- </c:forEach> -->
+                    </form>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- modal -->
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detalhamento da solicitação</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Assunto: </p>
+                    <hr>
+                    <p>Tipo: </p>
+                    <hr>
+                    <p>Descrição: </p>
+                    <hr>
+                    <p>Data Solicitação: </p>
+                    <hr>
+                    <p>Data Expirar: </p>
+                    <hr>
+                    <p>ID do solicitante: </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Negar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceitar</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
