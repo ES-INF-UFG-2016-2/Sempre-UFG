@@ -11,13 +11,22 @@
 }
 
 .thlist {
+    position: relative;
     padding-bottom: 2em;
     font-size: 18;
+    right: 150%
 }
 
 .tdlist {
+    position: relative;
     font-size: 18;
     padding-top: 0.45em;
+    right: 150%
+}
+
+.tdlistButton {
+    position: relative;
+    right: 50%
 }
 
 .tituloEvento {
@@ -51,7 +60,7 @@
 }
 
 #tablelist {
-    width: 50%;
+    width: 30%;
     float: right;
     margin-top: 3.125em;
     float: right;

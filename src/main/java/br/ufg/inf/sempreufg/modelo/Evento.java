@@ -1,4 +1,4 @@
-package br.ufg.inf.sempreufg.modelo;
+
 
 import java.util.Date;
 

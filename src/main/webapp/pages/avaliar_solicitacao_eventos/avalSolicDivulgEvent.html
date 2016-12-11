@@ -45,11 +45,29 @@
                                 <div class="tituloEvento">
                                     <p>Seminario de Fulano teste</p>
                                     <c:out value="{evento.assunto}" />
+                                    <input type="hidden" id="assunto" name="contador" value="${evento.assunto}">
+                                    <input type="hidden" id="descricao" name="contador" value="${evento.des_evento}">
+                                    <input type="hidden" id="solicitacao" name="contador" value="${evento.data-solicitacao}">
+                                    <input type="hidden" id="expiracao" name="contador" value="${evento.data_expiracao}">
+                                    <input type="hidden" id="idSolicitante" name="contador" value="${evento.id_solicitante}">
                                     <input type="hidden" name="contador" value="${id.count}">
                                 </div>
                             </td>
                             <td class="tdlistButton">
-                                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" name="abreEvento" value="Visualizar">
+                                <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventoModal" name="abreEvento" value="Visualizar">
+                            </td>
+                        </tr>
+                        <!-- este próximo <tr> é destinado a testes. TODO: retirar caso entre em produção -->
+                        <tr>
+                            <td class="tdlist">
+                                <div class="tituloEvento">
+                                    <p>Seminario de Ciclano teste</p>
+                                    <c:out value="{evento.assunto}" />
+                                    <input type="hidden" name="contador" value="${id.count}">
+                                </div>
+                            </td>
+                            <td class="tdlistButton">
+                                <input type="button" class="btn btn-primary" data-toggle="modal" onclick="setaDadosModal(${id.count})" data-target="#eventoModal" name="abreEvento" value="Visualizar">
                             </td>
                         </tr>
                         <!-- </c:forEach> -->
@@ -59,9 +77,9 @@
         </div>
     </div>
 
-    <!-- modal -->
+    <!-- modal Main -->
 
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="eventoModal" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -69,17 +87,23 @@
                     <h4 class="modal-title">Detalhamento da solicitação</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Assunto: </p>
+                    <label for="recipient-name" class="control-label" id="assunto">Assunto:</label>
+                    <p id="assuntoModal"></p>
                     <hr>
-                    <p>Tipo: </p>
+                    <label for="recipient-name" class="control-label" id="tipo">Tipo:</label>
+                    <p id="tipoModal"></p>
                     <hr>
-                    <p>Descrição: </p>
+                    <label for="recipient-name" class="control-label" id="descricao">Descrição:</label>
+                    <p id="descricaoModal"></p>
                     <hr>
-                    <p>Data Solicitação: </p>
+                    <label for="recipient-name" class="control-label" id="solicitacao">Data Solicitação:</label>
+                    <p id="solicitacaoModal"></p>
                     <hr>
-                    <p>Data Expirar: </p>
+                    <label for="recipient-name" class="control-label" id="expirar">Data Expirar:</label>
+                    <p id="expirarModal"></p>
                     <hr>
-                    <p>ID do solicitante: </p>
+                    <label for="recipient-name" class="control-label" id="id">ID solicitante:</label>
+                    <p id="idModal"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Negar</button>
@@ -90,4 +114,19 @@
     </div>
 </body>
 
+<!-- Modal Close-->
+
+<script type="text/javascript">
+    var assunto = document.getElementById('assunto');
+    var descricaoJS = document.getElementById('descricao')
+    var solicitacaoJS = document.getElementById('solicitacao')
+    var expiracao = document.getElementById('expiracao')
+    var id = document.getElementById('idSolicitante')
+
+    document.getElementById("assuntoModal").innerHTML = assunto;
+    document.getElementById("descricaoModal").innerHTML = descricaoJS;
+    document.getElementById("solicitacaoModal").innerHTML = solicitacaoJS;
+    document.getElementById("expiracaoModal").innerHTML = expiracao;
+    document.getElementById("idModal").innerHTML = id;
+</script>
 </html>
