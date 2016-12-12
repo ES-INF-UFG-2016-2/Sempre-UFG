@@ -3,7 +3,6 @@ package br.ufg.inf.sempreufg.servico;
 import br.ufg.inf.sempreufg.excecoes.IdentificadorInexistenteExepction;
 import br.ufg.inf.sempreufg.excecoes.ParametrosErradosException;
 import br.ufg.inf.sempreufg.modelo.Consulta;
-import br.ufg.inf.sempreufg.stubs.ConsultaServiceStub;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
