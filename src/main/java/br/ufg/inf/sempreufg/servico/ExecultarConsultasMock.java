@@ -8,6 +8,7 @@ import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 
 public class ExecultarConsultasMock {
 	public List<Egresso> criarListaEgresso(){
@@ -29,7 +30,8 @@ public class ExecultarConsultasMock {
 									  null,
 									  null,
 									  visibilidadeDados,
-									  criarListaHistoricoUfg());
+									  criarListaHistoricoUfg(),
+                                                                          new LocalizacaoGeografica());
 		return egresso;
 	}
 
