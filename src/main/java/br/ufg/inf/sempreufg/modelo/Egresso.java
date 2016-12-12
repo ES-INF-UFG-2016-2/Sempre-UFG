@@ -3,15 +3,20 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by user1 on 09/10/2016.
- */
+@Entity
+@Table(name="egresso")
 public class Egresso extends Usuario {
 
-    private int id_Egresso;
+    @Id
+    @GeneratedValue private int id_Egresso;
+
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
