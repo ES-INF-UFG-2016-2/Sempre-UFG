@@ -37,14 +37,15 @@ public class AuxiliaInsercao {
 
 	}
 
-	public boolean insereEnsinoMedio(Connection connection, String sql, String nome, TipoInstituicao instituicao) {
+	public boolean insereEnsinoMedio(Connection connection, String sql, int id, String nome, TipoInstituicao instituicao) {
 
 		try {
 
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
-			stmt.setString(1, nome);
-			stmt.setString(2, instituicao.toString());
+			stmt.setInt(1, id);
+			stmt.setString(2, nome);
+			stmt.setString(3, instituicao.toString());
 
 			stmt.execute();
 			stmt.close();
@@ -78,17 +79,19 @@ public class AuxiliaInsercao {
 		}
 	}
 
-	public boolean insereHistoricoEnsinoMedio(Connection connection, String sql, int mesInicio, int mesFim,
+	public boolean insereHistoricoEnsinoMedio(Connection connection, String sql, int idegresso, int idensinomedio, int mesInicio, int mesFim,
 			int anoInicio, int anoFim) {
 
 		try {
 
 			PreparedStatement stmt = connection.prepareStatement(sql);
 
-			stmt.setInt(1, mesInicio);
-			stmt.setInt(2, anoInicio);
-			stmt.setInt(3, mesFim);
-			stmt.setInt(4, anoFim);
+			stmt.setInt(1, idegresso);
+			stmt.setInt(2, idensinomedio);
+			stmt.setInt(3, mesInicio);
+			stmt.setInt(4, anoInicio);
+			stmt.setInt(5, mesFim);
+			stmt.setInt(6, anoFim);
 
 			stmt.execute();
 			stmt.close();

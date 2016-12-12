@@ -49,7 +49,7 @@ public class EnsMedioEgresTest {
 		Date dateformat;
 		String sql = "insert into egresso"
 				+ " (nome, nome_mae, data_nascimento, foto_principal, foto_adicionais, visibilidade, sexo)"
-				+ " values (?,?,?,?,?,?,?,?)";
+				+ " values (?,?,?,?,?,?,?)";
 
 		try {
 			String data_nascimento = "12/05/1972";
@@ -78,9 +78,10 @@ public class EnsMedioEgresTest {
 	@Test
 	public void testeInserirDadosIdeaisEnsinoMedio() {
 
-		String sql = "insert into ensmedioegres" + " (nome_iem, tipo_iem)" + " values (?,?)";
+		String sql = "insert into ensmedioegres" + " (id_localizacao, nome_inst_ensino_medio, tipo_inst_ensino_medio)"
+				+ " values (?,?,?)";
 
-		boolean inseriu = auxiliar.insereEnsinoMedio(connection, sql, "Colegio Omega", TipoInstituicao.Particular);
+		boolean inseriu = auxiliar.insereEnsinoMedio(connection, sql, 1, "Colegio Omega", TipoInstituicao.Particular);
 
 		assertTrue("Dados Ensino Medio Inserido com sucesso", inseriu);
 	}
@@ -89,7 +90,7 @@ public class EnsMedioEgresTest {
 	public void testeInserirDadosIdeaisLocalizacaoGeografica() {
 
 		String sql = "insert into localizgeograf"
-				+ "(cidade, unid_federativa, pais, sigla_unid_federativa, latitude, longitude)"
+				+ "(nome_cidade, nome_unidade_federativa, nome_pais, sigla, latitude, longitude)"
 				+ "values (?,?,?,?,?,?)";
 
 		LocalizacaoGeografica localizacao = new LocalizacaoGeografica();
@@ -105,16 +106,16 @@ public class EnsMedioEgresTest {
 
 		assertTrue("Dados de Localização Geografica Inserido com sucesso", inseriu);
 	}
-	
+
 	@Test
-	public void testeInserirDadosHistoricoEnsinoMedio(){
-		
+	public void testeInserirDadosHistoricoEnsinoMedio() {
+
 		String sql = "insert into histensmedio"
-				+ "(mes_inicio, ano_inicio, mes_fim, ano_fim)"
-				+ "values (?,?,?,?)";
-		
-		boolean inseriu = auxiliar.insereHistoricoEnsinoMedio(connection, sql, 03, 10, 04, 13);
-		
+				+ "(id_egresso, id_inst_ensino_medio, mes_inicio, ano_inicio, mes_fim, ano_fim)"
+				+ "values (?,?,?,?,?,?)";
+
+		boolean inseriu = auxiliar.insereHistoricoEnsinoMedio(connection, sql, 1, 1, 03, 10, 04, 13);
+
 		assertTrue("Dados de historico do ensino medio inserido com sucesso", inseriu);
 	}
 }
