@@ -1,4 +1,4 @@
-package br.ufg.inf.sempreufg.db;
+package br.ufg.inf.db;
 
 import static org.junit.Assert.*;
 
@@ -12,13 +12,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.ufg.inf.db.auxiliar.AuxiliaInsercao;
 import br.ufg.inf.sempreufg.enums.*;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 import br.ufg.inf.excecoes.DadosBDInvalidosException;
 import br.ufg.inf.excecoes.ErroConexaoException;
 import br.ufg.inf.sempreufg.db.ConexaoBanco;
-import br.ufg.inf.sempreufg.db.auxiliar.AuxiliaInsercao;
 
 public class EnsMedioEgresTest {
 

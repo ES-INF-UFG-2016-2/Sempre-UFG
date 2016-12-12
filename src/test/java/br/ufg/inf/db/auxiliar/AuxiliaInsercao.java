@@ -1,4 +1,4 @@
-package br.ufg.inf.sempreufg.db.auxiliar;
+package br.ufg.inf.db.auxiliar;
 
 import java.sql.Blob;
 import java.sql.Connection;
