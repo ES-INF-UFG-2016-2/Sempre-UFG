@@ -15,6 +15,7 @@ import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
 import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 import br.ufg.inf.sempreufg.to.ImportarEgressoTO;
+import br.ufg.inf.sempreufg.to.ResultadoImportacaoTO;
 
 public class EgressoService implements EgressoServiceInterface {
 
@@ -24,9 +25,8 @@ public class EgressoService implements EgressoServiceInterface {
      * @see br.ufg.inf.sempreufg.servico.EgressoServiceInterface#importarEgressos()
      */
     @Override
-    public void importarEgressos(final ImportarEgressoTO importarEgressoTO) {
-        // TODO Auto-generated method stub
-
+    public ResultadoImportacaoTO importarEgressos(final ImportarEgressoTO importarEgressoTO) {
+        return this.resultadoImportacaoMock();
     }
 
     /**
@@ -97,10 +97,27 @@ public class EgressoService implements EgressoServiceInterface {
         return criarListaEgressoMock();
     }
 
+    /**
+     * @see br.ufg.inf.sempreufg.servico.EgressoServiceInterface#validarFiltroImportacao(br.ufg.inf.sempreufg.to.ImportarEgressoTO)
+     */
+    @Override
+    public boolean validarFiltroImportacao(ImportarEgressoTO importarEgressoTO) {
+
+        boolean filtroImportacaoValida = true;
+
+        if (importarEgressoTO.getPeriodoInicial().isEmpty()) {
+            filtroImportacaoValida = false;
+        } else if (importarEgressoTO.getPeriodoFinal().isEmpty()) {
+            filtroImportacaoValida = false;
+        }
+
+        return filtroImportacaoValida;
+    }
+
     public List<Egresso> criarListaEgressoMock() {
         List<Egresso> egressos = new ArrayList<Egresso>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             Egresso egresso = new Egresso("Everton Jose", "Maria", new Date(), Sexo.MASCULINO, "emailAlternativo@gmail.com", new BitSet(),
                     new BitSet(), VisibilidadeDados.PUBLICO, new ArrayList<HistoricoUFG>(), new LocalizacaoGeografica());
             egressos.add(egresso);
@@ -137,21 +154,17 @@ public class EgressoService implements EgressoServiceInterface {
         return new ExecultarConsultasMock().criarListaEgresso();
     }
 
-    /**
-     * @see br.ufg.inf.sempreufg.servico.EgressoServiceInterface#validarFiltroImportacao(br.ufg.inf.sempreufg.to.ImportarEgressoTO)
-     */
-    @Override
-    public boolean validarFiltroImportacao(ImportarEgressoTO importarEgressoTO) {
+    private ResultadoImportacaoTO resultadoImportacaoMock() {
+        final ResultadoImportacaoTO resultadoImportacao = new ResultadoImportacaoTO();
 
-        boolean filtroImportacaoValida = true;
+        resultadoImportacao.setTotalExportadoCercomp(50);
+        resultadoImportacao.setTotalImportadoSucesso(40);
+        resultadoImportacao.setTotalNaoImportadoErro(30);
+        resultadoImportacao.setTotalNaoImportadoReplicacao(20);
 
-        if (importarEgressoTO.getPeriodoInicial().isEmpty()) {
-            filtroImportacaoValida = false;
-        } else if (importarEgressoTO.getPeriodoFinal().isEmpty()) {
-            filtroImportacaoValida = false;
-        }
+        resultadoImportacao.setListaEgressoImportado(this.criarListaEgressoMock());
 
-        return filtroImportacaoValida;
+        return resultadoImportacao;
     }
 
 }

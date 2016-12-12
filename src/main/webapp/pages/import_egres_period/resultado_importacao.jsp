@@ -33,7 +33,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<form role="form" action="ImportEgresPeriodServlet" method="get">
+									<form role="form" name="frm" method="post">
 										<fieldset id="career">
 											<div class="row">
 												<div class="col-lg-12">
@@ -63,16 +63,36 @@
 														<div class="panel-heading">Lista de egressos exportados pelo CERCOMP</div>
 														<div class="panel-body">
 															<div class="form-group">
-																<label>Filtros:</label> <select id="periodoFinal" class="form-control" style="width: 10%; display: initial !important;">
-																	<option>2016.2</option>
-																</select> <select id="periodoFinal" class="form-control" style="width: 20%; display: initial !important;">
+																<label>Filtros:</label> <select id="periodo" name="periodo" class="form-control" style="width: 10%; display: initial !important;"
+																	onchange="javascript:document.frm.submit();">
+																	<option value="">Periodo</option>
+																	<c:forEach items="${listaPeriodo}" var="periodo">
+																		<option value="${periodo}" ${periodo == periodoSelect ? 'selected' : '' }>${periodo}</option>
+																	</c:forEach>
+																</select> <select id="curso" name="curso" onchange="javascript:document.frm.submit();" class="form-control"
+																	style="width: 20%; display: initial !important;">
 																	<option>Filtrar por curso</option>
-																</select> <select id="periodoFinal" class="form-control" style="width: 25%; display: initial !important;">
-																	<option>Filtrar por unidade acadêmica</option>
-																</select> <select id="periodoFinal" class="form-control" style="width: 18%; display: initial !important;">
-																	<option>Filtrar por regional</option>
-																</select> <select id="periodoFinal" class="form-control" style="width: 17%; display: initial !important;">
-																	<option>Filtrar por status</option>
+																	<c:forEach items="${listaCursoUFG}" var="curso">
+																		<option value="${curso.nome}" ${curso.nome == cursoSelect ? 'selected' : '' }>${curso.nome}</option>
+																	</c:forEach>
+																</select> <select id="unidadeAcademica" name="unidadeAcademica" onchange="javascript:document.frm.submit();" class="form-control"
+																	style="width: 25%; display: initial !important;">
+																	<option value="">Filtrar por unidade acadêmica</option>
+																	<c:forEach items="${listaUnidadeAcademica}" var="unidade">
+																		<option value="${unidade}" ${unidade == unidadeAcademicaSelect ? 'selected' : '' }>${unidade}</option>
+																	</c:forEach>
+																</select> <select id="regional" name="regional" onchange="javascript:document.frm.submit();" class="form-control"
+																	style="width: 18%; display: initial !important;">
+																	<option value="">Filtrar por regional</option>
+																	<c:forEach items="${listaRegional}" var="regional">
+																		<option value="${regional}" ${regional == regionalSelect ? 'selected' : '' }>${regional}</option>
+																	</c:forEach>
+																</select> <select id="status" name="status" onchange="javascript:document.frm.submit();" class="form-control"
+																	style="width: 17%; display: initial !important;">
+																	<option value="">Filtrar por status</option>
+																	<c:forEach items="${listaStatus}" var="status">
+																		<option value="${status}" ${status == statusSelect ? 'selected' : '' }>${status}</option>
+																	</c:forEach>
 																</select>
 															</div>
 														</div>

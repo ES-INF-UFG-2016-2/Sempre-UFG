@@ -9,6 +9,7 @@ import br.ufg.inf.sempreufg.enums.NomeCampos;
 import br.ufg.inf.sempreufg.modelo.CursoUFG;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.to.ImportarEgressoTO;
+import br.ufg.inf.sempreufg.to.ResultadoImportacaoTO;
 
 public interface EgressoServiceInterface {
 
@@ -18,7 +19,7 @@ public interface EgressoServiceInterface {
      *
      * @author Bruno Martins de Carvalho
      */
-    void importarEgressos(ImportarEgressoTO importarEgressoTO);
+    ResultadoImportacaoTO importarEgressos(ImportarEgressoTO importarEgressoTO);
 
     public Egresso converterXmlParaEgresso(InputStream content);
 

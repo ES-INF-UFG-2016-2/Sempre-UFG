@@ -13,6 +13,7 @@ import br.ufg.inf.sempreufg.modelo.CursoUFG;
 import br.ufg.inf.sempreufg.servico.EgressoService;
 import br.ufg.inf.sempreufg.servico.EgressoServiceInterface;
 import br.ufg.inf.sempreufg.to.ImportarEgressoTO;
+import br.ufg.inf.sempreufg.to.ResultadoImportacaoTO;
 
 /**
  * <p>
@@ -61,7 +62,9 @@ public class ImportacaoEgressoServlet extends HttpServlet {
         importarEgressoTO.setRegional(request.getParameter("regional"));
 
         if (this.egressoService.validarFiltroImportacao(importarEgressoTO)) {
-            this.egressoService.importarEgressos(importarEgressoTO);
+            final ResultadoImportacaoTO resultadoImportacao = this.egressoService.importarEgressos(importarEgressoTO);
+
+            request.getSession().setAttribute("resultadoImportacao", resultadoImportacao);
 
             response.sendRedirect("resultado_importacao");
         } else {

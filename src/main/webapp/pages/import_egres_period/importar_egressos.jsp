@@ -48,7 +48,7 @@
 															<select id="periodoInicial" name="periodoInicial" class="form-control" style="width: 15%; display: initial !important;">
 																<option value="">Período inicial</option>
 																<c:forEach items="${listaPeriodo}" var="periodo">
-																	<option>${periodo}</option>
+																	<option value="${periodo}">${periodo}</option>
 																</c:forEach>
 															</select> <label style="padding: 2px;">a</label> <select id="periodoFinal" name="periodoFinal" class="form-control"
 																style="width: 15%; display: initial !important;">
