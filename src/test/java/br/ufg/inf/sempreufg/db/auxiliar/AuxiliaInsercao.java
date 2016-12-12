@@ -20,7 +20,7 @@ public class AuxiliaInsercao {
 
 			stmt.setString(1, egresso.getNome());
 			stmt.setString(2, egresso.getNome_mae());
-			stmt.setDate(3, (java.sql.Date) egresso.getData_nascimento());
+			stmt.setDate(3, new java.sql.Date(egresso.getData_nascimento().getTime()));
 			stmt.setBlob(4, (Blob) egresso.getFoto_principal());
 			stmt.setBlob(5, (Blob) egresso.getFotos_adicionais());
 			stmt.setString(6, egresso.getVisibilidade().toString());
