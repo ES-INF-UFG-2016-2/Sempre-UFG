@@ -31,10 +31,9 @@ public class ConexaoBancoDados {
 		}
 
 		try {
-			conn = DriverManager.getConnection(headmariadb + "/sempreufg", username, "sempreufg");
+			 return DriverManager.getConnection(headmariadb + "/sempreufg", username, "sempreufg");
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return conn;
 		}
 		return conn;
 	}
