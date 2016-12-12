@@ -66,7 +66,6 @@ public class EnsMedioEgresTest {
 		egresso.setData_nascimento(dateformat);
 		egresso.setFoto_principal(null);
 		egresso.setFotos_adicionais(null);
-		egresso.setFotos_adicionais(null);
 		egresso.setVisibilidade(VisibilidadeDados.PUBLICO);
 		egresso.setSexo(Sexo.MASCULINO);
 

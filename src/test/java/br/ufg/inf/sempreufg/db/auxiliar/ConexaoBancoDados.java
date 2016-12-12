@@ -25,7 +25,7 @@ public class ConexaoBancoDados {
 		String headmariadb = "jdbc:mariadb://localhost:3306";
 		
 		try {
-			Class.forName(drivepostgre);
+			Class.forName(drivemariadb);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
