@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogLocal implements LogConfigItem 
+public class LogLocal2 implements LogConfigItem 
 {
     private MensagemClienteValores nivelMensagemCliente;
     private MensagemValores nivelMensagemLog;

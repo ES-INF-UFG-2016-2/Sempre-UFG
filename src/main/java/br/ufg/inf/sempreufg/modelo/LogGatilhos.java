@@ -3,6 +3,7 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.ComandoSQL;
 import br.ufg.inf.sempreufg.enums.MensagemClienteValores;
 import br.ufg.inf.sempreufg.enums.MensagemValores;
+import br.ufg.inf.sempreufg.enums.ParametrosLogging;
 import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
 
 import java.util.ArrayList;
@@ -12,52 +13,65 @@ import java.util.Iterator;
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogGatilhos implements LogConfigItem{
-    private String destinoLog;
-    private String diretorioLog;
-    private String nomeArquivo;
-    private int tempoDeVidaLog;
-    private int tamanhoMaximoLog;
+public class LogGatilhos implements LogConfigItem 
+{
+    private ParametroLog nivelMensagemCliente;
+    private ParametroLog nivelMensagemLog;
+    private ParametroLog tipoComandosSQL;
+    private ParametroLog duracaoComando;
+    
+    public LogGatilhos()
+    {
+    	nivelMensagemCliente.setSigla(ParametrosLogging.CLIENT_MIN_MESSAGES.name() );
+    	nivelMensagemLog.setSigla( ParametrosLogging.LOG_MIN_MESSAGES.name());
+    	tipoComandosSQL.setSigla(ParametrosLogging.LOG_STATEMENT.name());
+    	duracaoComando.setSigla(ParametrosLogging.LOG_MIN_DURATION_STATEMENT.name());
+    }
+    
+    public ArrayList<ParametroLog> getParametros()
+    {
+    	ArrayList<ParametroLog> parametros = new ArrayList<ParametroLog>();
+    	
+    	parametros.add(nivelMensagemCliente);
+    	parametros.add(nivelMensagemLog);
+    	parametros.add(tipoComandosSQL);
+    	parametros.add(duracaoComando);
+    	
+    	return parametros;
+   }
 
-    public String getDestinoLog() {
-        return destinoLog;
+    public ParametroLog getNivelMensagemCliente() {
+        return nivelMensagemCliente;
     }
 
-    public void setDestinoLog(String destinoLog) {
-        this.destinoLog = destinoLog;
+    public void setNivelMensagemCliente(ParametroLog nivelMensagemCliente) {
+        this.nivelMensagemCliente = nivelMensagemCliente;
     }
 
-    public String getDiretorioLog() {
-        return diretorioLog;
+    public ParametroLog getNivelMensagemLog() {
+        return nivelMensagemLog;
     }
 
-    public void setDiretorioLog(String diretorioLog) {
-        this.diretorioLog = diretorioLog;
+    public void setNivelMensagemLog(ParametroLog nivelMensagemLog) {
+        this.nivelMensagemLog = nivelMensagemLog;
     }
 
-    public String getNomeArquivo() {
-        return nomeArquivo;
+    public ParametroLog getTipoComandosSQL() {
+        return tipoComandosSQL;
     }
 
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
+    public void setTipoComandosSQL(ParametroLog tipoComandosSQL) {
+        this.tipoComandosSQL = tipoComandosSQL;
     }
 
-    public int getTempoDeVidaLog() {
-        return tempoDeVidaLog;
+    public ParametroLog getDuracaoComando() {
+        return duracaoComando;
     }
 
-    public void setTempoDeVidaLog(int tempoDeVidaLog) {
-        this.tempoDeVidaLog = tempoDeVidaLog;
+    public void setDuracaoComando(ParametroLog duracaoComando) {
+        this.duracaoComando = duracaoComando;
     }
 
-    public int getTamanhoMaximoLog() {
-        return tamanhoMaximoLog;
-    }
-
-    public void setTamanhoMaximoLog(int tamanhoMaximoLog) {
-        this.tamanhoMaximoLog = tamanhoMaximoLog;
-    }
 
     public boolean ehNumerico(String str )
     {
@@ -72,7 +86,6 @@ public class LogGatilhos implements LogConfigItem{
     	return true;
     }
     
-    
     @Override
     public void configurarParametros(ArrayList<ParametroLog> parametros) 
     {
@@ -81,47 +94,63 @@ public class LogGatilhos implements LogConfigItem{
     	while(iterador.hasNext() )
     	{
     		ParametroLog param = iterador.next();
+    		    		
     		
     		switch(param.getSigla() )
     		{
-    		case "destinoLog":
+    		case "CLIENT_MIN_MESSAGES":
     			    			
-    			this.destinoLog = param.getValor();
-    			
-    			break;
-    		case "diretorioLog":
-
-    			this.diretorioLog = param.getValor();
-    			
-    			break;
-    		case "nomeArquivo":
-    			
-    			this.nomeArquivo = param.getValor();
-    			
-    			break;
-    		case "tempoDeVidaLog":
-    			
-    			if(ehNumerico( param.getValor() ))
+    			for(MensagemClienteValores valor: MensagemClienteValores.values() )
     			{
-    				int tempo = Integer.parseInt( param.getValor() );
-    				if( tempo >= 0 )
-    					this.tempoDeVidaLog = tempo;
+    				String string = param.getValor();
+    				if( string.equals(valor.name()))
+    				{
+    					this.nivelMensagemCliente = param;
+    				}
     			}
-    	
-    		
-    		case "tamanhoMaximoLog":
+    			
+    			
+    			break;
+    		case "LOG_MIN_MESSAGES":
 
-        		if(ehNumerico(param.getValor() ))
-        		{
-        			int tamanho = Integer.parseInt( param.getValor());
-        			if( tamanho >= 0 )
-        				this.tamanhoMaximoLog = tamanho;
-        		}
+    			for(MensagemValores valor: MensagemValores.values() )
+    			{
+    				String string = param.getValor();
+    				if( string.equals(valor.name()))
+    				{
+    					this.nivelMensagemLog = param;
+    				}
+    			}
+    			
+    			break;
+    		case "LOG_STATEMENT":
+    			
+    			for(ComandoSQL valor: ComandoSQL.values() )
+    			{
+    				String string = param.getValor();
+    				if( string.equals(valor.name()))
+    				{
+    					this.tipoComandosSQL = param;
+    				}
+    			}
+    			
+    			break;
+    		case "LOG_MIN_DURATION_STATEMENT":
+
+    		if(ehNumerico( param.getValor() ) )
+    		{
+    			int duracao = Integer.parseInt( param.getValor() );
+    			
+    			if(duracao >= 0 )
+    				this.duracaoComando = param;
+    		}
     			
     		default:
     			// process
     			break;
     		}
     	}
+    	
+    	
     }
 }

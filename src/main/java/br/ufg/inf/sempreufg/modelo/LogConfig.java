@@ -9,29 +9,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
-public class LogConfig
-{
-    private LogLocal local = new LogLocal();
-    private LogGatilhos gatilhos = new LogGatilhos();
-    private LogItens itens = new LogItens();
-	
+	public class LogConfig {
+	//private LogLocal local = new LogLocal();
+	private LogGatilhos gatilhos = new LogGatilhos();
+	private LogItens itens = new LogItens();
+
 	private int logConfig;
-    private File arquivoLog;
+	private File arquivoLog;
 
-
-    
-    
-    public LogLocal getLocal() {
-		return local;
-	}
-
-	public void setLocal(LogLocal local) {
-		this.local = local;
-	}
 
 	public LogGatilhos getGatilhos() {
 		return gatilhos;
@@ -49,39 +39,53 @@ public class LogConfig
 		this.itens = itens;
 	}
 
-	private void gerarArquivoLog() throws IOException
-    {
+	public void gerarArquivoLog( ArrayList<ParametroLog> parametros ) throws IOException {
 		String line = null;
 		FileReader reader = new FileReader(arquivoLog);
-    	BufferedReader br = new BufferedReader( reader );
-    	StringBuilder fileContent = new StringBuilder();
-    	
-    	while( (line = br.readLine()) != null )
-    	{
-    		    		
-    		if(line.contains( "client_min_messages"))
-    		{
-    			System.out.println("Entrei aqui");
-    			line = "#client_min_messages = " + local.getNivelMensagemCliente()+ "		# values in order of decreasing detail:";
-    			
-    			//line = line.replaceFirst("\'(.*?)\'", local.get)
-    			fileContent.append( line + System.getProperty("line.separator") );
-    		}
-    		else {
-    			fileContent.append( line + System.getProperty("line.separator") );
-    			
-    			
-    		}
-    	}
-    	
-    	FileWriter fw = new FileWriter(arquivoLog);
-    	BufferedWriter out = new BufferedWriter( fw );
-    	out.write(fileContent.toString());
-    	out.close();
-		
-    }
+		BufferedReader br = new BufferedReader(reader);
+		StringBuilder fileContent = new StringBuilder();
 
-    public File getArquivoLog() {
+		while ((line = br.readLine()) != null)
+		{
+			Iterator<ParametroLog> 	iterador = parametros.iterator();
+			
+			while(iterador.hasNext() )
+			{
+				ParametroLog parametro = iterador.next();
+				
+				if (line.contains( parametro.getSigla() )) 
+				{
+					//System.out.println("Entrei aqui");
+					
+					line = editLinha( line, parametro.getValor() );
+
+					// line = line.replaceFirst("\'(.*?)\'", local.get)
+					fileContent.append(line + System.getProperty("line.separator"));
+				} 
+				else 
+				{
+					fileContent.append(line + System.getProperty("line.separator"));
+				}
+			}
+		}
+
+		FileWriter fw = new FileWriter(arquivoLog);
+		BufferedWriter out = new BufferedWriter(fw);
+		out.write(fileContent.toString());
+		out.close();
+	}
+
+	
+	public String editLinha(String linha, String valor )
+	{
+		String[] tokens = linha.split( "=" );
+		tokens[1] = valor;
+		
+		return tokens[0] + " " + tokens[1];
+	}
+
+
+	public File getArquivoLog() {
 		return arquivoLog;
 	}
 
@@ -89,22 +93,16 @@ public class LogConfig
 		this.arquivoLog = arquivoLog;
 	}
 
-	public int configurarLog(ArrayList<ParametroLog> listaParamentros)
-    {
-    	local.configurarParametros(listaParamentros);
-    	gatilhos.configurarParametros(listaParamentros);
-    	itens.configurarParametros(listaParamentros);
-    	
-    	
-    	return 0;
-    }
+	public int configurarLog(ArrayList<ParametroLog> listaParamentros) {
+		gatilhos.configurarParametros(listaParamentros);
+		itens.configurarParametros(listaParamentros);
 
-    public int carregarConfigFile() throws IOException
-    {
-    	arquivoLog = new File("C:\\Program Files\\PostgreSQL\\9.6\\data\\postgresql.conf" );
-    	
-    	
-    	gerarArquivoLog();
-    	return 0;
-    }
+		return 0;
+	}
+
+	public int carregarConfigFile() throws IOException {
+		arquivoLog = new File("C:\\Program Files\\PostgreSQL\\9.6\\data\\postgresql.conf");
+
+		return 0;
+	}
 }
