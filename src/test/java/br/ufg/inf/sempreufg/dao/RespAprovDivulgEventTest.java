@@ -1,4 +1,4 @@
-package br.ufg.inf.sempreufg.servico;
+package br.ufg.inf.sempreufg.dao;
 
 import br.ufg.inf.sempreufg.dao.AprovacaoDivulgacaoEventoDAO;
 import br.ufg.inf.sempreufg.modelo.AprovacaoDivulgacaoEvento;
