@@ -80,6 +80,7 @@
                 </div>
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                        <!-- Aqui eu deveria buscar de uma classe "Papeis", porem essa classe não existe -->
                         <li><a href="Acessos.html" class="tablinks">
                                 <h4>Egresso</h4>
                             </a></li>
