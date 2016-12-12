@@ -48,7 +48,7 @@ public class EnsMedioEgresTest {
 
 		Date dateformat;
 		String sql = "insert into egresso"
-				+ " (nome, nome_mae, data_nascimento, foto_principal, foto_adicionais, visibilidade, sexo, id_localizacao)"
+				+ " (nome, nome_mae, data_nascimento, foto_principal, foto_adicionais, visibilidade, sexo)"
 				+ " values (?,?,?,?,?,?,?,?)";
 
 		try {
