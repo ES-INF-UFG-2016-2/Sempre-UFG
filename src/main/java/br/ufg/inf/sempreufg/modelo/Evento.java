@@ -56,7 +56,6 @@ public class Evento {
 			}
 		}
 
-
 	}
 
 	public Tipos getEvento() {
