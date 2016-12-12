@@ -9,9 +9,9 @@ import java.sql.*;
 @Ignore
 public class ConsPredefDDLTest {
 
-    private String URLCONEXAO = "jdbc:mysql://localhost:3306/sempreUFG";
-    private String USUARIO = "";
-    private String SENHA = "";
+    private String URLCONEXAO = "jdbc:mysql://localhost:3306/sempreufg";
+    private String USUARIO = "sempreufg";
+    private String SENHA = "sempreufg";
 
     private Object sut = new Object();
 
