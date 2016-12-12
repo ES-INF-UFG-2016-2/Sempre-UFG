@@ -3,8 +3,9 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.NiveisCurso;
 import br.ufg.inf.sempreufg.enums.TiposResolucao;
 import br.ufg.inf.sempreufg.enums.Turnos;
+import java.io.Serializable;
 
-public class CursoUFG extends InstanciaAdm {
+public class CursoUFG extends InstanciaAdministrativaUFG implements Serializable {
 
     private static final long serialVersionUID = 5470137330235095143L;
 
