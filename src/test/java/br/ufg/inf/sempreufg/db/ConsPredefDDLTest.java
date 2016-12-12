@@ -1,24 +1,26 @@
 package br.ufg.inf.sempreufg.db;
 
+import br.ufg.inf.sempreufg.stubs.ConsPredefDAOStub;
+import br.ufg.inf.sempreufg.stubs.ConsPredefStub;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
+import java.io.*;
 import java.sql.*;
 
-@Ignore
 public class ConsPredefDDLTest {
 
+    private String sysBar = System.getProperty("file.separator");
     private String URLCONEXAO = "jdbc:mysql://localhost:3306/sempreufg";
-    private String USUARIO = "sempreufg";
-    private String SENHA = "sempreufg";
+    private String DDLPath = "db" + sysBar + "mariadb" + sysBar + "ddl" + sysBar + "RD-ConsPredef.sql";
+    private String USUARIO = "root";
+    private String SENHA = "root";
 
-    private Object sut = new Object();
+    private ConsPredefDAOStub sut = new ConsPredefDAOStub();
 
     @Test
-    private void testQueryMetadataTableDDL() {
-        runQuery("");
-        Assert.assertEquals(1, countQueryMetadata("query_metadata", "id"));
+    public void testQueryMetadataTableDDL() throws IOException {
+        runQuery(DDLPath);
         try {
             Connection con = DriverManager.getConnection(URLCONEXAO, USUARIO, SENHA);
 
@@ -26,7 +28,7 @@ public class ConsPredefDDLTest {
 
             while (rs.next()) {
                 System.out.println("TABLE_CAT = " + rs.getString("TABLE_CAT") );
-                //TODO compare result set actual table_cat values to ddl oracle values.
+                //TODO compare and assert actual table_cat values to expected values. Still to do because the DDL script doesn't work.
             }
 
         } catch (SQLException e) {
@@ -34,11 +36,25 @@ public class ConsPredefDDLTest {
         }
     }
 
-    private void runQuery(String ddlQuery) {
+    private void runQuery(String ddlPath) throws IOException {
+
+        StringBuilder fileData = new StringBuilder();
+        BufferedReader reader = new BufferedReader(new FileReader(new File(ddlPath)));
+        char[] buf = new char[1024];
+        int numRead;
+
+        while((numRead = reader.read(buf)) != -1){
+            String readData = String.valueOf(buf, 0, numRead);
+            fileData.append(readData);
+        }
+
+        reader.close();
+
         try {
             Connection  connection = DriverManager.getConnection(URLCONEXAO, USUARIO, SENHA);
             Statement stmt = connection.createStatement();
-            stmt.executeUpdate(ddlQuery);
+            stmt.addBatch(fileData.toString());
+            stmt.executeBatch();
             stmt.close();
             connection.close();
         } catch (SQLException e) {
@@ -47,9 +63,10 @@ public class ConsPredefDDLTest {
     }
 
     @Test
-    private void testSucessfulQueryMetadataPersistence() {
-        //sut.saveQueryMetada(QueryMetadata object);
-        Assert.assertEquals(1, countQueryMetadata("query_metadata", "id"));
+    public void testSucessfulQueryMetadataPersistence() {
+        ConsPredefStub cps = new ConsPredefStub("", "", false, new Date(0L), new Date(0L), "");
+        sut.saveQueryMetada(cps);// does nothing because its a plcaholder for the real thing.
+        //Assert.assertEquals(1, countQueryMetadata("CONSPREDEF", "id"));
     }
 
     private int countQueryMetadata(String TABLE_NAME, String IDENTIFIER_NAME) {
