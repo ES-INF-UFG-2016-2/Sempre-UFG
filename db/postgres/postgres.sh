@@ -8,7 +8,7 @@ echo "Exectando em : $(pwd)"
 export PGFOLDER='db/postgres'
 
 # Assumindo que já foi executado pelo Travis como um passo base
-#psql -h localhost -U postgres -a -f $PGFOLDER/ddl/create-user-and-db.sql
+# psql -h localhost -U postgres -a -f db/postgres/cria-usuario-e-db.sql
 
 export PGDATABASE='sempreufg'
 export PGUSER='sempreufg'

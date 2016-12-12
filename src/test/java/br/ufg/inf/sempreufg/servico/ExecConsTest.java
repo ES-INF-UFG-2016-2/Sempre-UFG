@@ -12,6 +12,7 @@ import br.ufg.inf.sempreufg.interfaces.ConsultaEgressoInterface;
 import br.ufg.inf.sempreufg.modelo.CursoUFG;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 import br.ufg.inf.sempreufg.stubs.ConsultaEgressoMock;
 import org.junit.Assert;
 import org.junit.Test;
@@ -173,13 +174,13 @@ public class ExecConsTest {
     private void criaEgressos() throws ParseException {
 
         Egresso egressoI = new Egresso("MARIA EDUARDA", "MARIA MATILDA", geraData("dd/mm/aaa", "01/01/1996"), Sexo.FEMININO,
-            "mariaeduarda@gmail.com", null, null, VisibilidadeDados.PUBLICO, criaListaHistoricoUfg("MEDICINA"));
+            "mariaeduarda@gmail.com", null, null, VisibilidadeDados.PUBLICO, criaListaHistoricoUfg("MEDICINA"), new LocalizacaoGeografica());
 
         Egresso egressoII = new Egresso("JOAO PEDRO", "JOANA PEDRA", geraData("dd/mm/aaa", "10/03/1994"), Sexo.MASCULINO,
-            "joao_pedrinho2008@hotmail.com", null, null, VisibilidadeDados.PRIVADO, criaListaHistoricoUfg("PEDAGOGIA"));
+            "joao_pedrinho2008@hotmail.com", null, null, VisibilidadeDados.PRIVADO, criaListaHistoricoUfg("PEDAGOGIA"), new LocalizacaoGeografica());
 
         Egresso egressoIII = new Egresso("HELENA PEREIRA", "MARIANA PEREIRA", geraData("dd/mm/aaa", "05/09/1990"), Sexo.MASCULINO,
-            "heleninha123@gmail.com", null, null, VisibilidadeDados.SO_EGRESSOS, criaListaHistoricoUfg("ENGENHARIA DE PETROLEO"));
+            "heleninha123@gmail.com", null, null, VisibilidadeDados.SO_EGRESSOS, criaListaHistoricoUfg("ENGENHARIA DE PETROLEO"), new LocalizacaoGeografica());
 
     }
 

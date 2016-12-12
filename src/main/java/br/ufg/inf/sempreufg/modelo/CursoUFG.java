@@ -1,13 +1,16 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.sempreufg.abstratas.AreaDeConhecimento;
 import br.ufg.inf.sempreufg.enums.NiveisCurso;
 import br.ufg.inf.sempreufg.enums.TiposResolucao;
 import br.ufg.inf.sempreufg.enums.Turnos;
 
-public class CursoUFG {
+import java.io.Serializable;
 
-    private String nome;
+public class CursoUFG extends InstanciaAdministrativaUFG implements Serializable {
+
+    private static final long serialVersionUID = 5470137330235095143L;
+
+    private int id;
     private NiveisCurso nivel;
     private TiposResolucao tiposResolucao;
     private int num_resolucao;
@@ -15,21 +18,18 @@ public class CursoUFG {
     private Turnos turno;
     private AreaDeConhecimento area_de_conhecimento;
 
+    public CursoUFG() {
+        super();
+    }
+
     public CursoUFG(NiveisCurso nivel, TiposResolucao tiposResolucao, int num_resolucao, boolean presencial, Turnos turno, AreaDeConhecimento area_de_conhecimento) {
+        super();
         this.nivel = nivel;
         this.tiposResolucao = tiposResolucao;
         this.num_resolucao = num_resolucao;
         this.presencial = presencial;
         this.turno = turno;
         this.area_de_conhecimento = area_de_conhecimento;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public NiveisCurso getNivel() {
@@ -78,5 +78,13 @@ public class CursoUFG {
 
     public void setArea_de_conhecimento(AreaDeConhecimento area_de_conhecimento) {
         this.area_de_conhecimento = area_de_conhecimento;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
