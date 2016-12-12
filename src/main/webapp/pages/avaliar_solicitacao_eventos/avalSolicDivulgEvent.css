@@ -65,3 +65,27 @@
     margin-top: 3.125em;
     float: right;
 }
+
+#cancelarModalParecer {
+    float: left;
+}
+
+#sidebarTitle {
+    position: absolute;
+    top: 7em;
+    left: 1.5em;
+}
+
+#sidebarColor {
+    position: absolute;
+    background: #1976D2;
+    width: 0.5em;
+    height: 2em;
+    top: -0.25em;
+    border-radius: 3em;
+}
+
+#textSidebar {
+    padding-left: 1.5em;
+    color: #9E9E9E;
+}
