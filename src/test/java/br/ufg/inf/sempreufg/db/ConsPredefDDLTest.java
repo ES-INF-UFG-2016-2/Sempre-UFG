@@ -22,7 +22,6 @@ public class ConsPredefDDLTest {
 
     @Test
     public void testQueryMetadataTableDDL() throws IOException {
-        runQuery(DDLPath);
         try {
             Connection con = DriverManager.getConnection(URLCONEXAO, USUARIO, SENHA);
 
