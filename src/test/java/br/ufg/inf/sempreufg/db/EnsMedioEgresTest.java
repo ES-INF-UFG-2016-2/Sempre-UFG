@@ -77,7 +77,7 @@ public class EnsMedioEgresTest {
 	@Test
 	public void testeInserirDadosIdeaisEnsinoMedio() {
 
-		String sql = "insert into ensmedioegres" + " (id_localizacao, nome_inst_ensino_medio, tipo_inst_ensino_medio)"
+		String sql = "insert into inst_ensino_medio" + " (id_localizacao, nome_inst_ensino_medio, tipo_inst_ensino_medio)"
 				+ " values (?,?,?)";
 
 		boolean inseriu = auxiliar.insereEnsinoMedio(connection, sql, 1, "Colegio Omega", TipoInstituicao.Particular);
@@ -88,7 +88,7 @@ public class EnsMedioEgresTest {
 	@Test
 	public void testeInserirDadosIdeaisLocalizacaoGeografica() {
 
-		String sql = "insert into localizgeograf"
+		String sql = "insert into localizacao_geografica"
 				+ "(nome_cidade, nome_unidade_federativa, nome_pais, sigla, latitude, longitude)"
 				+ "values (?,?,?,?,?,?)";
 
@@ -109,7 +109,7 @@ public class EnsMedioEgresTest {
 	@Test
 	public void testeInserirDadosHistoricoEnsinoMedio() {
 
-		String sql = "insert into histensmedio"
+		String sql = "insert into historico_ensino_medio"
 				+ "(id_egresso, id_inst_ensino_medio, mes_inicio, ano_inicio, mes_fim, ano_fim)"
 				+ "values (?,?,?,?,?,?)";
 
