@@ -245,6 +245,5 @@ local.properties
 
 # node_modules and bower_components from web folder
 classes/
-src/web/vendor
 src/web/node_modules
 src/web/bower_components
