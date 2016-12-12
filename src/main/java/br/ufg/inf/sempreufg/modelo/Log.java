@@ -7,17 +7,28 @@ package br.ufg.inf.sempreufg.modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.*;
 
 /**
  *
  * @author Kleudson
  * @version 1.0
  */
+@Entity
+@Table(name = "Log")
 public class Log implements Serializable{
     
+    @Id
+    @Column(name = "id_log")
     private int idLog;
+    
+    @Column(name = "mensagem")
     private String mensagem;
+    
+    @Column(name = "usuario")
     private String usuario;
+    
+    @Column(name = "tipo")
     private int tipoLog;
 
     /**

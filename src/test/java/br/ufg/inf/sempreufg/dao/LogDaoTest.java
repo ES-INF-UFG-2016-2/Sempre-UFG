@@ -25,33 +25,10 @@ import static org.junit.Assert.*;
  */
 public class LogDaoTest {
 
-    private Connection con;
+
     private LogDao logDao;
 
     public LogDaoTest() {
-    }
-
-    @Before
-    public void setUp() {
-        try {
-            //Inicializa variáveis antes do teste
-            con = new ConnectionFactoryPostegres().getConnection();
-            logDao = new LogDao(con);
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LogDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LogDaoTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @After
-    public void tearDown() {
-        try {
-            con.close();
-        } catch (Exception e) {
-        }
-
     }
 
     @Test
