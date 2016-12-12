@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div id="wrapper">
-		<%-- 		    <jsp:include page="../includes/navbar.jsp"/> --%>
+		<jsp:include page="../includes/navbar.jsp" />
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
