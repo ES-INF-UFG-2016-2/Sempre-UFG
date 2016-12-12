@@ -45,3 +45,6 @@ Padrões simples que vão deixar a base de dados organizada e de fácil entendim
 |Caso de Teste|Pré-condições|Descrição|Entrada|Resultado Esperado|
 |-------------|-------------|------------|-------|---------|
 |CT-1.1|Banco de dados funcionando corretamente.|Verifica se a tabela referente a importação de dados de egressos existe.|SELECT * FROM IMPORTACAO_EGRESSO| true|
+
+
+
