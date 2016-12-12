@@ -1,4 +1,4 @@
-package br.ufg.inf.sempreufg.stubs;
+package br.ufg.inf.sempreufg.servico;
 
 import br.ufg.inf.sempreufg.excecoes.IdentificadorInexistenteExepction;
 import br.ufg.inf.sempreufg.excecoes.ParametrosErradosException;
