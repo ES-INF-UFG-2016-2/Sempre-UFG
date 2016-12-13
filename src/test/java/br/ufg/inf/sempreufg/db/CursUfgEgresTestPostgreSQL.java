@@ -1211,46 +1211,105 @@ public class CursUfgEgresTestPostgreSQL{
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
+	
     @Test
     public void testaArmazenaRealizacaoDeProgramaAcademicoQualquer() throws SQLException {
-        String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20101842 , 'Intercambio', '2016-02-01' , '2016-12-01', 'Descricao');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+        criarRealizacaoProgramaAcademicoQualquer();
+
+        String sql = "INSERT INTO realizacao_de_programa_academico VALUES (01 , 'Intercambio', '2016-02-01' , '2016-12-01', 'Descricao');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM REALIZACAO_DE_PROGRAMA_ACADEMICO WHERE HISTORICO = 20101842 AND TIPO = 'Intercambio' AND DATA_INICIO = '2016-02-01' AND DATA_FIM = '2016-12-01' AND DESCRICAO = 'Descricao';";
+        sql = "SELECT * FROM realizacao_de_programa_academico WHERE HISTORICO = 01 AND TIPO = 'Intercambio' AND DATA_INICIO = '2016-02-01' AND DATA_FIM = '2016-12-01' AND DESCRICAO = 'Descricao';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test
     public void testaArmazenaRealizacaoDeProgramaAcademicoHistoricoNulo() throws SQLException {
-        String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (NULL , 'Monitoria', '2016-08-15' , '2016-09-15', 'Descricao');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+        criarRealizacaoProgramaAcademicoQualquer();
+
+        String sql = "INSERT INTO realizacao_de_programa_academico VALUES (NULL , 'Monitoria', '2016-08-15' , '2016-09-15', 'Descricao');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaRealizacaoDeProgramaAcademicoTipoNulo() throws SQLException {
-        String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20130151, NULL, '2016-08-15' , '2016-09-15', 'Descricao');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+        criarRealizacaoProgramaAcademicoQualquer();
+
+        String sql = "INSERT INTO realizacao_de_programa_academico VALUES (01, NULL, '2016-08-15' , '2016-09-15', 'Descricao');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaRealizacaoDeProgramaAcademicoDataInicioNula() throws SQLException {
-        String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20130149, 'Iniciacao_Cientifica', NULL , '2016-09-15', 'Descricao');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+        criarRealizacaoProgramaAcademicoQualquer();
+
+        String sql = "INSERT INTO realizacao_de_programa_academico VALUES (01, 'Iniciacao_Cientifica', NULL , '2016-09-15', 'Descricao');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaRealizacaoDeProgramaAcademicoDataFimNula() throws SQLException {
-        String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20130148, 'Iniciacao_Cientifica', '2016-08-15', NULL, 'Descricao');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+        criarRealizacaoProgramaAcademicoQualquer();
+
+        String sql = "INSERT INTO realizacao_de_programa_academico VALUES (01, 'Iniciacao_Cientifica', '2016-08-15', NULL, 'Descricao');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaRealizacaoDeProgramaAcademicoDescricaoNula() throws SQLException {
-        String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20130147, 'Iniciacao_Cientifica', '2016-08-15', '2016-09-15', NULL);";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+        criarRealizacaoProgramaAcademicoQualquer();
+
+        String sql = "INSERT INTO realizacao_de_programa_academico VALUES (20130147, 'Iniciacao_Cientifica', '2016-08-15', '2016-09-15', NULL);";
         stmt.executeUpdate(sql);
     }
-
-
 
 }
