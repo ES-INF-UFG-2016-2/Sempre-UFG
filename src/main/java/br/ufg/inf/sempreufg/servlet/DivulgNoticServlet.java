@@ -46,7 +46,7 @@ public class DivulgNoticServlet extends HttpServlet {
 
             String idEvento = request.getParameter("idEvento");
             String dataExpiracao = request.getParameter("dataPublicacao");
-            DateFormat formatter = new SimpleDateFormat("mm/dd/yy");
+            DateFormat formatter = new SimpleDateFormat("dd/mm/yy");
             noticiaRepository.persisteNoticia(new Noticia(Integer.parseInt(idEvento), formatter.parse(dataExpiracao)));
 
             out.flush();
