@@ -2,29 +2,27 @@ package br.ufg.inf.sempreufg.modelo;
 
 import org.json.JSONObject;
 
-/**
- * Created by user1 on 09/10/2016.
- */
 public class HistoricoUFG {
 
     private int id;
+
     private int num_matricula;
     private int mes_inicio;
     private int mes_fim;
     private int ano_inicio;
     private int ano_fim;
     private CursoUFG cursoUFG;
-    private String titulo_trabalho_Final;
+    private String titulo_trabalho_final;
 
 
-    public HistoricoUFG(int num_matricula, int mes_inicio, int mes_fim, int ano_inicio, int ano_fim, CursoUFG cursoUFG, String titulo_trabalho_Final) {
+    public HistoricoUFG(int num_matricula, int mes_inicio, int mes_fim, int ano_inicio, int ano_fim, CursoUFG cursoUFG, String titulo_trabalho_final) {
         this.num_matricula = num_matricula;
         this.mes_inicio = mes_inicio;
         this.mes_fim = mes_fim;
         this.ano_inicio = ano_inicio;
         this.ano_fim = ano_fim;
         this.cursoUFG = cursoUFG;
-        this.titulo_trabalho_Final = titulo_trabalho_Final;
+        this.titulo_trabalho_final = titulo_trabalho_final;
     }
 
     public HistoricoUFG() {
@@ -88,19 +86,49 @@ public class HistoricoUFG {
         this.cursoUFG = cursoUFG;
     }
 
-    public String getTitulo_trabalho_Final() {
-        return titulo_trabalho_Final;
+    public String getTitulo_trabalho_final() {
+        return titulo_trabalho_final;
     }
 
-    public void setTitulo_trabalho_Final(String titulo_trabalho_Final) {
-        this.titulo_trabalho_Final = titulo_trabalho_Final;
+    public void setTitulo_trabalho_final(String titulo_trabalho_final) {
+        this.titulo_trabalho_final = titulo_trabalho_final;
     }
 
     public JSONObject toJson(){
-        return new JSONObject();
+        JSONObject historicoUFGAsJson = new JSONObject();
+        JSONObject innerJSON = new JSONObject();
+
+        innerJSON.put("num_matricula", getNum_matricula());
+        innerJSON.put("mes_inicio", getMes_inicio());
+        innerJSON.put("mes_fim", getMes_fim());
+        innerJSON.put("ano_inicio", getAno_inicio());
+        innerJSON.put("ano_fim", getAno_fim());
+        innerJSON.put("cursoUFG", getCursoUFGAsJson());
+        innerJSON.put("titulo_trabalho_final", getTitulo_trabalho_final());
+
+        historicoUFGAsJson.put( Integer.toString(getId()) , innerJSON);
+
+        return historicoUFGAsJson;
     }
 
-    public HistoricoUFG fromJson(){
-        return new HistoricoUFG();
+    public static HistoricoUFG fromJson(JSONObject historicoUFGAsJson){
+
+        JSONObject cursoUFGAsJson = historicoUFGAsJson.getJSONObject("cursoUFG");
+        CursoUFG cursoUFGFromJson = CursoUFG.fromJson(cursoUFGAsJson);
+
+        return new HistoricoUFG(
+            historicoUFGAsJson.getInt("num_matricula"),
+            historicoUFGAsJson.getInt("mes_inicio"),
+            historicoUFGAsJson.getInt("mes_fim"),
+            historicoUFGAsJson.getInt("ano_inicio"),
+            historicoUFGAsJson.getInt("ano_fim"),
+            cursoUFGFromJson,
+            historicoUFGAsJson.getString("titulo_trabalho_final")
+        );
+
+    }
+
+    public JSONObject getCursoUFGAsJson() {
+        return cursoUFG.toJson();
     }
 }
