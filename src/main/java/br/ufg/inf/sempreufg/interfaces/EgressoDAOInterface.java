@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface EgressoDAOInterface<T extends Serializable> extends IDao<T>{
 
-    public Egresso salvar(Egresso egresso) throws Exception;
+    public int salvar(Egresso egresso) throws Exception;
 
-    public boolean alterar(Egresso egresso) throws SQLException;
+    public void atualizar(Egresso egressoAtualizado) throws SQLException;
 
-    public boolean deletar(Egresso egresso) throws SQLException;
+    public void deletar(int id) throws SQLException;
 
     public Egresso getById(int id) throws Exception;
 
