@@ -52,6 +52,7 @@ public class EgressoDAO implements EgressoDAOInterface<Egresso> {
                 "Maria",
                 new Date(),
                 Sexo.MASCULINO,
+                "emailAlternativo@gmail.com",
                 new BitSet(),
                 new BitSet(),
                 VisibilidadeDados.PUBLICO,
