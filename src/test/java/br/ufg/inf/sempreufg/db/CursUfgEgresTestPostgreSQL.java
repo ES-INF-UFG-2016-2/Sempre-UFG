@@ -119,61 +119,48 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAreaDeConhecimentoQualquer() throws SQLException {
-        String item = "('EXATAS', 01, 01)";
-        String sql = "INSERT INTO area_conhecimento VALUES " + item + ";";
-
-        stmt.executeUpdate(sql);
-
-        sql = "SELECT * FROM area_conhecimento WHERE NOME = 'EXATAS' AND CODIGO = 01 AND SUPER_AREA = 01;";
+        criarAreaDeConhecimentoQualquer();
+        String sql;
+        sql = "SELECT * FROM area_conhecimento WHERE nome_area = 'EXATAS' AND codigo_area = 01";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
 
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAreaDeConhecimentoChaveDuplicada() throws SQLException {
         String sql1 = "INSERT INTO area_conhecimento VALUES ('EXATAS',01,01);";
-        String sql2 = "INSERT INTO area_conhecimento VALUES ('HUMANAS',01,02);";
+        String sql2 = "INSERT INTO area_conhecimento VALUES ('EXATAS',01,02);";
 
         stmt.executeUpdate(sql1);
         stmt.executeUpdate(sql2);
     }
 
-    @Test(expected = SQLIntegrityConstraintViolationException.class)
-    public void testaArmazenaAreaDeConhecimentoNomeNulo() throws SQLException {
-        String sql = "INSERT INTO area_conhecimento VALUES (NULL,01,01);";
-
+    @Test(expected = org.postgresql.util.PSQLException.class)
+    public void testaArmazenaAreaDeConhecimentonome_areaNulo() throws SQLException {
+        String sql = "INSERT INTO area_conhecimento VALUES (NULL,01);";
         stmt.executeUpdate(sql);
-
     }
 
     @Test
-    public void testaAltermazenaAreaDeConhecimentoNomeComCaracteresEspeciais() throws SQLException {
-        String sql = "INSERT INTO area_conhecimento VALUES ('HU¬MA¬NA$*',01,01);";
+    public void testaAltermazenaAreaDeConhecimentonome_areaComCaracteresEspeciais() throws SQLException {
+        String sql = "INSERT INTO area_conhecimento VALUES ('HU¬MA¬NA$*',01);";
 
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM area_conhecimento WHERE NOME = 'HU¬MA¬NA$*' AND CODIGO = 01 AND SUPER_AREA = 01;";
+        sql = "SELECT * FROM area_conhecimento WHERE nome_area = 'HU¬MA¬NA$*' AND codigo_area = 01;";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
 
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
-    public void testaArmazenaAreaDeConhecimentoCodigoNulo() throws SQLException {
-        String sql = "INSERT INTO area_conhecimento VALUES ('EXATAS', NULL, 01);";
+    @Test(expected = org.postgresql.util.PSQLException.class)
+    public void testaArmazenaAreaDeConhecimentocodigo_areaNulo() throws SQLException {
+        String sql = "INSERT INTO area_conhecimento VALUES ('EXATAS', NULL);";
         stmt.executeUpdate(sql);
 
     }
-
-
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
-    public void testaArmazenaCursoDaUFGAreaDeConhecimentoNula() throws SQLException {
-        String sql = "INSERT INTO curso_da_ufg VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', NULL);";
-        stmt.executeUpdate(sql);
-
-    }
-
+	
     @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() throws SQLException {
         String sql = "INSERT INTO curso_da_ufg VALUES ('Aperfeicoamento', 'CONSUNI', -1, FALSE, 'Vespertino','SAMAMBAIA', 12);";
