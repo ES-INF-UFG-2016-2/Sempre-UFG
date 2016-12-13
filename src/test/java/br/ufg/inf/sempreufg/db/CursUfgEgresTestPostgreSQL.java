@@ -161,28 +161,53 @@ public class CursUfgEgresTestPostgreSQL{
 
     }
 
-
-    @Test(expected = org.postgresql.util.PSQLException.class)
-    public void testaArmazenaCursoDaUFGNomeAreaDeConhecimentoNula() throws SQLException {
+@Test(expected = org.postgresql.util.PSQLException.class)
+    public void testaArmazenaCursoDaUFGCodigoAreaDeConhecimentoNula() throws SQLException {
         criarAreaDeConhecimentoQualquer();
         criarLocalizacaoGeograficaQualquer();
         criarUnidadeAcademicaRegionalQualquer();
         criarUnidadeAcademicaUFGQualquer();
         criarInstanciaAdministrativaUFGQualquer();
 
-        String sql = "INSERT INTO curso_da_ufg VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', NULL, 01, 'INSTANCIA');";
+        String sql = "INSERT INTO curso_da_ufg VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', 'nome_area_conhecimento_qualquer', NULL, 'INSTANCIA');";
         stmt.executeUpdate(sql);
 
     }
-    @Test(expected = java.sql.SQLDataException.class)
+
+    @Test(expected = org.postgresql.util.PSQLException.class)
+    public void testaArmazenaCursoDaUFGInstanciaAdministrativaNula() throws SQLException {
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+
+        String sql = "INSERT INTO curso_da_ufg VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'MATUTINO', 01, 'EXATAS', 01, NULL);";
+        stmt.executeUpdate(sql);
+
+    }
+
+    @Test
     public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() throws SQLException {
-        String sql = "INSERT INTO curso_da_ufg VALUES ('Aperfeicoamento', 'CONSUNI', -1, FALSE, 'Vespertino','SAMAMBAIA', 12);";
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+
+        String sql = "INSERT INTO curso_da_ufg VALUES ('APERFEICOAMENTO', 'CONSUNI', -1, FALSE, 'VESPERTINO', 01 ,'EXATAS', 01, 'INSTANCIA');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaCursoDaUFGNumeroDaResolucaoNulo() throws SQLException {
-        String sql = "INSERT INTO curso_da_ufg VALUES ('Aperfeicoamento', 'CONSUNI', NULL, FALSE, 'Vespertino','SAMAMBAIA',10);";
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+
+        String sql = "INSERT INTO curso_da_ufg VALUES ('APERFEICOAMENTO', 'CONSUNI', NULL, FALSE, 'VESPERTINO', 01 ,'EXATAS', 01, 'INSTANCIA');";
         stmt.executeUpdate(sql);
 
     }
