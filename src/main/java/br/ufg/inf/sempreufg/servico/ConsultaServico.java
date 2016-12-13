@@ -1,17 +1,26 @@
 package br.ufg.inf.sempreufg.servico;
 
+import br.ufg.inf.sempreufg.db.ConexaoBanco;
 import br.ufg.inf.sempreufg.excecoes.ErroNaConsultaException;
 import br.ufg.inf.sempreufg.interfaces.ConsultaServicoInterface;
-import br.ufg.inf.sempreufg.modelo.Entidade;
+import br.ufg.inf.sempreufg.modelo.Campo;
 import br.ufg.inf.sempreufg.modelo.Linha;
 import br.ufg.inf.sempreufg.modelo.Tabela;
-import br.ufg.inf.sempreufg.persistencia.GerenciadorPersistencia;
 
-import javax.persistence.EntityManager;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultaServico implements ConsultaServicoInterface {
+
+    private Connection conexaoBD;
+
+    public ConsultaServico() {
+        conexaoBD = ConexaoBanco.getConnection();
+    }
 
     @Override
     public Tabela executaConsultaDeEgressosPredefinida(
@@ -23,26 +32,56 @@ public class ConsultaServico implements ConsultaServicoInterface {
     public Tabela executaConsultaDeEgressosAdHoc(
         List<String> colunasABuscar, String filtroSelecao) throws ErroNaConsultaException {
 
-        List<String> entidades = buscarEntidadesDasColunas(colunasABuscar);
-        MontadorHQL montadorSQL = new MontadorHQL();
-        String consulta = montadorSQL.montarConsulta(colunasABuscar, entidades, filtroSelecao);
+        MontadorSQL montadorSQL = new MontadorSQL();
+        String consulta = montadorSQL.montarConsulta(colunasABuscar, filtroSelecao);
 
-//        GerenciadorPersistencia.executaQuery(consulta);
-        List<Linha> linhas = new ArrayList<>();
-        return new Tabela(linhas);
+        ResultSet resultado = executaSQL(consulta);
+        return montaTabelaDoResultado(resultado);
     }
 
-    private List<String> buscarEntidadesDasColunas(List<String> atributos) {
-        List<String> entidades = null;
+    private ResultSet executaSQL(String query) {
+        ResultSet resultSet;
         try {
-            EntityManager entityManager = GerenciadorPersistencia.obtenhaEntityManager();
-            entidades = entityManager.createQuery("SELECT DISTINCT entidade.nome FROM Entidade AS entidade" +
-                " JOIN entidade.atributos AS atributos WHERE atributos.nome IN (:atributos)", String.class)
-                .setParameter("atributos", atributos).getResultList();
-        } catch (Exception e) {
+            Statement statement = conexaoBD.createStatement();
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            resultSet = null;
             e.printStackTrace();
         }
-        return entidades;
+        return resultSet;
+    }
+
+    private Tabela montaTabelaDoResultado(ResultSet resultado) {
+
+        Tabela tabela = null;
+
+        try {
+            List<String> nomesColunas = obtenhaNomesColunas(resultado);
+            List<Linha> linhas = new ArrayList<>();
+
+            while (resultado.next()) {
+                List<Campo> campos = new ArrayList<>();
+                for (String nomeColuna : nomesColunas) {
+                    String valorColuna = resultado.getString(nomeColuna);
+                    campos.add(new Campo(nomeColuna, valorColuna));
+                }
+                linhas.add(new Linha(campos));
+            }
+            tabela = new Tabela(linhas);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tabela;
+    }
+
+    private List<String> obtenhaNomesColunas(ResultSet resultado) throws SQLException {
+        List<String> nomeColunas = new ArrayList<>();
+        int qntAtributosBuscados = resultado.getMetaData().getColumnCount();
+        for (int posicaoColuna = 1; posicaoColuna <= qntAtributosBuscados; posicaoColuna++) {
+            String nomeColuna = resultado.getMetaData().getColumnLabel(posicaoColuna);
+            nomeColunas.add(nomeColuna);
+        }
+        return nomeColunas;
     }
 
 }

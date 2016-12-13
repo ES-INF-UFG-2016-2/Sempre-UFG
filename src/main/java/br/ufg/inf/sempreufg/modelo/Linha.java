@@ -5,6 +5,10 @@ import java.util.List;
 public class Linha {
     private List<Campo> campos;
 
+    public Linha(List<Campo> campos) {
+        this.campos = campos;
+    }
+
     public List<Campo> getCampos() {
         return campos;
     }

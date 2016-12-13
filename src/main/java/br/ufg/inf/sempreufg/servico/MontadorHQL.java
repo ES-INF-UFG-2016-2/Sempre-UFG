@@ -10,7 +10,6 @@ public class MontadorHQL {
         return consultaHQL;
     }
 
-
     private String montadorProjecao(List<String> atributos) {
         return "SELECT " + removeColchetes(atributos.toString()) + " FROM ";
     }
@@ -26,5 +25,4 @@ public class MontadorHQL {
     private String removeColchetes(String texto) {
         return texto.replace("[", "").replace("]", "");
     }
-
 }
