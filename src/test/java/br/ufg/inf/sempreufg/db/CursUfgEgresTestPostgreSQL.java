@@ -5,11 +5,14 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import static org.junit.Assert.assertEquals;
 
-public class CursUfgEgresTestPostgreSQL{
+public class CursUfgEgresTestPostgreSQL {
 
     private static String sysBar = System.getProperty("file.separator");
     private static String DDLPath = "db" + sysBar + "postgres" + sysBar + "ddl" + sysBar + "RD-CursUfgEgres.sql";
@@ -25,11 +28,6 @@ public class CursUfgEgresTestPostgreSQL{
         conexao = ConexaoBanco.getConnection();
         conexao.setAutoCommit(false);
         stmt = conexao.createStatement();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        refazerAlteracoes();
     }
 
     public static void refazerAlteracoes() throws Exception {
@@ -54,56 +52,61 @@ public class CursUfgEgresTestPostgreSQL{
             }
         }
     }
-	
-	private void criarAreaDeConhecimentoQualquer() throws SQLException {
+
+    @After
+    public void tearDown() throws Exception {
+        refazerAlteracoes();
+    }
+
+    private void criarAreaDeConhecimentoQualquer() throws SQLException {
         String item = "('EXATAS', 01)";
         String criaAreaDeConhecimentoQualquer = "INSERT INTO area_conhecimento VALUES " + item + ";";
 
         stmt.executeUpdate(criaAreaDeConhecimentoQualquer);
     }
 
-    private void criarInstanciaAdministrativaUFGQualquer() throws SQLException{
+    private void criarInstanciaAdministrativaUFGQualquer() throws SQLException {
         String item = "('INSTANCIA', 'nome_instancia', 'REGIONAL', '2016-02-02', NULL, 'email@email.com', 'url.com')";
         String criaInstanciaAdministrativaUFGQualquer = "INSERT INTO instancia_administrativa_ufg VALUES " + item + ";";
 
         stmt.executeUpdate(criaInstanciaAdministrativaUFGQualquer);
     }
 
-    private void criarLocalizacaoGeograficaQualquer() throws SQLException{
+    private void criarLocalizacaoGeograficaQualquer() throws SQLException {
         String item = "(01, 'nome_cidade_qualquer', 'nome_unidade_federativa_qualquer', 'nome_pais_qualquer', 'GO')";
         String criaLocalizacaoGeografica = "INSERT INTO localizacao_geografica VALUES " + item + ";";
 
         stmt.executeUpdate(criaLocalizacaoGeografica);
     }
 
-    private void criarUnidadeAcademicaRegionalQualquer() throws SQLException{
+    private void criarUnidadeAcademicaRegionalQualquer() throws SQLException {
         String item = "(01, 'regional_qualquer', 01)";
         String criaUnidadeAcademicaRegional = "INSERT INTO regional_ufg VALUES " + item + ";";
 
         stmt.executeUpdate(criaUnidadeAcademicaRegional);
     }
 
-    private void criarUnidadeAcademicaUFGQualquer() throws SQLException{
+    private void criarUnidadeAcademicaUFGQualquer() throws SQLException {
         String item = "(01, 'unidade_academica_qualquer', 01, 01)";
         String criaUnidadeAcademicaUFG = "INSERT INTO unidade_academica_ufg VALUES " + item + ";";
 
         stmt.executeUpdate(criaUnidadeAcademicaUFG);
     }
 
-    private void criarHistoricoUFGQualquer() throws SQLException{
+    private void criarHistoricoUFGQualquer() throws SQLException {
         String item = "(01, 03, 2013, 12, 2016, 'TRABALHO_FINAL', 01, 01)";
         String criaHistoricoUFGQualquer = "INSERT INTO historico_na_ufg VALUES " + item + ";";
         stmt.executeUpdate(criaHistoricoUFGQualquer);
     }
 
-    private void criarEgressoQualquer() throws SQLException{
+    private void criarEgressoQualquer() throws SQLException {
         String item = "(01, 'nome_egresso', 'nome_mae', '1995-05-03', NULL, NULL, 'Público', 'feminino')";
         String criaEgressoQualquer = "INSERT INTO egresso VALUES " + item + ";";
 
         stmt.executeUpdate(criaEgressoQualquer);
     }
 
-    private void criarCursoUfgQualquer() throws SQLException{
+    private void criarCursoUfgQualquer() throws SQLException {
         String item = "('APERFEICOAMENTO', 'CONSUNI', 01, FALSE, 'VESPERTINO', 01 ,'EXATAS', 01, 'INSTANCIA')";
         String criaCursoUfgQualquer = "INSERT INTO curso_da_ufg VALUES " + item + ";";
 
@@ -117,7 +120,7 @@ public class CursUfgEgresTestPostgreSQL{
         stmt.executeUpdate(criaRealizacaoDeProgramaAcademicoQualquer);
     }
 
-@Test
+    @Test
     public void testaArmazenaAreaDeConhecimentoQualquer() throws SQLException {
         criarAreaDeConhecimentoQualquer();
         String sql;
@@ -161,7 +164,21 @@ public class CursUfgEgresTestPostgreSQL{
 
     }
 
-@Test(expected = org.postgresql.util.PSQLException.class)
+
+    @Test(expected = org.postgresql.util.PSQLException.class)
+    public void testaArmazenaCursoDaUFGNomeAreaDeConhecimentoNula() throws SQLException {
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+
+        String sql = "INSERT INTO curso_da_ufg VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', NULL, 01, 'INSTANCIA');";
+        stmt.executeUpdate(sql);
+
+    }
+
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaCursoDaUFGCodigoAreaDeConhecimentoNula() throws SQLException {
         criarAreaDeConhecimentoQualquer();
         criarLocalizacaoGeograficaQualquer();
@@ -538,7 +555,7 @@ public class CursUfgEgresTestPostgreSQL{
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-  
+
     @Test
     public void testaArmazenaHistoricoUfgCursoNulo() throws SQLException {
         criarEgressoQualquer();
@@ -592,6 +609,7 @@ public class CursUfgEgresTestPostgreSQL{
 
     /**
      * NÃO FOI DEFINIDA UMA PRIMARY KEY PARA A TABELA avaliacao_do_curso_pelo_egresso
+     *
      * @throws SQLException
      */
     @Test
@@ -609,7 +627,7 @@ public class CursUfgEgresTestPostgreSQL{
         stmt.executeUpdate(sql);
     }
 
-    @Test (expected = org.postgresql.util.PSQLException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoHistoricoNegativo() throws SQLException {
         criarEgressoQualquer();
         criarAreaDeConhecimentoQualquer();
@@ -1211,7 +1229,7 @@ public class CursUfgEgresTestPostgreSQL{
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
-	
+
     @Test
     public void testaArmazenaRealizacaoDeProgramaAcademicoQualquer() throws SQLException {
         criarEgressoQualquer();
