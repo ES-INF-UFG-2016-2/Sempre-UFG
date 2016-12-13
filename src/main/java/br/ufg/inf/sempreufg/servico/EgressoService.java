@@ -90,6 +90,7 @@ public class EgressoService implements EgressoServiceInterface {
                 "Maria",
                 new Date(),
                 Sexo.MASCULINO,
+                "emailAlternativo@gmail.com",
                 new BitSet(),
                 new BitSet(),
                 VisibilidadeDados.PUBLICO,
