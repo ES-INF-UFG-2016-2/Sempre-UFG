@@ -83,4 +83,9 @@ public class CursoUFGDAO implements CursoUFGDAOInterface<CursoUFG>{
 
 		return cursos;
 	}
+
+	public CursoUFG buscarPorCodigoCurso(String codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

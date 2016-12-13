@@ -131,7 +131,7 @@ public class BaseCursOutrasIesEgresTeste extends TestCase {
 		cursoOutrasIES.setIesDoCurso("UFG");
 		cursoOutrasIES.setUrlInstitucional("www.ufg.org");
 		cursoOutrasIES.setNivel(Nivel.Bacharelado);
-		cursoOutrasIES.setTipoInstituicao(TipoInstituicao.Federal);
+		cursoOutrasIES.setTipoInstituicao(TipoInstituicao.FEDERAL);
 
 		return cursoOutrasIES;
 	}

@@ -2,22 +2,50 @@ package br.ufg.inf.sempreufg.modelo;
 
 import java.io.Serializable;
 
-import br.ufg.inf.sempreufg.modelo.AreaDeConhecimento;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Type;
+
 import br.ufg.inf.sempreufg.enums.NiveisCurso;
 import br.ufg.inf.sempreufg.enums.TiposResolucao;
 import br.ufg.inf.sempreufg.enums.Turnos;
 
+@Entity(name = "cursoufg")
 public class CursoUFG implements Serializable{
 
 	private static final long serialVersionUID = 5470137330235095143L;
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	
+	private String codigo;
 	private String nome;
+	
+	@Enumerated(EnumType.STRING)
     private NiveisCurso nivel;
+	
+	@Enumerated(EnumType.STRING)
     private TiposResolucao tiposResolucao;
+	
     private int num_resolucao;
+    
+    @Type(type="true_false")
     private boolean presencial;
+    
+    @Enumerated(EnumType.STRING)
     private Turnos turno;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "area_de_conhecimento")
     private AreaDeConhecimento area_de_conhecimento;
 
     public CursoUFG(NiveisCurso nivel, TiposResolucao tiposResolucao, int num_resolucao, boolean presencial, Turnos turno, AreaDeConhecimento area_de_conhecimento) {
@@ -28,6 +56,10 @@ public class CursoUFG implements Serializable{
         this.turno = turno;
         this.area_de_conhecimento = area_de_conhecimento;
     }
+    
+    public CursoUFG() {
+    	super();
+	}
 
     public String getNome() {
         return nome;
@@ -91,5 +123,13 @@ public class CursoUFG implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 }

@@ -1,20 +1,30 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import br.ufg.inf.sempreufg.enums.Nivel;
 import br.ufg.inf.sempreufg.enums.TipoInstituicao;
 
+@Entity(name="cursooutrasies")
 public class CursoOutrasIES {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 	private String nomeDoCurso;
-
 	private String unidadeAcademia;
-
 	private String iesDoCurso;
-
 	private String urlInstitucional;
 
+	@Enumerated(EnumType.STRING)
 	private Nivel nivel;
 
+	@Enumerated(EnumType.STRING)
 	private TipoInstituicao tipoInstituicao;
 
 	public String getNomeDoCurso() {
@@ -63,6 +73,14 @@ public class CursoOutrasIES {
 
 	public void setTipoInstituicao(TipoInstituicao tipoInstituicao) {
 		this.tipoInstituicao = tipoInstituicao;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

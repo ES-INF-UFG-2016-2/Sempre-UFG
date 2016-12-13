@@ -9,16 +9,22 @@ import br.ufg.inf.sempreufg.excecoes.ErroNaConsultaException;
 import br.ufg.inf.sempreufg.excecoes.IdentificadorInexistenteExepction;
 import br.ufg.inf.sempreufg.excecoes.ParametrosErradosException;
 import br.ufg.inf.sempreufg.interfaces.ConsultaEgressoInterface;
+import br.ufg.inf.sempreufg.modelo.CursoOutrasIES;
 import br.ufg.inf.sempreufg.modelo.CursoUFG;
 import br.ufg.inf.sempreufg.modelo.Egresso;
+import br.ufg.inf.sempreufg.modelo.HistoricoOutrasIES;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.InstituicaoEnsino;
+import br.ufg.inf.sempreufg.modelo.Residencia;
 import br.ufg.inf.sempreufg.stubs.ConsultaEgressoMock;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -172,18 +178,65 @@ public class ExecConsTest {
 
     private void criaEgressos() throws ParseException {
 
-        Egresso egressoI = new Egresso("MARIA EDUARDA", "MARIA MATILDA", geraData("dd/mm/aaa", "01/01/1996"), Sexo.FEMININO,
-            "mariaeduarda@gmail.com", null, null, VisibilidadeDados.PUBLICO, criaListaHistoricoUfg("MEDICINA"));
+        Egresso egressoI = new Egresso("546546"
+        		                     , "MARIA EDUARDA"
+        		                     , "MARIA MATILDA"
+        		                     , geraLocalData("dd/mm/aaa", "01/01/1996")
+        		                     , Sexo.FEMININO
+        		                     , "mariaeduarda@gmail.com"
+        		                     , ""
+        		                     , null
+        		                     , null
+        		                     , VisibilidadeDados.PUBLICO
+        		                     , new Residencia()
+        		                     , new InstituicaoEnsino()
+        		                     , new HistoricoOutrasIES()
+        		                     , new ArrayList<CursoOutrasIES>()
+        		                     , new ArrayList<CursoUFG>()
+        		                     , criaListaHistoricoUfg("MEDICINA"));
+        
+        Egresso egressoII = new Egresso("4589763"
+        							  , "JOAO PEDRO"
+        							  , "JOANA PEDRA"
+        							  , geraLocalData("dd/mm/aaa", "10/03/1994")
+        							  , Sexo.MASCULINO
+        							  ,"joao_pedrinho2008@hotmail.com"
+        							  , ""
+        							  , null
+        							  , null
+        							  , VisibilidadeDados.PRIVADO
+        							  , new Residencia()
+    						          , new InstituicaoEnsino()
+						              , new HistoricoOutrasIES()
+						              , new ArrayList<CursoOutrasIES>()
+						              , new ArrayList<CursoUFG>() 
+						              , criaListaHistoricoUfg("PEDAGOGIA"));
 
-        Egresso egressoII = new Egresso("JOAO PEDRO", "JOANA PEDRA", geraData("dd/mm/aaa", "10/03/1994"), Sexo.MASCULINO,
-            "joao_pedrinho2008@hotmail.com", null, null, VisibilidadeDados.PRIVADO, criaListaHistoricoUfg("PEDAGOGIA"));
-
-        Egresso egressoIII = new Egresso("HELENA PEREIRA", "MARIANA PEREIRA", geraData("dd/mm/aaa", "05/09/1990"), Sexo.MASCULINO,
-            "heleninha123@gmail.com", null, null, VisibilidadeDados.SO_EGRESSOS, criaListaHistoricoUfg("ENGENHARIA DE PETROLEO"));
+        Egresso egressoIII = new Egresso( "1235987"
+        								, "HELENA PEREIRA"
+        								, "MARIANA PEREIRA"
+        								, geraLocalData("dd/mm/aaa", "05/09/1990")
+        								, Sexo.MASCULINO
+        								, "heleninha123@gmail.com"
+        								, ""
+        								, null
+        								, null
+        								, VisibilidadeDados.SO_EGRESSOS
+        								, new Residencia()
+        								, new InstituicaoEnsino()
+        								, new HistoricoOutrasIES()
+        								, new ArrayList<CursoOutrasIES>()
+        								, new ArrayList<CursoUFG>()  
+        								, criaListaHistoricoUfg("ENGENHARIA DE PETROLEO"));
 
     }
 
-    private List<HistoricoUFG> criaListaHistoricoUfg(String nomeCurso) {
+    private LocalDate geraLocalData(String string, String string2) {
+		return null;
+	}
+
+
+	private List<HistoricoUFG> criaListaHistoricoUfg(String nomeCurso) {
         HistoricoUFG graduacaoI = new HistoricoUFG(123, 3, 3, 2010, 2016, criaCurso("MEDICINA"), null);
         List<HistoricoUFG> listaHistoricoUfg = new ArrayList<>();
         listaHistoricoUfg.add(graduacaoI);

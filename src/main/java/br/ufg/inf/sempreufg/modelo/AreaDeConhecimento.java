@@ -1,9 +1,21 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
+
+@Entity
 public class AreaDeConhecimento {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	
     private String nome;
     private int codigo;
 
@@ -27,4 +39,12 @@ public class AreaDeConhecimento {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

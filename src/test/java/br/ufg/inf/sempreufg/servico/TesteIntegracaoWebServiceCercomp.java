@@ -1,10 +1,6 @@
 package br.ufg.inf.sempreufg.servico;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -13,28 +9,29 @@ import org.junit.Test;
 
 import br.ufg.inf.sempreufg.dao.CursoUFGDAO;
 import br.ufg.inf.sempreufg.dao.EgressoDao;
-import br.ufg.inf.sempreufg.dao.InstituicaoEnsinoDao;
 import br.ufg.inf.sempreufg.modelo.CursoUFG;
 import br.ufg.inf.sempreufg.modelo.Egresso;
-import br.ufg.inf.sempreufg.modelo.InstituicaoEnsino;
-import br.ufg.inf.sempreufg.stubs.WebServiceCercompMock;
 
 public class TesteIntegracaoWebServiceCercomp {
 	private EgressoService egressoService;
-
 
 	@Before
 	public void init(){
 		setEgressoService(new EgressoService());
 	}
-
-	@Test
-	public void testeConsultaWebServiceViaPeriodo(){
-		Date dataInicial = new Date(01/01/2015);
-		Date dataFinal	 = new Date(30/12/2016);
-		List<Egresso> egressos = getEgressoService().buscarDadosEgressoPeloPeriodoConclusaoCurso(dataInicial, dataFinal);
-		Assert.assertEquals(true, egressos != null);
-	}
+	
+	
+//Caso de teste removido devido a não implementação desse metodo no webService
+//	@Test
+//	public void testeConsultaWebServiceViaPeriodo(){
+//		LocalDate dataInicial = LocalDate.of(2015, 01, 01);
+//		LocalDate dataFinal	 = LocalDate.of(2016, 12, 30);
+//		
+//		String json = new EgressoWebService().buscarDadosEgressoPeloPeriodoConclusaoCurso(dataInicial, dataFinal);
+//		List<Egresso> egressos = new EgressoService().converterJsonParaListaEgresso(json);
+//		
+//		Assert.assertEquals(true, egressos != null);
+//	}
 
 	@Test
 	public void testeConsultaWebServiceViaPeloCurso(){
@@ -46,14 +43,16 @@ public class TesteIntegracaoWebServiceCercomp {
 		   .append("FROM CURSO_UFG");
 
 		List<CursoUFG> cursos = cursoDao.select(sql.toString());
-		List<Integer> codigosCursos = new ArrayList<Integer>();
+		List<String> codigosCursos = new ArrayList<String>();
 
 		if (cursos != null) {
-			cursos.stream().forEach(x-> codigosCursos.add(x.getId()));
-			egressos = getEgressoService().buscarDadosEgressoPeloCurso(codigosCursos);
+			cursos.stream().forEach(x-> codigosCursos.add(String.valueOf(x.getId())));
+			String json = new EgressoWebService().buscarDadosEgressoPeloCurso(codigosCursos);
+			egressos = new EgressoService().converterJsonParaListaEgresso(json);
+			
 		}
 
-		Assert.assertTrue(!egressos.isEmpty());
+		Assert.assertTrue(egressos != null);
 	}
 
 	@Test
@@ -65,42 +64,40 @@ public class TesteIntegracaoWebServiceCercomp {
 		   .append("FROM EGRESSOS");
 
 		List<Egresso> egressos = egressoDao.select(sql.toString());
-		List<Integer> codigosEgressos = new ArrayList<Integer>();
+		List<String> codigosEgressos = new ArrayList<String>();
 
-		egressos.stream().forEach(x-> codigosEgressos.add(x.getId()));
-
-		List<Egresso> egressosWebService = getEgressoService().buscarDadosEgressoPeloIdentificadorEgresso(codigosEgressos);
-		Assert.assertTrue(!egressosWebService.isEmpty());
+		egressos.stream().forEach(x-> codigosEgressos.add(String.valueOf(x.getId())));
+		String json = new EgressoWebService().buscarDadosEgressoPeloCurso(codigosEgressos);
+		List<Egresso> egressosWebService = new EgressoService().converterJsonParaListaEgresso(json);
+		
+		Assert.assertTrue(egressosWebService != null);
 	}
 
+	
+	//Esse caso de teste foi comentado pelo fato de que não será mais utilizado essa forma de consulta
+	
+//	@Test
+//	public void testeConsultaWebServiceViaUnidadeAcademica(){
+//		InstituicaoEnsinoDao instituicaoEnsinoDao = new InstituicaoEnsinoDao();
+//		StringBuilder sql = new StringBuilder();
+//
+//		sql.append("SELECT ID, NOME_UNIDADE_ACADEMICA")
+//		   .append("FROM CURSO_OUTRA_IES");
+//
+//		List<InstituicaoEnsino> instituicaoEnsino = instituicaoEnsinoDao.select(sql.toString());
+//
+//		List<Integer> codigosInstituicaoEnsino = new ArrayList<Integer>();
+//		instituicaoEnsino.stream().forEach(x-> codigosInstituicaoEnsino.add(x.getId()));
+//
+//		List<Egresso> egresso = getEgressoService().buscarDadosEgressoPelaUnidadeAcademica(codigosInstituicaoEnsino);
+//		Assert.assertTrue(!egresso.isEmpty());
+//	}
+
 	@Test
-	public void testeConsultaWebServiceViaUnidadeAcademica(){
-		InstituicaoEnsinoDao instituicaoEnsinoDao = new InstituicaoEnsinoDao();
-		StringBuilder sql = new StringBuilder();
-
-		sql.append("SELECT ID, NOME_UNIDADE_ACADEMICA")
-		   .append("FROM CURSO_OUTRA_IES");
-
-		List<InstituicaoEnsino> instituicaoEnsino = instituicaoEnsinoDao.select(sql.toString());
-
-		List<Integer> codigosInstituicaoEnsino = new ArrayList<Integer>();
-		instituicaoEnsino.stream().forEach(x-> codigosInstituicaoEnsino.add(x.getId()));
-
-		List<Egresso> egresso = getEgressoService().buscarDadosEgressoPelaUnidadeAcademica(codigosInstituicaoEnsino);
-		Assert.assertTrue(!egresso.isEmpty());
-	}
-
-	@Test
-	public void testaConversaoXmlParaEgresso(){
-		try {
-			InputStream inputStream = new WebServiceCercompMock().consultarWebServiceEgresso();
-			Egresso egresso = getEgressoService().converterXmlParaEgresso(inputStream);
-			Assert.assertTrue(egresso != null);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void testaConversaoJsonParaEgresso(){
+		String json = new EgressoWebService().listarTodos();
+		List<Egresso> egressos = getEgressoService().converterJsonParaListaEgresso(json);
+		Assert.assertTrue(egressos != null);
 	}
 
 	public EgressoService getEgressoService() {
