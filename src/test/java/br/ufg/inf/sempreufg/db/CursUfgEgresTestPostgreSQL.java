@@ -117,7 +117,7 @@ public class CursUfgEgresTestPostgreSQL{
         stmt.executeUpdate(criaRealizacaoDeProgramaAcademicoQualquer);
     }
 
-    @Test
+@Test
     public void testaArmazenaAreaDeConhecimentoQualquer() throws SQLException {
         criarAreaDeConhecimentoQualquer();
         String sql;
@@ -160,7 +160,20 @@ public class CursUfgEgresTestPostgreSQL{
         stmt.executeUpdate(sql);
 
     }
-	
+
+
+    @Test(expected = org.postgresql.util.PSQLException.class)
+    public void testaArmazenaCursoDaUFGNomeAreaDeConhecimentoNula() throws SQLException {
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+
+        String sql = "INSERT INTO curso_da_ufg VALUES ('Bacharelado', 'CEPEC', 01, TRUE, 'Matutino','SAMAMBAIA', NULL, 01, 'INSTANCIA');";
+        stmt.executeUpdate(sql);
+
+    }
     @Test(expected = java.sql.SQLDataException.class)
     public void testaArmazenaCursoDaUFGNumeroDaResolucaoNegativo() throws SQLException {
         String sql = "INSERT INTO curso_da_ufg VALUES ('Aperfeicoamento', 'CONSUNI', -1, FALSE, 'Vespertino','SAMAMBAIA', 12);";
