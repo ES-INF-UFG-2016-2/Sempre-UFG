@@ -1,6 +1,6 @@
-package br.ufg.inf.modelo;
+package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.enums.Regional;
+import br.ufg.inf.sempreufg.enums.Regional;
 
 public class RegionalUFG {
 

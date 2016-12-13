@@ -1,4 +1,4 @@
-package br.ufg.inf.modelo;
+package br.ufg.inf.sempreufg.modelo;
 
 public class UnidadeAcademica {
     
@@ -45,7 +45,4 @@ public class UnidadeAcademica {
     public void setRegional(RegionalUFG regional) {
         this.regional = regional;
     }
-    
-    
-    
 }
