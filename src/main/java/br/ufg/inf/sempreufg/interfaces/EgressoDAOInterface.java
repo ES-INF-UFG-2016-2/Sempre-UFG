@@ -13,7 +13,7 @@ public interface EgressoDAOInterface {
 
     public boolean deletar(Egresso egresso) throws SQLException;
 
-    public Egresso getById(int id_Egresso) throws Exception;
+    public Egresso getById(int id) throws Exception;
 
     public List<Egresso> getAll() throws SQLException;
 }

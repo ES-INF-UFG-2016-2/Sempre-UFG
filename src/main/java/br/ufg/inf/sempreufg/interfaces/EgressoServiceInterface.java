@@ -5,6 +5,6 @@ import br.ufg.inf.sempreufg.modelo.Egresso;
 public interface EgressoServiceInterface {
 
     Egresso atualizaEgresso(Egresso egresso) throws Exception;
-    Egresso getEgresso(String nome);
+    Egresso getEgresso(int id);
     void removeEgresso(Egresso egresso) throws Exception;
 }

@@ -1,6 +1,8 @@
 package br.ufg.inf.sempreufg.dao;
 
 import br.ufg.inf.sempreufg.db.ConexaoBanco;
+import br.ufg.inf.sempreufg.enums.Sexo;
+import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.interfaces.EgressoDAOInterface;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 
@@ -8,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 public class EgressoDAO implements EgressoDAOInterface{
@@ -50,8 +53,8 @@ public class EgressoDAO implements EgressoDAOInterface{
             System.out.println("INSTRUÇÃO SALVAR: " + consultaEgresso);
             instrucao = conexao.prepareStatement(consultaEgresso);
             ResultSet resultado = instrucao.executeQuery();
-            int id_Egresso = resultado.getInt(1);
-            novoEgresso = new Egresso(id_Egresso, egresso.getNome(),
+            int id = resultado.getInt(1);
+            novoEgresso = new Egresso(id, egresso.getNome(),
                 egresso.getNome_mae(), egresso.getData_nascimento(), egresso.getFoto_principal(),
                 egresso.getFotos_adicionais(), egresso.getVisibilidade(), egresso.getSexo());
 
@@ -71,11 +74,11 @@ public class EgressoDAO implements EgressoDAOInterface{
 
         try{
             String alteraEgresso = "UPDATE TABLE egresso SET (id = ?, nome = ?, nome_mae = ?, data_nascimento = ?," +
-                "foto_principal = ?, fotos_adicionais = ?, visibilidade = ?, sexo = ?) WHERE id = '" + egresso.getId_Egresso() + "';";
+                "foto_principal = ?, fotos_adicionais = ?, visibilidade = ?, sexo = ?) WHERE id = '" + egresso.getId() + "';";
 
             instrucao = conexao.prepareStatement(alteraEgresso);
 
-            instrucao.setInt(1, egresso.getId_Egresso());
+            instrucao.setInt(1, egresso.getId());
             instrucao.setString(2, egresso.getNome());
             instrucao.setString(3, egresso.getNome_mae());
             instrucao.setDate(4, (java.sql.Date) egresso.getData_nascimento());
@@ -95,12 +98,12 @@ public class EgressoDAO implements EgressoDAOInterface{
 
     @Override
     public boolean deletar(Egresso egresso) throws SQLException{
-        int id_Egresso = egresso.getId_Egresso();
+        int id = egresso.getId();
         if (conexao == null) conexao = ConexaoBanco.getConnection();
 
         try{
 
-            String deletaEgresso = "DELETE FROM egresso where id = '" + id_Egresso + "';";
+            String deletaEgresso = "DELETE FROM egresso where id = '" + id + "';";
             instrucao = conexao.prepareStatement(deletaEgresso);
             instrucao.executeUpdate(deletaEgresso);
         }catch(Exception erro){
@@ -111,7 +114,7 @@ public class EgressoDAO implements EgressoDAOInterface{
         ResultSet resultado = null;
 
         try{
-            String consultaEgressoRemovido = "SELECT * FROM egresso WHERE id = '" + id_Egresso + "';";
+            String consultaEgressoRemovido = "SELECT * FROM egresso WHERE id = '" + id + "';";
             instrucao = conexao.prepareStatement(consultaEgressoRemovido);
             resultado = instrucao.executeQuery(consultaEgressoRemovido);
         }catch(Exception erro){
@@ -123,15 +126,15 @@ public class EgressoDAO implements EgressoDAOInterface{
     }
 
     @Override
-    public Egresso getById(int id_Egresso) throws Exception {
-        /*
+    public Egresso getById(int id) throws Exception {
+
         if (conexao == null) conexao = ConexaoBanco.getConnection();
 
         Egresso egresso = null;
 
         try{
             String selectEgresso = "SELECT (id, nome, nome_mae, data_nascimento, foto_principal, " +
-                "fotos_adicionais, visibilidade, sexo) FROM egresso WHERE id = '" + id_Egresso + "';";
+                "fotos_adicionais, visibilidade, sexo) FROM egresso WHERE id = '" + id + "';";
 
             instrucao = conexao.prepareStatement(selectEgresso);
             ResultSet resultado = instrucao.executeQuery();
@@ -173,7 +176,7 @@ public class EgressoDAO implements EgressoDAOInterface{
             }
 
             egresso = new Egresso(
-                id_Egresso,
+                id,
                 nome,
                 nome_mae,
                 data_nascimento,
@@ -189,10 +192,7 @@ public class EgressoDAO implements EgressoDAOInterface{
 
         }
 
-        if (egresso == null) throw new Exception("Egresso não encontrado!");
-        else return egresso;
-        */
-        return null;
+        return egresso;
     }
 
     @Override

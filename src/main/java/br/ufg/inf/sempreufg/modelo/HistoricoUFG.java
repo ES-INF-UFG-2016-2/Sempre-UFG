@@ -1,9 +1,13 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import org.json.JSONObject;
+
 /**
  * Created by user1 on 09/10/2016.
  */
 public class HistoricoUFG {
+
+    private int id;
     private int num_matricula;
     private int mes_inicio;
     private int mes_fim;
@@ -22,6 +26,19 @@ public class HistoricoUFG {
         this.cursoUFG = cursoUFG;
         this.titulo_trabalho_Final = titulo_trabalho_Final;
     }
+
+    public HistoricoUFG() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public int getNum_matricula() {
         return num_matricula;
@@ -77,5 +94,13 @@ public class HistoricoUFG {
 
     public void setTitulo_trabalho_Final(String titulo_trabalho_Final) {
         this.titulo_trabalho_Final = titulo_trabalho_Final;
+    }
+
+    public JSONObject toJson(){
+        return new JSONObject();
+    }
+
+    public HistoricoUFG fromJson(){
+        return new HistoricoUFG();
     }
 }

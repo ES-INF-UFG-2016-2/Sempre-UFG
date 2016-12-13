@@ -2,21 +2,14 @@ package br.ufg.inf.sempreufg.modelo;
 
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
+import org.json.JSONObject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name="egresso")
 public class Egresso extends Usuario {
 
-    @Id
-    @GeneratedValue private int id_Egresso;
-
+    private int id;
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
@@ -26,24 +19,18 @@ public class Egresso extends Usuario {
     private byte[] fotos_adicionais;
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
+    private LocalizacaoGeografica naturalidade;
 
-    public Egresso() {
+    public LocalizacaoGeografica getNaturalidade() {
+        return naturalidade;
     }
 
-    //Construtor novo
-    public Egresso(int id_Egresso, String nome, String nome_mae, Date data_nascimento, byte[] foto_principal, byte[] fotos_adicionais, VisibilidadeDados visibilidade, Sexo sexo) {
-        this.id_Egresso  = id_Egresso;
-        this.nome = nome;
-        this.nome_mae = nome_mae;
-        this.data_nascimento = data_nascimento;
-        this.sexo = sexo;
-        this.foto_principal = foto_principal;
-        this.fotos_adicionais = fotos_adicionais;
-        this.visibilidade = visibilidade;
+    public void setNaturalidade(LocalizacaoGeografica naturalidade) {
+        this.naturalidade = naturalidade;
     }
 
-    // Construtor antigo
-    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, byte[] foto_principal, byte[] fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG) {
+    public Egresso(int id, String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, byte[] foto_principal, byte[] fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
+        this.id = id;
         this.nome = nome;
         this.nome_mae = nome_mae;
         this.data_nascimento = data_nascimento;
@@ -53,14 +40,29 @@ public class Egresso extends Usuario {
         this.fotos_adicionais = fotos_adicionais;
         this.visibilidade = visibilidade;
         this.lista_historicosUFG = lista_historicosUFG;
+        this.naturalidade = naturalidade;
     }
 
-    public int getId_Egresso() {
-        return id_Egresso;
+    public Egresso() {
     }
 
-    public void setId_Egresso(int id_Egresso) {
-        this.id_Egresso = id_Egresso;
+    public Egresso(int id, String nome, String nome_mae, Date data_nascimento, byte[] foto_principal, byte[] fotos_adicionais, VisibilidadeDados visibilidade, Sexo sexo) {
+        this.id  = id;
+        this.nome = nome;
+        this.nome_mae = nome_mae;
+        this.data_nascimento = data_nascimento;
+        this.sexo = sexo;
+        this.foto_principal = foto_principal;
+        this.fotos_adicionais = fotos_adicionais;
+        this.visibilidade = visibilidade;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -133,5 +135,35 @@ public class Egresso extends Usuario {
 
     public void setLista_historicosUFG(List<HistoricoUFG> lista_historicosUFG) {
         this.lista_historicosUFG = lista_historicosUFG;
+    }
+
+    private JSONObject getLista_historicosUFGAsJson(){
+        JSONObject listaHistoricosUfgAsJson = new JSONObject();
+
+        this.lista_historicosUFG.forEach( historicoUFG -> listaHistoricosUfgAsJson.put(
+            Integer.toString(historicoUFG.getId()), historicoUFG.toJson()));
+
+        return listaHistoricosUfgAsJson;
+    }
+    
+
+    public JSONObject toJSON(){
+        JSONObject egressoAsJsonObject = new JSONObject();
+        JSONObject innerJson = new JSONObject();
+
+        innerJson.put("nome", getNome());
+        innerJson.put("nome_mae", getNome_mae());
+        innerJson.put("data_nascimento", getData_nascimento());
+        innerJson.put("sexo", getSexo());
+        innerJson.put("visibilidade", getVisibilidade());
+        innerJson.put("lista_historicosUFG", getLista_historicosUFG());
+        innerJson.put("naturalidade", getNaturalidade());
+
+        egressoAsJsonObject.put( Integer.toString(getId()) , innerJson);
+        return egressoAsJsonObject;
+    }
+
+    public static Egresso fromJSON(){
+
     }
 }

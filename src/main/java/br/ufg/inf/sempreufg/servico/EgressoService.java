@@ -19,14 +19,20 @@ public class EgressoService implements EgressoServiceInterface {
             e.printStackTrace();
             throw new Exception("Não foi possível alterar o Egresso!");
         }
-        // Verificar próximo passo (retorno do método atualizaEgresso) junto ao projetista:
-        return new Egresso();
-        //O retorno do método alterar (EgressoDAO é boolean ao passo que o acima retorna o egresso alterado(?)
+
+       return egressoDAO.getById(egresso.getId());
     }
 
     @Override
-    public Egresso getEgresso(String nome) {
-        return new Egresso();
+    public Egresso getEgresso(int id) {
+        egressoDAO = new EgressoDAO();
+        Egresso egresso = null;
+        try {
+            egresso = egressoDAO.getById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return egresso;
     }
 
     @Override
