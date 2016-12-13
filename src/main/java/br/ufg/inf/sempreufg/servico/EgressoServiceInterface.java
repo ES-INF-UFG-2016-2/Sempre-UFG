@@ -10,7 +10,13 @@ import br.ufg.inf.sempreufg.modelo.Egresso;
 
 public interface EgressoServiceInterface {
 
-	public Egresso converterXmlParaEgresso(InputStream content);
+    Egresso atualizaEgresso(Egresso egresso) throws Exception;
+
+    Egresso getEgresso(int id);
+
+    void removeEgresso(Egresso egresso) throws Exception;
+
+    public Egresso converterXmlParaEgresso(InputStream content);
 	public boolean egressoEValido(Egresso egresso);
 	public List<Egresso> buscarDadosEgressoViaWebService();
 	public List<Egresso> buscarDadosEgressoPeloPeriodoConclusaoCurso(Date dataInicial, Date dataFinal);

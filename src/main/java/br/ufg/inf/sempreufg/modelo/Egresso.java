@@ -3,19 +3,21 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.BitSet;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by user1 on 09/10/2016.
- */
+@Entity
+@Table(name = "Egresso")
 public class Egresso extends Usuario implements Serializable {
 
-    private static final long serialVersionUID = 3370581220250685348L;
-
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="idEgresso")
+    @SequenceGenerator(name="idEgresso", initialValue=01, sequenceName="EGRESSO_ID_SEQUENCE", allocationSize=1)
     private int id;
+
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
@@ -26,6 +28,8 @@ public class Egresso extends Usuario implements Serializable {
     private VisibilidadeDados visibilidade;
     private List<HistoricoUFG> lista_historicosUFG;
     private LocalizacaoGeografica naturalidade;
+
+    private static final long serialVersionUID = 3370581220250685348L;
 
     public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
         this.nome = nome;
