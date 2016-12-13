@@ -30,6 +30,39 @@ public class Evento {
 
     }
 
+    public Evento(int id, String assunto, String des_evento, Date data_solicitacao, int id_solicitante,
+                  Date data_expiracao, String tipos_eventoStr, String formaStr, String escopoStr) {
+
+        super();
+        this.id = id;
+        this.assunto = assunto;
+        this.des_evento = des_evento;
+        this.data_solicitacao = data_solicitacao;
+        this.id_solicitante = id_solicitante;
+        this.data_expiracao = data_expiracao;
+
+        for (Escopos escopo : Escopos.values()) {
+            if (escopo.toString().equalsIgnoreCase(escopoStr)) {
+                setEsc(escopo);
+                break;
+            }
+        }
+        for (Tipos tipo_evento : Tipos.values()) {
+            if (tipo_evento.toString().equalsIgnoreCase(tipos_eventoStr)) {
+                setEvento(tipo_evento);
+                break;
+            }
+        }
+        for (Formas forma : Formas.values()) {
+            if (forma.toString().equalsIgnoreCase(formaStr)) {
+                setForma(forma);
+                break;
+            }
+        }
+
+    }
+
+
     public Evento(String assunto, String des_evento, Date data_solicitacao, int id_solicitante,
                   Date data_expiracao, String tipos_eventoStr, String formaStr, String escopoStr, List<AreaDeConhecimento> areas_conhecimento, List<PublicoAlvo> publicos_alvo) {
 
