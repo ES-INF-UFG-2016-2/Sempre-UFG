@@ -1,6 +1,9 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import org.json.JSONObject;
+
 import javax.persistence.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +25,22 @@ public class DivulgacaoEventoComunidade {
         this.usuarios = usuarios;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public List<Usuario> getUsuarios() {
         return new ArrayList<>(this.usuarios);
     }
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    private JSONObject getListaUsuarioAsJson() {
+        JSONObject listaUsuarioAsJsonObj = new JSONObject();
+        this.usuarios.forEach(usuario -> listaUsuarioAsJsonObj.put(Integer.toString(usuario.getIdUsuario()), usuario.toJSON()));
+        return listaUsuarioAsJsonObj;
     }
 
     public Evento getEvento() {
@@ -38,4 +51,33 @@ public class DivulgacaoEventoComunidade {
         this.evento = evento;
     }
 
+    public JSONObject toJSON() {
+
+        JSONObject divulgacaoEventoComunidadeAsJsonObj = new JSONObject();
+        JSONObject innerJson = new JSONObject();
+
+        innerJson.put("evento", this.evento.toJSON());
+        innerJson.put("listaUsuarios", getListaUsuarioAsJson());
+
+        divulgacaoEventoComunidadeAsJsonObj.put(Integer.toString(getId()), innerJson);
+
+        return divulgacaoEventoComunidadeAsJsonObj;
+    }
+
+    public static DivulgacaoEventoComunidade fromJSON(JSONObject divulgacaoEventoComunidadeAsJson) {
+
+        List<Usuario> listaUsuarios = new ArrayList<>();
+
+        divulgacaoEventoComunidadeAsJson.getJSONObject("listaUsuarios").names().forEach(usuarioAsJsonObj -> {
+                try {
+                    listaUsuarios.add(Usuario.fromJSON((JSONObject) usuarioAsJsonObj));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        );
+
+        return new DivulgacaoEventoComunidade(Evento.fromJSON(divulgacaoEventoComunidadeAsJson.getJSONObject("evento")), listaUsuarios);
+
+    }
 }
