@@ -43,16 +43,19 @@ public class EgressoDao implements EgressoDaoInterface<Egresso>{
 		List<Egresso> egressos = new ArrayList<Egresso>();
 
 		for (int i = 0; i < 10; i++) {
-			Egresso egresso = new Egresso("Everton Jose",
-										  "Maria",
-										  new Date(),
-										  Sexo.MASCULINO,
-										  "emailAlternativo@gmail.com",
-										  new BitSet(),
-										  new BitSet(),
-										  VisibilidadeDados.PUBLICO,
-										  new ArrayList<HistoricoUFG>(),
-                                                                                  new LocalizacaoGeografica());
+			Egresso egresso = new Egresso(
+				"Everton Jose",
+				"Maria",
+				new Date(),
+				Sexo.MASCULINO,
+				"emailAlternativo@gmail.com",
+				new BitSet(),
+				new BitSet(),
+				VisibilidadeDados.PUBLICO,
+				new ArrayList<HistoricoUFG>(),
+                new LocalizacaoGeografica()
+			);
+			
 			egressos.add(egresso);
 		}
 
