@@ -26,6 +26,8 @@ public class Egresso extends Usuario implements Serializable {
     private String nome_mae;
     private Date data_nascimento;
     private Sexo sexo;
+    @Transient
+    private String email_alternativo;
     private VisibilidadeDados visibilidade;
     @Transient
     private BitSet foto_principal;
@@ -37,11 +39,12 @@ public class Egresso extends Usuario implements Serializable {
 
     private static final long serialVersionUID = 3370581220250685348L;
 
-    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
+    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
         this.nome = nome;
         this.nome_mae = nome_mae;
         this.data_nascimento = data_nascimento;
         this.sexo = sexo;
+        this.email_alternativo = email_alternativo;
         this.foto_principal = foto_principal;
         this.fotos_adicionais = fotos_adicionais;
         this.visibilidade = visibilidade;
