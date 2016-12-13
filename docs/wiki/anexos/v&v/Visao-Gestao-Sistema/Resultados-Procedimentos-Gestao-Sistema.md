@@ -2,7 +2,7 @@
 
 ## 1. Conjunto dos Testes Executados
 
-Todos.
+CT-1 e CT-2.
 
 ## 2. Conjunto de Testes Falhos
 **CT-1 . Conjunto de testes para verificar se as tabelas estão criadas no Banco de dados**
