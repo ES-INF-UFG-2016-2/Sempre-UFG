@@ -11,8 +11,8 @@ public interface EgressoServiceInterface {
     public List<Egresso> consultaPorAdHoc(Map<NomeCampos, String> parametros);
     public List<Egresso> consultarEgressoPorConsultaPreDefinida(String string);
 
-    Egresso atualizaEgresso(Egresso egresso) throws Exception;
+    void atualizarEgresso(Egresso egresso) throws Exception;
     Egresso getEgresso(int id);
-    void removeEgresso(Egresso egresso) throws Exception;
+    void removerEgresso(int id) throws Exception;
 
 }
