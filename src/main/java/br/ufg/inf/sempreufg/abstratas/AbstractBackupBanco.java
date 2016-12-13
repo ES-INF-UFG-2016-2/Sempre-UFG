@@ -1,11 +1,11 @@
 package br.ufg.inf.sempreufg.abstratas;
 
+import java.sql.Connection;
+import java.util.List;
+
 import br.ufg.inf.sempreufg.dao.BackupBancoDao;
 import br.ufg.inf.sempreufg.interfaces.BackupBancoInterface;
 import br.ufg.inf.sempreufg.modelo.ParametrosBackupBanco;
-
-import java.sql.Connection;
-import java.util.List;
 
 public abstract class AbstractBackupBanco implements BackupBancoInterface{
 
