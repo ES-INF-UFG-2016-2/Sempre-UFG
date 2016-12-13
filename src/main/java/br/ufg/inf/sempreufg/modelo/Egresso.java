@@ -122,7 +122,7 @@ public class Egresso extends Usuario implements Serializable {
     public void setNaturalidade(LocalizacaoGeografica naturalidade) {
         this.naturalidade = naturalidade;
     }
-    
+
     public int getId() {
         return id;
     }
