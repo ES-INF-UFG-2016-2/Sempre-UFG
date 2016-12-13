@@ -571,59 +571,135 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoQualquer() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01, '2016-02-02', 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
         sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '2016-02-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    /**
+     * NÃO FOI DEFINIDA UMA PRIMARY KEY PARA A TABELA avaliacao_do_curso_pelo_egresso
+     * @throws SQLException
+     */
+    @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoHistoricoNulo() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (NULL , '2016-02-02', 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test (expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoHistoricoNegativo() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (-01 , '2016-02-02', 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoDataAvaliacaoNula() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (02 , NULL , 'Outra', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMotivacaoNula() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (10 , '2016-02-02', NULL, 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLWarning.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMotivacaoInvalida() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-05-02', 'MOTIVACAO INVALIDA', 8, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoNula() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (10 , '2016-02-02', 'Outra', NULL, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (15 , '2016-01-02', 'Outra', 0, 8, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-01-02', 'Outra', 0, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 15 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 0 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 0 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
@@ -631,41 +707,86 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (15 , '2016-01-02', 'Outra', 10, 8, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-01-02', 'Outra', 10, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 15 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 10 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 10 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoAbaixoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (15 , '2016-01-02', 'Outra', -10, 8, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-01-02', 'Outra', -1, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoSatisfacaoAcimaLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (02 , '2016-01-02', 'Outra', 13, 8, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-01-02', 'Outra', 12, 8, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoConceitoGlobalCursoNulo() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (11 , '2016-01-02', 'Outra', 8, NULL, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-01-02', 'Outra', 8, NULL, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoConceitoGlobalCursoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (03 , '2016-01-02', 'Outra', 8, 0, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-01-02', 'Outra', 8, 0, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 03 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 0 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 0 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
@@ -673,41 +794,86 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoConceitoGlobalCursoLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (15 , '2016-01-02', 'Outra', 8, 10, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '2016-01-02', 'Outra', 8, 10, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 15 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 10 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '2016-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 10 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoConceitoGlobalCursoAbaixoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (08 , '1995-01-02', 'Outra', 8, -10, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, -10, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoConceitoGlobalCursoAcimaLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (04 , '1995-01-02', 'Outra', 8, 15, 8, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 15, 8, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoPreparacaoParaMercadoNulo() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (05 , '1995-01-02', 'Outra', 8, 8, NULL, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, NULL, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoPreparacaoParaMercadoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (06 , '1995-01-02', 'Outra', 8, 8, 0, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, 0, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 06 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 0 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 0 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
@@ -715,41 +881,86 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoPreparacaoParaMercadoLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (07 , '1995-01-02', 'Outra', 8, 8, 10, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, 10, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 10 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 10 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoPreparacaoParaMercadoAbaixoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (20 , '1995-01-02', 'Outra', 8, 8, -10, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, -10, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoPreparacaoParaMercadoAcimaLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (17 , '1995-01-02', 'Outra', 8, 8, 15, 8, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, 15, 8, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMelhoriaCapacidadeComunicacaoNula() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (19 , '1995-01-02', 'Outra', 8, 8, 8, NULL, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, 8, NULL, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMelhoriaCapacidadeComunicacaoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (06 , '1990-01-02', 'Outra', 8, 8, 8, 0, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1990-01-02', 'Outra', 8, 8, 8, 0, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 06 AND DATA_AVALIACAO = '1990-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 0 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1990-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 0 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
@@ -757,41 +968,86 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMelhoriaCapacidadeComunicacaoLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (07 , '1982-01-02', 'Outra', 8, 8, 8, 10, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1982-01-02', 'Outra', 8, 8, 8, 10, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1982-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 10 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1982-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 10 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMelhoriaCapacidadeComunicacaoAbaixoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (09 , '1981-01-02', 'Outra', 8, 8, 8, -10, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1981-01-02', 'Outra', 8, 8, 8, -10, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoMelhoriaCapacidadeComunicacaoAcimaLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (40 , '1990-01-02', 'Outra', 8, 8, 8, 15, 8, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1990-01-02', 'Outra', 8, 8, 8, 15, 8, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeNula() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (19 , '1999-01-02', 'Outra', 8, 8, 8, 8, NULL, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1999-01-02', 'Outra', 8, 8, 8, 8, NULL, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (06 , '1998-01-02', 'Outra', 8, 8, 8, 8, 0, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1998-01-02', 'Outra', 8, 8, 8, 8, 0, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 06 AND DATA_AVALIACAO = '1998-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1998-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 0 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
@@ -799,41 +1055,86 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (07 , '1997-01-02', 'Outra', 8, 8, 8, 8, 10, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1997-01-02', 'Outra', 8, 8, 8, 8, 10, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1997-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1997-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 10 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeAbaixoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (09 , '1996-01-02', 'Outra', 8, 8, 8, 8, -10, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1996-01-02', 'Outra', 8, 8, 8, 8, -10, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeEticaResponsabilidadeAcimaLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (40 , '1995-01-02', 'Outra', 8, 8, 8, 8, 15, 8, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, 8, 8, 15, 8, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLIntegrityConstraintViolationException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoNula() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (05 , '1999-01-02', 'Outra', 8, 8, 8, 8, 8, NULL, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1999-01-02', 'Outra', 8, 8, 8, 8, 8, NULL, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (18 , '1998-01-02', 'Outra', 8, 8, 8, 8, 8, 0, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1998-01-02', 'Outra', 8, 8, 8, 8, 8, 0, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 18 AND DATA_AVALIACAO = '1998-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1998-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 0 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
@@ -841,40 +1142,75 @@ public class CursUfgEgresTestPostgreSQL{
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (07 , '1997-01-02', 'Outra', 8, 8, 8, 8, 8, 10, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1997-01-02', 'Outra', 8, 8, 8, 8, 8, 10, 'COMENTARIO');";
         stmt.executeUpdate(sql);
 
-        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 07 AND DATA_AVALIACAO = '1997-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+        sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1997-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 10 AND COMENTARIO = 'COMENTARIO';";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoAbaixoLimiteInferior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (09 , '1996-01-02', 'Outra', 8, 8, 8, 8, 8, -10, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1996-01-02', 'Outra', 8, 8, 8, 8, 8, -10, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
-    @Test(expected = java.sql.SQLDataException.class)
+    @Test(expected = org.postgresql.util.PSQLException.class)
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoCapacidadeHabilidadesAreaConhecimentoAcimaLimiteSuperior() throws SQLException {
-        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (40 , '1995-01-02', 'Outra', 8, 8, 8, 8, 8, 15, 'COMENTARIO');";
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
+        String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, 8, 8, 8, 15, 'COMENTARIO');";
         stmt.executeUpdate(sql);
     }
 
     @Test
     public void testaArmazenaAvaliacaoDoCursoPeloEgressoComentarioNulo() throws SQLException {
+        criarEgressoQualquer();
+        criarAreaDeConhecimentoQualquer();
+        criarLocalizacaoGeograficaQualquer();
+        criarUnidadeAcademicaRegionalQualquer();
+        criarUnidadeAcademicaUFGQualquer();
+        criarInstanciaAdministrativaUFGQualquer();
+        criarCursoUfgQualquer();
+        criarHistoricoUFGQualquer();
+
         String sql = "INSERT INTO avaliacao_do_curso_pelo_egresso VALUES (01 , '1995-01-02', 'Outra', 8, 8, 8, 8, 8, 8, NULL);";
         stmt.executeUpdate(sql);
 
         sql = "SELECT * FROM avaliacao_do_curso_pelo_egresso WHERE HISTORICO = 01 AND DATA_AVALIACAO = '1995-01-02' AND MOTIVACAO_ESCOLHA = 'Outra' " +
-            "AND SATISFACAO_CURSO = 8 AND CONCEITO_GLOBAL_CURSO = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
+            "AND SATISFACAO_curso = 8 AND CONCEITO_GLOBAL_curso = 8 AND PREPARACAO_PARA_MERCADO = 8 AND MELHORIA_CAPACIDADE_COMUNICACAO = 8 AND " +
             "CAPACIDADE_ETICA_RESPONSABILIADE = 8 AND CAPACIDADE_HABILIDADES_AREA_CONHECIMENTO = 8;";
         ResultSet resultado = stmt.executeQuery(sql);
         assertEquals(true, resultado.isBeforeFirst());
     }
-
     @Test
     public void testaArmazenaRealizacaoDeProgramaAcademicoQualquer() throws SQLException {
         String sql = "INSERT INTO REALIZACAO_DE_PROGRAMA_ACADEMICO VALUES (20101842 , 'Intercambio', '2016-02-01' , '2016-12-01', 'Descricao');";
