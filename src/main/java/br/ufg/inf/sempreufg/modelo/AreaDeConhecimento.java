@@ -1,5 +1,7 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import org.json.JSONObject;
+
 /**
  * Created by ${Rafael_Canedo} on 09/10/2016.
  */
@@ -27,4 +29,18 @@ public class AreaDeConhecimento {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    public JSONObject toJSON() {
+        JSONObject areaDeConhecimentoAsJsonObj = new JSONObject();
+        areaDeConhecimentoAsJsonObj.put("codigo", getCodigo());
+        areaDeConhecimentoAsJsonObj.put("nome", getNome());
+        return areaDeConhecimentoAsJsonObj;
+    }
+
+    public static AreaDeConhecimento fromJSON(JSONObject areaDeconhecimentoAsJson) {
+        return new AreaDeConhecimento(areaDeconhecimentoAsJson.getString("nome"), Integer.parseInt(areaDeconhecimentoAsJson.getString("codigo")));
+    }
+
+
+
 }
