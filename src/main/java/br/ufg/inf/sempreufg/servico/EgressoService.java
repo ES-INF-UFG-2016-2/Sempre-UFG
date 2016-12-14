@@ -1,15 +1,14 @@
 package br.ufg.inf.sempreufg.servico;
 
-import br.ufg.inf.sempreufg.dao.EgressoDAO;
+import java.io.InputStream;
+import java.util.*;
+
 import br.ufg.inf.sempreufg.enums.NomeCampos;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
 import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
-
-import java.io.InputStream;
-import java.util.*;
 
 
 public class EgressoService implements EgressoServiceInterface{
@@ -39,7 +38,7 @@ public class EgressoService implements EgressoServiceInterface{
         egressoDAO = new EgressoDAO();
         egressoDAO.deletar(id);
     }
-
+    
 	@Override
 	public Egresso converterXmlParaEgresso(InputStream content) {
 		Egresso egresso = new Egresso();
