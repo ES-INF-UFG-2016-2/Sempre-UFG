@@ -1,4 +1,4 @@
-﻿package br.ufg.inf.sempreufg.servico;
+package br.ufg.inf.sempreufg.servico;
 
 import br.ufg.inf.sempreufg.dao.EgressoDAO;
 import br.ufg.inf.sempreufg.enums.NomeCampos;
