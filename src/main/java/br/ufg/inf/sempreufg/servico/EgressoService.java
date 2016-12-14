@@ -12,7 +12,8 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.*;
 
-public class EgressoService implements EgressoServiceInterface {
+
+public class EgressoService implements EgressoServiceInterface{
 
     static EgressoDAO egressoDAO;
 
@@ -57,32 +58,32 @@ public class EgressoService implements EgressoServiceInterface {
     }
 
     @Override
-    public List < Egresso > buscarDadosEgressoViaWebService() {
+    public List<Egresso> buscarDadosEgressoViaWebService() {
         return criarListaEgressoMock();
     }
 
     @Override
-    public List < Egresso > buscarDadosEgressoPeloPeriodoConclusaoCurso(Date dataInicial, Date dataFinal) {
+    public List<Egresso> buscarDadosEgressoPeloPeriodoConclusaoCurso(Date dataInicial, Date dataFinal) {
         return criarListaEgressoMock();
     }
 
     @Override
-    public List < Egresso > buscarDadosEgressoPeloIdentificadorEgresso(List < Integer > identificadores) {
+    public List<Egresso> buscarDadosEgressoPeloIdentificadorEgresso(List<Integer> identificadores) {
         return criarListaEgressoMock();
     }
 
     @Override
-    public List < Egresso > buscarDadosEgressoPeloCurso(List < Integer > identificadores) {
+    public List<Egresso> buscarDadosEgressoPeloCurso(List<Integer> identificadores) {
         return criarListaEgressoMock();
     }
 
     @Override
-    public List < Egresso > buscarDadosEgressoPelaUnidadeAcademica(List < Integer > identificadores) {
+    public List<Egresso> buscarDadosEgressoPelaUnidadeAcademica(List<Integer> identificadores) {
         return criarListaEgressoMock();
     }
 
-    public List < Egresso > criarListaEgressoMock() {
-        List < Egresso > egressos = new ArrayList < Egresso > ();
+    public List<Egresso> criarListaEgressoMock(){
+        List<Egresso> egressos = new ArrayList<Egresso>();
 
         for (int i = 0; i < 10; i++) {
             Egresso egresso = new Egresso("Everton Jose",
@@ -93,7 +94,7 @@ public class EgressoService implements EgressoServiceInterface {
                 new BitSet(),
                 new BitSet(),
                 VisibilidadeDados.PUBLICO,
-                new ArrayList < HistoricoUFG > (),
+                new ArrayList<HistoricoUFG>(),
                 new LocalizacaoGeografica());
             egressos.add(egresso);
         }
@@ -102,12 +103,12 @@ public class EgressoService implements EgressoServiceInterface {
     }
 
     @Override
-    public List < Egresso > consultarEgressoPorConsultaPreDefinida(String string) {
+    public List<Egresso> consultarEgressoPorConsultaPreDefinida(String string) {
         return new ExecultarConsultasMock().criarListaEgresso();
     }
 
     @Override
-    public List < Egresso > consultaPorAdHoc(Map < NomeCampos, String > parametros) {
+    public List<Egresso> consultaPorAdHoc(Map<NomeCampos, String> parametros) {
         return new ExecultarConsultasMock().criarListaEgresso();
     }
 
