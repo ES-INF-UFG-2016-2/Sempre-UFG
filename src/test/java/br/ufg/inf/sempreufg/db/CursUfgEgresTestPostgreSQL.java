@@ -14,8 +14,6 @@ import static org.junit.Assert.assertEquals;
 
 public class CursUfgEgresTestPostgreSQL {
 
-    private static String sysBar = System.getProperty("file.separator");
-    private static String DDLPath = "db" + sysBar + "postgres" + sysBar + "ddl" + sysBar + "RD-CursUfgEgres.sql";
     private static Connection conexao;
     private static Statement stmt;
 
