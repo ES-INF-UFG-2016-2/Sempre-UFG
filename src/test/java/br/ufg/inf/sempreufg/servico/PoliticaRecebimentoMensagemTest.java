@@ -6,6 +6,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -16,7 +20,7 @@ public class PoliticaRecebimentoMensagemTest {
 
 	@Before
 	public void setUp() throws Exception {
-		usuario = new Usuario();
+		usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
 	}
 
 	@Test
