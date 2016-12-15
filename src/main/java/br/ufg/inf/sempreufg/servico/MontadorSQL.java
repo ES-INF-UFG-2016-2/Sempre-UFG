@@ -12,6 +12,13 @@ class MontadorSQL {
     private static Map<String, String> clausulaWherePorEntidade = new HashMap<>();
     private static Map<String, AtributoDaTabela> campoPorAtributoDaTabela = new HashMap<>();
 
+    /* FIXME: Atualmente a estrutura espera que o front-end envie uma lista de campos, por exemplo nome_do_curso,
+    *  para que possamos identificar quais são os joins necessários para concluir a busca.
+    *  A ideia de melhoria seria substituir o mapa que está fixo por uma busca e montagem dinâmica dos joins
+    *  necessários para a consulta.
+    *
+    * */
+
     MontadorSQL() {
         clausulaWherePorEntidade.put("nome_do_curso", " join historico_na_ufg on historico_na_ufg.id_egresso = egresso.id" +
             " join curso_da_ufg on historico_na_ufg.curso = curso_da_ufg.numero_da_resolucao" +
