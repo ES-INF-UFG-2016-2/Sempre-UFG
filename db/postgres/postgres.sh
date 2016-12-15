@@ -14,5 +14,4 @@ export PGDATABASE='sempreufg'
 export PGUSER='sempreufg'
 export PGPASSWORD='sempreufg'
 
-# Pull request #50
-psql -h localhost -a -f $PGFOLDER/ddl/VisaoDaDivulgacaoDeInformacoes.sql
+psql -h localhost -a -f $PGFOLDER/ddl/RD-TodasVisoesIntegradas.sql
