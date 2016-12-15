@@ -1,4 +1,15 @@
 $(function () {
+    
+    $("#sortable-origem").sortable({
+        connectWith: "#sortable-destino",
+        revert: true
+    });
+    $("#sortable-destino").sortable({
+        connectWith: "#sortable-origem",
+        revert: true
+    });
+    $("ul, li").disableSelection();
+    
     $("#formularioConsulta").on("submit", function (event) {
         event.preventDefault();
         

@@ -12,24 +12,6 @@
         <title>SempreUFG - Definir Consulta de Egressos</title>
         
         <jsp:include page="../includes/header.jsp"/>
-        <jsp:include page="../includes/scripts.jsp"/>
-        
-        <script src="../../js/consulta-egressos.js"></script>
-        
-        <script>
-            $(function () {
-                $("#sortable-origem").sortable({
-                    connectWith: "#sortable-destino",
-                    revert: true
-                });
-                $("#sortable-destino").sortable({
-                    connectWith: "#sortable-origem",
-                    revert: true
-                });
-                $("ul, li").disableSelection();
-            });
-        </script>
-        
     </head>
 
     <body>
@@ -68,7 +50,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-2 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Campos para Seleção
@@ -90,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-6">
+                            <div class="col-lg-3 col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Campos Selecionados
@@ -106,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-12">
+                            <div class="col-lg-6 col-md-12">
                                 <h3>Filtros da Consulta</h3>
                                     <div id="filtros">
                                         <!-- <!-- Filtros serão inseridos aqui dinamicamente -->
@@ -127,6 +109,8 @@
         <!-- /#wrapper -->
 
         <jsp:include page="../includes/footer.jsp"/>
+        <jsp:include page="../includes/scripts.jsp"/>
+        <script src="../../js/consulta-egressos.js"></script>
 
     </body>
 

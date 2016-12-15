@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!-- jQuery -->
-<script src="../../vendor/jquery/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- jQuery UI-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
