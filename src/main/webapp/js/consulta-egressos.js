@@ -1,5 +1,5 @@
 $(function () {
-    
+
     $("#sortable-origem").sortable({
         connectWith: "#sortable-destino",
         revert: true
@@ -9,21 +9,21 @@ $(function () {
         revert: true
     });
     $("ul, li").disableSelection();
-    
+
     $("#formularioConsulta").on("submit", function (event) {
         event.preventDefault();
-        
+
         var formularioArray = $("#formularioConsulta").serializeArray();
         var dadosConsulta = {}
-        
-        
+
+
         dadosConsulta["nome"] = $($.find("input[name=nome-consulta]")).val();
-        if($($.find("input[name=consulta-publica]:checked")).length > 0){
+        if ($($.find("input[name=consulta-publica]:checked")).length > 0) {
             dadosConsulta["ePublica"] = true;
         } else {
             dadosConsulta["ePublica"] = false;
         }
-        
+
         dadosConsulta["filtros"] = estruturarFiltros(formularioArray);
 
         var dados = "acao=definirConsulta";
@@ -50,6 +50,11 @@ $(function () {
     });
 });
 
+/**
+ * Adiciona uma div de filtro ao fim da lista de divs de filtros da página de consulta.
+ * @param {botão HTML} elemento Botão acionador do evento.
+ * @returns {void}
+ */
 function adicionarFiltro(elemento) {
     var divFiltros = $(elemento).parent().parent().find("#filtros");
     var filtroHTML = $(".filtro").get(0).outerHTML;
@@ -68,6 +73,12 @@ function adicionarFiltro(elemento) {
     $(divFiltros).append($(filtroObject).get(0).outerHTML);
 }
 
+/**
+ * Remove uma div de filtro da lista de filtros da página de consulta.
+ * @param {botão HTML} elemento Botão acionador do evento. Esse botão está inserido dentro da div que será removida e, 
+ * sendo assim, servirá como referência para encontrar e remover a div de filtro.
+ * @returns {void}
+ */
 function removerFiltro(elemento) {
     var divFiltro = $(elemento).parent().parent();
     var vizinhoAcima = $(divFiltro).prev();
@@ -82,6 +93,11 @@ function removerFiltro(elemento) {
     $(divFiltro).remove();
 }
 
+/**
+ * Adiciona um elemento de filtro ao fim da lista de itens de filtro de uma div de filtro.
+ * @param {botão HTML} elemento Botão acionador do evento.
+ * @returns {void}
+ */
 function adicionarItemFiltro(elemento) {
     var divItens = $(elemento).parent().parent().find(".itensFiltros");
     var itemFiltroHTML = $(".itemFiltro").get(0).outerHTML;
@@ -97,11 +113,26 @@ function adicionarItemFiltro(elemento) {
     $(divItens).append($(itemFiltroObject).get(0).outerHTML);
 }
 
+/**
+ * Remove um item de filtro de uma div de filtro.
+ * @param {botão HTML} elemento Botão acionador do evento. Esse botão está inserido dentro da div de item de filtro que 
+ * será removida e, sendo assim, servirá como referência para encontrar e remover a div de item de filtro.
+ * @returns {void}
+ */
 function removerItemFiltro(elemento) {
     var divItemFiltro = $(elemento).parent().parent();
     $(divItemFiltro).remove();
 }
 
+/**
+ * Controla um item de filtro para exibir a correta quantidade de inputs para argumentos dependendo do parâmetro e 
+ * operador selecionado para aquele item de filtro. Quando o parâmetro selecionado for "data" e o operador selecionado 
+ * for "entre", o item de filtro deve exibir duas entradas para argumentos em vez de um, como deve acontecer para 
+ * qualquer outra combinação de parâmetro e operador.
+ * @param {elemento 'select' HTML} elemento Elemento 'select' que teve o valor alterado (seletor de parâmetro ou 
+ * operador).
+ * @returns {void}
+ */
 function onChangeSelect(elemento) {
     var linhaItemFiltro = $(elemento).parent().parent();
     var parametroSelecionado = $(linhaItemFiltro).find(".select-parametro").val();
@@ -126,11 +157,24 @@ function onChangeSelect(elemento) {
     }
 }
 
+/**
+ * Gera uma string aleatória utilizada para identificar cada filtro e item de filtro na página de consulta.
+ * @returns {String} String aleatória utilizada como identificador.
+ */
 function gerarPrefixo() {
     var tamanho = 7;
     return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, tamanho);
 }
 
+/**
+ * Estrutura o formulário de filtros para uma forma mais simples, sem índices, para que ele possa ser transformado em 
+ * JSON.
+ * @param {array} arrayConsulta Array contendo os campos do formulário para os filtros serializados pelo métodos 
+ * <code>$().serializeArray()</code> do JQuery.
+ * @returns {Array|estruturarFiltros.filtrosEstruturados} Array contendo conjuntos de itens de filtros. Cada conjunto 
+ * de item de filtro corresponde a um filtro. Cada item de filtro é composto pelo parâmetro, o operador e seus 
+ * argumentos, que são no mínimo 1 e no máximo 2.
+ */
 function estruturarFiltros(arrayConsulta) {
     var filtros = {};
     var filtrosEstruturados = [];
@@ -146,7 +190,6 @@ function estruturarFiltros(arrayConsulta) {
 
 
     $.each(filtros, function (indiceFiltro, filtro) {
-        console.log(filtro);
         var itensFiltro = {};
         var itensFiltroEstruturados = [];
         $.each(filtro, function (indiceItemFiltro, itemFiltro) {
