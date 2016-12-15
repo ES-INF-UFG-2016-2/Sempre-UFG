@@ -39,118 +39,37 @@ public class LogGatilhos implements LogConfigItem
     	
     	return parametros;
    }
-
-    public ParametroLog getNivelMensagemCliente() {
-        return nivelMensagemCliente;
-    }
-
-    public void setNivelMensagemCliente(ParametroLog nivelMensagemCliente) {
-        this.nivelMensagemCliente = nivelMensagemCliente;
-    }
-
-    public ParametroLog getNivelMensagemLog() {
-        return nivelMensagemLog;
-    }
-
-    public void setNivelMensagemLog(ParametroLog nivelMensagemLog) {
-        this.nivelMensagemLog = nivelMensagemLog;
-    }
-
-    public ParametroLog getTipoComandosSQL() {
-        return tipoComandosSQL;
-    }
-
-    public void setTipoComandosSQL(ParametroLog tipoComandosSQL) {
-        this.tipoComandosSQL = tipoComandosSQL;
-    }
-
-    public ParametroLog getDuracaoComando() {
-        return duracaoComando;
-    }
-
-    public void setDuracaoComando(ParametroLog duracaoComando) {
-        this.duracaoComando = duracaoComando;
-    }
-
-
-    public boolean ehNumerico(String str )
+    
+    public void setParametro( ParametroLog parametro)
     {
-    	try
-    	{
-    		int numero = Integer.parseInt( str );
-    	}
-    	catch(NumberFormatException nfe )
-    	{
-    		return false;
-    	}
-    	return true;
+    	if( parametro.getSigla().equals("CLIENT_MIN_MESSAGES"))
+    		nivelMensagemCliente = parametro;
+    	else if ( parametro.getSigla().equals("LOG_MIN_MESSAGES"))
+    		nivelMensagemLog = parametro;
+    	else if ( parametro.getSigla().equals("LOG_STATEMENT"))
+    		tipoComandosSQL = parametro;
+    	else if ( parametro.getSigla().equals("LOG_MIN_DURATION_STATEMENT"))
+    		duracaoComando = parametro;
     }
     
     @Override
     public void configurarParametros(ArrayList<ParametroLog> parametros) 
     {
     	Iterator<ParametroLog> iterador = parametros.iterator();
+    	Iterator<ParametroLog> iterador2 = getParametros().iterator();
     	
     	while(iterador.hasNext() )
     	{
     		ParametroLog param = iterador.next();
-    		    		
     		
-    		switch(param.getSigla() )
+    		while( iterador2.hasNext() )
     		{
-    		case "CLIENT_MIN_MESSAGES":
-    			    			
-    			for(MensagemClienteValores valor: MensagemClienteValores.values() )
+    			ParametroLog param2 = iterador.next();
+    			if( param.getSigla().equals( param2.sigla))
     			{
-    				String string = param.getValor();
-    				if( string.equals(valor.name()))
-    				{
-    					this.nivelMensagemCliente = param;
-    				}
+    				setParametro( param );
     			}
-    			
-    			
-    			break;
-    		case "LOG_MIN_MESSAGES":
-
-    			for(MensagemValores valor: MensagemValores.values() )
-    			{
-    				String string = param.getValor();
-    				if( string.equals(valor.name()))
-    				{
-    					this.nivelMensagemLog = param;
-    				}
-    			}
-    			
-    			break;
-    		case "LOG_STATEMENT":
-    			
-    			for(ComandoSQL valor: ComandoSQL.values() )
-    			{
-    				String string = param.getValor();
-    				if( string.equals(valor.name()))
-    				{
-    					this.tipoComandosSQL = param;
-    				}
-    			}
-    			
-    			break;
-    		case "LOG_MIN_DURATION_STATEMENT":
-
-    		if(ehNumerico( param.getValor() ) )
-    		{
-    			int duracao = Integer.parseInt( param.getValor() );
-    			
-    			if(duracao >= 0 )
-    				this.duracaoComando = param;
-    		}
-    			
-    		default:
-    			// process
-    			break;
     		}
     	}
-    	
-    	
     }
 }

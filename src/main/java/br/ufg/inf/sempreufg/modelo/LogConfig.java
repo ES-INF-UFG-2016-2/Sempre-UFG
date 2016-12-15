@@ -15,11 +15,10 @@ import java.util.Iterator;
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
 	public class LogConfig {
-	//private LogLocal local = new LogLocal();
+	private LogLocal local = new LogLocal();
 	private LogGatilhos gatilhos = new LogGatilhos();
 	private LogItens itens = new LogItens();
 
-	private int logConfig;
 	private File arquivoLog;
 
 
@@ -55,9 +54,7 @@ import java.util.Iterator;
 				ParametroLog parametro = iterador.next();
 				
 				if (line.contains( parametro.getSigla() )) 
-				{
-					//System.out.println("Entrei aqui");
-					
+				{					
 					line = editLinha( line, parametro.getValor() );
 					fileContent.append(line + System.getProperty("line.separator"));
 				} 
@@ -93,6 +90,7 @@ import java.util.Iterator;
 	}
 
 	public int configurarLog(ArrayList<ParametroLog> listaParamentros) {
+		local.configurarParametros(listaParamentros);
 		gatilhos.configurarParametros(listaParamentros);
 		itens.configurarParametros(listaParamentros);
 
@@ -101,7 +99,8 @@ import java.util.Iterator;
 
 	public int carregarConfigFile( String caminho ) throws IOException 
 	{
-		arquivoLog = new File("C:\\Program Files\\PostgreSQL\\9.6\\data\\postgresql.conf");
+		arquivoLog = new File(caminho);
+		//arquivoLog = new File("C:\\Program Files\\PostgreSQL\\9.6\\data\\postgresql.conf");
 		return 0;
 	}
 }

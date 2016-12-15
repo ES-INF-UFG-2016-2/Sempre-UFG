@@ -15,11 +15,11 @@ import java.util.Iterator;
  */
 public class LogLocal implements LogConfigItem
 {
-    private ParametroLog destinoLog; //String
-    private ParametroLog diretorioLog; // String
-    private ParametroLog nomeArquivo; // String
-    private ParametroLog tempoDeVidaLog; // int
-    private ParametroLog tamanhoMaximoLog; // int
+    private ParametroLog destinoLog;
+    private ParametroLog diretorioLog;
+    private ParametroLog nomeArquivo;
+    private ParametroLog tempoDeVidaLog;
+    private ParametroLog tamanhoMaximoLog;
 
     public LogLocal()
     {
@@ -27,11 +27,6 @@ public class LogLocal implements LogConfigItem
     	diretorioLog.setSigla(ParametrosLogging.LOG_DIRECTORY.name());
     	nomeArquivo.setSigla(ParametrosLogging.LOG_FILENAME.name());
     	tempoDeVidaLog.setSigla(ParametrosLogging.LOG_DURATION.name());
-    }
-    
-    public ParametroLog getDestinoLog()
-    {
-        return destinoLog;
     }
     
     public ArrayList<ParametroLog> getParametros()
@@ -58,57 +53,7 @@ public class LogLocal implements LogConfigItem
     	else if ( parametro.getSigla().equals("LOG_DURATION"))
     		tempoDeVidaLog = parametro;
     }
-
-    public void setDestinoLog(ParametroLog destinoLog) {
-        this.destinoLog = destinoLog;
-    }
-
-    public ParametroLog getDiretorioLog() {
-        return diretorioLog;
-    }
-
-    public void setDiretorioLog(ParametroLog diretorioLog) {
-        this.diretorioLog = diretorioLog;
-    }
-
-    public ParametroLog getNomeArquivo() {
-        return nomeArquivo;
-    }
-
-    public void setNomeArquivo(ParametroLog nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
-    }
-
-    public ParametroLog getTempoDeVidaLog() {
-        return tempoDeVidaLog;
-    }
-
-    public void setTempoDeVidaLog(ParametroLog tempoDeVidaLog) {
-        this.tempoDeVidaLog = tempoDeVidaLog;
-    }
-
-    public ParametroLog getTamanhoMaximoLog() {
-        return tamanhoMaximoLog;
-    }
-
-    public void setTamanhoMaximoLog(ParametroLog tamanhoMaximoLog) {
-        this.tamanhoMaximoLog = tamanhoMaximoLog;
-    }
-
-    public boolean ehNumerico(String str )
-    {
-    	try
-    	{
-    		int numero = Integer.parseInt( str );
-    	}
-    	catch(NumberFormatException nfe )
-    	{
-    		return false;
-    	}
-    	return true;
-    }
-    
-    
+ 
     @Override
     public void configurarParametros(ArrayList<ParametroLog> parametros) 
     {
@@ -128,5 +73,25 @@ public class LogLocal implements LogConfigItem
     			}
     		}
     	}
+    }
+
+    public ParametroLog getDestinoLog() {
+        return destinoLog;
+    }
+
+    public ParametroLog getDiretorioLog() {
+        return diretorioLog;
+    }
+
+    public ParametroLog getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public ParametroLog getTempoDeVidaLog() {
+        return tempoDeVidaLog;
+    }
+
+    public ParametroLog getTamanhoMaximoLog() {
+        return tamanhoMaximoLog;
     }
 }

@@ -3,20 +3,29 @@ package br.ufg.inf.sempreufg.modelo;
 public class ParametroLog
 {
 	String sigla;
+        String tipo;
 	String valor;
 	String descricao;
+        String IdSempreUFG;
 	
 	public ParametroLog()
 	{
-		
+            this.tipo = "LOG";
+            this.IdSempreUFG = "1";
 	}
 	
 	public ParametroLog(String sg, String vl )
 	{
-		this.sigla = sg;
-		this.valor = vl;
+	    this.tipo = "LOG";
+            this.IdSempreUFG = "1";	
+            this.sigla = sg;
+            this.valor = vl;
 	}
 	
+        public String getIdSempreUFG()
+        {
+            return IdSempreUFG;
+        }
 	public String getSigla() {
 		return sigla;
 	}
@@ -35,4 +44,8 @@ public class ParametroLog
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+        public String getTipo() {
+        return tipo;
+        }
 }
