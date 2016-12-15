@@ -24,6 +24,8 @@ $(function () {
             dadosConsulta["ePublica"] = false;
         }
 
+        dadosConsulta["campos"] = obterListaCamposConsulta();
+
         dadosConsulta["filtros"] = estruturarFiltros(formularioArray);
 
         var dados = "acao=definirConsulta";
@@ -213,4 +215,17 @@ function estruturarFiltros(arrayConsulta) {
         filtrosEstruturados.push(itensFiltroEstruturados);
     });
     return filtrosEstruturados;
+}
+
+/**
+ * Obtém uma lista dos campos selecionados para a consulta.
+ * @returns {Array|obterListaCamposConsulta.camposConsulta} lista de Strings que são os nomes dos campos selecionados 
+ * para a consulta.
+ */
+function obterListaCamposConsulta() {
+    var camposConsulta = [];
+    $("#sortable-destino li").each(function (elemento) {
+        camposConsulta.push($(this).attr("value"));
+    });
+    return camposConsulta;
 }

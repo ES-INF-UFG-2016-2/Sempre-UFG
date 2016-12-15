@@ -59,14 +59,14 @@
                                         <!-- <div class="list-group"> -->
                                         <ul id="sortable-origem" style="list-style-type: none; margin: 0; padding: 0;">
                                             <div class="text-center"><p><i>Arraste os itens que você não deseja ver na consulta aqui.</i></p></div>
-                                                <li href="#" class="ui-state-default list-group-item">Nome da Regional</li>
-                                                <li href="#" class="ui-state-default list-group-item">Idade do Egresso</li>
-                                                <li href="#" class="ui-state-default list-group-item">Nome da Mãe</li>
-                                                <li href="#" class="ui-state-default list-group-item">Nome da Instituição de Ensino Médio</li>
-                                                <li href="#" class="ui-state-default list-group-item">Turno</li>
-                                                <li href="#" class="ui-state-default list-group-item">Cidade de Origem</li>
-                                                <li href="#" class="ui-state-default list-group-item">Sexo</li>
-                                                <li href="#" class="ui-state-default list-group-item">Área de Atuação</li>
+                                                <li class="ui-state-default list-group-item" value="nome regional">Nome da Regional</li>
+                                                <li class="ui-state-default list-group-item" value="idade">Idade do Egresso</li>
+                                                <li class="ui-state-default list-group-item" value="nome-mae">Nome da Mãe</li>
+                                                <li class="ui-state-default list-group-item" value="nome-instituicao">Nome da Instituição de Ensino Médio</li>
+                                                <li class="ui-state-default list-group-item" value="turno">Turno</li>
+                                                <li class="ui-state-default list-group-item" value="cidade-origem">Cidade de Origem</li>
+                                                <li class="ui-state-default list-group-item" value="sexo">Sexo</li>
+                                                <li class="ui-state-default list-group-item" value="area-atuacao">Área de Atuação</li>
                                             </ul>
                                         <!-- </div> -->
                                     </div>
@@ -81,8 +81,8 @@
                                         <!-- <div class="list-group"> -->
                                         <ul id="sortable-destino" style="list-style-type: none; margin: 0; padding: 0;">
                                             <div class="text-center"><p><i>Arraste os itens que você deseja ver na consulta aqui.</i></p></div>
-                                            <li href="#" class="ui-state-default list-group-item">Curso</li>
-                                            <li href="#" class="ui-state-default list-group-item">Nome do Egresso</li>
+                                            <li class="ui-state-default list-group-item" value="curso">Curso</li>
+                                            <li class="ui-state-default list-group-item" value="nome-egresso">Nome do Egresso</li>
                                         <!-- </div> -->
                                         </ul>
                                     </div>
