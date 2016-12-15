@@ -6,13 +6,24 @@ import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Test;
+import br.ufg.inf.sempreufg.enums.ParametrosLogging;
+import org.junit.Before;
 
-public class LogGatilhosTest {
-
-	LogLocal logLocal = new LogLocal();
+public class LogGatilhosTest 
+{
 	LogGatilhos logGatilhos = new LogGatilhos();
-	ParametroLog parametro = new ParametroLog();
 	ArrayList<ParametroLog> lista = new ArrayList<ParametroLog>();
+        
+	@Before
+	public void setUp() throws Exception
+	{
+        lista.add(new ParametroLog(ParametrosLogging.CLIENT_MIN_MESSAGES.name(),"DEBUG1" ));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_MESSAGES.name(), "DEBUG3"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_STATEMENT.name(), "DDL"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_DURATION_STATEMENT.name(), "200"));
+        
+        logGatilhos.configurarParametros(lista);
+	}
 	
 	@After
 	public void tearDown() throws Exception
@@ -21,68 +32,28 @@ public class LogGatilhosTest {
 	}
 	
 	@Test
-	public void testDestinoLog()
+	public void testNivelMensagemCliente() 
 	{
-		ParametroLog parametro = new ParametroLog();
-		parametro.setSigla("destinoLog");
-		parametro.setValor( "C:User");
-		
-		lista.add(parametro);
-		logGatilhos.configurarParametros(lista);
-		
-		assertEquals("C:User", logGatilhos.getDestinoLog());
+		assertEquals("DEBUG1", logGatilhos.getNivelMensagemCliente().getValor() );
+	}
+	
+	
+	@Test
+	public void testNivelMensagemLog()
+	{
+		assertEquals("DEBUG3", logGatilhos.getNivelMensagemLog().getValor());
 	}
 	
 	@Test
-	public void testDiretorioLog() 
+	public void testTipoComandoSQL()
 	{
-		ParametroLog parametro = new ParametroLog();
-		parametro.setSigla("diretorioLog");
-		parametro.setValor("C:System");
-		
-		lista.add(parametro);
-		logGatilhos.configurarParametros(lista);
-		
-		assertEquals("C:System", logGatilhos.getDiretorioLog());
+		assertEquals("DDL", logGatilhos.getTipoComandosSQL().getValor());
 	}
 	
 	@Test
-	public void testNomeArquivo() 
+	public void testDuracaoComando()
 	{
-		ParametroLog parametro = new ParametroLog();
-		parametro.setSigla("nomeArquivo");
-		parametro.setValor("MeuLog");
-		
-		lista.add(parametro);
-		logGatilhos.configurarParametros(lista);
-		
-		assertEquals("MeuLog", logGatilhos.getNomeArquivo());
-	}
-	
-	@Test
-	public void testTempoDeVidaLog() 
-	{
-		ParametroLog parametro = new ParametroLog();
-		parametro.setSigla("tempoDeVidaLog");
-		parametro.setValor("10");
-		
-		lista.add(parametro);
-		logGatilhos.configurarParametros(lista);
-		
-		assertEquals(10, logGatilhos.getTempoDeVidaLog());
-	}
-	
-	@Test
-	public void testtamanhoMaximoLog() 
-	{
-		ParametroLog parametro = new ParametroLog();
-		parametro.setSigla("tamanhoMaximoLog");
-		parametro.setValor("1000");
-		
-		lista.add(parametro);
-		logGatilhos.configurarParametros(lista);
-		
-		assertEquals(1000, logGatilhos.getTamanhoMaximoLog());
+		assertEquals("200", logGatilhos.getDuracaoComando().getValor() );
 	}
 
 }

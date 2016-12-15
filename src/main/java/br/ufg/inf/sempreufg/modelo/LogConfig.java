@@ -93,6 +93,17 @@ import java.util.Iterator;
 		local.configurarParametros(listaParamentros);
 		gatilhos.configurarParametros(listaParamentros);
 		itens.configurarParametros(listaParamentros);
+		
+		ArrayList<ParametroLog> lista = new ArrayList<ParametroLog>();
+		lista.addAll( local.getParametros());
+		lista.addAll( gatilhos.getParametros());
+		lista.addAll( itens.getParametros() );
+		
+		try {
+			gerarArquivoLog( lista );
+		} catch (IOException e) {			e.printStackTrace(); }
+		
+		
 
 		return 0;
 	}
@@ -100,7 +111,6 @@ import java.util.Iterator;
 	public int carregarConfigFile( String caminho ) throws IOException 
 	{
 		arquivoLog = new File(caminho);
-		//arquivoLog = new File("C:\\Program Files\\PostgreSQL\\9.6\\data\\postgresql.conf");
 		return 0;
 	}
 }

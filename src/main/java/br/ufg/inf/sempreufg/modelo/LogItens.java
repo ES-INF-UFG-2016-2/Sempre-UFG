@@ -1,10 +1,6 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.sempreufg.enums.ComandoSQL;
-import br.ufg.inf.sempreufg.enums.MensagemClienteValores;
-import br.ufg.inf.sempreufg.enums.MensagemValores;
 import br.ufg.inf.sempreufg.enums.ParametrosLogging;
-import br.ufg.inf.sempreufg.enums.VerbosidadeValores;
 import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
 
 import java.util.ArrayList;
@@ -15,15 +11,15 @@ import java.util.Iterator;
  */
 public class LogItens implements LogConfigItem {
 
-    private ParametroLog nomeAplicacao; //string
-    private ParametroLog tentativasConexao; // boolean
-    private ParametroLog duracaoComandos; // duracaoComandos
-    private ParametroLog verbosidade; //verbosidadeValores
-    private ParametroLog nomeServidor; // boolean
-    private ParametroLog comentarioPrefixo; //String
-    private ParametroLog esperaLimite; //String
-    private ParametroLog comandoSQL; //ComandoSQL
-    private ParametroLog fusoHorario; //String
+    private ParametroLog nomeAplicacao = new ParametroLog();
+    private ParametroLog tentativasConexao = new ParametroLog();
+    private ParametroLog duracaoComandos = new ParametroLog();
+    private ParametroLog verbosidade = new ParametroLog();
+    private ParametroLog nomeServidor = new ParametroLog();
+    private ParametroLog comentarioPrefixo = new ParametroLog();
+    private ParametroLog esperaLimite = new ParametroLog();
+    private ParametroLog comandoSQL = new ParametroLog();
+    private ParametroLog fusoHorario = new ParametroLog();
     
     public LogItens()
     {
@@ -82,20 +78,50 @@ public class LogItens implements LogConfigItem {
     public void configurarParametros(ArrayList<ParametroLog> parametros) 
     {
     	Iterator<ParametroLog> iterador = parametros.iterator();
-    	Iterator<ParametroLog> iterador2 = getParametros().iterator();
-    	
+
     	while(iterador.hasNext() )
     	{
     		ParametroLog param = iterador.next();
-    		
-    		while( iterador2.hasNext() )
-    		{
-    			ParametroLog param2 = iterador.next();
-    			if( param.getSigla().equals( param2.sigla))
-    			{
-    				setParametro( param );
-    			}
-    		}
+
+    		setParametro( param );
     	}
     }
+
+	public ParametroLog getNomeAplicacao() {
+		return nomeAplicacao;
+	}
+
+	public ParametroLog getTentativasConexao() {
+		return tentativasConexao;
+	}
+
+	public ParametroLog getDuracaoComandos() {
+		return duracaoComandos;
+	}
+
+	public ParametroLog getVerbosidade() {
+		return verbosidade;
+	}
+
+	public ParametroLog getNomeServidor() {
+		return nomeServidor;
+	}
+
+	public ParametroLog getComentarioPrefixo() {
+		return comentarioPrefixo;
+	}
+
+	public ParametroLog getEsperaLimite() {
+		return esperaLimite;
+	}
+
+	public ParametroLog getComandoSQL() {
+		return comandoSQL;
+	}
+
+	public ParametroLog getFusoHorario() {
+		return fusoHorario;
+	}
+    
+    
 }

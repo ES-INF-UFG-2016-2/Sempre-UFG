@@ -1,13 +1,8 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.sempreufg.enums.ComandoSQL;
-import br.ufg.inf.sempreufg.enums.MensagemClienteValores;
-import br.ufg.inf.sempreufg.enums.MensagemValores;
 import br.ufg.inf.sempreufg.enums.ParametrosLogging;
 import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -15,10 +10,10 @@ import java.util.Iterator;
  */
 public class LogGatilhos implements LogConfigItem 
 {
-    private ParametroLog nivelMensagemCliente;
-    private ParametroLog nivelMensagemLog;
-    private ParametroLog tipoComandosSQL;
-    private ParametroLog duracaoComando;
+	private ParametroLog nivelMensagemCliente = new ParametroLog();
+    private ParametroLog nivelMensagemLog = new ParametroLog();
+    private ParametroLog tipoComandosSQL = new ParametroLog();
+    private ParametroLog duracaoComando = new ParametroLog();
     
     public LogGatilhos()
     {
@@ -56,20 +51,28 @@ public class LogGatilhos implements LogConfigItem
     public void configurarParametros(ArrayList<ParametroLog> parametros) 
     {
     	Iterator<ParametroLog> iterador = parametros.iterator();
-    	Iterator<ParametroLog> iterador2 = getParametros().iterator();
-    	
+
     	while(iterador.hasNext() )
     	{
     		ParametroLog param = iterador.next();
-    		
-    		while( iterador2.hasNext() )
-    		{
-    			ParametroLog param2 = iterador.next();
-    			if( param.getSigla().equals( param2.sigla))
-    			{
-    				setParametro( param );
-    			}
-    		}
+
+    		setParametro( param );
     	}
     }
+    
+    public ParametroLog getNivelMensagemCliente() {
+		return nivelMensagemCliente;
+	}
+
+	public ParametroLog getNivelMensagemLog() {
+		return nivelMensagemLog;
+	}
+
+	public ParametroLog getTipoComandosSQL() {
+		return tipoComandosSQL;
+	}
+
+	public ParametroLog getDuracaoComando() {
+		return duracaoComando;
+	}
 }

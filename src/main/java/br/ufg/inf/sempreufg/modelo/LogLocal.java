@@ -15,11 +15,11 @@ import java.util.Iterator;
  */
 public class LogLocal implements LogConfigItem
 {
-    private ParametroLog destinoLog;
-    private ParametroLog diretorioLog;
-    private ParametroLog nomeArquivo;
-    private ParametroLog tempoDeVidaLog;
-    private ParametroLog tamanhoMaximoLog;
+    private ParametroLog destinoLog = new ParametroLog();
+    private ParametroLog diretorioLog= new ParametroLog();;
+    private ParametroLog nomeArquivo= new ParametroLog();;
+    private ParametroLog tempoDeVidaLog= new ParametroLog();;
+    private ParametroLog tamanhoMaximoLog= new ParametroLog();;
 
     public LogLocal()
     {
@@ -44,11 +44,12 @@ public class LogLocal implements LogConfigItem
     
     public void setParametro( ParametroLog parametro)
     {
-    	if( parametro.getSigla().equals("LOG_DESTINATION"))
+    	if( parametro.getSigla().equals("LOG_DESTINATION")) {
     		destinoLog = parametro;
-    	else if ( parametro.getSigla().equals("LOG_FILENAME"))
-    		diretorioLog = parametro;
+    	}
     	else if ( parametro.getSigla().equals("LOG_DIRECTORY"))
+    		diretorioLog = parametro;
+    	else if ( parametro.getSigla().equals("LOG_FILENAME"))
     		nomeArquivo = parametro;
     	else if ( parametro.getSigla().equals("LOG_DURATION"))
     		tempoDeVidaLog = parametro;
@@ -58,20 +59,12 @@ public class LogLocal implements LogConfigItem
     public void configurarParametros(ArrayList<ParametroLog> parametros) 
     {
     	Iterator<ParametroLog> iterador = parametros.iterator();
-    	Iterator<ParametroLog> iterador2 = getParametros().iterator();
-    	
+
     	while(iterador.hasNext() )
     	{
     		ParametroLog param = iterador.next();
-    		
-    		while( iterador2.hasNext() )
-    		{
-    			ParametroLog param2 = iterador.next();
-    			if( param.getSigla().equals( param2.sigla))
-    			{
-    				setParametro( param );
-    			}
-    		}
+
+    		setParametro( param );
     	}
     }
 
