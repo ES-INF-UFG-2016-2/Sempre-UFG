@@ -1,5 +1,6 @@
 package br.ufg.inf.sempreufg.servico;
 
+import br.ufg.inf.sempreufg.enums.PoliticaRecebimentoMensagens;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,10 @@ import br.ufg.inf.sempreufg.stubs.PapelStub;
 import br.ufg.inf.sempreufg.stubs.RecursoServiceStub;
 import br.ufg.inf.sempreufg.stubs.RecursoStub;
 import br.ufg.inf.sempreufg.stubs.UsuarioStub;
+
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Date;
 
 /**
  * @author Bruno Martins de Carvalho
@@ -40,9 +45,11 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioPossuiAcessoARecurso() {
-		final Recurso recurso = new RecursoStub("idRecurso", "SR", "descricao");
-		final Papel papel = new PapelStub(recurso);
-		final Usuario usuario = new UsuarioStub(papel);
+		final Recurso recurso = new Recurso("SR", "descricao", new ArrayList<>());
+		final Papel papel = new Papel("PP", "nome", new ArrayList<>(), new ArrayList<>());
+        papel.addRecurso(recurso);
+		final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel);
 
 		Assert.assertTrue(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, recurso));
 	}
@@ -56,9 +63,11 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioNaoPossuiAcessoARecurso() {
-		final Recurso recurso = new RecursoStub("idRecurso", "SR", "descricao");
-		final Papel papel = new PapelStub(recurso);
-		final Usuario usuario = new UsuarioStub(papel);
+        final Recurso recurso = new Recurso("SR", "descricao", new ArrayList<>());
+        final Papel papel = new Papel("PP", "nome", new ArrayList<>(), new ArrayList<>());
+        papel.addRecurso(recurso);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel);
 
 		final Recurso recursoNaoUsado = new RecursoStub("idRecurso2", "SR", "descricao2");
 
@@ -74,9 +83,11 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioNaoPossuiAcessoARecursoRecursoNulo() {
-		final Recurso recurso = new RecursoStub("idRecurso", "SR", "descricao");
-		final Papel papel = new PapelStub(recurso);
-		final Usuario usuario = new UsuarioStub(papel);
+        final Recurso recurso = new Recurso("SR", "descricao", new ArrayList<>());
+        final Papel papel = new Papel("PP", "nome", new ArrayList<>(), new ArrayList<>());
+        papel.addRecurso(recurso);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel);
 
 		Assert.assertFalse(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, null));
 	}
@@ -91,12 +102,15 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioPossuiAcessoARecursoUsuarioMultiplosRecursos() {
-		final Recurso recurso1 = new RecursoStub("idRecurso1", "SR", "descricao1");
-		final Recurso recurso2 = new RecursoStub("idRecurso2", "SR", "descricao2");
-		final Recurso recurso3 = new RecursoStub("idRecurso3", "SR", "descricao3");
-
-		final Papel papel = new PapelStub(recurso1, recurso2, recurso3);
-		final Usuario usuario = new UsuarioStub(papel);
+        final Recurso recurso1 = new Recurso("SR", "descricao1", new ArrayList<>());
+        final Recurso recurso2 = new Recurso("SR", "descricao2", new ArrayList<>());
+        final Recurso recurso3 = new Recurso("SR", "descricao3", new ArrayList<>());
+        final Papel papel = new Papel("PP", "nome", new ArrayList<>(), new ArrayList<>());
+        papel.addRecurso(recurso1);
+        papel.addRecurso(recurso2);
+        papel.addRecurso(recurso3);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel);
 
 		Assert.assertTrue(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, recurso2));
 	}
@@ -111,12 +125,14 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioNaoPossuiAcessoARecursoUsuarioMultiplosRecursos() {
-		final Recurso recurso1 = new RecursoStub("idRecurso1", "SR", "descricao1");
-		final Recurso recurso2 = new RecursoStub("idRecurso2", "SR", "descricao2");
-		final Recurso recurso3 = new RecursoStub("idRecurso3", "SR", "descricao3");
-
-		final Papel papel = new PapelStub(recurso1, recurso2);
-		final Usuario usuario = new UsuarioStub(papel);
+        final Recurso recurso1 = new Recurso("SR", "descricao1", new ArrayList<>());
+        final Recurso recurso2 = new Recurso("SR", "descricao2", new ArrayList<>());
+        final Recurso recurso3 = new Recurso("SR", "descricao3", new ArrayList<>());
+        final Papel papel = new Papel("PP", "nome", new ArrayList<>(), new ArrayList<>());
+        papel.addRecurso(recurso1);
+        papel.addRecurso(recurso2);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel);
 
 		Assert.assertFalse(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, recurso3));
 	}
@@ -131,13 +147,17 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioPossuiAcessoARecursoUsuarioMultiplosPapeis() {
-		final Recurso recurso = new RecursoStub("idRecurso1", "SR", "descricao1");
-
-		final Papel papel1 = new PapelStub(recurso);
-		final Papel papel2 = new PapelStub(recurso);
-		final Papel papel3 = new PapelStub(recurso);
-
-		final Usuario usuario = new UsuarioStub(papel1, papel2, papel3);
+        final Recurso recurso = new Recurso("SR", "descricao1", new ArrayList<>());
+        final Papel papel1 = new Papel("PP1", "nome1", new ArrayList<>(), new ArrayList<>());
+        final Papel papel2 = new Papel("PP2", "nome2", new ArrayList<>(), new ArrayList<>());
+        final Papel papel3 = new Papel("PP3", "nome3", new ArrayList<>(), new ArrayList<>());
+        papel1.addRecurso(recurso);
+        papel2.addRecurso(recurso);
+        papel3.addRecurso(recurso);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel1);
+        usuario.addPapel(papel2);
+        usuario.addPapel(papel3);
 
 		Assert.assertTrue(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, recurso));
 	}
@@ -152,14 +172,18 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioNaoPossuiAcessoARecursoUsuarioMultiplosPapeis() {
-		final Recurso recurso1 = new RecursoStub("idRecurso1", "SR", "descricao1");
-		final Recurso recurso2 = new RecursoStub("idRecurso2", "SR", "descricao3");
-
-		final Papel papel1 = new PapelStub(recurso1);
-		final Papel papel2 = new PapelStub(recurso1);
-		final Papel papel3 = new PapelStub(recurso1);
-
-		final Usuario usuario = new UsuarioStub(papel1, papel2, papel3);
+        final Recurso recurso1 = new Recurso("SR", "descricao1", new ArrayList<>());
+        final Recurso recurso2 = new Recurso("SR", "descricao2", new ArrayList<>());
+        final Papel papel1 = new Papel("PP1", "nome1", new ArrayList<>(), new ArrayList<>());
+        papel1.addRecurso(recurso1);
+        final Papel papel2 = new Papel("PP2", "nome2", new ArrayList<>(), new ArrayList<>());
+        papel2.addRecurso(recurso1);
+        final Papel papel3 = new Papel("PP3", "nome3", new ArrayList<>(), new ArrayList<>());
+        papel3.addRecurso(recurso1);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel1);
+        usuario.addPapel(papel2);
+        usuario.addPapel(papel3);
 
 		Assert.assertFalse(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, recurso2));
 	}
@@ -174,15 +198,22 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioPossuiAcessoARecursoUsuarioMultiplosPapeisERecursos() {
-		final Recurso recurso1 = new RecursoStub("idRecurso1", "SR", "descricao1");
-		final Recurso recurso2 = new RecursoStub("idRecurso2", "SR", "descricao2");
-		final Recurso recurso3 = new RecursoStub("idRecurso3", "SR", "descricao3");
+        final Recurso recurso1 = new Recurso("SR", "descricao1", new ArrayList<>());
+        final Recurso recurso2 = new Recurso("SR", "descricao2", new ArrayList<>());
+        final Recurso recurso3 = new Recurso("SR", "descricao3", new ArrayList<>());
 
-		final Papel papel1 = new PapelStub(recurso1);
-		final Papel papel2 = new PapelStub(recurso1, recurso2);
-		final Papel papel3 = new PapelStub(recurso3);
+        final Papel papel1 = new Papel("PP1", "nome1", new ArrayList<>(), new ArrayList<>());
+        papel1.addRecurso(recurso1);
+        final Papel papel2 = new Papel("PP2", "nome2", new ArrayList<>(), new ArrayList<>());
+        papel2.addRecurso(recurso1);
+        papel2.addRecurso(recurso2);
+        final Papel papel3 = new Papel("PP3", "nome3", new ArrayList<>(), new ArrayList<>());
+        papel3.addRecurso(recurso3);
 
-		final Usuario usuario = new UsuarioStub(papel1, papel2, papel3);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel1);
+        usuario.addPapel(papel2);
+        usuario.addPapel(papel3);
 
 		Assert.assertTrue(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, recurso2));
 	}
@@ -198,14 +229,19 @@ public class ContrAcesPapelTest {
 	 */
 	@Test
 	public void testUsuarioNaoPossuiAcessoARecursoUsuarioMultiplosPapeisERecursos() {
-		final Recurso recurso1 = new RecursoStub("idRecurso1", "SR", "descricao1");
-		final Recurso recurso2 = new RecursoStub("idRecurso2", "SR", "descricao2");
-		final Recurso recurso3 = new RecursoStub("idRecurso3", "SR", "descricao3");
+        final Recurso recurso1 = new Recurso("SR", "descricao1", new ArrayList<>());
+        final Recurso recurso2 = new Recurso("SR", "descricao2", new ArrayList<>());
+        final Recurso recurso3 = new Recurso("SR", "descricao3", new ArrayList<>());
 
-		final Papel papel1 = new PapelStub(recurso1);
-		final Papel papel2 = new PapelStub(recurso1, recurso2);
+        final Papel papel1 = new Papel("PP1", "nome1", new ArrayList<>(), new ArrayList<>());
+        papel1.addRecurso(recurso1);
+        final Papel papel2 = new Papel("PP2", "nome2", new ArrayList<>(), new ArrayList<>());
+        papel2.addRecurso(recurso1);
+        papel2.addRecurso(recurso2);
 
-		final Usuario usuario = new UsuarioStub(papel1, papel2);
+        final Usuario usuario = new Usuario("", "", "", 12L, new BitSet(), PoliticaRecebimentoMensagens.CADA_EVENTO, new Date(), new Date(), new Date(), new ArrayList<>());
+        usuario.addPapel(papel1);
+        usuario.addPapel(papel2);
 
 		Assert.assertFalse(this.recursoService.isUsuarioPossuiAcessoRecurso(usuario, recurso3));
 	}
