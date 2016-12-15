@@ -10,47 +10,55 @@ $(function () {
     });
     $("ul, li").disableSelection();
 
-    $("#formularioConsulta").on("submit", function (event) {
-        event.preventDefault();
-
-        var formularioArray = $("#formularioConsulta").serializeArray();
-        var dadosConsulta = {}
-
-
-        dadosConsulta["nome"] = $($.find("input[name=nome-consulta]")).val();
-        if ($($.find("input[name=consulta-publica]:checked")).length > 0) {
-            dadosConsulta["ePublica"] = true;
-        } else {
-            dadosConsulta["ePublica"] = false;
-        }
-
-        dadosConsulta["campos"] = obterListaCamposConsulta();
-
-        dadosConsulta["filtros"] = estruturarFiltros(formularioArray);
-
-        var dados = "acao=definirConsulta";
-        dados += "&dadosConsulta=" + JSON.stringify(dadosConsulta);
-
-        var $form = $(this);
-        $.ajax({
-            type: $form.attr("method"),
-            url: $form.attr("action"),
-            data: dados,
-            success: function (data, textStatus, jqXHR) {
-                var resultado = JSON.parse(data);
-                if (resultado["resultado"] == 0) {
-                    $("#modal-notificacao").find("#titulo-modal-notificao").html("Sucesso!");
-                    $("#modal-notificacao").find("#corpo-modal-notificacao").html(resultado["mensagem"]);
-                    $form[0].reset();
-                } else {
-                    $("#modal-notificacao").find("#titulo-modal-notificao").html("Erro!");
-                    $("#modal-notificacao").find("#corpo-modal-notificacao").html(resultado["mensagem"]);
-                }
-                $("#modal-notificacao").modal();
-            }
-        });
-    });
+    $("#formularioConsulta").on("submit", submeterConsulta);
 });
+
+/**
+ * Submete os dados da consulta para o servlet definido no formulário.
+ * @param {event} event Evento de clique do botão de submissão.
+ * @returns {void}
+ */
+function submeterConsulta(event) {
+    console.log(event);
+    event.preventDefault();
+
+    var formularioArray = $("#formularioConsulta").serializeArray();
+    var dadosConsulta = {}
+
+
+    dadosConsulta["nome"] = $($.find("input[name=nome-consulta]")).val();
+    if ($($.find("input[name=consulta-publica]:checked")).length > 0) {
+        dadosConsulta["ePublica"] = true;
+    } else {
+        dadosConsulta["ePublica"] = false;
+    }
+
+    dadosConsulta["campos"] = obterListaCamposConsulta();
+
+    dadosConsulta["filtros"] = estruturarFiltros(formularioArray);
+
+    var dados = "acao=definirConsulta";
+    dados += "&dadosConsulta=" + JSON.stringify(dadosConsulta);
+
+    var $form = $(this);
+    $.ajax({
+        type: $form.attr("method"),
+        url: $form.attr("action"),
+        data: dados,
+        success: function (data, textStatus, jqXHR) {
+            var resultado = JSON.parse(data);
+            if (resultado["resultado"] == 0) {
+                $("#modal-notificacao").find("#titulo-modal-notificao").html("Sucesso!");
+                $("#modal-notificacao").find("#corpo-modal-notificacao").html(resultado["mensagem"]);
+                $form[0].reset();
+            } else {
+                $("#modal-notificacao").find("#titulo-modal-notificao").html("Erro!");
+                $("#modal-notificacao").find("#corpo-modal-notificacao").html(resultado["mensagem"]);
+            }
+            $("#modal-notificacao").modal();
+        }
+    });
+}
 
 /**
  * Adiciona uma div de filtro ao fim da lista de divs de filtros da página de consulta.
