@@ -39,7 +39,8 @@ import java.util.Iterator;
 		this.itens = itens;
 	}
 
-	public void gerarArquivoLog( ArrayList<ParametroLog> parametros ) throws IOException {
+	public void gerarArquivoLog( ArrayList<ParametroLog> parametros ) throws IOException
+	{
 		String line = null;
 		FileReader reader = new FileReader(arquivoLog);
 		BufferedReader br = new BufferedReader(reader);
@@ -58,8 +59,6 @@ import java.util.Iterator;
 					//System.out.println("Entrei aqui");
 					
 					line = editLinha( line, parametro.getValor() );
-
-					// line = line.replaceFirst("\'(.*?)\'", local.get)
 					fileContent.append(line + System.getProperty("line.separator"));
 				} 
 				else 
@@ -100,9 +99,9 @@ import java.util.Iterator;
 		return 0;
 	}
 
-	public int carregarConfigFile() throws IOException {
+	public int carregarConfigFile( String caminho ) throws IOException 
+	{
 		arquivoLog = new File("C:\\Program Files\\PostgreSQL\\9.6\\data\\postgresql.conf");
-
 		return 0;
 	}
 }
