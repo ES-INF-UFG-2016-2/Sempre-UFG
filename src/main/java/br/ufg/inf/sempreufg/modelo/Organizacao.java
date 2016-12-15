@@ -3,11 +3,20 @@ package br.ufg.inf.sempreufg.modelo;
 import br.ufg.inf.sempreufg.enums.NaturezaOrganizacao;
 
 public class Organizacao {
-    
+
     private String razao_social;
     private String endereco_comercial;
     private NaturezaOrganizacao natureza_organizacao;
     private String pagina_web;
+    private LocalizacaoGeografica id_localizacao;
+
+    public LocalizacaoGeografica getId_localizacao() {
+        return id_localizacao;
+    }
+
+    public void setId_localizacao(LocalizacaoGeografica id_localizacao) {
+        this.id_localizacao = id_localizacao;
+    }
 
     public String getRazao_social() {
         return razao_social;

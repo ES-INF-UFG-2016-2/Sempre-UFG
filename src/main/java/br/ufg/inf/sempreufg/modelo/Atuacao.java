@@ -4,7 +4,7 @@ import br.ufg.inf.sempreufg.enums.FormaIngressoInstituicao;
 import java.util.Date;
 
 public class Atuacao {
-    
+
     private Date data_inicio;
     private Date data_fim;
     private float renda_mensal_media;
@@ -13,6 +13,24 @@ public class Atuacao {
     private String comentario;
     private String razao_social_organizacao;
     private FormaIngressoInstituicao forma_ingresso;
+    private Egresso id_egresso;
+
+    public Egresso getId_egresso() {
+        return id_egresso;
+    }
+
+    public void setId_egresso(Egresso id_egresso) {
+        this.id_egresso = id_egresso;
+    }
+
+    public Organizacao getId_organizacao() {
+        return id_organizacao;
+    }
+
+    public void setId_organizacao(Organizacao id_organizacao) {
+        this.id_organizacao = id_organizacao;
+    }
+    private Organizacao id_organizacao;
 
     public Date getData_inicio() {
         return data_inicio;
@@ -77,5 +95,5 @@ public class Atuacao {
     public void setForma_ingresso(FormaIngressoInstituicao forma_ingresso) {
         this.forma_ingresso = forma_ingresso;
     }
-    
+
 }
