@@ -99,6 +99,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.21</version>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+        </dependency>
 
         <!-- Dependencias responsaveis pelo temporizador de backup do banco -->
         <dependency>
