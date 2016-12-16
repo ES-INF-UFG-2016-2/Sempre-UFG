@@ -14,15 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Esta classe é responsável por gerenciar as requisições relacionadas às consultas de egressos.
  */
-@WebServlet(name = "ConsultaEgressosServlet", urlPatterns = {"/pages/consultas/ConsultaEgressosServlet"})
+@WebServlet(name = "ConsultaEgressosServlet", urlPatterns = {"/pages/consultas/nova-consulta"})
 public class ConsultaEgressosServlet extends HttpServlet {
+
     private static final String ACAO_NOVA_CONSULTA = "definirConsulta";
-    
+
     private static final String PARAMETRO_ACAO = "acao";
     private static final String PARAMETRO_DADOS_CONSULTA = "dadosConsulta";
     private static final String PARAMETRO_RESULTADO = "resultado";
     private static final String PARAMETRO_MENSAGEM = "mensagem";
-    
+
     private static final int RESULTADO_SUCESSO = 0;
     private static final int RESULTADO_ACAO_DESCONHECIDA = 1;
     private static final int RESULTADO_ERRO_SALVAR = 2;
@@ -37,50 +38,79 @@ public class ConsultaEgressosServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String acao = request.getParameter(PARAMETRO_ACAO);
-        
+
         Map<String, Object> resultado;
-        switch (acao){
-            case ACAO_NOVA_CONSULTA:
-                resultado = definirConsulta(request, response);
-                break;
-            default:
-                resultado = new HashMap<String, Object>();
-                resultado.put(PARAMETRO_RESULTADO, RESULTADO_ACAO_DESCONHECIDA);
-                resultado.put(PARAMETRO_MENSAGEM, "Tipo de requisição desconhecido");
+        if (acao == null) {
+            carregarPaginaFormularioConsulta(request, response);
+        } else {
+            switch (acao) {
+                case ACAO_NOVA_CONSULTA:
+                    resultado = definirConsulta(request, response);
+                    break;
+                default:
+                    resultado = new HashMap<String, Object>();
+                    resultado.put(PARAMETRO_RESULTADO, RESULTADO_ACAO_DESCONHECIDA);
+                    resultado.put(PARAMETRO_MENSAGEM, "Tipo de requisição desconhecido");
+            }
+
+            Gson gson = new Gson();
+            String resultadoJson = gson.toJson(resultado);
+
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().write(resultadoJson);
         }
-        
-        Gson gson = new Gson();
-        String resultadoJson = gson.toJson(resultado);
-        
-        response.setContentType("text/html;charset=UTF-8");
-        response.getWriter().write(resultadoJson);
     }
-    
+
+    /**
+     * Carrega a página do formulário da consulta.
+     *
+     * @param request Requisição do servlet
+     * @param response Resporta do servlet
+     * @throws ServletException se um erro específico do servlet acontece
+     * @throws IOException se um erro de entrada e saída acontece.
+     */
+    private void carregarPaginaFormularioConsulta(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        ConsultaServico consultaServico = new ConsultaServico();
+        Map<String, String> camposConsulta = consultaServico.buscarMapaTodasEntidades();
+        request.setAttribute("mapaCampos", camposConsulta);
+        request.getRequestDispatcher("/pages/consultas/formulario-consulta.jsp").forward(request, response);
+    }
+
+    /**
+     * Recupera dos dados da consulta enviados na requisição e salva os mesmos no banco de dados, obtendo assim um
+     * resultado.
+     *
+     * @param request Requisição do servlet
+     * @param response Resporta do servlet
+     * @return um mapa contendo o resultado da operação de definição de consulta.
+     * @throws ServletException se um erro específico do servlet acontece
+     * @throws IOException se um erro de entrada e saída acontece.
+     */
     private Map definirConsulta(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Map<String, Object> resultado = new HashMap<>();
-        
+
         String dadosConsultaJson = request.getParameter(PARAMETRO_DADOS_CONSULTA);
         System.out.println("JSON: " + dadosConsultaJson);
-        
+
         ConsultaServico consultaServico = new ConsultaServico();
         boolean resultadoSalvamento = consultaServico.salvarConsulta(dadosConsultaJson);
-        
+
         resultado = new HashMap<String, Object>();
-        
-        if(resultadoSalvamento){
+
+        if (resultadoSalvamento) {
             resultado.put(PARAMETRO_RESULTADO, RESULTADO_SUCESSO);
             resultado.put(PARAMETRO_MENSAGEM, "Nova consulta criada com sucesso.");
         } else {
             resultado.put(PARAMETRO_RESULTADO, RESULTADO_ERRO_SALVAR);
             resultado.put(PARAMETRO_MENSAGEM, "Não foi possível salvar a consulta.");
         }
-        
+
         return resultado;
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
