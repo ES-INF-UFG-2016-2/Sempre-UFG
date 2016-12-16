@@ -36,6 +36,9 @@ public class RespAprovDivulgEventTest {
 
 		Responsavel responsavel = new Responsavel(listResponsaveis);
 
+		aprovacaoDivulgacaoEventoResponsavel.setResponsavelPorAprovar(responsavel);
+		aprovacaoDivulgacaoEventoUsuario.setResponsavelPorAprovar(responsavel);
+
 		evento = new Evento(1, "teste de divulgação", "teste", date, 1, date, "teste", "teste", "teste");
 
 		aprovacaoDivulgacaoEventoResponsavel = new AprovacaoDivulgacaoEvento();
@@ -53,8 +56,8 @@ public class RespAprovDivulgEventTest {
 		aprovacaoDivulgacaoEventoUsuario.setDivulgacaoAprovada(false);
 		aprovacaoDivulgacaoEventoUsuario.setParecerSobreDivulgacao("Teste");
 		aprovacaoDivulgacaoEventoUsuario.setDataDoParecer(date);
-		aprovacaoDivulgacaoEventoResponsavel.getResponsavelPorAprovar().setMail("teste");
-		aprovacaoDivulgacaoEventoResponsavel.getResponsavelPorAprovar().setCpf(111111111);
+		aprovacaoDivulgacaoEventoUsuario.getResponsavelPorAprovar().setMail("teste");
+		aprovacaoDivulgacaoEventoUsuario.getResponsavelPorAprovar().setCpf(111111111);
 
 		aprovacaoDivulgacaoEventoDAO = new AprovacaoDivulgacaoEventoDAO();
 	}
