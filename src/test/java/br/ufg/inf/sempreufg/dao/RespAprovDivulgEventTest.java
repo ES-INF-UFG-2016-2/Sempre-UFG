@@ -39,7 +39,7 @@ public class RespAprovDivulgEventTest {
 		aprovacaoDivulgacaoEventoResponsavel.setResponsavelPorAprovar(RespAprovDivulgEventTest.responsavel);
 		aprovacaoDivulgacaoEventoUsuario.setResponsavelPorAprovar(RespAprovDivulgEventTest.responsavel);
 
-		evento = new Evento(1, "teste de divulgação", "teste", date, 1, date, "teste", "teste", "teste");
+		evento = new Evento();
 
 		aprovacaoDivulgacaoEventoResponsavel = new AprovacaoDivulgacaoEvento();
 		aprovacaoDivulgacaoEventoResponsavel.setEvento(evento);
