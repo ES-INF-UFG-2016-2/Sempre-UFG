@@ -10,6 +10,7 @@ import java.util.List;
  *
  * @author Matheus Cardoso Duarte Santos
  */
+
 public class DivulgadorNoticiasService implements DivulgadorNoticiasServiceInterface {
 
     private List<Noticia> noticias = new ArrayList();
@@ -22,17 +23,14 @@ public class DivulgadorNoticiasService implements DivulgadorNoticiasServiceInter
             }
         }
         removerNoticiasExpiradas();
-        Noticia noticia = new Noticia(idEvento);
-        noticia.setExpiracao(dataExpiracao);
-        noticias.add(noticia);
+        noticias.add(new Noticia(idEvento, new Date(System.currentTimeMillis())));
         return true;
     }
 
     @Override
     public boolean removerNoticiasExpiradas() {
-        Date dataAtual = new Date(System.currentTimeMillis());
         for (int i = 0; i < noticias.size(); i++) {
-            if (noticias.get(i).getExpiracao().getTime() < dataAtual.getTime()) {
+            if (noticias.get(i).isExpirada()) {
                 noticias.remove(i);
             }
         }

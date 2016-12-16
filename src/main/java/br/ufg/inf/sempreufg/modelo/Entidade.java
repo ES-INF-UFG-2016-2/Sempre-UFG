@@ -1,18 +1,30 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
 public class Entidade {
+    private String id;
 
-    private Long id;
-    @Id
-    @Column(name = "nome_entidade")
     private String nome;
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "nome_entidade")
+
     private List<Atributo> atributos;
+
+    private String tituloDoGrupoDeQuestoes;
+
+    private String tituloDoGrupoDeCampos;
+
+    private Entidade entidadeAntecedente;
+
+    public Entidade() {
+    }
+
+    public void setId(String id){
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public String getNome() {
         return nome;
@@ -22,19 +34,35 @@ public class Entidade {
         this.nome = nome;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public List<Atributo> getAtributos() {
         return atributos;
     }
 
     public void setAtributos(List<Atributo> atributos) {
         this.atributos = atributos;
+    }
+
+    public String getTituloDoGrupoDeQuestoes() {
+        return tituloDoGrupoDeQuestoes;
+    }
+
+    public void setTituloDoGrupoDeQuestoes(String tituloDoGrupoDeQuestoes) {
+        this.tituloDoGrupoDeQuestoes = tituloDoGrupoDeQuestoes;
+    }
+
+    public String getTituloDoGrupoDeCampos() {
+        return tituloDoGrupoDeCampos;
+    }
+
+    public void setTituloDoGrupoDeCampos(String tituloDoGrupoDeCampos) {
+        this.tituloDoGrupoDeCampos = tituloDoGrupoDeCampos;
+    }
+
+    public Entidade getEntidadeAntecedente() {
+        return entidadeAntecedente;
+    }
+
+    public void setEntidadeAntecedente(Entidade entidadeAntecedente) {
+        this.entidadeAntecedente = entidadeAntecedente;
     }
 }
