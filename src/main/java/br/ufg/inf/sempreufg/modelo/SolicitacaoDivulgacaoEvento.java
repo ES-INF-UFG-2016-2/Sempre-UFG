@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class SolicitacaoDivulgacaoEvento {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="user_enrollment")
-    @SequenceGenerator(name="user_enrollment", initialValue=100, sequenceName="SOLICITAVCAO_DIVULGACAO_EVENTO_ID_SEQUENCE", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="<id_row>")
+    @SequenceGenerator(name="<id_row>", initialValue=100, sequenceName="SOLICITACAO_DIVULGACAO_EVENTO_ID_SEQUENCE", allocationSize=1)
     private int id;
     private int id_evento;
     private int id_usuario;
