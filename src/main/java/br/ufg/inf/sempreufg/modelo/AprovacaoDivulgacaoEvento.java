@@ -9,11 +9,13 @@ public class AprovacaoDivulgacaoEvento {
     private boolean divulgacaoAprovada;
     private String parecerSobreDivulgacao;
     private Date dataDoParecer;
+    
+    private Responsavel responsavelPorAprovar;
 
     public AprovacaoDivulgacaoEvento() {
     }
 
-    public Evento getEvento() {
+	public Evento getEvento() {
         return evento;
     }
 
@@ -52,4 +54,12 @@ public class AprovacaoDivulgacaoEvento {
     public void setDataDoParecer(Date dataDoParecer) {
         this.dataDoParecer = dataDoParecer;
     }
+    
+    public Responsavel getResponsavelPorAprovar() {
+  		return responsavelPorAprovar;
+  	}
+
+  	public void setResponsavelPorAprovar(Responsavel responsavelPorAprovar) {
+  		this.responsavelPorAprovar = responsavelPorAprovar;
+  	}
 }
