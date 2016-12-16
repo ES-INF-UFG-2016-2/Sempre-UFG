@@ -42,6 +42,7 @@ Padrões simples que vão deixar a base de dados organizada e de fácil entendim
 
 #### 3.3.2 Entradas Válidas
 **CT-1 . Conjunto de testes para verificar se as tabelas estão criadas no Banco de dados**
+
 |Caso de Teste|Descrição|Entrada|Saida Esperada|
 |-------------|---------|-------|--------------|
 |CT-01|Arquivo se aplica a ambos os bancos de dados|Arquivo DDL do banco de dados|Arquivo validado|
