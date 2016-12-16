@@ -80,6 +80,7 @@ public class DivulgadorNoticiasServiceTest {
      */
     @Test
     public void testRemoverNoticiasExpiradas() {
+
         int idEvento = this.idEvento;
         Date dataExpiracao = new Date(System.currentTimeMillis()-10);
         DivulgadorNoticiasService instance = new DivulgadorNoticiasService();
@@ -90,8 +91,10 @@ public class DivulgadorNoticiasServiceTest {
         for (int i = 0; i < noticias.size(); i++) {
             if (noticias.get(i).getIdEvento() == idEvento) {
                 achou = true;
+                noticias.get(i).setExpirada(true);
             }
         }
+
         assertEquals("A noticia não foi divulgada", true, achou);
         instance.removerNoticiasExpiradas();
         achou = false;
@@ -101,7 +104,9 @@ public class DivulgadorNoticiasServiceTest {
                 achou = true;
             }
         }
+
         assertEquals("A noticia não foi removida", false, achou);
+
     }
 
 }
