@@ -46,7 +46,7 @@ public class EntidadeDAO implements EntidadeDAOInterface {
         String scripSQL = "UPDATE entidade" + lineSeparator +
             "SET nome_entidade=?, id_interno=?, titulo_grupo_questoes=?," + lineSeparator +
             "titulo_grupo_campos=?, entidade_sucessora=?, atributo=?" + lineSeparator +
-            "WHERE nome_entidade = '" + entidade.getNomeDaEntidade() + "';";
+            "WHERE nome_entidade = '" + entidade.getNome() + "';";
         return executeQuery(scripSQL,entidade);
     }
 
@@ -60,7 +60,7 @@ public class EntidadeDAO implements EntidadeDAOInterface {
             "	WHERE nome_entidade=?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(scripSQL);
-            preparedStatement.setString(1,entidade.getNomeDaEntidade());
+            preparedStatement.setString(1,entidade.getNome());
             preparedStatement.execute();
             return true;
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class EntidadeDAO implements EntidadeDAOInterface {
                 "FROM entidade" + lineSeparator +
                 "WHERE entidade_sucessora = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(scripSQL);
-            preparedStatement.setString(1, entidade.getNomeDaEntidade());
+            preparedStatement.setString(1, entidade.getNome());
             return criaEntidade(preparedStatement.executeQuery());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -129,7 +129,7 @@ public class EntidadeDAO implements EntidadeDAOInterface {
         int i=1;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(scripSQL);
-            preparedStatement.setString(i++,entidade.getNomeDaEntidade());
+            preparedStatement.setString(i++,entidade.getNome());
             preparedStatement.setString(i++,entidade.getId());
             preparedStatement.setString(i++,entidade.getTituloDoGrupoDeQuestoes());
             preparedStatement.setString(i++,entidade.getTituloDoGrupoDeCampos());
@@ -147,14 +147,14 @@ public class EntidadeDAO implements EntidadeDAOInterface {
         if (entidade == null) {
             return null;
         }
-        return entidade.getNomeDaEntidade();
+        return entidade.getNome();
     }
 
      private Entidade criaEntidade(ResultSet resultSet){
          try {
              if(resultSet.next()){
                  Entidade entidadeResult = new Entidade();
-                 entidadeResult.setNomeDaEntidade(resultSet.getString("nome_entidade"));
+                 entidadeResult.setNome(resultSet.getString("nome_entidade"));
                  entidadeResult.setId(resultSet.getString("id_interno"));
                  entidadeResult.setTituloDoGrupoDeQuestoes(resultSet.getString("titulo_grupo_questoes"));
                  entidadeResult.setTituloDoGrupoDeCampos(resultSet.getString("titulo_grupo_campos"));
@@ -174,7 +174,7 @@ public class EntidadeDAO implements EntidadeDAOInterface {
         try {
             while (resultSet.next()){
                 Entidade entidadeResult = new Entidade();
-                entidadeResult.setNomeDaEntidade(resultSet.getString("nome_entidade"));
+                entidadeResult.setNome(resultSet.getString("nome_entidade"));
                 entidadeResult.setId(resultSet.getString("id_interno"));
                 entidadeResult.setTituloDoGrupoDeQuestoes(resultSet.getString("titulo_grupo_questoes"));
                 entidadeResult.setTituloDoGrupoDeCampos(resultSet.getString("titulo_grupo_campos"));

@@ -167,7 +167,7 @@ public class ConfiguraAtualizacaoEgressoTest {
         Entidade entidade = new Entidade();
         int i = 0;
         entidade.setId(informacoesEntidade.get(i++));
-        entidade.setNomeDaEntidade(informacoesEntidade.get(i));
+        entidade.setNome(informacoesEntidade.get(i));
         entidade.setTituloDoGrupoDeQuestoes(informacoesEntidade.get(i));
         entidade.setTituloDoGrupoDeCampos(informacoesEntidade.get(i));
         entidade.setEntidadeAntecedente(entidadeAntecedente);
