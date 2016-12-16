@@ -24,10 +24,57 @@ public class ParametroLog
             this.descricao = "lorem ipsum";
 	}
 	
-        public String getIdSempreUFG()
-        {
-            return IdSempreUFG;
-        }
+    public String getIdSempreUFG()
+    {
+        return IdSempreUFG;
+    }
+    
+    public boolean temValorNumerico()  
+    {  
+          try {  
+            double d = Double.parseDouble(sigla);  
+          }  
+          catch(NumberFormatException nfe){  
+            return false;  
+          }  
+          
+          return true;  
+    }
+    
+    public boolean temValorNumericoPositivo()
+    {
+    	try {  
+            double d = Double.parseDouble(valor); 
+            if( d <= 0 )
+            	return false;
+          }  
+          catch(NumberFormatException nfe){  
+            return false;  
+          }  
+          return true; 
+    }
+    
+    public boolean temValorNumericoNaoNegativo()
+    {
+    	try {  
+            double d = Double.parseDouble(valor); 
+            if( d < 0 )
+            	return false;
+          }  
+          catch(NumberFormatException nfe){  
+            return false;  
+          }  
+          return true; 
+    }
+    
+    public boolean ehBooleano()
+    {
+    	if( valor.toLowerCase().equals( "true") || valor.toLowerCase().equals( "false"))
+    		return true;
+    	
+    	return false;
+    }
+        
 	public String getSigla() {
 		return sigla;
 	}

@@ -46,16 +46,24 @@ public class LogLocal implements LogConfigItem
     public void setParametro( ParametroLog parametro)
     {
     	if( parametro.getSigla().equals("LOG_DESTINATION")) {
-    		destinoLog = parametro;
+    		setDestinoLog(parametro);
     	}
     	else if ( parametro.getSigla().equals("LOG_DIRECTORY"))
-    		diretorioLog = parametro;
+    	{
+    		setDiretorioLog(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_FILENAME"))
-    		nomeArquivo = parametro;
+    	{
+    		setNomeArquivo(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_ROTATION_AGE"))
-    		tempoDeVidaLog = parametro;
+    	{
+    		setTempoDeVidaLog(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_ROTATION_SIZE") )
-    		tamanhoMaximoLog = parametro;
+    	{
+    		setTamanhoMaximoLog(parametro);
+    	}
     }
  
     @Override
@@ -90,4 +98,36 @@ public class LogLocal implements LogConfigItem
     public ParametroLog getTamanhoMaximoLog() {
         return tamanhoMaximoLog;
     }
+
+	public void setDestinoLog(ParametroLog destinoLog) {
+		this.destinoLog = destinoLog;
+	}
+
+	public void setDiretorioLog(ParametroLog diretorioLog) {
+		this.diretorioLog = diretorioLog;
+	}
+
+	public void setNomeArquivo(ParametroLog nomeArquivo) {
+		this.nomeArquivo = nomeArquivo;
+	}
+
+	public void setTempoDeVidaLog(ParametroLog tempoDeVidaLog) {
+		if(tempoDeVidaLog.temValorNumericoPositivo() )
+			this.tempoDeVidaLog = tempoDeVidaLog;
+		else{
+			this.tempoDeVidaLog = tempoDeVidaLog;
+			this.tempoDeVidaLog.setValor("1");
+		}
+	}
+
+	public void setTamanhoMaximoLog(ParametroLog tamanhoMaximoLog) {
+		if(tamanhoMaximoLog.temValorNumericoPositivo() )
+			this.tamanhoMaximoLog = tamanhoMaximoLog;
+		else {
+			this.tamanhoMaximoLog = tamanhoMaximoLog;
+			this.tamanhoMaximoLog.setValor( "1");
+		}
+	}
+    
+    
 }

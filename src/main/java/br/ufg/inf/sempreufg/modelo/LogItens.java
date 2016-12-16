@@ -1,6 +1,9 @@
 package br.ufg.inf.sempreufg.modelo;
 
+import br.ufg.inf.sempreufg.enums.ComandoSQL;
+import br.ufg.inf.sempreufg.enums.MensagemClienteValores;
 import br.ufg.inf.sempreufg.enums.ParametrosLogging;
+import br.ufg.inf.sempreufg.enums.VerbosidadeValores;
 import br.ufg.inf.sempreufg.interfaces.LogConfigItem;
 
 import java.util.ArrayList;
@@ -54,23 +57,41 @@ public class LogItens implements LogConfigItem {
     public void setParametro( ParametroLog parametro)
     {
     	if( parametro.getSigla().equals("APPLICATION_NAME"))
-    		nomeAplicacao = parametro;
+    	{
+    		setNomeAplicacao(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_CONNECTIONS"))
-    		tentativasConexao = parametro;
+    	{
+    		setTentativasConexao(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_DURATION"))
-    		duracaoComandos = parametro;
+    	{
+    		setDuracaoComandos(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_ERROR_VERBOSITY"))
-    		verbosidade = parametro;
+    	{
+    		setVerbosidade(parametro);
+    	}
     	else if( parametro.getSigla().equals("LOG_HOSTNAME"))
-    		nomeServidor = parametro;
+    	{
+    		setNomeServidor(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_LINE_PREFIX"))
-    		comentarioPrefixo = parametro;
+    	{
+    		setComentarioPrefixo(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_LOCK_WAITS"))
-    		esperaLimite = parametro;
+    	{
+    		setEsperaLimite(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_STATEMENT"))
-    		comandoSQL = parametro;
+    	{
+    		setComandoSQL(parametro);
+    	}
     	else if ( parametro.getSigla().equals("LOG_TIMEZONE"))
-    		fusoHorario = parametro;
+    	{
+    		setFusoHorario(parametro);
+    	}
     }
 
 
@@ -122,6 +143,64 @@ public class LogItens implements LogConfigItem {
 	public ParametroLog getFusoHorario() {
 		return fusoHorario;
 	}
+
+	public void setNomeAplicacao(ParametroLog nomeAplicacao) {
+		this.nomeAplicacao = nomeAplicacao;
+		
+		if(nomeAplicacao.getValor().length() > 64 )
+			this.nomeAplicacao.setValor( "Default Name");
+	}
+
+	public void setTentativasConexao(ParametroLog tentativasConexao) {
+		this.tentativasConexao = tentativasConexao;
+		
+		if(!tentativasConexao.ehBooleano())
+			this.tentativasConexao.setValor("false");
+	}
+
+	public void setDuracaoComandos(ParametroLog duracaoComandos) {
+		this.duracaoComandos = duracaoComandos;
+		
+		if(!duracaoComandos.ehBooleano() )
+			this.duracaoComandos.setValor("false");
+	}
+
+	public void setVerbosidade(ParametroLog verbosidade) {
+		this.verbosidade = verbosidade;
+		
+		if( !VerbosidadeValores.contains( verbosidade.getValor()) )
+			this.verbosidade.setValor( VerbosidadeValores.DEFAULT.name());	
+	}
+
+	public void setNomeServidor(ParametroLog nomeServidor) {
+		this.nomeServidor = nomeServidor;
+		
+		if(!nomeServidor.ehBooleano() )
+			this.nomeServidor.setValor( "false");
+	}
+
+	public void setComentarioPrefixo(ParametroLog comentarioPrefixo) {
+		this.comentarioPrefixo = comentarioPrefixo;
+	}
+
+	public void setEsperaLimite(ParametroLog esperaLimite) {
+		this.esperaLimite = esperaLimite;
+		
+		if(!esperaLimite.ehBooleano() )
+			this.esperaLimite.setValor( "false");
+	}
+
+	public void setComandoSQL(ParametroLog comandoSQL) {
+		this.comandoSQL = comandoSQL;
+		
+		if(!ComandoSQL.contains( comandoSQL.getValor()))
+			this.comandoSQL.setValor( ComandoSQL.NONE.name());
+	}
+
+	public void setFusoHorario(ParametroLog fusoHorario) {
+		this.fusoHorario = fusoHorario;
+	}
     
     
+	
 }

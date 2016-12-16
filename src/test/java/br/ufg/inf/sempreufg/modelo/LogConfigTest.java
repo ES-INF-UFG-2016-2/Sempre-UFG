@@ -45,7 +45,7 @@ public class LogConfigTest
         // log gatilhos
         lista.add(new ParametroLog(ParametrosLogging.CLIENT_MIN_MESSAGES.name(),"DEBUG1" ));
         lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_MESSAGES.name(), "DEBUG3"));
-        lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_ERROR_STATEMENT.name(), "DDL"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_ERROR_STATEMENT.name(), "DEBUG1"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_DURATION_STATEMENT.name(), "200"));
         
         config.configurarLog(lista);
@@ -65,42 +65,4 @@ public class LogConfigTest
 		}
 		
 	}
-	
-	/*
-	@Test
-	public void testCarregarConfigFile()
-	{
-		File caminho = config.getArquivoLog();
-		
-		assertTrue( caminho.exists() );
-	}*/
-	
-	/*
-	@Test
-	public void configurarLogTest()
-	{
-		listaConfig = config.getListaParametros();
-		
-		Iterator<ParametroLog> iteradorListaConfig = listaConfig.iterator();
-		Iterator<ParametroLog> iteradorLista;
-		
-		while(iteradorListaConfig.hasNext() )
-		{
-			ParametroLog itemListaConfig = iteradorListaConfig.next();
-			iteradorLista = lista.iterator();
-			
-			while(iteradorLista.hasNext() )
-			{
-				ParametroLog itemLista = iteradorLista.next();
-				
-				if( (itemListaConfig.getSigla().equals(itemLista.getSigla())))
-				{
-					assertEquals(itemListaConfig.getValor(), itemLista.getValor() );		
-				}
-			}
-			
-		}
-	}*/
-	
-
 }

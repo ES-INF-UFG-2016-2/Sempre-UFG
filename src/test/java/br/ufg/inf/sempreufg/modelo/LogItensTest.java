@@ -19,11 +19,11 @@ public class LogItensTest
 	{
         lista.add(new ParametroLog(ParametrosLogging.APPLICATION_NAME.name(),"True" ));
         lista.add(new ParametroLog(ParametrosLogging.LOG_CONNECTIONS.name(), "True"));
-        lista.add(new ParametroLog(ParametrosLogging.LOG_DURATION.name(), "200"));
-        lista.add(new ParametroLog(ParametrosLogging.LOG_ERROR_VERBOSITY.name(), "TERSE"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_DURATION.name(), "true"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_ERROR_VERBOSITY.name(), "VERBOSE"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_HOSTNAME.name(), "True"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_LINE_PREFIX.name(), "abc"));
-        lista.add(new ParametroLog(ParametrosLogging.LOG_LOCK_WAITS.name(), "20"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_LOCK_WAITS.name(), "true"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_STATEMENT.name(), "DDL"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_TIMEZONE.name(), "20/10/2016"));
         
@@ -52,13 +52,13 @@ public class LogItensTest
 	@Test
 	public void testDuracaoComandos()
 	{
-		assertEquals("200", logItens.getDuracaoComandos().getValor());
+		assertEquals("true", logItens.getDuracaoComandos().getValor());
 	}
 	
 	@Test
 	public void testVerbosidade()
 	{
-		assertEquals("TERSE", logItens.getVerbosidade().getValor() );
+		assertEquals("VERBOSE", logItens.getVerbosidade().getValor() );
 	}
 	
 	@Test
@@ -76,13 +76,13 @@ public class LogItensTest
 	@Test
 	public void testEsperaLimite() 
 	{
-		assertEquals("20", logItens.getEsperaLimite().getValor() );
+		assertEquals("true", logItens.getEsperaLimite().getValor() );
 	}
 	
 	@Test
 	public void testComandoSQL() 
 	{
-		assertEquals("DDL", logItens.getComandoSQL().getValor() );
+		assertEquals("NONE", logItens.getComandoSQL().getValor() );
 	}
 	
 	@Test
