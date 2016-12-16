@@ -42,9 +42,9 @@ Padrões simples que vão deixar a base de dados organizada e de fácil entendim
 
 #### 3.3.2 Entradas Válidas
 **CT-1 . Conjunto de testes para verificar se as tabelas estão criadas no Banco de dados**
-|Caso de Teste|Pré-condições|Descrição|Entrada|Resultado Esperado|
-|-------------|-------------|------------|-------|---------|
-|CT-1.1|Banco de dados funcionando corretamente.|Verifica se a tabela referente a importação de dados de egressos existe.|SELECT * FROM IMPORTACAO_EGRESSO| true|
-
-
-
+|Caso de Teste|Descrição|Entrada|Saida Esperada|
+|-------------|---------|-------|--------------|
+|CT-01|Arquivo se aplica a ambos os bancos de dados|Arquivo DDL do banco de dados|Arquivo validado|
+|CT-02|Inserção de atributos sem campos opcionais para o Postgree|<div>nome_atributo= "NomeAtributo"</div><div>id_interno = "senhaId"</div><div>identificador = 12345</div>|true|
+|CT-03|Inserção de entidades sem campos opcionais para o Postgree|<div>nome_entidade= "nomeEntidade"</div><div>id_interno = "senhaId"</div><div>identificador = 12345</div>|true|
+|CT-04|Inserção de cons_pre_def sem campos opcionais para o MariaDB|<div>sigla_consulta= "Sigla da Consulta"</div><div>visibilidade_publica = true</div><div>expressao_booleana = "Expressão Booleana"</div><div>usuario_responsavel = 32</div>|true|
