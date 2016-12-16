@@ -13,13 +13,11 @@ import br.ufg.inf.sempreufg.to.ResultadoImportacaoTO;
 
 public interface EgressoServiceInterface {
 
-    /**
-     *
-     * Método responsável por realizar a importacao dos egressos do CERCOMP.
-     *
-     * @author Bruno Martins de Carvalho
-     */
-    ResultadoImportacaoTO importarEgressos(ImportarEgressoTO importarEgressoTO);
+    void atualizarEgresso(Egresso egresso) throws Exception;
+
+    Egresso getEgresso(int id);
+
+    void removerEgresso(int id) throws Exception;
 
     public Egresso converterXmlParaEgresso(InputStream content);
 
@@ -38,6 +36,14 @@ public interface EgressoServiceInterface {
     public List<Egresso> consultarEgressoPorConsultaPreDefinida(String string);
 
     public List<Egresso> consultaPorAdHoc(Map<NomeCampos, String> parametros);
+
+    /**
+     *
+     * Método responsável por realizar a importacao dos egressos do CERCOMP.
+     *
+     * @author Bruno Martins de Carvalho
+     */
+    ResultadoImportacaoTO importarEgressos(ImportarEgressoTO importarEgressoTO);
 
     /**
      *

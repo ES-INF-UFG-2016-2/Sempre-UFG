@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import br.ufg.inf.sempreufg.dao.EgressoDAO;
 import br.ufg.inf.sempreufg.enums.NomeCampos;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
@@ -18,6 +19,90 @@ import br.ufg.inf.sempreufg.to.ImportarEgressoTO;
 import br.ufg.inf.sempreufg.to.ResultadoImportacaoTO;
 
 public class EgressoService implements EgressoServiceInterface {
+
+    static EgressoDAO egressoDAO;
+
+    @Override
+    public void atualizarEgresso(Egresso egresso) {
+        egressoDAO = new EgressoDAO();
+        egressoDAO.atualizar(egresso);
+    }
+
+    @Override
+    public Egresso getEgresso(int id) {
+        egressoDAO = new EgressoDAO();
+        Egresso egresso = null;
+        try {
+            egresso = egressoDAO.getById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return egresso;
+    }
+
+    @Override
+    public void removerEgresso(int id) throws Exception {
+        egressoDAO = new EgressoDAO();
+        egressoDAO.deletar(id);
+    }
+
+    @Override
+    public Egresso converterXmlParaEgresso(InputStream content) {
+        Egresso egresso = new Egresso();
+        return egresso;
+    }
+
+    @Override
+    public boolean egressoEValido(Egresso egresso) {
+        return false;
+    }
+
+    @Override
+    public List<Egresso> buscarDadosEgressoViaWebService() {
+        return criarListaEgressoMock();
+    }
+
+    @Override
+    public List<Egresso> buscarDadosEgressoPeloPeriodoConclusaoCurso(Date dataInicial, Date dataFinal) {
+        return criarListaEgressoMock();
+    }
+
+    @Override
+    public List<Egresso> buscarDadosEgressoPeloIdentificadorEgresso(List<Integer> identificadores) {
+        return criarListaEgressoMock();
+    }
+
+    @Override
+    public List<Egresso> buscarDadosEgressoPeloCurso(List<Integer> identificadores) {
+        return criarListaEgressoMock();
+    }
+
+    @Override
+    public List<Egresso> buscarDadosEgressoPelaUnidadeAcademica(List<Integer> identificadores) {
+        return criarListaEgressoMock();
+    }
+
+    public List<Egresso> criarListaEgressoMock() {
+        List<Egresso> egressos = new ArrayList<Egresso>();
+
+        for (int i = 0; i < 10; i++) {
+            Egresso egresso = new Egresso("Everton Jose", "Maria", new Date(), Sexo.MASCULINO, "emailAlternativo@gmail.com", new BitSet(),
+                    new BitSet(), VisibilidadeDados.PUBLICO, new ArrayList<HistoricoUFG>(), new LocalizacaoGeografica());
+            egressos.add(egresso);
+        }
+
+        return egressos;
+    }
+
+    @Override
+    public List<Egresso> consultarEgressoPorConsultaPreDefinida(String string) {
+        return new ExecultarConsultasMock().criarListaEgresso();
+    }
+
+    @Override
+    public List<Egresso> consultaPorAdHoc(Map<NomeCampos, String> parametros) {
+        return new ExecultarConsultasMock().criarListaEgresso();
+    }
 
     final CursoService cursoService = new CursoService();
 
@@ -61,42 +146,6 @@ public class EgressoService implements EgressoServiceInterface {
         return this.criarListaPeriodoMock();
     }
 
-    @Override
-    public Egresso converterXmlParaEgresso(InputStream content) {
-        Egresso egresso = new Egresso();
-        return egresso;
-    }
-
-    @Override
-    public boolean egressoEValido(Egresso egresso) {
-        return false;
-    }
-
-    @Override
-    public List<Egresso> buscarDadosEgressoViaWebService() {
-        return criarListaEgressoMock();
-    }
-
-    @Override
-    public List<Egresso> buscarDadosEgressoPeloPeriodoConclusaoCurso(Date dataInicial, Date dataFinal) {
-        return criarListaEgressoMock();
-    }
-
-    @Override
-    public List<Egresso> buscarDadosEgressoPeloIdentificadorEgresso(List<Integer> identificadores) {
-        return criarListaEgressoMock();
-    }
-
-    @Override
-    public List<Egresso> buscarDadosEgressoPeloCurso(List<Integer> identificadores) {
-        return criarListaEgressoMock();
-    }
-
-    @Override
-    public List<Egresso> buscarDadosEgressoPelaUnidadeAcademica(List<Integer> identificadores) {
-        return criarListaEgressoMock();
-    }
-
     /**
      * @see br.ufg.inf.sempreufg.servico.EgressoServiceInterface#validarFiltroImportacao(br.ufg.inf.sempreufg.to.ImportarEgressoTO)
      */
@@ -112,18 +161,6 @@ public class EgressoService implements EgressoServiceInterface {
         }
 
         return filtroImportacaoValida;
-    }
-
-    public List<Egresso> criarListaEgressoMock() {
-        List<Egresso> egressos = new ArrayList<Egresso>();
-
-        for (int i = 0; i < 15; i++) {
-            Egresso egresso = new Egresso("Everton Jose", "Maria", new Date(), Sexo.MASCULINO, "emailAlternativo@gmail.com", new BitSet(),
-                    new BitSet(), VisibilidadeDados.PUBLICO, new ArrayList<HistoricoUFG>(), new LocalizacaoGeografica());
-            egressos.add(egresso);
-        }
-
-        return egressos;
     }
 
     /**
@@ -142,16 +179,6 @@ public class EgressoService implements EgressoServiceInterface {
         }
 
         return egressos;
-    }
-
-    @Override
-    public List<Egresso> consultarEgressoPorConsultaPreDefinida(String string) {
-        return new ExecultarConsultasMock().criarListaEgresso();
-    }
-
-    @Override
-    public List<Egresso> consultaPorAdHoc(Map<NomeCampos, String> parametros) {
-        return new ExecultarConsultasMock().criarListaEgresso();
     }
 
     private ResultadoImportacaoTO resultadoImportacaoMock() {

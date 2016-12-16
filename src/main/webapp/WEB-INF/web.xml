@@ -2,6 +2,46 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
+
+	<display-name>Sempre UFG</display-name>
+	<description>
+        Sistema de Gestão de Egressos da UFG.
+    </description>
+
+	<servlet>
+		<servlet-name>DivulgNotic</servlet-name>
+		<servlet-class>br.ufg.inf.sempreufg.servlet.DivulgNoticServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DivulgNotic</servlet-name>
+		<url-pattern>/divulgacaonoticia/obtenhaNoticiasParaEnviar</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DivulgNotic</servlet-name>
+		<url-pattern>/divulgacaonoticia/enviarNoticia</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SolicDivulgNoticServlet</servlet-name>
+		<servlet-class>br.ufg.inf.sempreufg.servlet.SolicDivulgNoticServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SolicDivulgNoticServlet</servlet-name>
+		<url-pattern>/solicitacaodivulgacaonoticia/processarRequisicao</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PapelServlet</servlet-name>
+		<servlet-class>br.ufg.inf.sempreufg.servlet.PapelServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PapelServlet</servlet-name>
+		<url-pattern>/papel/processarRequisicao</url-pattern>
+	</servlet-mapping>
 	<!-- Servlets para importação egresso -->
 	<servlet>
 		<servlet-name>ResultadoImportacaoEgressoServlet</servlet-name>

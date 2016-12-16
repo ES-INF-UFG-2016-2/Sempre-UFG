@@ -22,7 +22,7 @@ before_script:
 - mysql --version
 script:
 - echo "Branch sendo executada $TRAVIS_BRANCH"
-- mysql -h localhost -u root < db/mariadb/cria-usuario-e-db.sql
+- mysql -v -B -h localhost -u root < db/mariadb/cria-usuario-e-db.sql
 - sh db/mariadb/mariadb.sh
 - psql -h localhost -U postgres -a -f db/postgres/cria-usuario-e-db.sql
 - sh db/postgres/postgres.sh
