@@ -1,0 +1,91 @@
+.navbar {
+    margin-bottom: 0px;
+    background-color: #2196f3;
+}
+
+.divulgarEventoTitle {
+    width: 80%;
+    float: right;
+    padding-right: 6.25em;
+    padding-top: 1.25em;
+}
+
+.thlist {
+    position: relative;
+    padding-bottom: 2em;
+    font-size: 18;
+    right: 150%
+}
+
+.tdlist {
+    position: relative;
+    font-size: 18;
+    padding-top: 0.45em;
+    right: 150%
+}
+
+.tdlistButton {
+    position: relative;
+    right: 50%
+}
+
+.tituloEvento {
+    padding-top: 0.35em;
+}
+
+.trlist {
+    padding-bottom: 1.25em;
+}
+
+#hrtitle {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+#lateral {
+    position: absolute;
+    width: 15%;
+    height: 100%;
+    background: #f5f5f5;
+}
+
+#title {
+    color: #ffffff;
+    margin-left: 14px;
+    font-size: 23;
+}
+
+#tablelist {
+    width: 30%;
+    float: right;
+    margin-top: 3.125em;
+    float: right;
+}
+
+#cancelarModalParecer {
+    float: left;
+}
+
+#sidebarTitle {
+    position: absolute;
+    top: 7em;
+    left: 1.5em;
+}
+
+#sidebarColor {
+    position: absolute;
+    background: #1976D2;
+    width: 0.5em;
+    height: 2em;
+    top: -0.25em;
+    border-radius: 3em;
+}
+
+#textSidebar {
+    padding-left: 1.5em;
+    color: #9E9E9E;
+}
