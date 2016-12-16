@@ -2,30 +2,42 @@ package br.ufg.inf.sempreufg.modelo;
 
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
+import org.json.JSONObject;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by user1 on 09/10/2016.
- */
+@Entity
+@Table(name = "Egresso")
 public class Egresso extends Usuario implements Serializable {
 
-    private static final long serialVersionUID = 3370581220250685348L;
-
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="idEgresso")
+    @SequenceGenerator(name="idEgresso", initialValue=01, sequenceName="EGRESSO_ID_SEQUENCE", allocationSize=1)
     private int id;
     private String nome;
     private String nome_mae;
     private Date data_nascimento;
     private Sexo sexo;
+    @Transient
     private String email_alternativo;
-    private BitSet foto_principal;
-    private BitSet fotos_adicionais;
     private VisibilidadeDados visibilidade;
+    @Transient
+    private BitSet foto_principal;
+    @Transient
+    private BitSet fotos_adicionais;
+
     private List<HistoricoUFG> lista_historicosUFG;
     private LocalizacaoGeografica naturalidade;
+
+    private static final long serialVersionUID = 3370581220250685348L;
 
     public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, String email_alternativo, BitSet foto_principal, BitSet fotos_adicionais, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
         this.nome = nome;
@@ -40,7 +52,25 @@ public class Egresso extends Usuario implements Serializable {
         this.naturalidade = naturalidade;
     }
 
+    public Egresso(String nome, String nome_mae, Date data_nascimento, Sexo sexo, VisibilidadeDados visibilidade, List<HistoricoUFG> lista_historicosUFG, LocalizacaoGeografica naturalidade) {
+        this.nome = nome;
+        this.nome_mae = nome_mae;
+        this.data_nascimento = data_nascimento;
+        this.sexo = sexo;
+        this.visibilidade = visibilidade;
+        this.lista_historicosUFG = lista_historicosUFG;
+        this.naturalidade = naturalidade;
+    }
+
     public Egresso() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -75,14 +105,6 @@ public class Egresso extends Usuario implements Serializable {
         this.sexo = sexo;
     }
 
-    public String getEmail_alternativo() {
-        return email_alternativo;
-    }
-
-    public void setEmail_alternativo(String email_alternativo) {
-        this.email_alternativo = email_alternativo;
-    }
-
     public BitSet getFoto_principal() {
         return foto_principal;
     }
@@ -111,6 +133,12 @@ public class Egresso extends Usuario implements Serializable {
         return lista_historicosUFG;
     }
 
+    private JSONObject getLista_historicosUFGAsJson(){
+        JSONObject listaHistoricosUFGAsJsonObject = new JSONObject();
+        this.lista_historicosUFG.forEach(historicoUFG -> listaHistoricosUFGAsJsonObject.put( String.valueOf(historicoUFG.getId()), historicoUFG.toJson()));
+        return listaHistoricosUFGAsJsonObject;
+    }
+
     public void setLista_historicosUFG(List<HistoricoUFG> lista_historicosUFG) {
         this.lista_historicosUFG = lista_historicosUFG;
     }
@@ -122,12 +150,48 @@ public class Egresso extends Usuario implements Serializable {
     public void setNaturalidade(LocalizacaoGeografica naturalidade) {
         this.naturalidade = naturalidade;
     }
-    
-    public int getId() {
-        return id;
+
+    public JSONObject getNaturalidadeAsJson() {
+        return naturalidade.toJson();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public JSONObject toJson(){
+
+        JSONObject egressoAsJsonObject = new JSONObject();
+        JSONObject innerJson = new JSONObject();
+
+        innerJson.put("nome", getNome());
+        innerJson.put("nome_mae", getNome_mae());
+        innerJson.put("data_nascimento", getData_nascimento().toString());
+        innerJson.put("sexo", getSexo().toString());
+        innerJson.put("visibilidade", getVisibilidade().toString());
+        innerJson.put("lista_historicosUFG", getLista_historicosUFGAsJson());
+        innerJson.put("naturalidade", getNaturalidadeAsJson());
+
+        egressoAsJsonObject.put( Integer.toString(getId()) , innerJson);
+        return egressoAsJsonObject;
     }
+
+    public static Egresso fromJson(JSONObject egressoAsJson) throws ParseException {
+
+        DateFormat formatter = new SimpleDateFormat("mm/dd/yy");
+        LocalizacaoGeografica naturalidade = LocalizacaoGeografica.fromJson(egressoAsJson.getJSONObject("naturalidade"));
+
+        List<HistoricoUFG> listaHistoricosUFG = new ArrayList<>();
+        egressoAsJson.getJSONObject("lista_historicosUFG").names().forEach( historicoUFGAsJsonObject -> {
+            listaHistoricosUFG.add(HistoricoUFG.fromJson((JSONObject) historicoUFGAsJsonObject));
+        });
+
+        return new Egresso(
+            egressoAsJson.getString("nome"),
+            egressoAsJson.getString("nome_mae"),
+            formatter.parse(egressoAsJson.getString("data_nascimento")),
+            Sexo.valueOf(egressoAsJson.getString("sexo")),
+            VisibilidadeDados.valueOf(egressoAsJson.getString("visibilidade")),
+            listaHistoricosUFG,
+            naturalidade
+        );
+    }
+
+
 }
