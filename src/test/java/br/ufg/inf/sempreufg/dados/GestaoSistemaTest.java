@@ -1,6 +1,5 @@
 package br.ufg.inf.sempreufg.dados;
 
-import ch.unibe.jexample.Given;
 import org.junit.*;
 
 import java.sql.*;
@@ -41,35 +40,30 @@ public class GestaoSistemaTest {
         Assert.assertNotNull(conexaoBD);
     }
 
-    @Given("testaConexaoComBancoDeDados")
     @Test
     public void testaSeTabelaSempreUFGExiste() {
         boolean tabelaExiste = verificaSeTabelaExiste("SEMPREUFG");
         Assert.assertTrue(tabelaExiste);
     }
 
-    @Given("testaConexaoComBancoDeDados")
     @Test
     public void testaSeTabelaUsuarioExiste() {
         boolean tabelaExiste = verificaSeTabelaExiste("USUARIO");
         Assert.assertTrue(tabelaExiste);
     }
 
-    @Given("testaConexaoComBancoDeDados")
     @Test
     public void testaSeTabelaParametroExiste() {
         boolean tabelaExiste = verificaSeTabelaExiste("PARAMETRO");
         Assert.assertTrue(tabelaExiste);
     }
 
-    @Given("testaConexaoComBancoDeDados")
     @Test
     public void testaSeTabelaBackupExiste() {
         boolean tabelaExiste = verificaSeTabelaExiste("BACKUP");
         Assert.assertTrue(tabelaExiste);
     }
 
-    @Given("testaConexaoComBancoDeDados")
     @Test
     public void testaSeTabelaRestauracaoExiste() {
         boolean tabelaExiste = verificaSeTabelaExiste("RESTAURACAO");
@@ -135,7 +129,6 @@ public class GestaoSistemaTest {
         Assert.assertTrue(lancouExcecao);
     }
 
-    @Given("testaSeTabelaSempreUFGExiste")
     @Test
     public void testInserirNaTabelaSempreUfgComUsuarioNaoExistenteDeveLancarExcecao() {
         boolean lancouExcecao = false;
@@ -153,7 +146,6 @@ public class GestaoSistemaTest {
      * Porém, o teste será mantido para ser utilizado posteriormente.
      */
     @Ignore
-    @Given("testaSeTabelaSempreUFGExiste")
     @Test
     public void testInserirDoisRegistrosNaTabelaSempreUFGLancaExcecao() {
         int idUsuario = 1234567;
