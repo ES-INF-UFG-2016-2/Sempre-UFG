@@ -50,6 +50,17 @@ var navbarSideMenus = {
     "</li>" +
     "</ul>" +
     "</li>",
+    log: "<li>" +
+    "<a href='#'><i class='fa fa-bar-chart'></i> Dados e estatísticas<span class='fa arrow'></span></a>" +
+    "<ul class='nav nav-second-level'>" +
+    "<li>" +
+    "<a href='/pages/config_log/log_operacoes.jsp'><i class='fa fa-table'></i> Log do banco de dados</a>" +
+    "</li>" +
+    "<li>" +
+    "<a href='/pages/config_log/configuracao_log.jsp'><i class='fa fa-wrench'></i> Configuração do log</a>" +
+    "</li>" +
+    "</ul>" +
+    "</li>",
     administracao: "<li>" +
     "<a href='#'><i class='fa fa-cogs fa-fw'></i> Administração<span class='fa arrow'></span></a>" +
     "<ul class='nav nav-second-level'>" +
@@ -61,19 +72,20 @@ var navbarSideMenus = {
     "</li>" +
     "</ul>" +
     "</li>"
+
 };
 
 var loggedInUserDropdowns = ["usuario"];
-var loggedInUserRoles = ["consultas", "informacoes", "apoio", "administracao"];
+var loggedInUserRoles = ["consultas", "informacoes", "apoio", "log", "administracao"];
 
-$(document).ready(function(){
+$(document).ready(function () {
 
     loadNavbar();
     loadSideMenus();
 
 });
 
-function loadNavbar(){
+function loadNavbar() {
 
     var html = "";
 
@@ -85,7 +97,7 @@ function loadNavbar(){
 }
 
 
-function loadSideMenus(){
+function loadSideMenus() {
 
     var html = "";
 
