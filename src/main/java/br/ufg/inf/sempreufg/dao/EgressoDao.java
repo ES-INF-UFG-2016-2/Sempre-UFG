@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 import java.sql.SQLException;
 import java.util.*;
 
-public class EgressoDAO implements EgressoDAOInterface<Egresso> {
+public class EgressoDao implements EgressoDAOInterface<Egresso> {
 
     private static final SessionFactory sessionFactory = HibernateSession.getSessionFactory();
 
