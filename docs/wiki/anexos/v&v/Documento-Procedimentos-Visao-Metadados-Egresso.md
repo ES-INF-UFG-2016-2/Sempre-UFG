@@ -49,3 +49,5 @@ Padrões simples que vão deixar a base de dados organizada e de fácil entendim
 |CT-02|Inserção de atributos sem campos opcionais para o Postgree|<div>nome_atributo= "NomeAtributo"</div><div>id_interno = "senhaId"</div><div>identificador = 12345</div>|true|
 |CT-03|Inserção de entidades sem campos opcionais para o Postgree|<div>nome_entidade= "nomeEntidade"</div><div>id_interno = "senhaId"</div><div>identificador = 12345</div>|true|
 |CT-04|Inserção de cons_pre_def sem campos opcionais para o MariaDB|<div>sigla_consulta= "Sigla da Consulta"</div><div>visibilidade_publica = true</div><div>expressao_booleana = "Expressão Booleana"</div><div>usuario_responsavel = 32</div>|true|
+|CT-05|Inserção de entidades sem campos opcionais para o MariaDB|<div>nome_entidade= "nomeEntidade"</div><div>id_interno = "senhaId"</div><div>identificador = 12345</div>|true|
+|CT-06|Inserção de atributos sem campos opcionais para o MariaDB|<div>nome_atributo= "NomeAtributo"</div><div>id_interno = "senhaId"</div><div>identificador = 12345</div>|true|
