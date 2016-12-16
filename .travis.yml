@@ -1,17 +1,31 @@
+sudo: false
 language: java
 jdk:
-       - oraclejdk8
+- oraclejdk8
 addons:
   mariadb: '5.5'
   postgresql: '9.3'
+  sonarqube: true
+sonarqube:
+  branches:
+  - "develop"
+  - "$TRAVIS_BRANCH"
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+  - "$HOME/.sonar"
+env:
+  global:
+  - secure: PXlAFVaBHmKU1QFzNnC/1PmERdcDSbRk00/CUvxnPMV/4izmhQZBCWi51z/vH4YSUR+dZI/YwuCz1tVhQ/h7sRjRksCvIqPtrTWuHRwnJh278xtziKG1gmmfte07ciocBeekEjOp29is2HNHfkRBWncroW0+ib/FUX94ly58ywUTgR/2iQeKuyCgyMIQfm6JjDNFKJpajBC2HZKziejbPu5yaMuXKI5Ak+jNLQ0m/IGsctLBeMawIYZFxAinBF2QhoSc+N5Zou9RL1fM7Euzgw8srxlzaYkfmzBpdJem6rce5ykn1yz2UJYfhrmg0eUqdu98mKkKz0VPIPbd9WlXtI8pl0rfxMLUB5K/NlqGXpAIm4f+pvvNtAU1gGdwnezyX8iBAK0pjKiV3s3xnmc7j+lTX3OxIRXvcvyL1ytDyQQa/WZ8e2XwJhW75q6oLALPH04n/AL0bRjJJNbEggqPQ93nlYIgK4F6uWvdz/1koWBv3B4vBlq2FTIT7cbtE1YXesY8C0vaxJyenftUkBKU12bGRk2Gmii5YuhkExkn8FAQuDyr3EBSXaEeEcnVqKJ1s46iYSurTGTtVoDH80NV7gbXl61pos1e8OystLRC1+PlpqEj3SdMho596veSMv5Zt62mm8daPsloFltYrNivy41c7n8fKnRq01hIRgMUqoU=
 before_script:
-  - psql --version ;
-  - psql -c "SHOW SERVER_VERSION" -U postgres
-  - psql -c "SHOW SERVER_ENCODING" -U postgres
-  - psql -c "SHOW DateStyle" -U postgres
-    #- psql -c 'create database sempreufgtest;' -U sempreufg
-    #- mysql -e "create database sempreufg;" -u sempreufg
+- psql --version
+- mysql --version
 script:
-  - psql -h localhost -U postgres -a -f db/postgres/ddl/create-user-and-db.sql
-  - sh db/postgres/postgres.sh
-  - mvn -X -e -B clean package
+- echo "Branch sendo executada $TRAVIS_BRANCH"
+- mysql -v -B -h localhost -u root < db/mariadb/cria-usuario-e-db.sql
+- sh db/mariadb/mariadb.sh
+- psql -h localhost -U postgres -a -f db/postgres/cria-usuario-e-db.sql
+- sh db/postgres/postgres.sh
+- mvn -e -B clean compile
+- mvn -e sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.branch=$TRAVIS_BRANCH
+- mvn -e -B package
