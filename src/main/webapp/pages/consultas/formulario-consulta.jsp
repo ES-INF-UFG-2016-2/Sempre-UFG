@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="pt-br">
 
     <head>
@@ -33,7 +34,7 @@
                             <h1 class="page-header">Definir Consulta de Egressos</h1>
                         </div>
                     </div>
-                    <form id="formularioConsulta" role="form" method="POST" action="ConsultaEgressosServlet">
+                    <form id="formularioConsulta" role="form" method="POST" action="nova-consulta">
                         <div class="row">
                             <div class="form-group col-md-5 col-sm-8">
                                 <input name="nome-consulta" class="form-control" placeholder="Nome da consulta" />
@@ -56,19 +57,12 @@
                                         Campos para Seleção
                                     </div>
                                     <div class="panel-body">
-                                        <!-- <div class="list-group"> -->
                                         <ul id="sortable-origem" style="list-style-type: none; margin: 0; padding: 0;">
                                             <div class="text-center"><p><i>Arraste os itens que você não deseja ver na consulta aqui.</i></p></div>
-                                                <li class="ui-state-default list-group-item" value="nome regional">Nome da Regional</li>
-                                                <li class="ui-state-default list-group-item" value="idade">Idade do Egresso</li>
-                                                <li class="ui-state-default list-group-item" value="nome-mae">Nome da Mãe</li>
-                                                <li class="ui-state-default list-group-item" value="nome-instituicao">Nome da Instituição de Ensino Médio</li>
-                                                <li class="ui-state-default list-group-item" value="turno">Turno</li>
-                                                <li class="ui-state-default list-group-item" value="cidade-origem">Cidade de Origem</li>
-                                                <li class="ui-state-default list-group-item" value="sexo">Sexo</li>
-                                                <li class="ui-state-default list-group-item" value="area-atuacao">Área de Atuação</li>
+                                            <c:forEach var="campo" items="${mapaCampos}">
+                                                <li class="ui-state-default list-group-item" value="${campo.key}">${campo.value}</li>
+                                            </c:forEach>
                                             </ul>
-                                        <!-- </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -78,12 +72,8 @@
                                         Campos Selecionados
                                     </div>
                                     <div class="panel-body" style="height: available">
-                                        <!-- <div class="list-group"> -->
                                         <ul id="sortable-destino" style="list-style-type: none; margin: 0; padding: 0;">
                                             <div class="text-center"><p><i>Arraste os itens que você deseja ver na consulta aqui.</i></p></div>
-                                            <li class="ui-state-default list-group-item" value="curso">Curso</li>
-                                            <li class="ui-state-default list-group-item" value="nome-egresso">Nome do Egresso</li>
-                                        <!-- </div> -->
                                         </ul>
                                     </div>
                                 </div>
