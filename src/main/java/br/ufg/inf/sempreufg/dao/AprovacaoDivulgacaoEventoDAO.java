@@ -1,6 +1,5 @@
 package br.ufg.inf.sempreufg.dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -11,7 +10,7 @@ import br.ufg.inf.sempreufg.modelo.AprovacaoDivulgacaoEvento;
 public class AprovacaoDivulgacaoEventoDAO implements AprovacaoDivulgacaoEventoDAOInterface {
 
 	private AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento;
-
+	
 	@Override
 	public void salvar(AprovacaoDivulgacaoEvento aprovacaoDivulgacaoEvento) {
 
@@ -23,7 +22,7 @@ public class AprovacaoDivulgacaoEventoDAO implements AprovacaoDivulgacaoEventoDA
 			PreparedStatement ps = ConexaoBanco.getConnection().prepareStatement(sql);
 			ps.setBoolean(1, aprovacaoDivulgacaoEvento.isDivulgacaoAprovada());
 			ps.setString(2, aprovacaoDivulgacaoEvento.getParecerSobreDivulgacao());
-			ps.setDate(3, (Date) aprovacaoDivulgacaoEvento.getDataDoParecer());
+			ps.setDate(3, new java.sql.Date(aprovacaoDivulgacaoEvento.getDataDoParecer().getTime()));
 			ps.setString(4, aprovacaoDivulgacaoEvento.getEvento().getAssunto());
 			ps.setString(5, aprovacaoDivulgacaoEvento.getResponsavelPorAprovar().getMail());
 			ps.setLong(6, aprovacaoDivulgacaoEvento.getResponsavelPorAprovar().getCpf());
