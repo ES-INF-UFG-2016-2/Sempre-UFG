@@ -34,4 +34,14 @@
         <url-pattern>/solicitacaodivulgacaonoticia/processarRequisicao</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PapelServlet</servlet-name>
+        <servlet-class>br.ufg.inf.sempreufg.servlet.PapelServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>PapelServlet</servlet-name>
+        <url-pattern>/papel/processarRequisicao</url-pattern>
+    </servlet-mapping>
+
 </web-app>

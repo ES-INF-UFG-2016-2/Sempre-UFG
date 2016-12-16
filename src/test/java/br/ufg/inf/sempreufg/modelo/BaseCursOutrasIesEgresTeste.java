@@ -65,13 +65,13 @@ public class BaseCursOutrasIesEgresTeste extends TestCase {
 		if( localizacaoGeografica.getLatitude() == null){
 			preparedStatement.setNull(5, Types.FLOAT); //latitude
 		}else{
-			preparedStatement.setFloat(5, localizacaoGeografica.getLatitude()); //latitude
+			preparedStatement.setDouble(5, localizacaoGeografica.getLatitude()); //latitude
 		}
 
 		if( localizacaoGeografica.getLongitude() == null){
 			preparedStatement.setNull(6, Types.FLOAT); //latitude
 		}else{
-			preparedStatement.setFloat(6, localizacaoGeografica.getLongitude()); // longitude
+			preparedStatement.setDouble(6, localizacaoGeografica.getLongitude()); // longitude
 		}
 
 		preparedStatement.executeUpdate();
@@ -142,8 +142,8 @@ public class BaseCursOutrasIesEgresTeste extends TestCase {
 		localizacaoGeografica.setNomeDaUnidadeFederativa("Universidade Federal De Goias");
 		localizacaoGeografica.setNomeDoPais("Brasil");
 		localizacaoGeografica.setSiglaDaUnidadeFederativa("UFG");
-		localizacaoGeografica.setLatitude(1283f);
-		localizacaoGeografica.setLongitude(8923f);
+		localizacaoGeografica.setLatitude(Double.valueOf(1283f));
+		localizacaoGeografica.setLongitude(Double.valueOf(8923f));
 
 		return localizacaoGeografica;
 	}
