@@ -11,12 +11,12 @@
         <meta name="author" content="">
 
         <title>SempreUFG - Definir Consulta de Egressos</title>
-        
+
         <jsp:include page="../includes/header.jsp"/>
     </head>
 
     <body>
-        
+
         <jsp:include page="template-filtro-html.jsp"/>
         <jsp:include page="template-disjuncao-filtro-html.jsp"/>
         <jsp:include page="template-item-filtro-html.jsp"/>
@@ -25,7 +25,7 @@
         <div id="wrapper">
 
             <jsp:include page="../includes/navbar.jsp"/>
-            
+
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
@@ -57,12 +57,12 @@
                                         Campos para Seleção
                                     </div>
                                     <div class="panel-body">
-                                        <ul id="sortable-origem" style="list-style-type: none; margin: 0; padding: 0;">
-                                            <div class="text-center"><p><i>Arraste os itens que você não deseja ver na consulta aqui.</i></p></div>
+                                        <div class="text-center"><p><i>Deixe aqui os itens que você não deseja ver na consulta.</i></p></div>
+                                        <ul id="sortable-origem" style="list-style-type: none; margin: 0; padding: 0; min-height: 10px">
                                             <c:forEach var="campo" items="${mapaCampos}">
                                                 <li class="ui-state-default list-group-item" value="${campo.key}">${campo.value}</li>
                                             </c:forEach>
-                                            </ul>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -71,18 +71,18 @@
                                     <div class="panel-heading">
                                         Campos Selecionados
                                     </div>
-                                    <div class="panel-body" style="height: available">
-                                        <ul id="sortable-destino" style="list-style-type: none; margin: 0; padding: 0;">
-                                            <div class="text-center"><p><i>Arraste os itens que você deseja ver na consulta aqui.</i></p></div>
+                                    <div class="panel-body">
+                                        <div class="text-center"><p><i>Arraste os itens que você deseja ver na consulta para este painel.</i></p></div>
+                                        <ul id="sortable-destino" style="list-style-type: none; margin: 0; padding: 0; min-height: 10px">
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <h3>Filtros da Consulta</h3>
-                                    <div id="filtros">
-                                        <!-- <!-- Filtros serão inseridos aqui dinamicamente -->
-                                    </div>
+                                <div id="filtros">
+                                    <!-- <!-- Filtros serão inseridos aqui dinamicamente -->
+                                </div>
                                 <div class="col-md-12 text-center">
                                     <button type="button" onclick="adicionarFiltro(this)" class="btn btn-primary">Adicionar Filtro</button>
                                 </div>

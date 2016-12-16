@@ -150,17 +150,17 @@ function onChangeSelect(elemento) {
     var primeiroArgumento = $(linhaItemFiltro).find(".primeiro-argumento");
     var segundoArgumento = $(linhaItemFiltro).find(".segundo-argumento");
 
-    if (parametroSelecionado == "data" && operadorSelecionado == "entre") {
-        $(primeiroArgumento).removeClass("col-md-6");
+    if (parametroSelecionado.indexOf("data") !== -1 && operadorSelecionado == "entre") {
+        $(primeiroArgumento).removeClass("col-md-4");
         $(primeiroArgumento).removeClass("col-sm-12");
-        $(primeiroArgumento).addClass("col-md-3");
+        $(primeiroArgumento).addClass("col-md-2");
         $(primeiroArgumento).addClass("col-sm-6");
 
         $(segundoArgumento).removeClass("hidden");
     } else {
-        $(primeiroArgumento).removeClass("col-md-3");
+        $(primeiroArgumento).removeClass("col-md-2");
         $(primeiroArgumento).removeClass("col-sm-6");
-        $(primeiroArgumento).addClass("col-md-6");
+        $(primeiroArgumento).addClass("col-md-4");
         $(primeiroArgumento).addClass("col-sm-12");
 
         $(segundoArgumento).addClass("hidden");

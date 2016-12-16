@@ -1,6 +1,6 @@
 package br.ufg.inf.sempreufg.servico;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -28,7 +28,7 @@ public class ConsultaServico {
      */
     public Map<String, String> buscarMapaTodasEntidades() {
         //TODO: Implementar método conforme requisitos. A implementação que eu estou insindo aqui é STUB.
-        Map<String, String> entidades = new HashMap<>();
+        Map<String, String> entidades = new LinkedHashMap<>();
         entidades.put("egresso.nome", "Egresso - Nome");
         entidades.put("egresso.idade", "Egresso - Idade");
         entidades.put("egresso.dataNascimento", "Egresso - Data de Nascimento");
