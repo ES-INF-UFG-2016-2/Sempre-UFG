@@ -10,6 +10,8 @@ import br.ufg.inf.sempreufg.modelo.ParametroLog;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -72,17 +74,70 @@ public class LogConfigDAO
         try
         {
             testaConexao();
-            PreparedStatement instrucao = conexao.prepareStatement( "INSERT INTO PARAMETRO (sigla_parametro, idSempreUFG, tipo, descricao_parametro, valor) VALUES(?,?,?,?,?");
-            instrucao.setString(1, siglaParametro);
-            instrucao.setString(2, idSempreUFG);
-            instrucao.setString(3, tipoParametro);
-            instrucao.setString(4, descricaoParametro);
-            instrucao.setString(5, valor);
             
-            instrucao.executeUpdate();
+            PreparedStatement existe = conexao.prepareStatement("SELECT EXISTS (SELECT 1 FROM PARAMETRO WHERE sigla_parametro=?)");
+            existe.setString( 1, siglaParametro);
+            
+            boolean nome = false;
+            ResultSet teste = existe.executeQuery();
+            while( teste.next() )
+			{
+				nome = teste.getBoolean(1);
+			}
+            
+            
+            if( nome == false )
+            {
+            	System.out.println( "entrei onde nao devia");
+            	PreparedStatement instrucao = conexao.prepareStatement( "INSERT INTO PARAMETRO (sigla_parametro, idSempreUFG, tipo, descricao_parametro, valor) VALUES(?, ?, ?, ?, ?)");
+
+	            instrucao.setString(1, siglaParametro);
+	            instrucao.setString(2, idSempreUFG);
+	            instrucao.setString(3, tipoParametro);
+	            instrucao.setString(4, descricaoParametro);
+	            instrucao.setString(5, valor);
+            
+	            instrucao.executeUpdate();
+	            instrucao.close();
+            }
+            else
+            {
+            	PreparedStatement instrucao = conexao.prepareStatement( "UPDATE PARAMETRO SET idSempreUFG = ?, tipo = ?, descricao_parametro = ?, valor = ? WHERE sigla_parametro = ?;");
+
+            	instrucao.setString(1, idSempreUFG);
+	            instrucao.setString(2, tipoParametro);
+	            instrucao.setString(3, descricaoParametro);
+	            instrucao.setString(4, valor);
+	            instrucao.setString(5, siglaParametro);
+	            
+	            instrucao.executeUpdate();
+	            instrucao.close();
+            }
             
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+	public String getCaminhoArquivoDeConfiguracao()
+	{
+		String caminho = null;
+		
+		try
+		{
+			testaConexao();
+			PreparedStatement instrucao = conexao.prepareStatement( "SHOW config_file" );
+			ResultSet resultado = instrucao.executeQuery();
+			
+			while( resultado.next() )
+			{
+				caminho = resultado.getString( 1 );
+			}
+						
+		} catch (Exception e ) {
+			e.printStackTrace();
+		}
+		
+		return caminho;
+	}
 }

@@ -19,7 +19,7 @@ public class LogGatilhos implements LogConfigItem
     {
     	nivelMensagemCliente.setSigla(ParametrosLogging.CLIENT_MIN_MESSAGES.name() );
     	nivelMensagemLog.setSigla( ParametrosLogging.LOG_MIN_MESSAGES.name());
-    	tipoComandosSQL.setSigla(ParametrosLogging.LOG_STATEMENT.name());
+    	tipoComandosSQL.setSigla(ParametrosLogging.LOG_MIN_ERROR_STATEMENT.name());
     	duracaoComando.setSigla(ParametrosLogging.LOG_MIN_DURATION_STATEMENT.name());
     }
     
@@ -41,7 +41,7 @@ public class LogGatilhos implements LogConfigItem
     		nivelMensagemCliente = parametro;
     	else if ( parametro.getSigla().equals("LOG_MIN_MESSAGES"))
     		nivelMensagemLog = parametro;
-    	else if ( parametro.getSigla().equals("LOG_STATEMENT"))
+    	else if ( parametro.getSigla().equals("LOG_MIN_ERROR_STATEMENT"))
     		tipoComandosSQL = parametro;
     	else if ( parametro.getSigla().equals("LOG_MIN_DURATION_STATEMENT"))
     		duracaoComando = parametro;

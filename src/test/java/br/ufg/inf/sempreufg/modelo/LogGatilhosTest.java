@@ -19,7 +19,7 @@ public class LogGatilhosTest
 	{
         lista.add(new ParametroLog(ParametrosLogging.CLIENT_MIN_MESSAGES.name(),"DEBUG1" ));
         lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_MESSAGES.name(), "DEBUG3"));
-        lista.add(new ParametroLog(ParametrosLogging.LOG_STATEMENT.name(), "DDL"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_ERROR_STATEMENT.name(), "DDL"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_DURATION_STATEMENT.name(), "200"));
         
         logGatilhos.configurarParametros(lista);

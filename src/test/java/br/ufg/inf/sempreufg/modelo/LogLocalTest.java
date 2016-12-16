@@ -21,7 +21,8 @@ public class LogLocalTest
         lista.add(new ParametroLog(ParametrosLogging.LOG_DESTINATION.name(),"c:/joao" ));
         lista.add(new ParametroLog(ParametrosLogging.LOG_DIRECTORY.name(), "c:/home"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_FILENAME.name(), "meuBackup"));
-        lista.add(new ParametroLog(ParametrosLogging.LOG_DURATION.name(), "200"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_ROTATION_AGE.name(), "200"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_ROTATION_SIZE.name(), "200") );
         
         logLocal.configurarParametros(lista);
 	}
@@ -52,9 +53,15 @@ public class LogLocalTest
 	}
 	
 	@Test
-	public void testDuracaoComando()
+	public void testTempoDeVidaLog()
 	{
 		assertEquals("200", logLocal.getTempoDeVidaLog().getValor() );
+	}
+	
+	@Test 
+	public void testTamanhoMaximoLog()
+	{
+		assertEquals( "200", logLocal.getTamanhoMaximoLog().getValor() );
 	}
 
 }

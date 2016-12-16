@@ -12,14 +12,16 @@ public class ParametroLog
 	{
             this.tipo = "LOG";
             this.IdSempreUFG = "1";
+            this.descricao = "lorem ipsum";
 	}
 	
 	public ParametroLog(String sg, String vl )
 	{
-	    this.tipo = "LOG";
+	    	this.tipo = "LOG";
             this.IdSempreUFG = "1";	
             this.sigla = sg;
             this.valor = vl;
+            this.descricao = "lorem ipsum";
 	}
 	
         public String getIdSempreUFG()

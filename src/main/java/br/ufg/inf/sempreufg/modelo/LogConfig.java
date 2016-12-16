@@ -11,64 +11,66 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import br.ufg.inf.sempreufg.dao.LogConfigDAO;
+
 /**
  * Created by DYEGO-VOSTRO on 28/11/2016.
  */
 	public class LogConfig {
 	private LogLocal local = new LogLocal();
-	private LogGatilhos gatilhos = new LogGatilhos();
 	private LogItens itens = new LogItens();
+	private LogGatilhos gatilhos = new LogGatilhos();
+	ArrayList<ParametroLog> lista;
+	LogConfigDAO logConfigDAO = new LogConfigDAO();
 
 	private File arquivoLog;
 
-
-	public LogGatilhos getGatilhos() {
-		return gatilhos;
-	}
-
-	public void setGatilhos(LogGatilhos gatilhos) {
-		this.gatilhos = gatilhos;
-	}
-
-	public LogItens getItens() {
-		return itens;
-	}
-
-	public void setItens(LogItens itens) {
-		this.itens = itens;
-	}
-
-	public void gerarArquivoLog( ArrayList<ParametroLog> parametros ) throws IOException
+	public ArrayList<ParametroLog> getListaParametros()
 	{
-		String line = null;
-		FileReader reader = new FileReader(arquivoLog);
-		BufferedReader br = new BufferedReader(reader);
-		StringBuilder fileContent = new StringBuilder();
+		return lista;
+	}
+	
 
-		while ((line = br.readLine()) != null)
+	public void gerarArquivoLog( ArrayList<ParametroLog> parametros )
+	{
+		try
 		{
-			Iterator<ParametroLog> 	iterador = parametros.iterator();
-			
-			while(iterador.hasNext() )
+			String line = null;
+			FileReader reader = new FileReader(arquivoLog);
+			BufferedReader br = new BufferedReader(reader);
+			StringBuilder fileContent = new StringBuilder();
+	
+			while ((line = br.readLine()) != null)
 			{
-				ParametroLog parametro = iterador.next();
+				Iterator<ParametroLog> 	iterador = parametros.iterator();
+				String line2 = null;
 				
-				if (line.contains( parametro.getSigla() )) 
-				{					
-					line = editLinha( line, parametro.getValor() );
-					fileContent.append(line + System.getProperty("line.separator"));
-				} 
-				else 
+				while(iterador.hasNext() )
 				{
-					fileContent.append(line + System.getProperty("line.separator"));
-				}
-			}
-		}
+					ParametroLog parametro = iterador.next();
+					
+					if (line.contains( "#" + parametro.getSigla().toLowerCase() + " " )) 
+					{					
+						//System.out.println( line );
 
-		FileWriter fw = new FileWriter(arquivoLog);
-		BufferedWriter out = new BufferedWriter(fw);
-		out.write(fileContent.toString());
-		out.close();
+						line2 = editLinha( line, parametro.getValor() );
+					} 
+				}
+				
+				if(line2 != null )
+					fileContent.append( line2 + System.getProperty( "line.separator"));
+				else
+					fileContent.append( line + System.getProperty( "line.separator"));
+			}
+	
+			FileWriter fw = new FileWriter(arquivoLog);
+			BufferedWriter out = new BufferedWriter(fw);
+			out.write(fileContent.toString());
+			out.close();
+		} catch (Exception e )
+		{
+			e.printStackTrace();
+		}
 	}
 
 	
@@ -77,40 +79,43 @@ import java.util.Iterator;
 		String[] tokens = linha.split( "=" );
 		tokens[1] = valor;
 		
-		return tokens[0] + " " + tokens[1];
+		return tokens[0] + "= " + tokens[1];
 	}
 
 
-	public File getArquivoLog() {
+	public File getArquivoLog() 
+	{
 		return arquivoLog;
 	}
 
-	public void setArquivoLog(File arquivoLog) {
+	public void setArquivoLog(File arquivoLog)
+	{
 		this.arquivoLog = arquivoLog;
 	}
 
-	public int configurarLog(ArrayList<ParametroLog> listaParamentros) {
+	public int configurarLog(ArrayList<ParametroLog> listaParamentros)
+	{
 		local.configurarParametros(listaParamentros);
 		gatilhos.configurarParametros(listaParamentros);
 		itens.configurarParametros(listaParamentros);
 		
-		ArrayList<ParametroLog> lista = new ArrayList<ParametroLog>();
-		lista.addAll( local.getParametros());
+		lista = new ArrayList<ParametroLog>(local.getParametros());
 		lista.addAll( gatilhos.getParametros());
-		lista.addAll( itens.getParametros() );
+		lista.addAll( itens.getParametros() );	
 		
-		try {
-			gerarArquivoLog( lista );
-		} catch (IOException e) {			e.printStackTrace(); }
+		carregarConfigFile();
+		gerarArquivoLog(lista);
+		logConfigDAO.persistirParametros(lista);
 		
 		
-
 		return 0;
 	}
 
-	public int carregarConfigFile( String caminho ) throws IOException 
+	public int carregarConfigFile( )
 	{
-		arquivoLog = new File(caminho);
+		String caminho = logConfigDAO.getCaminhoArquivoDeConfiguracao();
+		
+		arquivoLog = new File( caminho );
 		return 0;
 	}
 }

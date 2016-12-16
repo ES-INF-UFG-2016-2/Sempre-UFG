@@ -25,7 +25,7 @@ public class LogItens implements LogConfigItem {
     {
     	nomeAplicacao.setSigla( ParametrosLogging.APPLICATION_NAME.name());
     	tentativasConexao.setSigla(ParametrosLogging.LOG_CONNECTIONS.name());
-    	duracaoComandos.setSigla(ParametrosLogging.LOG_MIN_DURATION_STATEMENT.name());
+    	duracaoComandos.setSigla(ParametrosLogging.LOG_DURATION.name());
     	verbosidade.setSigla(ParametrosLogging.LOG_ERROR_VERBOSITY.name());
     	nomeServidor.setSigla( ParametrosLogging.LOG_HOSTNAME.name());
     	comentarioPrefixo.setSigla(ParametrosLogging.LOG_LINE_PREFIX.name());
@@ -57,7 +57,7 @@ public class LogItens implements LogConfigItem {
     		nomeAplicacao = parametro;
     	else if ( parametro.getSigla().equals("LOG_CONNECTIONS"))
     		tentativasConexao = parametro;
-    	else if ( parametro.getSigla().equals("LOG_MIN_DURATION_STATEMENT"))
+    	else if ( parametro.getSigla().equals("LOG_DURATION"))
     		duracaoComandos = parametro;
     	else if ( parametro.getSigla().equals("LOG_ERROR_VERBOSITY"))
     		verbosidade = parametro;

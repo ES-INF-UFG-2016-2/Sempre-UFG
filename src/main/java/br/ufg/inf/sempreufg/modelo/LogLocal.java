@@ -26,7 +26,8 @@ public class LogLocal implements LogConfigItem
     	destinoLog.setSigla( ParametrosLogging.LOG_DESTINATION.name());
     	diretorioLog.setSigla(ParametrosLogging.LOG_DIRECTORY.name());
     	nomeArquivo.setSigla(ParametrosLogging.LOG_FILENAME.name());
-    	tempoDeVidaLog.setSigla(ParametrosLogging.LOG_DURATION.name());
+    	tempoDeVidaLog.setSigla(ParametrosLogging.LOG_ROTATION_AGE.name());
+    	tamanhoMaximoLog.setSigla(ParametrosLogging.LOG_ROTATION_SIZE.name());
     }
     
     public ArrayList<ParametroLog> getParametros()
@@ -51,8 +52,10 @@ public class LogLocal implements LogConfigItem
     		diretorioLog = parametro;
     	else if ( parametro.getSigla().equals("LOG_FILENAME"))
     		nomeArquivo = parametro;
-    	else if ( parametro.getSigla().equals("LOG_DURATION"))
+    	else if ( parametro.getSigla().equals("LOG_ROTATION_AGE"))
     		tempoDeVidaLog = parametro;
+    	else if ( parametro.getSigla().equals("LOG_ROTATION_SIZE") )
+    		tamanhoMaximoLog = parametro;
     }
  
     @Override

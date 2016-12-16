@@ -19,7 +19,7 @@ public class LogItensTest
 	{
         lista.add(new ParametroLog(ParametrosLogging.APPLICATION_NAME.name(),"True" ));
         lista.add(new ParametroLog(ParametrosLogging.LOG_CONNECTIONS.name(), "True"));
-        lista.add(new ParametroLog(ParametrosLogging.LOG_MIN_DURATION_STATEMENT.name(), "200"));
+        lista.add(new ParametroLog(ParametrosLogging.LOG_DURATION.name(), "200"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_ERROR_VERBOSITY.name(), "TERSE"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_HOSTNAME.name(), "True"));
         lista.add(new ParametroLog(ParametrosLogging.LOG_LINE_PREFIX.name(), "abc"));
