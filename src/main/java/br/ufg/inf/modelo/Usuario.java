@@ -1,0 +1,111 @@
+package br.ufg.inf.modelo;
+
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Date;
+import java.util.List;
+
+import br.ufg.inf.enums.PoliticaRecebimentoMensagens;
+
+public class Usuario {
+
+    private final int ID_USER = 0;
+    private String mail;
+    private String senha;
+    private String nome;
+    private long cpf;
+    private BitSet foto = new BitSet();
+    private PoliticaRecebimentoMensagens tipoDivulgacao = PoliticaRecebimentoMensagens.CADA_EVENTO;
+    private Date ts_cadastramento;
+    private Date ts_ult_update;
+    private Date ts_exclusao;
+
+	private List<Papel> listaPapel;
+
+    public PoliticaRecebimentoMensagens getTipoDivulgacao() {
+        return tipoDivulgacao;
+    }
+
+    public void setTipoDivulgacao(PoliticaRecebimentoMensagens tipoDivulgacao) {
+        this.tipoDivulgacao = tipoDivulgacao;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(long cpf) {
+        this.cpf = cpf;
+    }
+
+    public BitSet getFoto() {
+        return foto;
+    }
+
+    public void setFoto(BitSet foto) {
+        this.foto = foto;
+    }
+
+    public Date getTs_cadastramento() {
+        return ts_cadastramento;
+    }
+
+    public void setTs_cadastramento(Date ts_cadastramento) {
+        this.ts_cadastramento = ts_cadastramento;
+    }
+
+    public Date getTs_ult_update() {
+        return ts_ult_update;
+    }
+
+    public void setTs_ult_update(Date ts_ult_update) {
+        this.ts_ult_update = ts_ult_update;
+    }
+
+    public Date getTs_exclusao() {
+        return ts_exclusao;
+    }
+
+    public void setTs_exclusao(Date ts_exclusao) {
+        this.ts_exclusao = ts_exclusao;
+    }
+
+    public boolean validarUsuario(String email, String senha) {
+        return senha.equals("senha");
+    }
+
+    public List<Papel> getListaPapel() {
+        if (this.listaPapel == null) {
+            this.listaPapel = new ArrayList<Papel>();
+        }
+        return this.listaPapel;
+    }
+
+    public void setListaPapel(List<Papel> listaPapel) {
+        this.listaPapel = listaPapel;
+    }
+}
