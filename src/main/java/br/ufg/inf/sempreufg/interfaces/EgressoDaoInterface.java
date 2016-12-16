@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface EgressoDAOInterface<T extends Serializable> extends IDao<T>{
+public interface EgressoDaoInterface<T extends Serializable> extends IDao<T>{
 
     public int salvar(Egresso egresso) throws Exception;
 
