@@ -84,7 +84,7 @@
                                     <!-- <!-- Filtros serão inseridos aqui dinamicamente -->
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <button type="button" onclick="adicionarFiltro(this)" class="btn btn-primary">Adicionar Filtro</button>
+                                    <button id="botao-adicao-filtro" type="button" onclick="adicionarFiltro(this)" class="btn btn-primary">Adicionar Filtro</button>
                                 </div>
                             </div>
                         </div>

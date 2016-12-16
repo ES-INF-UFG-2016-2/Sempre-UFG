@@ -11,6 +11,9 @@ $(function () {
     $("ul, li").disableSelection();
 
     $("#formularioConsulta").on("submit", submeterConsulta);
+    
+    $("#botao-adicao-filtro").click();
+    $("#filtros .btn").click();
 });
 
 /**
