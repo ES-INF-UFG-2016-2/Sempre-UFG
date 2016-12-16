@@ -22,7 +22,6 @@ $(function () {
  * @returns {void}
  */
 function submeterConsulta(event) {
-    console.log(event);
     event.preventDefault();
 
     var formularioArray = $("#formularioConsulta").serializeArray();
@@ -139,9 +138,9 @@ function removerItemFiltro(elemento) {
 
 /**
  * Controla um item de filtro para exibir a correta quantidade de inputs para argumentos dependendo do parâmetro e 
- * operador selecionado para aquele item de filtro. Quando o parâmetro selecionado for "data" e o operador selecionado 
- * for "entre", o item de filtro deve exibir duas entradas para argumentos em vez de um, como deve acontecer para 
- * qualquer outra combinação de parâmetro e operador.
+ * operador selecionado para aquele item de filtro. Quando o parâmetro selecionado for do tipo data e o operador 
+ * selecionado for "entre", o item de filtro deve exibir duas entradas para argumentos em vez de um, como deve acontecer
+ * para qualquer outra combinação de parâmetro e operador.
  * @param {elemento 'select' HTML} elemento Elemento 'select' que teve o valor alterado (seletor de parâmetro ou 
  * operador).
  * @returns {void}
@@ -217,8 +216,10 @@ function estruturarFiltros(arrayConsulta) {
 
         $.each(itensFiltro, function (indiceItemFiltro, itemFiltro) {
             //TODO: Validar dados inseridos.
-            if (itemFiltro["parametro"] == "data" && itemFiltro["operador"] == "entre") {
-                itemFiltro["argumento1"] = itemFiltro["argumento1"] + ".." + itemFiltro["argumento2"];
+            if (itemFiltro["parametro"].indexOf("data") !== -1 && itemFiltro["operador"] == "entre") {
+                itemFiltro["argumento1"] = itemFiltro["argumento1"].trim() + ".." + itemFiltro["argumento2"].trim();
+            } else {
+                itemFiltro["argumento1"] = itemFiltro["argumento1"].trim();
             }
             delete itemFiltro["argumento2"];
             itensFiltroEstruturados.push(itemFiltro);
