@@ -25,9 +25,7 @@ public class MapaEgressoServlet extends HttpServlet{
         String camposAgrupamento = request.getParameter("camposAgrupamentos");
         JSONObject camposAgrupamentoJson = new JSONObject(camposAgrupamento);
         PrintWriter out = response.getWriter();
-
         JSONObject egressosAgrupados = mapaEgressoService.obtenhaJSONEgressosAgrupados(camposAgrupamentoJson);
-
 
         out.print(egressosAgrupados);
     }
