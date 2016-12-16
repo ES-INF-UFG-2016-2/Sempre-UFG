@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import br.ufg.inf.sempreufg.dao.EgressoDAO;
+import br.ufg.inf.sempreufg.dao.EgressoDao;
 import br.ufg.inf.sempreufg.enums.NomeCampos;
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
@@ -20,20 +20,20 @@ import br.ufg.inf.sempreufg.to.ResultadoImportacaoTO;
 
 public class EgressoService implements EgressoServiceInterface {
 
-    static EgressoDAO egressoDAO;
+    static EgressoDao EgressoDao;
 
     @Override
     public void atualizarEgresso(Egresso egresso) {
-        egressoDAO = new EgressoDAO();
-        egressoDAO.atualizar(egresso);
+        EgressoDao = new EgressoDao();
+        EgressoDao.atualizar(egresso);
     }
 
     @Override
     public Egresso getEgresso(int id) {
-        egressoDAO = new EgressoDAO();
+        EgressoDao = new EgressoDao();
         Egresso egresso = null;
         try {
-            egresso = egressoDAO.getById(id);
+            egresso = EgressoDao.getById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,8 +42,8 @@ public class EgressoService implements EgressoServiceInterface {
 
     @Override
     public void removerEgresso(int id) throws Exception {
-        egressoDAO = new EgressoDAO();
-        egressoDAO.deletar(id);
+        EgressoDao = new EgressoDao();
+        EgressoDao.deletar(id);
     }
 
     @Override

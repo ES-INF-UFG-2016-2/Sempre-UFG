@@ -1,21 +1,26 @@
 package br.ufg.inf.sempreufg.dao;
 
-import br.ufg.inf.sempreufg.db.HibernateSession;
-import br.ufg.inf.sempreufg.enums.Sexo;
-import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
-import br.ufg.inf.sempreufg.interfaces.EgressoDAOInterface;
-import br.ufg.inf.sempreufg.modelo.Egresso;
-import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
-import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.sql.SQLException;
-import java.util.*;
+import br.ufg.inf.sempreufg.db.HibernateSession;
+import br.ufg.inf.sempreufg.enums.Sexo;
+import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
+import br.ufg.inf.sempreufg.interfaces.EgressoDaoInterface;
+import br.ufg.inf.sempreufg.modelo.Egresso;
+import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
+import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
 
-public class EgressoDao implements EgressoDAOInterface<Egresso> {
+public class EgressoDao implements EgressoDaoInterface<Egresso> {
 
     private static final SessionFactory sessionFactory = HibernateSession.getSessionFactory();
 
