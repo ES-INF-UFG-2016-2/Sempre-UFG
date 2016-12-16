@@ -14,4 +14,4 @@ export MYSQL_DATABASE='sempreufg'
 export MYSQL_USER='sempreufg'
 export MYSQL_PASSWORD='sempreufg'
 
-#mysql -D $MYSQL_DATABASE -u$MYSQL_PASSWORD -p$MYSQL_PASSWORD < $MARIAFOLDER/ddl/RD-AtuProfisEgres.sql
+mysql -B -v -D $MYSQL_DATABASE -u$MYSQL_PASSWORD -p$MYSQL_PASSWORD < $MARIAFOLDER/ddl/RD-TodasVisoesIntegradas.sql

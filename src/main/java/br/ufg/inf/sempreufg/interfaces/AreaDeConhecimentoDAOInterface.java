@@ -1,6 +1,6 @@
 package br.ufg.inf.sempreufg.interfaces;
 
-import br.ufg.inf.sempreufg.abstratas.AreaDeConhecimento;
+import br.ufg.inf.sempreufg.modelo.AreaDeConhecimento;
 
 import java.util.List;
 

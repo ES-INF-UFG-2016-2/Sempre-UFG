@@ -122,13 +122,14 @@ PRIMARY KEY (Papel_idPapel, Recurso_idRecurso)
 /*-----------------------------------------------------
  Table `SempreUFG`
  -----------------------------------------------------*/
-CREATE TABLE IF NOT EXISTS SEMPREUFG 
+ CREATE TABLE IF NOT EXISTS SEMPREUFG 
 (
+idSempreUFG SERIAL,
 nome_sistema	 	CHAR(255) NOT NULL,
 timestamp_isstalacao 	DATE NOT NULL,
 id_Usuario	        INT NOT NULL,
 
-PRIMARY KEY (nome_sistema)
+PRIMARY KEY (idSempreUFG)
 );
 
 /*-----------------------------------------------------
@@ -136,13 +137,15 @@ PRIMARY KEY (nome_sistema)
  -----------------------------------------------------*/
 CREATE TABLE IF NOT EXISTS PARAMETRO 
 (
+idParametro SERIAL,
 sigla_parametro		 CHAR(20) NOT NULL,
 nome_sistema 		 CHAR(255) NOT NULL,
-tipo 			 CHAR(6) NOT NULL, 
+tipo ENUM ('BACKUP', 'LOG', 'GLOBAL') NOT NULL,
 descricao_parametro	 CHAR(255) NOT NULL,
 valor 			 CHAR(100) NOT NULL,
+idSempreUFG BIGINT UNSIGNED NOT NULL,
 
-PRIMARY KEY (sigla_parametro, nome_sistema)
+PRIMARY KEY (idParametro, idSempreUFG)
 );
 
 /*-----------------------------------------------------
@@ -150,7 +153,7 @@ PRIMARY KEY (sigla_parametro, nome_sistema)
  -----------------------------------------------------*/
 CREATE TABLE IF NOT EXISTS BACKUP
 (
-idBackup 		INT NOT NULL,
+idBackup SERIAL,
 idUsuario 		INT NOT NULL,
 timestamp_inicio 	DATE NOT NULL,
 timestamp_fim 		DATE NOT NULL,
@@ -165,8 +168,8 @@ PRIMARY KEY (idBackup)
  -----------------------------------------------------*/
 CREATE TABLE IF NOT EXISTS RESTAURACAO 
 (
-idRestauracao 		INT NOT NULL,
-idBackup 		INT NOT NULL,
+idRestauracao SERIAL,
+idBackup 		BIGINT UNSIGNED NOT NULL,
 idUsuario 		INT NOT NULL,
 timestamp_restauracao 	DATE NOT NULL,
 motivo 			CHAR(255) NOT NULL,
@@ -258,8 +261,8 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
 ALTER TABLE PARAMETRO ADD CONSTRAINT fk_sempreufg_parametro
-FOREIGN KEY (nome_sistema)
-REFERENCES SEMPREUFG (nome_sistema)
+FOREIGN KEY (idSempreUFG)
+REFERENCES SEMPREUFG (idSempreUFG)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
