@@ -36,8 +36,8 @@ public class RespAprovDivulgEventTest {
 
 		Responsavel responsavel = new Responsavel(listResponsaveis);
 
-		aprovacaoDivulgacaoEventoResponsavel.setResponsavelPorAprovar(responsavel);
-		aprovacaoDivulgacaoEventoUsuario.setResponsavelPorAprovar(responsavel);
+		aprovacaoDivulgacaoEventoResponsavel.setResponsavelPorAprovar(RespAprovDivulgEventTest.responsavel);
+		aprovacaoDivulgacaoEventoUsuario.setResponsavelPorAprovar(RespAprovDivulgEventTest.responsavel);
 
 		evento = new Evento(1, "teste de divulgação", "teste", date, 1, date, "teste", "teste", "teste");
 
