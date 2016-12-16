@@ -222,7 +222,7 @@ public class Evento {
 
     private JSONObject getListaAreaDeConhecimentoAsJson() {
         JSONObject listaAreaDeConhecimentoAsJsonObj = new JSONObject();
-        this.areas_conhecimento.forEach(areaDeConhecimento -> listaAreaDeConhecimentoAsJsonObj.put(Integer.toString(areaDeConhecimento.getCodigo()), areaDeConhecimento.toJSON()));
+        this.areas_conhecimento.forEach(areaDeConhecimento -> listaAreaDeConhecimentoAsJsonObj.put(Integer.toString(areaDeConhecimento.getCodigo()), areaDeConhecimento.toJson()));
         return listaAreaDeConhecimentoAsJsonObj;
     }
 
@@ -233,7 +233,7 @@ public class Evento {
         List<PublicoAlvo> listaUsuarios = new ArrayList<>();
 
         eventoAsJson.getJSONObject("listaAreasConhecimento").names().forEach(areaDeConhecimento -> {
-                listaRecursos.add(AreaDeConhecimento.fromJSON((JSONObject) areaDeConhecimento));
+                listaRecursos.add(AreaDeConhecimento.fromJson((JSONObject) areaDeConhecimento));
             }
         );
 

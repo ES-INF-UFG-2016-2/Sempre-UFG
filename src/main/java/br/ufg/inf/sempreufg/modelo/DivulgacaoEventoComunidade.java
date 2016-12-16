@@ -20,6 +20,10 @@ public class DivulgacaoEventoComunidade {
 
     public DivulgacaoEventoComunidade(){}
 
+    public DivulgacaoEventoComunidade(Evento evento) {
+        this.evento = evento;
+    }
+
     public DivulgacaoEventoComunidade(Evento evento, List<Usuario> usuarios) {
         this.evento = evento;
         this.usuarios = usuarios;
