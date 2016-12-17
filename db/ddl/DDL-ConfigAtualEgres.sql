@@ -4,7 +4,6 @@
 
 -- Sequence id_entidade
 
-DROP SEQUENCE IF EXISTS id_entidade_seq
 
 CREATE SEQUENCE id_entidade_seq
   INCREMENT 1
@@ -17,9 +16,8 @@ CREATE SEQUENCE id_entidade_seq
   COMMENT ON SEQUENCE id_entidade_seq
 IS 'Sequence utilizada para geração de id''s da tabela ''entidade''.';
 
--- tabela entidade 
+-- tabela entidade
 
-DROP TABLE IF EXISTS entidade CASCADE;
 
 CREATE TABLE entidade
 (
@@ -28,11 +26,11 @@ CREATE TABLE entidade
   titulo_grupo_questoes character varying(300),
   titulo_grupo_campos  character varying(300),
   antecessor_id integer references entidade(id_entidade)
-)
+);
 
 -- Sequence id_atributo
 
-DROP SEQUENCE IF EXISTS id_atributo_seq
+
 
 
 CREATE SEQUENCE id_atributo_seq
@@ -47,7 +45,7 @@ CREATE SEQUENCE id_atributo_seq
 IS 'Sequence utilizada para geração de id''s da tabela ''atributo''.';
 
 
-DROP TABLE IF EXISTS atributo CASCADE;
+
 
 CREATE TABLE atributo
 (
@@ -57,5 +55,5 @@ CREATE TABLE atributo
   titulo_campo  character varying(300),
   antecessor_id integer references atributo(id_atributo),
   entidade_id integer references entidade(id_entidade)
-)
+);
 
