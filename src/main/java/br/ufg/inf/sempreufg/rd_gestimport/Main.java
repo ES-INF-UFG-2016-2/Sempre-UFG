@@ -12,10 +12,28 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("###### Teste RD - GestImport ######");
-        System.out.println("Informe abaixo os dados de conexão com o banco de dados postgreSQL.");
-        solicitarDadosDoBanco();
+        System.out.println();
+        System.out.print("Informe 1 para Postgres e 2 para MariaDb:");
         try {
-            db.abraConexao();
+            while (true) {
+                int banco = ler(1);
+                switch (banco) {
+                    case 1:
+                        System.out.println("Informe abaixo os dados de conexão com o banco de dados postgreSQL.");
+                        solicitarDadosDoBancoPgsql();
+                        db.abraConexaoPgsql();
+                        break;
+                    case 2:
+                        System.out.println("Informe abaixo os dados de conexão com o banco de dados mariaDb.");
+                        solicitarDadosDoBancoMaria();
+                        db.abraConexaoMariadb();
+                        break;
+                    default:
+                        System.out.println("Valor informado é invalido");
+                        continue;
+                }
+                break;
+            }
             RdGestImport rd = getDddGestImport();
             testes.add(new TesteTimestamp(db.getConexao(), rd));
             testes.add(new TesteInicioPeriodo(db.getConexao(), rd));
@@ -36,7 +54,7 @@ public class Main {
         }
     }
 
-    private static void solicitarDadosDoBanco() {
+    private static void solicitarDadosDoBancoPgsql() {
         try {
             System.out.println();
             System.out.print("HOST (localhost):");
@@ -51,7 +69,26 @@ public class Main {
             db.setSenha(Main.<String>ler(""));
         } catch (Exception e) {
             System.err.println("Dado informado é inválido, tente novamente");
-            solicitarDadosDoBanco();
+            solicitarDadosDoBancoPgsql();
+        }
+    }
+
+    private static void solicitarDadosDoBancoMaria() {
+        try {
+            System.out.println();
+            System.out.print("HOST (localhost):");
+            db.setUrl(ler("localhost"));
+            System.out.print("Porta (3306):");
+            db.setPorta(ler(3306));
+            System.out.print("Base de dados:");
+            db.setBaseDeDados(Main.<String>ler(null));
+            System.out.print("Usuário (root):");
+            db.setUsuario(ler("root"));
+            System.out.print("Senha:");
+            db.setSenha(Main.<String>ler(""));
+        } catch (Exception e) {
+            System.err.println("Dado informado é inválido, tente novamente");
+            solicitarDadosDoBancoMaria();
         }
     }
 

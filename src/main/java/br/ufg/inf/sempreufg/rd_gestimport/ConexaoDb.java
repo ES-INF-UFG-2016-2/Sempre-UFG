@@ -11,7 +11,7 @@ public class ConexaoDb {
     private String baseDeDados;
     private String usuario;
     private String senha;
-    private int porta = 5432;
+    private int porta = 0;
     private Connection conexao;
 
     public ConexaoDb(String url, String baseDeDados, String usuario, String senha, Connection conexao) {
@@ -78,22 +78,42 @@ public class ConexaoDb {
         this.senha = senha;
     }
 
-    public String toString() {
+    private String toStringPgsql() {
         return String.format("jdbc:postgresql://%s:%s/%s", getUrl(), getPorta(), getBaseDeDados());
     }
 
-    public void abraConexao() {
+    private String toStringMariaDb() {
+        return String.format("jdbc:mariadb://%s:%s/%s", getUrl(), getPorta(), getBaseDeDados());
+    }
+
+    void abraConexaoPgsql() {
         try {
             Properties props = new Properties();
             props.setProperty("user", getUsuario());
             props.setProperty("password", getSenha());
-            this.conexao = DriverManager.getConnection(this.toString(), props);
+            this.conexao = DriverManager.getConnection(this.toStringPgsql(), props);
         } catch (SQLException e) {
             throw new IllegalArgumentException(
                     "Erro ao tentar conectar ao banco de dados.\n" +
-                            "URL:" + this.toString() + "\n" +
+                            "URL:" + this.toStringPgsql() + "\n" +
                             "Usuário:" + this.getUsuario() + "\n" +
                             "Erro:" + e.getMessage()
+            );
+        }
+    }
+
+    void abraConexaoMariadb() {
+        try {
+            Properties props = new Properties();
+            props.setProperty("user", getUsuario());
+            props.setProperty("password", getSenha());
+            this.conexao = DriverManager.getConnection(this.toStringMariaDb(), props);
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(
+                "Erro ao tentar conectar ao banco de dados.\n" +
+                    "URL:" + this.toStringMariaDb() + "\n" +
+                    "Usuário:" + this.getUsuario() + "\n" +
+                    "Erro:" + e.getMessage()
             );
         }
     }

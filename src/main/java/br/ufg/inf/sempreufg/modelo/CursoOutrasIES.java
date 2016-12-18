@@ -1,68 +1,78 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.sempreufg.enums.NiveisCurso;
+import br.ufg.inf.sempreufg.enums.Nivel;
 import br.ufg.inf.sempreufg.enums.TipoInstituicao;
 
 public class CursoOutrasIES {
 
-	private String nomeDoCurso;
+    private String nomeDoCurso;
 
-	private String unidadeAcademia;
+    private String unidadeAcademia;
 
-	private String iesDoCurso;
+    private String iesDoCurso;
 
-	private String urlInstitucional;
+    private String urlInstitucional;
 
-	private NiveisCurso nivel;
+    private Nivel nivel;
 
-	private TipoInstituicao tipoInstituicao;
+    private TipoInstituicao tipoInstituicao;
 
-	public String getNomeDoCurso() {
-		return nomeDoCurso;
-	}
+    private AreaDeConhecimento area_conhecimento;
 
-	public void setNomeDoCurso(String nomeDoCurso) {
-		this.nomeDoCurso = nomeDoCurso;
-	}
+    public AreaDeConhecimento getArea_conhecimento() {
+        return area_conhecimento;
+    }
 
-	public String getUnidadeAcademia() {
-		return unidadeAcademia;
-	}
+    public void setArea_conhecimento(AreaDeConhecimento area_conhecimento) {
+        this.area_conhecimento = area_conhecimento;
+    }
 
-	public void setUnidadeAcademia(String unidadeAcademia) {
-		this.unidadeAcademia = unidadeAcademia;
-	}
+    public String getNomeDoCurso() {
+        return nomeDoCurso;
+    }
 
-	public String getIesDoCurso() {
-		return iesDoCurso;
-	}
+    public void setNomeDoCurso(String nomeDoCurso) {
+        this.nomeDoCurso = nomeDoCurso;
+    }
 
-	public void setIesDoCurso(String iesDoCurso) {
-		this.iesDoCurso = iesDoCurso;
-	}
+    public String getUnidadeAcademia() {
+        return unidadeAcademia;
+    }
 
-	public String getUrlInstitucional() {
-		return urlInstitucional;
-	}
+    public void setUnidadeAcademia(String unidadeAcademia) {
+        this.unidadeAcademia = unidadeAcademia;
+    }
 
-	public void setUrlInstitucional(String urlInstitucional) {
-		this.urlInstitucional = urlInstitucional;
-	}
+    public String getIesDoCurso() {
+        return iesDoCurso;
+    }
 
-	public NiveisCurso getNivel() {
-		return nivel;
-	}
+    public void setIesDoCurso(String iesDoCurso) {
+        this.iesDoCurso = iesDoCurso;
+    }
 
-	public void setNivel(NiveisCurso nivel) {
-		this.nivel = nivel;
-	}
+    public String getUrlInstitucional() {
+        return urlInstitucional;
+    }
 
-	public TipoInstituicao getTipoInstituicao() {
-		return tipoInstituicao;
-	}
+    public void setUrlInstitucional(String urlInstitucional) {
+        this.urlInstitucional = urlInstitucional;
+    }
 
-	public void setTipoInstituicao(TipoInstituicao tipoInstituicao) {
-		this.tipoInstituicao = tipoInstituicao;
-	}
+    public Nivel getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
+    }
+
+    public TipoInstituicao getTipoInstituicao() {
+        return tipoInstituicao;
+    }
+
+    public void setTipoInstituicao(TipoInstituicao tipoInstituicao) {
+        this.tipoInstituicao = tipoInstituicao;
+    }
 
 }
