@@ -18,6 +18,9 @@ var navbarSideMenus = {
     "<a href='#'><i class='fa fa-search fa-fw'></i> Consultas<span class='fa arrow'></span></a>" +
     "<ul class='nav nav-second-level'>" +
     "<li>" +
+    "<a href='../consultas/nova-consulta'>Nova Consulta</a>" +
+    "</li>" +
+    "<li>" +
     "<a href='#'>Planilha Egresso</a>" +
     "</li>" +
     "<li>" +
