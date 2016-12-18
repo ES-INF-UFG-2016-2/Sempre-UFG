@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS atributos_contidos_por_entidades
+(
+   	id SERIAL NOT NULL,
+   	nome_entidade VARCHAR(150) NOT NULL,
+   	nome_atributo varchar(150) NOT NULL,
+
+   	CONSTRAINT pk_atributos_contidos_por_entidades PRIMARY KEY (id),
+    CONSTRAINT fk_atributos_contidos_por_entidades_entidade foreign key (nome_entidade) references entidade(nome_entidade),
+    CONSTRAINT fk_atributos_contidos_por_entidades_atributo foreign key (nome_atributo) references atributo(nome_atributo)
+);

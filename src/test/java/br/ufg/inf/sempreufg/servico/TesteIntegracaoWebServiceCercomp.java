@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.ufg.inf.sempreufg.dao.CursoUFGDAO;
-import br.ufg.inf.sempreufg.dao.EgressoDao;
+import br.ufg.inf.sempreufg.dao.EgressoDAO;
 import br.ufg.inf.sempreufg.dao.InstituicaoEnsinoDao;
 import br.ufg.inf.sempreufg.modelo.CursoUFG;
 import br.ufg.inf.sempreufg.modelo.Egresso;
@@ -58,13 +58,13 @@ public class TesteIntegracaoWebServiceCercomp {
 
 	@Test
 	public void testeConsultaWebServiceViaIdentificadorEgresso(){
-		EgressoDao egressoDao = new EgressoDao();
+		EgressoDAO egressoDAO = new EgressoDAO();
 		StringBuilder sql = new StringBuilder();
 
 		sql.append("SELECT ID, NOME_OFICIAL, SEXO ")
 		   .append("FROM EGRESSOS");
 
-		List<Egresso> egressos = egressoDao.select(sql.toString());
+		List<Egresso> egressos = egressoDAO.select(sql.toString());
 		List<Integer> codigosEgressos = new ArrayList<Integer>();
 
 		egressos.stream().forEach(x-> codigosEgressos.add(x.getId()));
