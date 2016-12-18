@@ -1,6 +1,5 @@
 package br.ufg.inf.sempreufg.enums;
 
-public enum Nivel {
-
+public enum Nivel { 
 	Bacharelado,Licenciatura,Aperfeiçoamento,Especialização,Mestrada,Doutorado;
 }
