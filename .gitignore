@@ -17,6 +17,7 @@ Session.vim
 tags
 
 ### NetBeans template
+/nbproject/
 nbproject/private/
 build/
 nbbuild/
@@ -242,4 +243,7 @@ local.properties
 # Code Recommenders
 .recommenders/
 
-/nbproject/
+# node_modules and bower_components from web folder
+classes/
+src/web/node_modules
+src/web/bower_components

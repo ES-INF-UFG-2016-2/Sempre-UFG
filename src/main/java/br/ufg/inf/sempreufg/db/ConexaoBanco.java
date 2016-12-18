@@ -1,0 +1,37 @@
+package br.ufg.inf.sempreufg.db;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class ConexaoBanco {
+
+	public static Connection conn = null;
+
+	public static Connection getConnection() throws SQLException{
+		if(conn != null && !conn.isClosed()){
+                    return conn;
+                }
+                else{
+                    return getConnection("postgres");
+                }
+	}
+
+
+	public static Connection getConnection(String username){
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/sempreufg", username,"sempreufg");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return conn;
+		}
+		return conn;
+	}
+
+}
