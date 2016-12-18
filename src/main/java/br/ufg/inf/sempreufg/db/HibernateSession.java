@@ -20,5 +20,4 @@ public class HibernateSession {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
 }
