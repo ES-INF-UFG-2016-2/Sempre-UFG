@@ -1,16 +1,15 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import java.io.File;
-
+import br.ufg.inf.sempreufg.interfaces.Planilha;
+import br.ufg.inf.sempreufg.interfaces.SalvaPlaniEgresInterface;
+import br.ufg.inf.sempreufg.stubs.PlanilhaStub;
+import br.ufg.inf.sempreufg.stubs.SalvaPlaniEgres;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufg.inf.sempreufg.interfaces.Planilha;
-import br.ufg.inf.sempreufg.interfaces.SalvaPlaniEgresInterface;
-import br.ufg.inf.sempreufg.stubs.PlanilhaStub;
-import br.ufg.inf.sempreufg.stubs.SalvaPlaniEgres;
+import java.io.File;
 
 public class SalvaPlaniEgresTest
 {
