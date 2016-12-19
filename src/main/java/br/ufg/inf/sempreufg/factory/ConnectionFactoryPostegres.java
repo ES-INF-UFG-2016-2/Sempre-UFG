@@ -18,6 +18,6 @@ public class ConnectionFactoryPostegres {
 
 	private void criarConexao() throws SQLException, ClassNotFoundException{
 		Class.forName("org.postgresql.Driver");
-		this.con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/sempre_ufg", "postgres", "duckmaster");
+		this.con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/sempreufg", "sempreufg", "sempreufg");
 	}
 }
