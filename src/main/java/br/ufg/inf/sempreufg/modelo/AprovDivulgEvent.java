@@ -1,45 +1,59 @@
 package br.ufg.inf.sempreufg.modelo;
 
-import br.ufg.inf.sempreufg.interfaces.AprovDivulgEventInterface;
+import java.util.Date;
 
-import java.util.ArrayList;
-import java.util.List;
+public class AprovDivulgEvent {
 
-public class AprovDivulgEvent implements AprovDivulgEventInterface {
+    private int idAprovacao;
+    private Responsavel responsavel;
+    private Evento evento;
+    private Date dataAprovacao;
+    private boolean divulgacaoAprovada;
+    private String parecer;
+    private Responsavel gestorSistema;
+    private Usuario solicitante;
 
-	private static List lista_intancias = new ArrayList();
-	private static Responsavel responsavel = new Responsavel(lista_intancias);
-	private int id_evento;
-	private boolean sol_aprov;
+    public Responsavel getResponsavel() {
+        return responsavel;
+    }
 
-	public  AprovDivulgEvent(int id, boolean sol_aprov)  {
+    public Evento getEvento() {
+        return evento;
+    }
 
-		this.id_evento = id;
-		this.sol_aprov = sol_aprov;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
 
+    public void setDataAprovacao(Date dataAprovacao) {
+        this.dataAprovacao = dataAprovacao;
+    }
 
-	}
+    public void setDivulgacaoAprovada(boolean divulgacaoAprovada) {
+        this.divulgacaoAprovada = divulgacaoAprovada;
+    }
 
-	public String getResultado(){
+    public void setParecer(String parecer) {
+        this.parecer = parecer;
+    }
 
-		int tamanho_lista = 50;
-		List lista_de_eventos = new ArrayList();
+    public Evento encaminhaDivulgacaoAprovada(Evento evento){
+        divulgacaoAprovada = true;
+        return evento;
+    }
 
-		for (int i = 0; i < tamanho_lista; i++) {
-			lista_de_eventos.add(i);
+    public String encaminhaDiculgacaoNegada(String parecer){
+        divulgacaoAprovada = false;
+        return parecer;
+    }
 
-		}
+    public Responsavel getGestorSistema() {
+        return gestorSistema;
+    }
 
-		 if (this.id_evento <= 0) {
-			return "Id nao pode ser menor que 1.";
-		} else if (!lista_de_eventos.contains(this.id_evento)) {
-			return "Nao existe evento com id correspondente.";
-		} else {
-
-			return responsavel.avaliaSolicitacao(this.id_evento, this.sol_aprov);
-		}
-
-	}
+    public Usuario getSolicitante() {
+        return solicitante;
+    }
 
 	@Override
 	public void atribuirResponsavelPorAprovacaoDivulgacao(Evento evento, Responsavel reponsavel) {
