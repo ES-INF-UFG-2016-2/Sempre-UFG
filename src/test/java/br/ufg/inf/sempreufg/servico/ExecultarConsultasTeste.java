@@ -1,4 +1,4 @@
-package br.ufg.inf.servico;
+package br.ufg.inf.sempreufg.servico;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,17 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.ufg.inf.sempreufg.servico.ConsultaPreDefinidaService;
-import br.ufg.inf.sempreufg.servico.EgressoService;
-import br.ufg.inf.sempreufg.servico.EgressoServiceInterface;
-import br.ufg.inf.sempreufg.servico.ExecultarConsultasMock;
 import org.junit.Assert;
 import org.junit.Test;
 
 import br.ufg.inf.sempreufg.dao.ConnectionFactory;
-import br.ufg.inf.sempreufg.dao.EgressoDao;
+import br.ufg.inf.sempreufg.dao.EgressoDAO;
 import br.ufg.inf.sempreufg.enums.NomeCampos;
-import br.ufg.inf.sempreufg.interfaces.EgressoDaoInterface;
+import br.ufg.inf.sempreufg.interfaces.EgressoDAOInterface;
 
 import br.ufg.inf.sempreufg.modelo.Egresso;
 
@@ -30,8 +26,8 @@ public class ExecultarConsultasTeste {
             Map<NomeCampos, String> adHocPreDefinido = criarParametrosAdHoc();
             StringBuilder sql = criarSqlQueryDeAcordoComMapAdHoc(adHocPreDefinido);
 
-            EgressoDaoInterface<Egresso> EgressoDao = new EgressoDao();
-            List<Egresso> egressos = EgressoDao.select(sql.toString());
+            EgressoDAOInterface<Egresso> egressoDao = new EgressoDAO();
+            List<Egresso> egressos = egressoDao.select(sql.toString());
 
             List<Egresso> egressosTeste = realizarConsulta(sql.toString());
             Assert.assertTrue(listasSaoIguais(egressos, egressosTeste));
@@ -67,8 +63,8 @@ public class ExecultarConsultasTeste {
         String consulta = consultaPreDefinida.obterConsultaPreDefinida();
         sql.append(consulta);
 
-        EgressoDaoInterface<Egresso> EgressoDao = new EgressoDao();
-        List<Egresso> egressos = EgressoDao.select(sql.toString());
+        EgressoDAOInterface<Egresso> egressoDao = new EgressoDAO();
+        List<Egresso> egressos = egressoDao.select(sql.toString());
 
         List<Egresso> egressosTeste = realizarConsulta(sql.toString());
         Assert.assertTrue(listasSaoIguais(egressos, egressosTeste));

@@ -1,6 +1,5 @@
-package br.ufg.inf.servico;
+package br.ufg.inf.sempreufg.servico;
 
-import br.ufg.inf.sempreufg.servico.AutenticacaoService;
 import br.ufg.inf.sempreufg.modelo.CursoUFG;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
