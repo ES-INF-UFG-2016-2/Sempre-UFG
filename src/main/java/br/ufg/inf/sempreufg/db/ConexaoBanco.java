@@ -8,11 +8,13 @@ public class ConexaoBanco {
 
 	public static Connection conn = null;
 
-	public static Connection getConnection(){
-		if(conn != null) return conn;
-
-		return getConnection("sempreufg");
-
+	public static Connection getConnection() throws SQLException{
+		if(conn != null && !conn.isClosed()){
+                    return conn;
+                }
+                else{
+                    return getConnection("postgres");
+                }
 	}
 
 

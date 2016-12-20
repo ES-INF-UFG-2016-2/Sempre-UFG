@@ -54,7 +54,7 @@ public class ConfiguraAtualizacaoEgresso {
 
             for (Atributo atributo : entidade.getAtributos()) {
                 configuraAtualizacaoEgressoDAO.gravarReferenciasAtributosEntidades(
-                    entidade.getNomeDaEntidade(),atributo.getNomeDoAtributo());
+                    entidade.getNome(),atributo.getNomeDoAtributo());
             }
         }
         return true;

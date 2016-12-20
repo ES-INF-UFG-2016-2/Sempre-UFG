@@ -41,4 +41,11 @@ public class AprovDivulgEvent implements AprovDivulgEventInterface {
 
 	}
 
+	@Override
+	public void atribuirResponsavelPorAprovacaoDivulgacao(Evento evento, Responsavel reponsavel) {
+		// TODO Auto-generated method stub
+		// Metodo criado para o build funcionar
+	
+	}
+
 }
