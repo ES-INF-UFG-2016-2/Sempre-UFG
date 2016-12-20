@@ -5,7 +5,7 @@ import java.util.List;
 public class Entidade {
     private String id;
 
-    private String nomeDaEntidade;
+    private String nome;
 
     private List<Atributo> atributos;
 
@@ -26,12 +26,12 @@ public class Entidade {
         return id;
     }
 
-    public String getNomeDaEntidade() {
-        return nomeDaEntidade;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeDaEntidade(String nomeDaEntidade) {
-        this.nomeDaEntidade = nomeDaEntidade;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public List<Atributo> getAtributos() {
