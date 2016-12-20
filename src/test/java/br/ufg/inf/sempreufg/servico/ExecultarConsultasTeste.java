@@ -14,9 +14,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.ufg.inf.sempreufg.dao.ConnectionFactory;
-import br.ufg.inf.sempreufg.dao.EgressoDAO;
+import br.ufg.inf.sempreufg.dao.EgressoDao;
 import br.ufg.inf.sempreufg.enums.NomeCampos;
-import br.ufg.inf.sempreufg.interfaces.EgressoDAOInterface;
+import br.ufg.inf.sempreufg.interfaces.EgressoDaoInterface;
 
 import br.ufg.inf.sempreufg.modelo.Egresso;
 
@@ -30,8 +30,8 @@ public class ExecultarConsultasTeste {
             Map<NomeCampos, String> adHocPreDefinido = criarParametrosAdHoc();
             StringBuilder sql = criarSqlQueryDeAcordoComMapAdHoc(adHocPreDefinido);
 
-            EgressoDAOInterface<Egresso> egressoDao = new EgressoDAO();
-            List<Egresso> egressos = egressoDao.select(sql.toString());
+            EgressoDaoInterface<Egresso> EgressoDao = new EgressoDao();
+            List<Egresso> egressos = EgressoDao.select(sql.toString());
 
             List<Egresso> egressosTeste = realizarConsulta(sql.toString());
             Assert.assertTrue(listasSaoIguais(egressos, egressosTeste));
@@ -67,8 +67,8 @@ public class ExecultarConsultasTeste {
         String consulta = consultaPreDefinida.obterConsultaPreDefinida();
         sql.append(consulta);
 
-        EgressoDAOInterface<Egresso> egressoDao = new EgressoDAO();
-        List<Egresso> egressos = egressoDao.select(sql.toString());
+        EgressoDaoInterface<Egresso> EgressoDao = new EgressoDao();
+        List<Egresso> egressos = EgressoDao.select(sql.toString());
 
         List<Egresso> egressosTeste = realizarConsulta(sql.toString());
         Assert.assertTrue(listasSaoIguais(egressos, egressosTeste));

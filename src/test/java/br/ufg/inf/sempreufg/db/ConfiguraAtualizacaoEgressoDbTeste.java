@@ -83,7 +83,7 @@ public class ConfiguraAtualizacaoEgressoDbTeste {
         Entidade entidadeEgresso = new Entidade();
         String nomeEgresso = "Egresso";
         entidadeEgresso.setId(ultimoIdInserido("id_interno","entidade"));
-        entidadeEgresso.setNomeDaEntidade(nomeEgresso);
+        entidadeEgresso.setNome(nomeEgresso);
         entidadeEgresso.setTituloDoGrupoDeQuestoes(nomeEgresso);
         entidadeEgresso.setTituloDoGrupoDeCampos(nomeEgresso);
         dadosEntidadeEgresso.add(nomeEgresso);
@@ -96,7 +96,7 @@ public class ConfiguraAtualizacaoEgressoDbTeste {
         Entidade entidadeUsuario = new Entidade();
         String nomeUsuario = "Usuario";
         entidadeUsuario.setId(ultimoIdInserido("id_interno","entidade"));
-        entidadeUsuario.setNomeDaEntidade(nomeUsuario);
+        entidadeUsuario.setNome(nomeUsuario);
         entidadeUsuario.setTituloDoGrupoDeQuestoes(nomeUsuario);
         entidadeUsuario.setTituloDoGrupoDeCampos(nomeUsuario);
         entidadeUsuario.setEntidadeAntecedente(entidadeEgresso);

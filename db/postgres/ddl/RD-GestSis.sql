@@ -18,7 +18,7 @@ CREATE TABLE Parametro (
                 idParametro SERIAL,
                 sigla_parametro VARCHAR(20) NOT NULL,
                 idSempreUFG VARCHAR(255) NOT NULL,
-                tipo tipo_parametro NOT NULL,
+                tipo VARCHAR(30) NOT NULL,
                 descricao_parametro VARCHAR(255) NOT NULL,
                 valor VARCHAR(100) NOT NULL,
                 PRIMARY KEY (idParametro, idSempreUFG)
@@ -64,11 +64,6 @@ REFERENCES Usuario (idUsuario)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
-ALTER TABLE Parametro ADD CONSTRAINT sempreufg_parametro_fk
-FOREIGN KEY (idSempreUFG)
-REFERENCES SempreUFG (idSempreUFG)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION;
 
 ALTER TABLE Restauracao ADD CONSTRAINT backup_restauracao_fk
 FOREIGN KEY (idBackup, idUsuario)

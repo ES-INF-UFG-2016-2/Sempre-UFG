@@ -247,3 +247,4 @@ local.properties
 classes/
 src/web/node_modules
 src/web/bower_components
+/bin/
