@@ -1,6 +1,6 @@
 package br.ufg.inf.sempreufg.dao;
 
-import br.ufg.inf.sempreufg.abstratas.AreaDeConhecimento;
+import br.ufg.inf.sempreufg.modelo.AreaDeConhecimento;
 import br.ufg.inf.sempreufg.interfaces.AreaDeConhecimentoDAOInterface;
 
 import java.util.List;
