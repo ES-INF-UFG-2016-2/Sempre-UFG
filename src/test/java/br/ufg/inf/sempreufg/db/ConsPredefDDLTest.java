@@ -2,10 +2,12 @@ package br.ufg.inf.sempreufg.db;
 
 import br.ufg.inf.sempreufg.stubs.ConsPredefDAOStub;
 import br.ufg.inf.sempreufg.stubs.ConsPredefStub;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
 public class ConsPredefDDLTest {
@@ -13,14 +15,13 @@ public class ConsPredefDDLTest {
     private String sysBar = System.getProperty("file.separator");
     private String URLCONEXAO = "jdbc:mysql://localhost:3306/sempreufg";
     private String DDLPath = "db" + sysBar + "mariadb" + sysBar + "ddl" + sysBar + "RD-ConsPredef.sql";
-    private String USUARIO = "root";
-    private String SENHA = "root";
+    private String USUARIO = "sempreufg";
+    private String SENHA = "sempreufg";
 
     private ConsPredefDAOStub sut = new ConsPredefDAOStub();
 
     @Test
     public void testQueryMetadataTableDDL() throws IOException {
-        runQuery(DDLPath);
         try {
             Connection con = DriverManager.getConnection(URLCONEXAO, USUARIO, SENHA);
 

@@ -30,8 +30,8 @@ public class ExecultarConsultasTeste {
             Map<NomeCampos, String> adHocPreDefinido = criarParametrosAdHoc();
             StringBuilder sql = criarSqlQueryDeAcordoComMapAdHoc(adHocPreDefinido);
 
-            EgressoDaoInterface<Egresso> egressoDao = new EgressoDao();
-            List<Egresso> egressos = egressoDao.select(sql.toString());
+            EgressoDaoInterface<Egresso> EgressoDao = new EgressoDao();
+            List<Egresso> egressos = EgressoDao.select(sql.toString());
 
             List<Egresso> egressosTeste = realizarConsulta(sql.toString());
             Assert.assertTrue(listasSaoIguais(egressos, egressosTeste));
@@ -67,8 +67,8 @@ public class ExecultarConsultasTeste {
         String consulta = consultaPreDefinida.obterConsultaPreDefinida();
         sql.append(consulta);
 
-        EgressoDaoInterface<Egresso> egressoDao = new EgressoDao();
-        List<Egresso> egressos = egressoDao.select(sql.toString());
+        EgressoDaoInterface<Egresso> EgressoDao = new EgressoDao();
+        List<Egresso> egressos = EgressoDao.select(sql.toString());
 
         List<Egresso> egressosTeste = realizarConsulta(sql.toString());
         Assert.assertTrue(listasSaoIguais(egressos, egressosTeste));

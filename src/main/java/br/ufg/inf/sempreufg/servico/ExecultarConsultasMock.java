@@ -1,14 +1,14 @@
 package br.ufg.inf.sempreufg.servico;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import br.ufg.inf.sempreufg.enums.Sexo;
 import br.ufg.inf.sempreufg.enums.VisibilidadeDados;
 import br.ufg.inf.sempreufg.modelo.Egresso;
 import br.ufg.inf.sempreufg.modelo.HistoricoUFG;
 import br.ufg.inf.sempreufg.modelo.LocalizacaoGeografica;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ExecultarConsultasMock {
 	public List<Egresso> criarListaEgresso(){
@@ -26,7 +26,7 @@ public class ExecultarConsultasMock {
 									  NomeMae,
 									  new Date(),
 									  sexo,
-									  "",
+                                      "",
 									  null,
 									  null,
 									  visibilidadeDados,

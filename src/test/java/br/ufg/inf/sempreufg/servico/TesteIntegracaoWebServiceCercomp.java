@@ -58,13 +58,13 @@ public class TesteIntegracaoWebServiceCercomp {
 
 	@Test
 	public void testeConsultaWebServiceViaIdentificadorEgresso(){
-		EgressoDao egressoDao = new EgressoDao();
+		EgressoDao EgressoDao = new EgressoDao();
 		StringBuilder sql = new StringBuilder();
 
 		sql.append("SELECT ID, NOME_OFICIAL, SEXO ")
 		   .append("FROM EGRESSOS");
 
-		List<Egresso> egressos = egressoDao.select(sql.toString());
+		List<Egresso> egressos = EgressoDao.select(sql.toString());
 		List<Integer> codigosEgressos = new ArrayList<Integer>();
 
 		egressos.stream().forEach(x-> codigosEgressos.add(x.getId()));
