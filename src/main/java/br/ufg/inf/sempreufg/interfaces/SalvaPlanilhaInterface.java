@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface SalvaPlanilhaInterface {
 
-	void salvaPlanilha(Object[][] tabela, String nome, String caminho) throws Exception;
+	boolean salvaPlanilha(Object[][] tabela, String nome, String caminho);
 
-	void salvaPlanilha(List tabela, String nome, String caminho) throws Exception;
+	boolean salvaPlanilha(List tabela, String nome, String caminho);
 
 }
